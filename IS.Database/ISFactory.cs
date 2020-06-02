@@ -22,5 +22,6 @@ namespace IS.Database
         public CashierCashOnHandRepository CashierCashOnHandRepository => new CashierCashOnHandRepository();
         public CategoriesRepository CategoriesRepository => new CategoriesRepository();
         public RequestOrderItemsRepository RequestOrderItemsRepository  => new RequestOrderItemsRepository();
+        public RequestOrderItemDetailsRepository RequestOrderItemDetailsRepository => new RequestOrderItemDetailsRepository();
     }
 }

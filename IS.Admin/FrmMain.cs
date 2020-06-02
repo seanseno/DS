@@ -1,5 +1,6 @@
 ﻿using IS.Admin.Setup;
 using IS.Admin.Setup.Cashier;
+using IS.Admin.Trasactions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
