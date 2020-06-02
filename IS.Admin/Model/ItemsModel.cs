@@ -12,11 +12,12 @@ namespace IS.Admin.Model
 {
     public class ItemsModel
     {
-        public IList<Items> ItemList(FrmItems frm, string Keywords)
+        public IList<Items> ItemList(string Keywords)
         {
             var factory = new ISFactory();
             return factory.ItemsRepository.Find(Keywords);
         }
+
         public void AddItem(FrmAddItem frm)
         {
             var factory = new ISFactory();
