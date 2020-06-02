@@ -1,0 +1,12 @@
+.vs/IS/v16/.suo
+IS.Admin/bin/
+IS.Admin/obj/
+IS.Common/bin/
+IS.Common/obj
+IS.Database/bin/
+IS.Database/obj
+IS.KIOSK/bin
+IS.KIOSK/obj
+IS.Library/bin
+IS.Library/obj
+packages/
