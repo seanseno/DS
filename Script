@@ -101,16 +101,19 @@ CREATE NONCLUSTERED INDEX [IX_Table_CompanyName]
 
 ---
 CREATE TABLE [dbo].[Items] (
-    [Id]          INT            IDENTITY (1, 1) NOT NULL,
-    [CompanyId]   INT            NULL,
-    [GenericName] NVARCHAR (50)  NOT NULL,
-    [BrandName]   NVARCHAR (50)  NULL,
-    [Description] NVARCHAR (100) NOT NULL,
-    [Price]       MONEY          NOT NULL,
-    [InsertTime]  DATETIME       DEFAULT (getdate()) NOT NULL,
-    [UpdateTime]  DATETIME       NULL,
-    [Active]      INT            NOT NULL,
-    [BarCode]     NVARCHAR (100) NULL,
+    [Id]               INT             IDENTITY (1, 1) NOT NULL,
+    [CompanyId]        INT             NULL,
+    [GenericName]      NVARCHAR (255)  NULL,
+    [BrandName]        NVARCHAR (255)  NULL,
+    [Description]      NVARCHAR (1000) NOT NULL,
+    [Price]            MONEY           NOT NULL,
+    [InsertTime]       DATETIME        DEFAULT (getdate()) NOT NULL,
+    [UpdateTime]       DATETIME        NULL,
+    [Active]           INT             DEFAULT ((1)) NOT NULL,
+    [BarCode]          NVARCHAR (100)  NULL,
+    [CategoryId]       INT             NULL,
+    [DateManufactured] DATETIME        NULL,
+    [ExpirationDate]   DATETIME        NULL,
     CONSTRAINT [PK_Items] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
