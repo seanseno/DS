@@ -36,7 +36,7 @@ namespace IS.Admin.Setup
         private void LoadItems()
         {
             ItemsModel model = new ItemsModel();
-            var response = model.ItemList(this, txtSearch.Text);
+            var response = model.ItemList(txtSearch.Text);
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = response;
             txtSearch.Focus();

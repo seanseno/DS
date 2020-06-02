@@ -10,3 +10,4 @@ IS.KIOSK/obj
 IS.Library/bin
 IS.Library/obj
 packages/
+.vs/IS/DesignTimeBuild/.dtbcache.v2

@@ -24,11 +24,6 @@ namespace IS.Admin
             Application.Exit();
         }
 
-        private void itemsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmItems frm = new FrmItems();
-            frm.ShowDialog();
-        }
         private void salesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmSales frm = new FrmSales();
@@ -38,12 +33,6 @@ namespace IS.Admin
         private void companiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmCompanies frm = new FrmCompanies();
-            frm.ShowDialog();
-        }
-
-        private void stocksToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            FrmStocks frm = new FrmStocks();
             frm.ShowDialog();
         }
 
@@ -92,6 +81,30 @@ namespace IS.Admin
         private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmCategories frm = new FrmCategories();
+            frm.ShowDialog();
+        }
+
+        private void itemsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FrmItems frm = new FrmItems();
+            frm.ShowDialog();
+        }
+
+        private void uploadItemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmUploadExcel frm = new FrmUploadExcel();
+            var response = frm.ShowDialog();
+        }
+
+        private void stocksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmStocks frm = new FrmStocks();
+            frm.ShowDialog();
+        }
+
+        private void requestOrdersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmItemRequestOrderList frm = new FrmItemRequestOrderList();
             frm.ShowDialog();
         }
     }

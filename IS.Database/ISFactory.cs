@@ -20,7 +20,7 @@ namespace IS.Database
         public CompaniesRepository CompaniesRepository => new CompaniesRepository();
         public CashierCashOnHandDenominationRepository CashierCashOnHandDenominationRepository => new CashierCashOnHandDenominationRepository();
         public CashierCashOnHandRepository CashierCashOnHandRepository => new CashierCashOnHandRepository();
-        
-        public CategoriesRepository CategoriesRepository = new CategoriesRepository();
+        public CategoriesRepository CategoriesRepository => new CategoriesRepository();
+        public RequestOrderItemsRepository RequestOrderItemsRepository  => new RequestOrderItemsRepository();
     }
 }

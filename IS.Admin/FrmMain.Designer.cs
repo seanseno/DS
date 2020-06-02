@@ -37,7 +37,9 @@
             this.categoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.companiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stocksToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.uploadItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.utilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cashiersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,6 +50,11 @@
             this.cashierTotalCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.transactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ordersToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.requestOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.receivedOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -57,6 +64,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuToolStripMenuItem,
+            this.transactionsToolStripMenuItem,
             this.setupToolStripMenuItem,
             this.utilitiesToolStripMenuItem,
             this.reportToolStripMenuItem});
@@ -96,8 +104,7 @@
             this.setupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.categoriesToolStripMenuItem,
             this.companiesToolStripMenuItem,
-            this.itemsToolStripMenuItem,
-            this.stocksToolStripMenuItem1});
+            this.itemsToolStripMenuItem});
             this.setupToolStripMenuItem.Name = "setupToolStripMenuItem";
             this.setupToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.setupToolStripMenuItem.Text = "Setup";
@@ -118,17 +125,33 @@
             // 
             // itemsToolStripMenuItem
             // 
+            this.itemsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.itemsToolStripMenuItem1,
+            this.uploadItemsToolStripMenuItem,
+            this.ordersToolStripMenuItem});
             this.itemsToolStripMenuItem.Name = "itemsToolStripMenuItem";
             this.itemsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.itemsToolStripMenuItem.Text = "Items";
-            this.itemsToolStripMenuItem.Click += new System.EventHandler(this.itemsToolStripMenuItem_Click);
             // 
-            // stocksToolStripMenuItem1
+            // itemsToolStripMenuItem1
             // 
-            this.stocksToolStripMenuItem1.Name = "stocksToolStripMenuItem1";
-            this.stocksToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.stocksToolStripMenuItem1.Text = "Stocks";
-            this.stocksToolStripMenuItem1.Click += new System.EventHandler(this.stocksToolStripMenuItem1_Click);
+            this.itemsToolStripMenuItem1.Name = "itemsToolStripMenuItem1";
+            this.itemsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.itemsToolStripMenuItem1.Text = "Items";
+            this.itemsToolStripMenuItem1.Click += new System.EventHandler(this.itemsToolStripMenuItem1_Click);
+            // 
+            // uploadItemsToolStripMenuItem
+            // 
+            this.uploadItemsToolStripMenuItem.Name = "uploadItemsToolStripMenuItem";
+            this.uploadItemsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.uploadItemsToolStripMenuItem.Text = "Upload Items";
+            this.uploadItemsToolStripMenuItem.Click += new System.EventHandler(this.uploadItemsToolStripMenuItem_Click);
+            // 
+            // ordersToolStripMenuItem
+            // 
+            this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
+            this.ordersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ordersToolStripMenuItem.Text = "Orders";
             // 
             // utilitiesToolStripMenuItem
             // 
@@ -212,6 +235,44 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // transactionsToolStripMenuItem
+            // 
+            this.transactionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ordersToolStripMenuItem1,
+            this.stocksToolStripMenuItem});
+            this.transactionsToolStripMenuItem.Name = "transactionsToolStripMenuItem";
+            this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
+            this.transactionsToolStripMenuItem.Text = "Transactions";
+            // 
+            // ordersToolStripMenuItem1
+            // 
+            this.ordersToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.requestOrdersToolStripMenuItem,
+            this.receivedOrdersToolStripMenuItem});
+            this.ordersToolStripMenuItem1.Name = "ordersToolStripMenuItem1";
+            this.ordersToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.ordersToolStripMenuItem1.Text = "Orders";
+            // 
+            // requestOrdersToolStripMenuItem
+            // 
+            this.requestOrdersToolStripMenuItem.Name = "requestOrdersToolStripMenuItem";
+            this.requestOrdersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.requestOrdersToolStripMenuItem.Text = "Request Orders";
+            this.requestOrdersToolStripMenuItem.Click += new System.EventHandler(this.requestOrdersToolStripMenuItem_Click);
+            // 
+            // receivedOrdersToolStripMenuItem
+            // 
+            this.receivedOrdersToolStripMenuItem.Name = "receivedOrdersToolStripMenuItem";
+            this.receivedOrdersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.receivedOrdersToolStripMenuItem.Text = "Received Orders";
+            // 
+            // stocksToolStripMenuItem
+            // 
+            this.stocksToolStripMenuItem.Name = "stocksToolStripMenuItem";
+            this.stocksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.stocksToolStripMenuItem.Text = "Stocks";
+            this.stocksToolStripMenuItem.Click += new System.EventHandler(this.stocksToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -248,7 +309,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripMenuItem companiesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem stocksToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem administratorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cashiersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOfffToolStripMenuItem;
@@ -256,6 +316,14 @@
         private System.Windows.Forms.ToolStripMenuItem cashOnHandToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cashierTotalCollectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem categoriesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem itemsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem ordersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uploadItemsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem transactionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ordersToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem requestOrdersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem receivedOrdersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stocksToolStripMenuItem;
     }
 }
 

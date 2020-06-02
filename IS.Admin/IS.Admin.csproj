@@ -178,6 +178,12 @@
     <Compile Include="Setup\Companies\FrmEditCompany.Designer.cs">
       <DependentUpon>FrmEditCompany.cs</DependentUpon>
     </Compile>
+    <Compile Include="Setup\Items\Oders\FrmItemRequestOrderList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\Items\Oders\FrmItemRequestOrderList.Designer.cs">
+      <DependentUpon>FrmItemRequestOrderList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Setup\Items\FrmAddItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,12 @@
     </Compile>
     <Compile Include="Setup\Items\FrmEditItem.Designer.cs">
       <DependentUpon>FrmEditItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setup\Items\Oders\frmMultiplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\Items\Oders\frmMultiplier.Designer.cs">
+      <DependentUpon>frmMultiplier.cs</DependentUpon>
     </Compile>
     <Compile Include="Setup\Stock\FrmStocks.cs">
       <SubType>Form</SubType>
@@ -308,6 +320,9 @@
     <EmbeddedResource Include="Setup\Companies\FrmEditCompany.resx">
       <DependentUpon>FrmEditCompany.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Setup\Items\Oders\FrmItemRequestOrderList.resx">
+      <DependentUpon>FrmItemRequestOrderList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Setup\Items\FrmAddItem.resx">
       <DependentUpon>FrmAddItem.cs</DependentUpon>
     </EmbeddedResource>
@@ -319,6 +334,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Setup\Items\FrmEditItem.resx">
       <DependentUpon>FrmEditItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\Items\Oders\frmMultiplier.resx">
+      <DependentUpon>frmMultiplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Setup\Stock\FrmStocks.resx">
       <DependentUpon>FrmStocks.cs</DependentUpon>
@@ -419,6 +437,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Upload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\select.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
