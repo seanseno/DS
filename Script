@@ -1,0 +1,225 @@
+CREATE TABLE [dbo].[Administrators] (
+    [Id]         INT            IDENTITY (1, 1) NOT NULL,
+    [Loginname]  NVARCHAR (50)  NOT NULL,
+    [Fullname]   NVARCHAR (50)  NOT NULL,
+    [Password]   NVARCHAR (500) NOT NULL,
+    [InsertTime] DATETIME       DEFAULT (getdate()) NOT NULL,
+    [UpdateTime] DATETIME       NULL,
+    [Active]     INT            DEFAULT ((1)) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Loginname] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Table_Loginname]
+    ON [dbo].[Administrators]([Loginname] ASC);
+
+-----------------------------------
+
+CREATE TABLE [dbo].[Brands] (
+    [Id]          INT            IDENTITY (1, 1) NOT NULL,
+    [Name]        NVARCHAR (50)  NOT NULL,
+    [Description] NVARCHAR (255) NULL,
+    [InsertTime]  DATETIME       NOT NULL,
+    [UpdateTime]  DATETIME       NULL,
+    [Active]      INT            DEFAULT ((1)) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Table_Name]
+    ON [dbo].[Brands]([Name] ASC);
+
+--------------------
+
+CREATE TABLE [dbo].[CashierCashOnHand] (
+    [Id]         INT           IDENTITY (1, 1) NOT NULL,
+    [CashierId]  NVARCHAR (50) NOT NULL,
+    [Amount]     MONEY         NOT NULL,
+    [InsertTime] DATETIME      DEFAULT (getdate()) NOT NULL,
+    [UpdateTime] DATETIME      NULL,
+    PRIMARY KEY CLUSTERED ([CashierId] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Table_CashierId]
+    ON [dbo].[CashierCashOnHand]([CashierId] ASC);
+
+----
+CREATE TABLE [dbo].[CashierCashOnHandDenomination] (
+    [Id]          INT           IDENTITY (1, 1) NOT NULL,
+    [CashierId]   NVARCHAR (50) NOT NULL,
+    [Thousand]    MONEY         NOT NULL,
+    [FiveHundred] MONEY         NOT NULL,
+    [OneHundred]  MONEY         NOT NULL,
+    [Fifty]       MONEY         NOT NULL,
+    [Twenty]      MONEY         NOT NULL,
+    [Coins]       MONEY         NOT NULL,
+    [Cents]       MONEY         NOT NULL,
+    [InsertTime]  DATETIME      DEFAULT (getdate()) NOT NULL,
+    PRIMARY KEY CLUSTERED ([CashierId] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Table_CashierId]
+    ON [dbo].[CashierCashOnHandDenomination]([CashierId] ASC);
+
+-----
+CREATE TABLE [dbo].[Cashiers] (
+    [Id]         INT            IDENTITY (1, 1) NOT NULL,
+    [Loginname]  NVARCHAR (50)  NOT NULL,
+    [Fullname]   NVARCHAR (100) NOT NULL,
+    [Password]   NVARCHAR (500) NOT NULL,
+    [InsertTime] DATETIME       DEFAULT (getdate()) NOT NULL,
+    [UpdateTime] DATETIME       NULL,
+    [Active]     INT            DEFAULT ((1)) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Loginname] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Table_Loginname]
+    ON [dbo].[Cashiers]([Loginname] ASC);
+
+----
+CREATE TABLE [dbo].[Companies] (
+    [Id]          INT            IDENTITY (1, 1) NOT NULL,
+    [CompanyName] NVARCHAR (50)  NOT NULL,
+    [Description] NVARCHAR (255) NULL,
+    [InsertTime]  DATETIME       DEFAULT (getdate()) NOT NULL,
+    [UpdateTime]  DATETIME       NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Table_CompanyName]
+    ON [dbo].[Companies]([CompanyName] ASC);
+
+---
+CREATE TABLE [dbo].[Items] (
+    [Id]          INT            IDENTITY (1, 1) NOT NULL,
+    [CompanyId]   INT            NULL,
+    [GenericName] NVARCHAR (50)  NOT NULL,
+    [BrandName]   NVARCHAR (50)  NULL,
+    [Description] NVARCHAR (100) NOT NULL,
+    [Price]       MONEY          NOT NULL,
+    [InsertTime]  DATETIME       DEFAULT (getdate()) NOT NULL,
+    [UpdateTime]  DATETIME       NULL,
+    [Active]      INT            NOT NULL,
+    [BarCode]     NVARCHAR (100) NULL,
+    CONSTRAINT [PK_Items] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Table_Name]
+    ON [dbo].[Items]([BrandName] ASC);
+
+---
+CREATE TABLE [dbo].[LedgerSales] (
+    [Id]           INT            IDENTITY (1, 1) NOT NULL,
+    [CashierId]    INT            NOT NULL,
+    [PayAmount]    DECIMAL (18)   NOT NULL,
+    [Change]       DECIMAL (18)   NOT NULL,
+    [CustomerName] NVARCHAR (100) NOT NULL,
+    [InsertTime]   DATETIME       DEFAULT (getdate()) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Table_CashierId]
+    ON [dbo].[LedgerSales]([Id] ASC);
+
+----
+CREATE TABLE [dbo].[Sales] (
+    [Id]         INT      IDENTITY (1, 1) NOT NULL,
+    [ItemId]     INT      NOT NULL,
+    [Qty]        INT      NOT NULL,
+    [InsertTime] DATETIME DEFAULT (getdate()) NOT NULL,
+    [LedgerId]   INT      NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Table_ItemId]
+    ON [dbo].[Sales]([ItemId] ASC);
+
+---
+CREATE TABLE [dbo].[Stocks] (
+    [Id]         INT      IDENTITY (1, 1) NOT NULL,
+    [ItemId]     INT      NOT NULL,
+    [Stock]      INT      NOT NULL,
+    [InsertTime] DATETIME DEFAULT (getdate()) NOT NULL,
+    [UpdateTime] DATETIME NULL,
+    [Active]     INT      NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Table_Stock]
+    ON [dbo].[Stocks]([Stock] ASC);
+
+----
+CREATE TABLE [dbo].[StocksHistory] (
+    [Id]         INT           IDENTITY (1, 1) NOT NULL,
+    [ItemId]     NVARCHAR (50) NOT NULL,
+    [Stock]      INT           NOT NULL,
+    [Credit]     INT           NOT NULL,
+    [Debit]      INT           NOT NULL,
+    [InsertTime] DATETIME      DEFAULT (getdate()) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+---
+CREATE TABLE [dbo].[TempLedgerOrders] (
+    [Id]           INT            IDENTITY (1, 1) NOT NULL,
+    [CashierId]    INT            NOT NULL,
+    [InsertTime]   DATETIME       DEFAULT (getdate()) NOT NULL,
+    [Active]       INT            DEFAULT ((1)) NOT NULL,
+    [CustomerName] NVARCHAR (100) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Table_CashierId]
+    ON [dbo].[TempLedgerOrders]([Id] ASC);
+
+---
+CREATE TABLE [dbo].[TempOrders] (
+    [Id]           INT      IDENTITY (1, 1) NOT NULL,
+    [ItemId]       INT      NOT NULL,
+    [Qty]          INT      NOT NULL,
+    [InsertTime]   DATETIME DEFAULT (getdate()) NOT NULL,
+    [TempLedgerId] INT      NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Table_ItemId]
+    ON [dbo].[TempOrders]([ItemId] ASC);
+
+---
+CREATE TABLE [dbo].[Categories] (
+    [Id]           INT            IDENTITY (1, 1) NOT NULL,
+    [CategoryName] NVARCHAR (50)  NOT NULL,
+    [Description]  NVARCHAR (255) NULL,
+    [InsertTime]   DATETIME       DEFAULT (getdate()) NOT NULL,
+    [UpdateTime]   DATETIME       NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Table_CategoryName]
+    ON [dbo].[Categories]([CategoryName] ASC);
+
+
