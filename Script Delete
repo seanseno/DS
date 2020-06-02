@@ -1,0 +1,9 @@
+DELETE FROM Stocks;
+DELETE FROM StocksHistory;
+DELETE FROM TempOrders
+DELETE FROM TempLedgerOrders
+DELETE FROM Sales;
+DELETE FROM LedgerSales;
+DELETE FROM Companies;
+DELETE FROM Categories;
+DELETE FROM Items;
