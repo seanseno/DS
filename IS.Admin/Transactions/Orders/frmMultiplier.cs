@@ -10,17 +10,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace IS.Admin.Setup
+namespace IS.Admin.Trasactions
 {
     public partial class frmMultiplier : Form
     {
         ISFactory factory = new ISFactory();
         Items item = new Items();
-        FrmMain _FrmMain = new FrmMain();
+        FrmItemRequestOrderList _FrmMain = new FrmItemRequestOrderList();
         public int? Qty { get; set; }
         private int? _ItemId { get; set; }
         int CountErrorlabel = 0;
-        public frmMultiplier(FrmMain model, int? ItemId)
+        public frmMultiplier(FrmItemRequestOrderList model, int? ItemId)
         {
             InitializeComponent();
             this._ItemId = ItemId;
@@ -35,7 +35,6 @@ namespace IS.Admin.Setup
                 e.Handled = true;
             }
         }
-
 
         private void frmMultiplier_Load(object sender, EventArgs e)
         {
@@ -59,50 +58,28 @@ namespace IS.Admin.Setup
 
         private void txtQty_KeyUp(object sender, KeyEventArgs e)
         {
-            //if(e.KeyValue == 13) // Enter
-            //{
-            //    if (!string.IsNullOrEmpty((txtQty.Text)))
-            //    {
-            //        if (int.TryParse(txtQty.Text, out int Qty))
-            //        {
-            //            if (Qty == 0)
-            //            {
-            //                lblError.Text = "Invalid Quantity Input.";
-            //                timer1.Start();
-            //                txtQty.Focus();
-            //            }
-            //            else
-            //            {
-            //                if (!factory.StocksRepository.StocksStrategy.CheckStock(item.Id, Qty))
-            //                {
-            //                    lblError.Text = "Not enough stock.";
-            //                    timer1.Start();
-            //                    txtQty.Text = Qty.ToString();
-            //                    txtQty.Focus();
-            //                }
-            //                else
-            //                {
-            //                    factory.TempSalesRepository.Insert("tempCustomer", _FrmMain._Cashier.Id, item.Id, Qty, (int)_FrmMain._TempLedgerSales.Id);
-            //                    // _frmKiosk.AddTempOrder();
-            //                    this.Qty = Qty;
-            //                    this.DialogResult = DialogResult.OK;
-            //                }
-            //            }
-            //        }
-            //    }
-            //    else
-            //    {
-            //        lblError.Text = "Invalid Quantity Input.";
-            //        timer1.Start();
-            //        txtQty.Focus();
-            //    }
+            if (e.KeyValue == 13) // Enter
+            {
+                btnAccept_Click(sender, e);
 
-            //}
-            //else if (e.KeyValue == 27)  //escape
-            //{
-            //    this.DialogResult = DialogResult.Cancel;
-            //    this.Close();
-            //}
+            }
+        }
+
+
+        private void txtPrice_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13) // Enter
+            {
+                btnAccept_Click(sender, e);
+            }
+        }
+
+        private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -122,6 +99,29 @@ namespace IS.Admin.Setup
                 lblError.Visible = true;
                 CountErrorlabel = 0;
             }
+        }
+
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(txtPrice.Text))
+            {
+                MessageBox.Show("Price is Required!", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+            }
+            else if (string.IsNullOrEmpty(txtQty.Text))
+            {
+                MessageBox.Show("Quantity is Required!", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+            }
+            else
+            {
+                _FrmMain.InputQty = Convert.ToInt32(txtQty.Text);
+                _FrmMain.InputPrice = Math.Round(Convert.ToDecimal(txtPrice.Text),2);
+                this.DialogResult = DialogResult.OK;
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
         }
     }
 }

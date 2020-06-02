@@ -243,10 +243,6 @@ namespace IS.KIOSK
                 }
                 txtSearch.Focus();
             }
-            if (e.KeyValue == 115)
-            {
-                this.btnCheckOut_Click(sender, e);
-            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -327,6 +323,5 @@ namespace IS.KIOSK
             }
             txtSearch.Focus();
         }
-
     }
 }

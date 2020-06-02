@@ -57,6 +57,36 @@ namespace IS.Database.Repositories
                 }
             }
         }
+
+        public RequestOrderItems GetOrderRequestInfoWithId(int Id)
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT A.Fullname,R.OrderDate From RequestOrderItems as R" +
+                            "   LEFT JOIN Administrators as A on A.Id =R.AdministratorId " +
+                            " WHERE R.Id = " + Id;
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        
+                        if(reader.HasRows)
+                        {
+                            reader.Read();
+                            var item = new RequestOrderItems
+                            {
+                                AdminName = reader.GetString(0),
+                                OrderDate = reader.GetDateTime(1),
+                            };
+                            return item;
+                        }
+   
+                        return null;
+                    }
+                }
+            }
+        }
         public RequestOrderItemsStrategy RequestOrderItemsStrategy => new RequestOrderItemsStrategy();
     }
 }
