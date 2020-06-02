@@ -1,0 +1,105 @@
+﻿using IS.Admin.Model;
+using IS.Database.Entities;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace IS.Admin.Setup
+{
+    public partial class FrmAddAdministrator : Form
+    {
+        public Administrators _Administrators = new Administrators();
+        public FrmAddAdministrator()
+        {
+            InitializeComponent();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (!CheckInput())
+            {
+                var AdministratorsModel = new AdministratorsModel();
+                _Administrators.Loginname = txtLogiName.Text;
+                _Administrators.Fullname = txtFullName.Text;
+                _Administrators.Password = txtPassword.Text;
+
+                if (AdministratorsModel.CheckDup(this))
+                {
+                    MessageBox.Show(_Administrators.Loginname + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtLogiName.Focus();
+                }
+                if (MessageBox.Show("Continue saving " + txtLogiName.Text + ".", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    AdministratorsModel.AddAdministrator(this);
+                    MessageBox.Show(txtLogiName.Text + " Added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                }
+            }
+        }
+
+        private void FrmAddAdministrator_Load(object sender, EventArgs e)
+        {
+            this.ActiveControl = txtLogiName;
+        }
+
+        private bool CheckInput()
+        {
+            if(string.IsNullOrEmpty(txtLogiName.Text))
+            {
+                MessageBox.Show("Login Name is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtLogiName.Focus();
+                return true;
+            }
+            else if (string.IsNullOrEmpty(txtFullName.Text))
+            {
+                MessageBox.Show("Full Name is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtFullName.Focus();
+                return true;
+            }
+            else if (string.IsNullOrEmpty(txtPassword.Text))
+            {
+                MessageBox.Show("Password is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPassword.Focus();
+                return true;
+            }
+            else if (string.IsNullOrEmpty(txtConfirmPassword.Text))
+            {
+                MessageBox.Show("Confirm password is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtConfirmPassword.Focus();
+                return true;
+            }
+            else if (txtPassword.Text != txtConfirmPassword.Text)
+            {
+                MessageBox.Show("Password does not match!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPassword.Focus();
+                return true;
+            }
+            else if (txtLogiName.Text.Length  < 4)
+            {
+                MessageBox.Show("Login Name must be at least 4 characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtLogiName.Focus();
+                return true;
+            }
+            else if (txtPassword.Text.Length < 6)
+            {
+                MessageBox.Show("Password must be at least 6 characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPassword.Focus();
+                return true;
+            }
+            return false;
+        }
+
+    }
+}
