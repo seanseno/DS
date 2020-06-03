@@ -29,17 +29,10 @@ namespace IS.Admin.Model
             var factory = new ISFactory();
             factory.OrderReceivedRepository.Delete(Id);
         }
-        public void Insert(string RequestOrdersName, IList<Items> RequestOrdersList)
+        public void Insert(ItemReceivedOrders model)
         {
-            //var factory = new ISFactory();
-            //int? Id = factory.RequestOrderItemsRepository.Insert(Globals.LoginId, RequestOrdersName);
-            //if(Id != null)
-            //{
-            //    foreach(var itm in RequestOrdersList)
-            //    {
-            //        factory.RequestOrderItemDetailsRepository.Insert(itm, (int)Id);
-            //    }
-            //}
+            var factory = new ISFactory();
+            factory.OrderReceivedRepository.Insert(model);
         }
         public void Update(int? RequestId, IList<Items> RequestOrdersList)
         {

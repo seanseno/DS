@@ -12,14 +12,29 @@ namespace IS.Database.Repositories
 {
     public class OrderReceivedRepository : Helper
     {
-        public void Insert(Items model, int RequestId)
+        public void Insert(ItemReceivedOrders model)
         {
-           
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "INSERT INTO ItemReceivedOrders (RequestOrderId,ItemId,DateReceived,DateManufactured,ExpirationDate,Quantity,OrderPrice,SellingPricePerPiece)" +
+                            " VALUES (" + model.RequestOrderId + "," + model.ItemId + "," +
+                            " '" + model.DateReceived + "','" + model.DateManufactured + "','" + model.ExpirationDate + "'," +
+                            " " + model.Quantity + "," + model.OrderPrice + "," + model.SellingPricePerPiece + ")";
+
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
         }
 
-        public void Update(RequestOrderItemDetails model)
+        public void Update(ItemReceivedOrders model)
         {
-          
+
         }
 
         public void Delete(int? Id)

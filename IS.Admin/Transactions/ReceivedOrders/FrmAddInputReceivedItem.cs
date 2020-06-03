@@ -15,11 +15,13 @@ namespace IS.Admin.Trasactions
 {
     public partial class FrmAddInputReceivedItem : Form
     {
-        private FrmAddReceivedItem _FrmAddReceivedItem { get;set;}
-        public FrmAddInputReceivedItem(FrmAddReceivedItem model)
+        private FrmAddReceivedItem _FrmAddReceivedItem { get; set; }
+        private int ItemId {get;set;}
+        public FrmAddInputReceivedItem(FrmAddReceivedItem model, int Id)
         {
             InitializeComponent();
             this._FrmAddReceivedItem = model;
+            ItemId = Id;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
