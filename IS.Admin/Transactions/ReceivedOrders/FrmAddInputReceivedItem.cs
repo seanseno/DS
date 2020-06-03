@@ -16,12 +16,10 @@ namespace IS.Admin.Trasactions
     public partial class FrmAddInputReceivedItem : Form
     {
         private FrmAddReceivedItem _FrmAddReceivedItem { get; set; }
-        private int ItemId {get;set;}
-        public FrmAddInputReceivedItem(FrmAddReceivedItem model, int Id)
+        public FrmAddInputReceivedItem(FrmAddReceivedItem model)
         {
             InitializeComponent();
             this._FrmAddReceivedItem = model;
-            ItemId = Id;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -75,7 +73,7 @@ namespace IS.Admin.Trasactions
                 }
                 if (DateTime.TryParse(dtpDateManufactured.Text, out DateManufactured))
                 {
-                    if (DateReceived >= DateTime.Now)
+                    if (DateManufactured >= DateTime.Now)
                     {
                         MessageBox.Show("Invalid Date Manufactured!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         dtpDateManufactured.Focus();
@@ -84,7 +82,7 @@ namespace IS.Admin.Trasactions
                 }
                 if (DateTime.TryParse(dtpExpirationDate.Text, out ExpirationDate))
                 {
-                    if (DateReceived <= DateTime.Now)
+                    if (ExpirationDate <= DateTime.Now)
                     {
                         MessageBox.Show("Invalid Expiration Date!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         dtpExpirationDate.Focus();
@@ -102,7 +100,7 @@ namespace IS.Admin.Trasactions
                 }
                 if (Decimal.TryParse(txtSellingPrice.Text, out SellingPrice))
                 {
-                    if (OrderPrice <= 0)
+                    if (SellingPrice <= 0)
                     {
                         MessageBox.Show("Invalid Selling Price Per Piece!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txtSellingPrice.Focus();

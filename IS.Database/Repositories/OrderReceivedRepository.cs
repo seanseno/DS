@@ -21,13 +21,12 @@ namespace IS.Database.Repositories
                             " VALUES (" + model.RequestOrderId + "," + model.ItemId + "," +
                             " '" + model.DateReceived + "','" + model.DateManufactured + "','" + model.ExpirationDate + "'," +
                             " " + model.Quantity + "," + model.OrderPrice + "," + model.SellingPricePerPiece + ")";
-
+                
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        cmd.ExecuteNonQuery();
-                    }
+                    cmd.ExecuteNonQuery();
+                    if (connection.State == System.Data.ConnectionState.Open)
+                        connection.Close();
                 }
             }
         }
@@ -51,6 +50,8 @@ namespace IS.Database.Repositories
                     {
                         cmd.ExecuteNonQuery();
                     }
+                    if (connection.State == System.Data.ConnectionState.Open)
+                        connection.Close();
                 }
             }
         }
@@ -96,6 +97,8 @@ namespace IS.Database.Repositories
                             item.SellingPricePerPiece = reader.GetDecimal(11);
                             Items.Add(item);
                         }
+                        if (connection.State == System.Data.ConnectionState.Open)
+                            connection.Close();
                         return Items;
                     }
                 }
