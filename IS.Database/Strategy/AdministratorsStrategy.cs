@@ -10,7 +10,7 @@ namespace IS.Database.Strategy
 {
     public class AdministratorsStrategy : Helper
     {
-        public  bool CheckAdministratorLogin(string Loginname, string Password)
+        public  (int?,bool) CheckAdministratorLogin(string Loginname, string Password)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
@@ -24,10 +24,12 @@ namespace IS.Database.Strategy
                         {
                             while (reader.Read())
                             {
-                                return  true;
+                                int Id = reader.GetInt32(0);
+
+                                return  (Id,true);
                             }
                         }
-                        return false;
+                        return (null,false);
                     }
                 }
             }

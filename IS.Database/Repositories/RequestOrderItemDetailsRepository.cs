@@ -12,9 +12,19 @@ namespace IS.Database.Repositories
 {
     public class RequestOrderItemDetailsRepository : Helper
     {
-        public void Insert(RequestOrderItemDetails model)
+        public void Insert(Items model, int RequestId)
         {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "INSERT INTO RequestOrderItemDetails (RequestOrderItemId,ItemId,Qty,Price) " +
+                        " VALUES ("+ RequestId + ","+ model.TempItemId + "," + model.Stock + "," + model.Price + ")";
 
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public void Update(RequestOrderItemDetails model)
@@ -22,8 +32,19 @@ namespace IS.Database.Repositories
           
         }
 
-        public void Delete(RequestOrderItemDetails model)
+        public void Delete(int? RequestOrderItemId)
         {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "DELETE FROM RequestOrderItemDetails " +
+                        " WHERE  RequestOrderItemId = " +RequestOrderItemId;
+
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
 
         }
 
@@ -32,7 +53,7 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT ROID.Id,Ca.CategoryName,Co.CompanyName,I.GenericName,I.BrandName, I.Description,ROID.Price,ROID.Qty,I.BarCode,ROID.InsertTime" +
+                var select = "SELECT ROID.Id,Ca.CategoryName,Co.CompanyName,I.GenericName,I.BrandName, I.Description,ROID.Price,ROID.Qty,I.BarCode,ROID.InsertTime,I.Id as ItemId" +
                             " FROM RequestOrderItemDetails as ROID " +
                             "   LEFT JOIN RequestOrderItems  as ROI on ROI.Id = ROID.RequestOrderItemId " +
                             "   LEFT JOIN Items as I on I.id = ROID.ItemId " +
@@ -59,7 +80,7 @@ namespace IS.Database.Repositories
                             item.Stock = reader.GetInt32(7);
                             item.BarCode = reader.GetString(8);
                             item.InsertTime = reader.GetDateTime(9);
-                   
+                            item.TempItemId = reader.GetInt32(10);
                             Items.Add(item);
                         }
                         return Items;

@@ -64,6 +64,7 @@
     <Compile Include="Reader\ReadExcel.cs" />
     <Compile Include="Utilities\DateTimeConvertion.cs" />
     <Compile Include="Utilities\Encrypt.cs" />
+    <Compile Include="Utilities\Globals.cs" />
     <Compile Include="Utilities\WordWrap.cs" />
   </ItemGroup>
   <ItemGroup>

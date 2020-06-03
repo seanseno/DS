@@ -11,7 +11,7 @@ namespace IS.Admin.Model
 {
     public class LoginModel
     {
-        public bool CheckAdminLogin(string LoginName, string Password)
+        public (int?, bool) CheckAdminLogin(string LoginName, string Password)
         {
             var factory = new ISFactory();
             return factory.AdministratorsRepository.AdministratorsStrategy.CheckAdministratorLogin(LoginName, Password);

@@ -19,12 +19,15 @@ namespace IS.Admin.Trasactions
         FrmItemRequestOrderList _FrmMain = new FrmItemRequestOrderList();
         public int? Qty { get; set; }
         private int? _ItemId { get; set; }
-        int CountErrorlabel = 0;
-        public frmMultiplier(FrmItemRequestOrderList model, int? ItemId)
+
+        public frmMultiplier(FrmItemRequestOrderList model, int? ItemId, int? Qty = null, decimal Price  =0)
         {
             InitializeComponent();
             this._ItemId = ItemId;
             this._FrmMain = model;
+            this.ActiveControl = txtQty;
+            txtPrice.Text = Price.ToString();
+            txtQty.Text = Qty.ToString();
         }
 
         private void txtQty_KeyPress(object sender, KeyPressEventArgs e)
@@ -82,39 +85,44 @@ namespace IS.Admin.Trasactions
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (!lblError.Visible)
-            {
-                lblError.Visible = true;
-            }
-            else
-            {
-                lblError.Visible = false;
-            }
-            CountErrorlabel++;
-            if (CountErrorlabel >= 10)
-            {
-                timer1.Stop();
-                lblError.Visible = true;
-                CountErrorlabel = 0;
-            }
-        }
-
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(txtPrice.Text))
+            if(string.IsNullOrEmpty(txtQty.Text))
             {
-                MessageBox.Show("Price is Required!", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                MessageBox.Show("Quantity is Required!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtQty.Focus();
             }
-            else if (string.IsNullOrEmpty(txtQty.Text))
+            else if (string.IsNullOrEmpty(txtPrice.Text))
             {
-                MessageBox.Show("Quantity is Required!", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                MessageBox.Show("Price is Required!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPrice.Focus();
             }
             else
             {
-                _FrmMain.InputQty = Convert.ToInt32(txtQty.Text);
-                _FrmMain.InputPrice = Math.Round(Convert.ToDecimal(txtPrice.Text),2);
+                int Quantity;
+                decimal Price =0;
+                if (int.TryParse(txtQty.Text, out Quantity))
+                {
+                    if (Qty <= 0)
+                    {
+                        MessageBox.Show("Invalid Quantity Input!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtQty.Focus();
+                        return;
+                    }
+                }
+
+                if (decimal.TryParse(txtPrice.Text, out Price))
+                {
+                    if (Price <= 0)
+                    {
+                        MessageBox.Show("Invalid Price Input!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtPrice.Focus();
+                        return;
+                    }
+                }
+
+                _FrmMain.InputQty = Quantity;
+                _FrmMain.InputPrice = Math.Round(Price, 2);
                 this.DialogResult = DialogResult.OK;
             }
         }
