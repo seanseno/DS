@@ -31,8 +31,26 @@ namespace IS.Admin.Trasactions
         private void FrmReceivedItems_Load(object sender, EventArgs e)
         {
             this.LoadItems();
+            this.reloadCboRequestOrderList();
         }
+        private void reloadCboRequestOrderList()
+        {
+            RequestOrderItemsModel RModel = new RequestOrderItemsModel();
 
+            cboRequestOrderList.DataSource = null;
+
+            var response1 = RModel.ItemList();
+            var comboSource = new Dictionary<int, string>();
+            comboSource.Add(0, "-Select-");
+            foreach (var item in response1)
+            {
+                comboSource.Add(item.Id, item.RequestOrderName);
+            }
+
+            cboRequestOrderList.DataSource = new BindingSource(comboSource, null);
+            cboRequestOrderList.DisplayMember = "Value";
+            cboRequestOrderList.ValueMember = "Key";
+        }
         private void LoadItems()
         {
             ReceivedOrdersModel model = new ReceivedOrdersModel();
@@ -112,6 +130,15 @@ namespace IS.Admin.Trasactions
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void cboRequestOrderList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboRequestOrderList.Items.Count > 1 && cboRequestOrderList.SelectedIndex != 0)
+            {
+                int Id = ((KeyValuePair<int, string>)cboRequestOrderList.SelectedItem).Key;
+                this.LoadItems();
+            }
         }
 
         //private void dgvSearch_CellClick_1(object sender, DataGridViewCellEventArgs e)

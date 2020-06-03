@@ -36,9 +36,21 @@ namespace IS.Admin.Trasactions
         private void FrmAddReceivedItem_Load(object sender, EventArgs e)
         {
             LoadItems();
-            RequestOrderItemsModel model = new RequestOrderItemsModel();
-            var response = model.ItemList();
-            cboOrders.DataSource = response;
+
+            RequestOrderItemsModel RModel = new RequestOrderItemsModel();
+            cboOrders.DataSource = null;
+
+            var response1 = RModel.ItemList();
+            var comboSource = new Dictionary<int, string>();
+            comboSource.Add(0, "-Select-");
+            foreach (var item in response1)
+            {
+                comboSource.Add(item.Id, item.RequestOrderName);
+            }
+
+            cboOrders.DataSource = new BindingSource(comboSource, null);
+            cboOrders.DisplayMember = "Value";
+            cboOrders.ValueMember = "Key";
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
@@ -47,15 +59,26 @@ namespace IS.Admin.Trasactions
             {
                 if(cboOrders.SelectedIndex > 0)
                 {
-                    int Id = (int)dgvSearch.CurrentRow.Cells[0].Value;
-                    int? OrderId = (int)cboOrders.SelectedValue;
-                    //FrmAddInputReceivedItem frm = new FrmAddInputReceivedItem(this, Id);
-                    //if (frm.ShowDialog() == DialogResult.OK)
-                    //{
-                    //    ReceivedOrdersModel model = new ReceivedOrdersModel();
-                    //    ItemReceivedOrders itemReceivedOrders = new ItemReceivedOrders();
-                    //    model.Insert(itemReceivedOrders);
-                    //}
+                     int ItemId = (int)dgvSearch.CurrentRow.Cells[0].Value;
+                    int OrderId = ((KeyValuePair<int, string>)cboOrders.SelectedItem).Key;
+
+                    FrmAddInputReceivedItem frm = new FrmAddInputReceivedItem(this);
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        ReceivedOrdersModel model = new ReceivedOrdersModel();
+                        ItemReceivedOrders itemReceivedOrders = new ItemReceivedOrders();
+                        itemReceivedOrders.RequestOrderId = OrderId;
+                        itemReceivedOrders.ItemId = ItemId;
+                        itemReceivedOrders.DateReceived = InputDateReceived;
+                        itemReceivedOrders.DateManufactured = InputDateManufactured;
+                        itemReceivedOrders.ExpirationDate = InputExpirationDate;
+                        itemReceivedOrders.OrderPrice = InputOrderPrice;
+                        itemReceivedOrders.SellingPricePerPiece = InputSellingPrice;
+                        model.Insert(itemReceivedOrders);
+                        MessageBox.Show("Order Received Added!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadItems();
+                        this.DialogResult = DialogResult.OK;
+                    }
                 }
                 else
                 {

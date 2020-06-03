@@ -66,6 +66,8 @@ namespace IS.Database.Repositories
 
                             Items.Add(item);
                         }
+                        if (connection.State == System.Data.ConnectionState.Open)
+                            connection.Close();
                         return Items;
                     }
                 }
@@ -95,7 +97,8 @@ namespace IS.Database.Repositories
                             };
                             return item;
                         }
-   
+                        if (connection.State == System.Data.ConnectionState.Open)
+                            connection.Close();
                         return null;
                     }
                 }
