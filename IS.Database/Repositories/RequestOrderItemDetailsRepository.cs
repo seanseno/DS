@@ -17,7 +17,7 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "INSERT INTO RequestOrderItemDetails (RequestOrderItemId,ItemId,Qty,Price) " +
+                var select = "INSERT INTO RequestOrderItemDetails (RequestOrderItemId,ItemId,Qty,EstimatedPrice) " +
                         " VALUES ("+ RequestId + ","+ model.TempItemId + "," + model.Stock + "," + model.Price + ")";
 
                 using (SqlCommand cmd = new SqlCommand(select, connection))
@@ -53,7 +53,7 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT ROID.Id,Ca.CategoryName,Co.CompanyName,I.GenericName,I.BrandName, I.Description,ROID.Price,ROID.Qty,I.BarCode,ROID.InsertTime,I.Id as ItemId" +
+                var select = "SELECT ROID.Id,Ca.CategoryName,Co.CompanyName,I.GenericName,I.BrandName, I.Description,ROID.EstimatedPrice,ROID.Qty,I.BarCode,ROID.InsertTime,I.Id as ItemId" +
                             " FROM RequestOrderItemDetails as ROID " +
                             "   LEFT JOIN RequestOrderItems  as ROI on ROI.Id = ROID.RequestOrderItemId " +
                             "   LEFT JOIN Items as I on I.id = ROID.ItemId " +
@@ -78,7 +78,11 @@ namespace IS.Database.Repositories
                             item.Description = reader.GetString(5);
                             item.Price = reader.GetDecimal(6);
                             item.Stock = reader.GetInt32(7);
-                            item.BarCode = reader.GetString(8);
+                            if(!reader.IsDBNull(8))
+                            {
+                                item.BarCode = reader.GetString(8);
+                            }
+                           
                             item.InsertTime = reader.GetDateTime(9);
                             item.TempItemId = reader.GetInt32(10);
                             Items.Add(item);
