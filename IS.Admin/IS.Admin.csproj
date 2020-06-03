@@ -212,6 +212,12 @@
     <Compile Include="Setup\Items\FrmEditItem.Designer.cs">
       <DependentUpon>FrmEditItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Transactions\Orders\FrmInputRequestOrdersName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Orders\FrmInputRequestOrdersName.Designer.cs">
+      <DependentUpon>FrmInputRequestOrdersName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transactions\Orders\frmMultiplier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -338,6 +344,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Setup\Items\FrmEditItem.resx">
       <DependentUpon>FrmEditItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Orders\FrmInputRequestOrdersName.resx">
+      <DependentUpon>FrmInputRequestOrdersName.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Orders\frmMultiplier.resx">
       <DependentUpon>frmMultiplier.cs</DependentUpon>

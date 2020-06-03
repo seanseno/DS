@@ -13,7 +13,7 @@ namespace IS.Database.Strategy
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT RequestOrderName FROM RequestOrderItems WHERE Name = '" + Name + "'";
+                var select = "SELECT RequestOrderName FROM RequestOrderItems WHERE RequestOrderName = '" + Name + "'";
                 using (SqlCommand cmd = new SqlCommand(select,connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())

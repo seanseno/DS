@@ -12,9 +12,23 @@ namespace IS.Database.Repositories
 {
     public class RequestOrderItemsRepository : Helper
     {
-        public void Insert(RequestOrderItems model)
+        public int Insert(int? AdminId,string OrderName)
         {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "INSERT INTO RequestOrderItems (AdministratorId,RequestOrderName) " +
+                        " VALUES ("+ AdminId + ",'"+ OrderName  + "');SELECT SCOPE_IDENTITY(); ";
 
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    int Id = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    if (connection.State == System.Data.ConnectionState.Open)
+                        connection.Close();
+                    return Id;
+                }
+            }
         }
 
         public void Update(RequestOrderItems model)

@@ -1,4 +1,5 @@
 ﻿using IS.Admin.Model;
+using IS.Common.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,8 +25,10 @@ namespace IS.Admin
             if (!CheckInput())
             {
                 LoginModel model = new LoginModel();
-                if (model.CheckAdminLogin(txtLoginame.Text, txtPassword.Text))
+                var (Id, IsSuccess) = model.CheckAdminLogin(txtLoginame.Text, txtPassword.Text);
+                if (IsSuccess)
                 {
+                    Globals.SetLoginId((int)Id);
                     this.DialogResult = DialogResult.OK;
                 }
                 else

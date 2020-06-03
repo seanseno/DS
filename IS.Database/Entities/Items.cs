@@ -39,5 +39,7 @@ namespace IS.Database.Entities
         public DateTime InsertTime { get; set; }
         public DateTime UpdateTime { get; set; }
         public int Active { get; set; }
+
+        public int TempItemId { get; set; }
     }
 }
