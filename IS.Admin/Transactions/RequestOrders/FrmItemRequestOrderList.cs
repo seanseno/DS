@@ -38,6 +38,7 @@ namespace IS.Admin.Trasactions
             ItemsModel model = new ItemsModel();
             var response = model.ItemList(txtSearch.Text);
             dgvSearch.AutoGenerateColumns = false;
+            dgvSearch.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvSearch.DataSource = response;
             dgvSearch.StandardTab = true;
 
@@ -108,6 +109,7 @@ namespace IS.Admin.Trasactions
         {
             OrderItemDetailList = RModel.RequestOrderItemDetailsList(Id);
             dgvDetails.DataSource = null;
+            dgvDetails.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvDetails.AutoGenerateColumns = false;
             dgvDetails.DataSource = OrderItemDetailList;
             lblOrderInfo.Text = RModel.OrderInfo(Id);
@@ -175,7 +177,7 @@ namespace IS.Admin.Trasactions
                     OrderItemDetailList.Add(item);
 
                     dgvDetails.DataSource = null;
-
+                    dgvDetails.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                     dgvDetails.AutoGenerateColumns = false;
                     dgvDetails.DataSource = OrderItemDetailList;
                     btnSave.Enabled = true;
@@ -236,6 +238,7 @@ namespace IS.Admin.Trasactions
                         }
                        
                         dgvDetails.DataSource = null;
+                        dgvDetails.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                         dgvDetails.AutoGenerateColumns = false;
                         dgvDetails.DataSource = OrderItemDetailList;
                         btnSave.Enabled = true;
@@ -252,6 +255,7 @@ namespace IS.Admin.Trasactions
                     OrderItemDetailList.Remove(itm);
 
                     dgvDetails.DataSource = null;
+                    dgvDetails.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                     dgvDetails.AutoGenerateColumns = false;
                     dgvDetails.DataSource = OrderItemDetailList;
                     btnSave.Enabled = true;

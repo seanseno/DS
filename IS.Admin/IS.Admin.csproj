@@ -110,6 +110,7 @@
     <Compile Include="Model\CashOnHand\CashierCashOnHandModel.cs" />
     <Compile Include="Model\CompaniesModel.cs" />
     <Compile Include="Model\CategoriesModel.cs" />
+    <Compile Include="Model\ReceivedOrdersModel.cs" />
     <Compile Include="Model\RequestOrderItemsModel.cs" />
     <Compile Include="Model\LoginModel.cs" />
     <Compile Include="Model\SalesModel.cs" />
@@ -182,10 +183,34 @@
     <Compile Include="CustomDataGridView\CustomDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Transactions\Orders\FrmItemRequestOrderList.cs">
+    <Compile Include="Transactions\ReceivedOrders\FrmAddReceivedItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Orders\FrmItemRequestOrderList.Designer.cs">
+    <Compile Include="Transactions\ReceivedOrders\FrmAddReceivedItem.Designer.cs">
+      <DependentUpon>FrmAddReceivedItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\ReceivedOrders\FrmAddInputReceivedItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\ReceivedOrders\FrmAddInputReceivedItem.Designer.cs">
+      <DependentUpon>FrmAddInputReceivedItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\ReceivedOrders\FrmEditReceivedItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\ReceivedOrders\FrmEditReceivedItem.Designer.cs">
+      <DependentUpon>FrmEditReceivedItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\ReceivedOrders\FrmReceivedItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\ReceivedOrders\FrmReceivedItems.Designer.cs">
+      <DependentUpon>FrmReceivedItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\RequestOrders\FrmItemRequestOrderList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\RequestOrders\FrmItemRequestOrderList.Designer.cs">
       <DependentUpon>FrmItemRequestOrderList.cs</DependentUpon>
     </Compile>
     <Compile Include="Setup\Items\FrmAddItem.cs">
@@ -212,16 +237,16 @@
     <Compile Include="Setup\Items\FrmEditItem.Designer.cs">
       <DependentUpon>FrmEditItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Orders\FrmInputRequestOrdersName.cs">
+    <Compile Include="Transactions\RequestOrders\FrmInputRequestOrdersName.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Orders\FrmInputRequestOrdersName.Designer.cs">
+    <Compile Include="Transactions\RequestOrders\FrmInputRequestOrdersName.Designer.cs">
       <DependentUpon>FrmInputRequestOrdersName.cs</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Orders\frmMultiplier.cs">
+    <Compile Include="Transactions\RequestOrders\frmMultiplier.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Orders\frmMultiplier.Designer.cs">
+    <Compile Include="Transactions\RequestOrders\frmMultiplier.Designer.cs">
       <DependentUpon>frmMultiplier.cs</DependentUpon>
     </Compile>
     <Compile Include="Setup\Stock\FrmStocks.cs">
@@ -330,7 +355,19 @@
     <EmbeddedResource Include="Setup\Companies\FrmEditCompany.resx">
       <DependentUpon>FrmEditCompany.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Orders\FrmItemRequestOrderList.resx">
+    <EmbeddedResource Include="Transactions\ReceivedOrders\FrmAddReceivedItem.resx">
+      <DependentUpon>FrmAddReceivedItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\ReceivedOrders\FrmAddInputReceivedItem.resx">
+      <DependentUpon>FrmAddInputReceivedItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\ReceivedOrders\FrmEditReceivedItem.resx">
+      <DependentUpon>FrmEditReceivedItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\ReceivedOrders\FrmReceivedItems.resx">
+      <DependentUpon>FrmReceivedItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\RequestOrders\FrmItemRequestOrderList.resx">
       <DependentUpon>FrmItemRequestOrderList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Setup\Items\FrmAddItem.resx">
@@ -345,10 +382,10 @@
     <EmbeddedResource Include="Setup\Items\FrmEditItem.resx">
       <DependentUpon>FrmEditItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Orders\FrmInputRequestOrdersName.resx">
+    <EmbeddedResource Include="Transactions\RequestOrders\FrmInputRequestOrdersName.resx">
       <DependentUpon>FrmInputRequestOrdersName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Orders\frmMultiplier.resx">
+    <EmbeddedResource Include="Transactions\RequestOrders\frmMultiplier.resx">
       <DependentUpon>frmMultiplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Setup\Stock\FrmStocks.resx">
@@ -453,6 +490,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

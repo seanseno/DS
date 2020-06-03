@@ -108,5 +108,11 @@ namespace IS.Admin
             FrmItemRequestOrderList frm = new FrmItemRequestOrderList();
             frm.ShowDialog();
         }
+
+        private void receivedOrdersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmReceivedItems frm = new FrmReceivedItems();
+            frm.ShowDialog();
+        }
     }
 }

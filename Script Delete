@@ -1,9 +1,11 @@
 DELETE FROM Stocks;
 DELETE FROM StocksHistory;
-DELETE FROM TempOrders
-DELETE FROM TempLedgerOrders
+DELETE FROM TempSales
+DELETE FROM TempLedgerSales
 DELETE FROM Sales;
 DELETE FROM LedgerSales;
 DELETE FROM Companies;
 DELETE FROM Categories;
 DELETE FROM Items;
+DELETE RequestOrderItemDetails;
+DELETE RequestOrderItems;
