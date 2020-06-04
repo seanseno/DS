@@ -51,8 +51,6 @@ namespace IS.Admin.Trasactions
                 DateTime DateManufactured;
                 DateTime ExpirationDate;
                 decimal OrderPrice = 0;
-                decimal SellingPrice = 0;
-
                 if (int.TryParse(txtQty.Text, out Quantity))
                 {
                     if (Quantity <= 0)
@@ -98,6 +96,7 @@ namespace IS.Admin.Trasactions
                         return;
                     }
                 }
+                decimal SellingPrice;
                 if (Decimal.TryParse(txtSellingPrice.Text, out SellingPrice))
                 {
                     if (SellingPrice <= 0)

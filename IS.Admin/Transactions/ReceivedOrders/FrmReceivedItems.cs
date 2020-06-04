@@ -53,17 +53,25 @@ namespace IS.Admin.Trasactions
         }
         private void LoadItems()
         {
-            ReceivedOrdersModel model = new ReceivedOrdersModel();
-            var response = model.OrderReceivedList(txtSearch.Text);
-            dgvSearch.AutoGenerateColumns = false;
-            dgvSearch.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dgvSearch.DataSource = response;
-            txtSearch.Focus();
+            if(cboRequestOrderList.Items != null)
+            {
+                if(cboRequestOrderList.Items.Count > 0 )
+                {
+                    ReceivedOrdersModel model = new ReceivedOrdersModel();
+                    int Id = ((KeyValuePair<int, string>)cboRequestOrderList.SelectedItem).Key;
+                    var response = model.OrderReceivedList(txtSearch.Text, Id);
+                    dgvSearch.AutoGenerateColumns = false;
+                    dgvSearch.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                    dgvSearch.DataSource = response;
+                    txtSearch.Focus();
+                }
+
+            }
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            //LoadItems();
+            LoadItems();
         }
 
         private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)

@@ -74,6 +74,7 @@ namespace IS.Admin.Trasactions
                         itemReceivedOrders.ExpirationDate = InputExpirationDate;
                         itemReceivedOrders.OrderPrice = InputOrderPrice;
                         itemReceivedOrders.SellingPricePerPiece = InputSellingPrice;
+                        itemReceivedOrders.Quantity = InputQuantity; 
                         model.Insert(itemReceivedOrders);
                         MessageBox.Show("Order Received Added!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadItems();

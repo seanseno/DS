@@ -14,10 +14,10 @@ namespace IS.Admin.Model
 {
     public class ReceivedOrdersModel
     {
-        public IList<ItemReceivedOrders> OrderReceivedList(string keyword)
+        public IList<ItemReceivedOrders> OrderReceivedList(string keyword,int RequestId)
         {
             var factory = new ISFactory();
-            return factory.OrderReceivedRepository.Find(keyword);
+            return factory.OrderReceivedRepository.Find(keyword, RequestId);
         }
         public IList<Items> ItemList(string keyword)
         {

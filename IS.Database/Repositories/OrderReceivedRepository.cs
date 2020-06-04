@@ -5,6 +5,7 @@ using IS.Database.Strategy;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -17,14 +18,22 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "INSERT INTO ItemReceivedOrders (RequestOrderId,ItemId,DateReceived,DateManufactured,ExpirationDate,Quantity,OrderPrice,SellingPricePerPiece)" +
-                            " VALUES (" + model.RequestOrderId + "," + model.ItemId + "," +
-                            " '" + model.DateReceived + "','" + model.DateManufactured + "','" + model.ExpirationDate + "'," +
-                            " " + model.Quantity + "," + model.OrderPrice + "," + model.SellingPricePerPiece + ")";
-                
-                using (SqlCommand cmd = new SqlCommand(select, connection))
+
+                //STORE PROC INSERT ItemReceivedOrders and STOCKS
+                using (SqlCommand cmd = new SqlCommand("spItemReceivedOrders", connection))
                 {
-                    cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@RequestOrderId", model.RequestOrderId));
+                    cmd.Parameters.Add(new SqlParameter("@ItemId", model.ItemId));
+                    cmd.Parameters.Add(new SqlParameter("@DateReceived", model.DateReceived));
+                    cmd.Parameters.Add(new SqlParameter("@DateManufactured", model.DateManufactured));
+                    cmd.Parameters.Add(new SqlParameter("@ExpirationDate", model.ExpirationDate));
+                    cmd.Parameters.Add(new SqlParameter("@OrderPrice", model.OrderPrice));
+                    cmd.Parameters.Add(new SqlParameter("@SellingPricePerPiece", model.SellingPricePerPiece));
+                    cmd.Parameters.Add(new SqlParameter("@InputQuantity", model.Quantity));
+
+                    int rowAffected = cmd.ExecuteNonQuery();
+
                     if (connection.State == System.Data.ConnectionState.Open)
                         connection.Close();
                 }
@@ -56,7 +65,7 @@ namespace IS.Database.Repositories
             }
         }
 
-        public IList<ItemReceivedOrders> Find(string Keywords)
+        public IList<ItemReceivedOrders> Find(string Keywords, int requestId)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
@@ -68,11 +77,11 @@ namespace IS.Database.Repositories
                             "   LEFT JOIN Companies as Co on Co.id = I.CompanyId " +
                             "   LEFT JOIN Categories as Ca on Ca.Id = I.CategoryId   " +
                             " WHERE " +
-                            "   Ca.CategoryName Like '%"+ Keywords+ "%' OR " +
+                            "   (Ca.CategoryName Like '%"+ Keywords+ "%' OR " +
                             "   Co.CompanyName Like '%" + Keywords + "%' OR " +
                             "   I.GenericName Like '%" + Keywords + "%' OR " +
                             "   I.BrandName Like '%" + Keywords + "%' OR " +
-                            "   I.Description Like '%%' " +
+                            "   I.Description Like '%%') AND  IRO.RequestOrderId = "+ requestId +" " +
                             " ORDER BY IRO.Id ASC ";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
