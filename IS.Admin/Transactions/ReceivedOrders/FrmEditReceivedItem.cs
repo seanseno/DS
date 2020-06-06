@@ -1,104 +1,202 @@
 ﻿using IS.Admin.Model;
 using IS.Database.Entities;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZXing;
+using ZXing.QrCode.Internal;
 
 namespace IS.Admin.Trasactions
 {
     public partial class FrmEditReceivedItem : Form
     {
-        private Items _Item { get;set;}
-        public FrmEditReceivedItem(Items Item)
+        int Id {get;set;}
+        public FrmEditReceivedItem(int ReceivedId)
         {
             InitializeComponent();
-            this._Item = Item;
+            this.Id = ReceivedId;
+           
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.DialogResult = DialogResult.Cancel;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            ItemsModel model = new ItemsModel();
-
-            var CompId = Convert.ToInt32(cboCompanies.SelectedValue?.ToString());
-            if (CompId != 0)
+            if (string.IsNullOrEmpty(txtQty.Text))
             {
-                _Item.CompanyId = CompId;
+                MessageBox.Show("Quantity is Required!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtQty.Focus();
             }
-            var CatId = Convert.ToInt32(cboCategories.SelectedValue.ToString());
-            if (CatId != 0)
+            else if (string.IsNullOrEmpty(txtOrderPrice.Text))
             {
-                _Item.CategoryId = CatId;
+                MessageBox.Show("Order Price is Required!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtOrderPrice.Focus();
             }
-
-            _Item.GenericName = txtGenericname.Text;
-            _Item.BrandName = txtBrandName.Text;
-            _Item.Description = txtDescription.Text;
-            _Item.Price = Convert.ToDecimal(txtPrice.Text);
-            _Item.BarCode = txtBarcode.Text;
-
-            //_Item.BrandType = Convert.ToInt32(cboBrand.SelectedValue.ToString());
-            if (model.CheckEditDup(_Item.Description, _Item.Id))
+            else if (string.IsNullOrEmpty(txtSellingPrice.Text))
             {
-                MessageBox.Show(_Item.Description + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtBrandName.Focus();
+                MessageBox.Show("Selling Price Per Piece is Required!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtSellingPrice.Focus();
             }
             else
             {
-                model.UpdateItem(_Item);
+                int Quantity;
+                DateTime DateReceived;
+                DateTime DateManufactured;
+                DateTime ExpirationDate;
+                decimal OrderPrice = 0;
+                if (int.TryParse(txtQty.Text, out Quantity))
+                {
+                    if (Quantity <= 0)
+                    {
+                        MessageBox.Show("Invalid Quantity Input!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtQty.Focus();
+                        return;
+                    }
+                }
+                if (DateTime.TryParse(dtpDateReceived.Text, out DateReceived))
+                {
+                    if (DateReceived >= DateTime.Now)
+                    {
+                        MessageBox.Show("Invalid Date Received!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        dtpDateReceived.Focus();
+                        return;
+                    }
+                }
+                if (DateTime.TryParse(dtpDateManufactured.Text, out DateManufactured))
+                {
+                    if (DateManufactured >= DateTime.Now)
+                    {
+                        MessageBox.Show("Invalid Date Manufactured!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        dtpDateManufactured.Focus();
+                        return;
+                    }
+                }
+                if (DateTime.TryParse(dtpExpirationDate.Text, out ExpirationDate))
+                {
+                    if (ExpirationDate <= DateTime.Now)
+                    {
+                        MessageBox.Show("Invalid Expiration Date!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        dtpExpirationDate.Focus();
+                        return;
+                    }
+                }
+                if (Decimal.TryParse(txtOrderPrice.Text, out OrderPrice))
+                {
+                    if (OrderPrice <= 0)
+                    {
+                        MessageBox.Show("Invalid Order Price!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtOrderPrice.Focus();
+                        return;
+                    }
+                }
+                decimal SellingPrice;
+                if (Decimal.TryParse(txtSellingPrice.Text, out SellingPrice))
+                {
+                    if (SellingPrice <= 0)
+                    {
+                        MessageBox.Show("Invalid Selling Price Per Piece!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtSellingPrice.Focus();
+                        return;
+                    }
+                }
+
+                ReceivedOrdersModel model = new ReceivedOrdersModel();
+                ItemReceivedOrders itm = new ItemReceivedOrders();
+                itm.Id = this.Id;
+                itm.Quantity = Quantity;
+                itm.DateReceived = DateReceived;
+                itm.DateManufactured = DateManufactured;
+                itm.ExpirationDate = ExpirationDate;
+                itm.OrderPrice = OrderPrice;
+                itm.SellingPricePerPiece = SellingPrice;
+
+                model.Update(itm);
+
+
                 this.DialogResult = DialogResult.OK;
             }
+            
+
         }
 
         private void FrmEditReceivedItem_Load(object sender, EventArgs e)
         {
-            this.ActiveControl = cboCategories;
-
-            CategoriesModel model1 = new CategoriesModel();
-            var Categories = model1.CategoryListWithSelect();
-            cboCategories.DataSource = Categories;
-            cboCategories.DisplayMember = "CategoryName";
-            cboCategories.ValueMember = "Id";
-
-            CompaniesModel Cmodel = new CompaniesModel();
-            var brand = Cmodel.CompanyListWithSelect();
-            cboCompanies.DataSource = brand;
-            cboCompanies.DisplayMember = "CompanyName";
-            cboCompanies.ValueMember = "Id";
-
-            ItemsModel items = new ItemsModel();
-            var response = items.LoadEdit(_Item.Id);
-            cboCategories.SelectedIndex = cboCategories.FindStringExact(response.CategoryName);
-            cboCompanies.SelectedIndex = cboCompanies.FindStringExact(response.CompanyName);
-            txtGenericname.Text = response.GenericName;
-            txtBrandName.Text = response.BrandName;
-            txtDescription.Text = response.Description;
-            txtPrice.Text = response.Price.ToString();
-            lblStock.Text = response.StockString;
-            txtBarcode.Text = response.BarCode;
-            this.ActiveControl = cboCompanies;
+            this.ActiveControl = txtQty;
+            LoadItm();
         }
 
-        private void txtBarcode_TextChanged(object sender, EventArgs e)
+        private void LoadItm()
         {
-            if (!string.IsNullOrEmpty(txtBarcode.Text))
+            ReceivedOrdersModel model = new ReceivedOrdersModel();
+            var response = model.FindWithId(this.Id);
+            if(response != null)
             {
-                BarcodeWriter writer = new BarcodeWriter()
+                var Params = new List<string>();
+                if (!string.IsNullOrEmpty(response.CategoryName))
                 {
-                    Format = BarcodeFormat.CODE_128
-                };
-                pictureBox1.Image = writer.Write(txtBarcode.Text);
+                    Params.Add(response.CategoryName);
+                }
+                if (!string.IsNullOrEmpty(response.CompanyName))
+                {
+                    Params.Add(response.CompanyName);
+                }
+                if (!string.IsNullOrEmpty(response.GenericName))
+                {
+                    Params.Add(response.GenericName);
+                }
+                if (!string.IsNullOrEmpty(response.BrandName))
+                {
+                    Params.Add(response.BrandName);
+                }
+                if (!string.IsNullOrEmpty(response.Description))
+                {
+                    Params.Add(response.Description);
+                }
+                rtbDescription.Text = string.Join(" ", Params);
+
+                txtQty.Text = response.Quantity.ToString();
+                dtpDateReceived.Value = response.DateReceived;
+                dtpDateManufactured.Value = response.DateManufactured;
+                dtpExpirationDate.Value = response.ExpirationDate;
+
+                txtOrderPrice.Text = Math.Round(response.OrderPrice,2).ToString();
+                txtSellingPrice.Text = Math.Round(response.SellingPricePerPiece).ToString();
+
+            }
+        }
+
+        private void txtQty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtOrderPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtSellingPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
             }
         }
     }

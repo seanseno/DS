@@ -34,14 +34,16 @@ namespace IS.Admin.Model
             var factory = new ISFactory();
             factory.OrderReceivedRepository.Insert(model);
         }
-        public void Update(int? RequestId, IList<Items> RequestOrdersList)
+
+        public ItemReceivedOrders FindWithId(int? Id)
         {
-            //var factory = new ISFactory();
-            //factory.RequestOrderItemDetailsRepository.Delete(RequestId);
-            //foreach (var itm in RequestOrdersList)
-            //{
-            //    factory.RequestOrderItemDetailsRepository.Insert(itm, (int)RequestId);
-            //}
+            var factory = new ISFactory();
+           return  factory.OrderReceivedRepository.FindWithId(Id);
+        }
+        public void Update(ItemReceivedOrders itm)
+        {
+            var factory = new ISFactory();
+            factory.OrderReceivedRepository.Update(itm);
         }
     }
 }
