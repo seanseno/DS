@@ -25,9 +25,9 @@ namespace IS.Database.Repositories
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@CategoryId", item.CategoryId));
                     cmd.Parameters.Add(new SqlParameter("@CompanyId", item.CompanyId));
-                    cmd.Parameters.Add(new SqlParameter("@GenericName", item.GenericName));
-                    cmd.Parameters.Add(new SqlParameter("@BrandName", item.BrandName));
-                    cmd.Parameters.Add(new SqlParameter("@Description", item.Description));
+                    cmd.Parameters.Add(new SqlParameter("@GenericName", item.GenericName.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@BrandName", item.BrandName.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@Description", item.Description.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@Price", item.Price));
                     cmd.Parameters.Add(new SqlParameter("@Stock", item.Stock));
                     cmd.Parameters.Add(new SqlParameter("@BarCode", item.BarCode));
@@ -39,9 +39,8 @@ namespace IS.Database.Repositories
                 }
             }
         }
-        public bool UploadItem(Items item)
+        public Items UploadItem(Items item)
         {
-            bool isInserted = false;
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
@@ -50,26 +49,29 @@ namespace IS.Database.Repositories
                 using (SqlCommand cmd = new SqlCommand("spUploadItem", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@CategoryName", item.CategoryName));
-                    cmd.Parameters.Add(new SqlParameter("@CompanyName", item.CompanyName));
-                    cmd.Parameters.Add(new SqlParameter("@GenericName", item.GenericName));
-                    cmd.Parameters.Add(new SqlParameter("@BrandName", item.BrandName));
-                    cmd.Parameters.Add(new SqlParameter("@Description", item.Description));
+                    cmd.Parameters.Add(new SqlParameter("@CategoryName", item.CategoryName.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@CompanyName", item.CompanyName.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@GenericName", item.GenericName.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@BrandName", item.BrandName.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@Description", item.Description.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@Price", item.Price));
                     cmd.Parameters.Add(new SqlParameter("@Stock", item.Stock));
                     cmd.Parameters.Add(new SqlParameter("@BarCode", item.BarCode));
                     cmd.Parameters.Add(new SqlParameter("@DateManufactured", DateTimeConvertion.ConvertDateString(item.DateManufactured)));
                     cmd.Parameters.Add(new SqlParameter("@ExpirationDate", DateTimeConvertion.ConvertDateString(item.ExpirationDate)));
+                    cmd.Parameters.Add(new SqlParameter("@AdministratorId", Globals.LoginId));
+                    cmd.Parameters.Add(new SqlParameter("@RequestOrderItemId", item.RequestOrderId));
 
-                    if (cmd.ExecuteNonQuery() > 0 )
-                    {
-                        isInserted = true;
-                    }
+                    var IsAffected = cmd.ExecuteNonQuery();
 
                     if (connection.State == System.Data.ConnectionState.Open)
                         connection.Close();
 
-                    return isInserted;
+                    if (IsAffected <= 0)
+                    {
+                        return item;
+                    }
+                    return null ;
                 }
 
             }

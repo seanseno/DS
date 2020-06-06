@@ -81,7 +81,7 @@ namespace IS.Database.Repositories
                             "   Co.CompanyName Like '%" + Keywords + "%' OR " +
                             "   I.GenericName Like '%" + Keywords + "%' OR " +
                             "   I.BrandName Like '%" + Keywords + "%' OR " +
-                            "   I.Description Like '%%') AND  IRO.RequestOrderId = "+ requestId +" " +
+                            "   I.Description Like '%" + Keywords +"%') AND  IRO.RequestOrderId = " + requestId +" " +
                             " ORDER BY IRO.Id ASC ";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {

@@ -104,6 +104,28 @@ namespace IS.Database.Repositories
                 }
             }
         }
+
+        public int? GetNextIdent()
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT CAST(IDENT_CURRENT('RequestOrderItems') as INT) as Id3";
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+                            return reader.GetInt32(0);
+                        }
+                        return null;
+                    }
+                }
+            } 
+        }
+
         public RequestOrderItemsStrategy RequestOrderItemsStrategy => new RequestOrderItemsStrategy();
     }
 }

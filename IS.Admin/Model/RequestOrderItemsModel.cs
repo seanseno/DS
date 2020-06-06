@@ -63,6 +63,14 @@ namespace IS.Admin.Model
                 }
             }
         }
+        public int InsertRequestOrderItemsWithUploadItem()
+        {
+            var factory = new ISFactory();
+            int IdNextIdent = (int)factory.RequestOrderItemsRepository.GetNextIdent();
+            string RequestOrdersName = "From Upload Item_" + DateTime.Now.ToShortDateString() + "_" + (IdNextIdent + 1);
+            int Id = factory.RequestOrderItemsRepository.Insert(Globals.LoginId, RequestOrdersName);
+            return Id;
+        }
         public void Update(int? RequestId, IList<Items> RequestOrdersList)
         {
             var factory = new ISFactory();

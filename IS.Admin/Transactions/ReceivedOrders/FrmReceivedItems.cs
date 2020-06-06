@@ -59,11 +59,11 @@ namespace IS.Admin.Trasactions
                 {
                     ReceivedOrdersModel model = new ReceivedOrdersModel();
                     int Id = ((KeyValuePair<int, string>)cboRequestOrderList.SelectedItem).Key;
-                    var response = model.OrderReceivedList(txtSearch.Text, Id);
+                    var response = model.OrderReceivedList(txtSearch.Text.ToUpper(), Id);
+
                     dgvSearch.AutoGenerateColumns = false;
                     dgvSearch.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                     dgvSearch.DataSource = response;
-                    txtSearch.Focus();
                 }
 
             }
@@ -144,8 +144,11 @@ namespace IS.Admin.Trasactions
         {
             if (cboRequestOrderList.Items.Count > 1 && cboRequestOrderList.SelectedIndex != 0)
             {
-                int Id = ((KeyValuePair<int, string>)cboRequestOrderList.SelectedItem).Key;
                 this.LoadItems();
+            }
+            else
+            {
+                dgvSearch.DataSource = null;
             }
         }
 

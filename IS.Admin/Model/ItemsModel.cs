@@ -59,7 +59,7 @@ namespace IS.Admin.Model
             return factory.ItemsRepository.ItemsStrategy.ItemAlreadyInUse(itemId);
         }
 
-        public bool UploadExcel( Items entity)
+        public Items UploadExcel( Items entity)
         {
            var factory = new ISFactory();
            return  factory.ItemsRepository.UploadItem(entity);

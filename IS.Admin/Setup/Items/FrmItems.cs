@@ -37,6 +37,7 @@ namespace IS.Admin.Setup
         {
             ItemsModel model = new ItemsModel();
             var response = model.ItemList(txtSearch.Text);
+            dgvSearch.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = response;
             txtSearch.Focus();

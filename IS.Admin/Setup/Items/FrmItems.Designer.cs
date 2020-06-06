@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnUpload = new System.Windows.Forms.Button();
             this.dgvSearch = new System.Windows.Forms.DataGridView();
@@ -64,9 +65,11 @@
             this.groupBox1.Controls.Add(this.btnAdd);
             this.groupBox1.Controls.Add(this.txtSearch);
             this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.Location = new System.Drawing.Point(13, 12);
+            this.groupBox1.Location = new System.Drawing.Point(17, 15);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1284, 470);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(1712, 578);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Item List";
@@ -75,9 +78,10 @@
             // 
             this.btnUpload.Image = ((System.Drawing.Image)(resources.GetObject("btnUpload.Image")));
             this.btnUpload.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnUpload.Location = new System.Drawing.Point(1069, 403);
+            this.btnUpload.Location = new System.Drawing.Point(1425, 496);
+            this.btnUpload.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(129, 55);
+            this.btnUpload.Size = new System.Drawing.Size(172, 68);
             this.btnUpload.TabIndex = 11;
             this.btnUpload.Text = "Upload From Excel";
             this.btnUpload.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -103,12 +107,14 @@
             this.BarCode,
             this.Edit,
             this.Delete});
-            this.dgvSearch.Location = new System.Drawing.Point(15, 64);
+            this.dgvSearch.Location = new System.Drawing.Point(20, 79);
+            this.dgvSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvSearch.Name = "dgvSearch";
             this.dgvSearch.ReadOnly = true;
+            this.dgvSearch.RowHeadersWidth = 51;
             this.dgvSearch.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvSearch.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSearch.Size = new System.Drawing.Size(1255, 333);
+            this.dgvSearch.Size = new System.Drawing.Size(1673, 410);
             this.dgvSearch.TabIndex = 10;
             this.dgvSearch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSearch_CellClick);
             // 
@@ -116,9 +122,10 @@
             // 
             this.btnClose.Image = global::IS.Admin.Properties.Resources.Exit;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnClose.Location = new System.Drawing.Point(1204, 403);
+            this.btnClose.Location = new System.Drawing.Point(1605, 496);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(66, 55);
+            this.btnClose.Size = new System.Drawing.Size(88, 68);
             this.btnClose.TabIndex = 9;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -129,9 +136,10 @@
             // 
             this.btnAdd.Image = global::IS.Admin.Properties.Resources.Add;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdd.Location = new System.Drawing.Point(294, 19);
+            this.btnAdd.Location = new System.Drawing.Point(392, 23);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(66, 39);
+            this.btnAdd.Size = new System.Drawing.Size(88, 48);
             this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "Add";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -141,18 +149,20 @@
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(41, 24);
+            this.txtSearch.Location = new System.Drawing.Point(55, 30);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(247, 26);
+            this.txtSearch.Size = new System.Drawing.Size(328, 30);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(15, 25);
+            this.pictureBox1.Location = new System.Drawing.Point(20, 31);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(40, 23);
+            this.pictureBox1.Size = new System.Drawing.Size(53, 28);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
@@ -160,6 +170,7 @@
             // 
             this.Id.DataPropertyName = "Id";
             this.Id.HeaderText = "ID No.";
+            this.Id.MinimumWidth = 6;
             this.Id.Name = "Id";
             this.Id.ReadOnly = true;
             this.Id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -169,22 +180,28 @@
             // 
             this.Categories.DataPropertyName = "CategoryName";
             this.Categories.HeaderText = "Categories";
+            this.Categories.MinimumWidth = 6;
             this.Categories.Name = "Categories";
             this.Categories.ReadOnly = true;
+            this.Categories.Width = 125;
             // 
             // Company
             // 
             this.Company.DataPropertyName = "CompanyName";
             this.Company.HeaderText = "Company";
+            this.Company.MinimumWidth = 6;
             this.Company.Name = "Company";
             this.Company.ReadOnly = true;
+            this.Company.Width = 125;
             // 
             // GenericName
             // 
             this.GenericName.DataPropertyName = "GenericName";
             this.GenericName.HeaderText = "GenericName";
+            this.GenericName.MinimumWidth = 6;
             this.GenericName.Name = "GenericName";
             this.GenericName.ReadOnly = true;
+            this.GenericName.Width = 125;
             // 
             // Name1
             // 
@@ -192,6 +209,7 @@
             this.Name1.DataPropertyName = "BrandName";
             this.Name1.FillWeight = 12.25213F;
             this.Name1.HeaderText = "Brand Names";
+            this.Name1.MinimumWidth = 6;
             this.Name1.Name = "Name1";
             this.Name1.ReadOnly = true;
             this.Name1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -201,8 +219,11 @@
             // 
             this.Descriptions.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Descriptions.DataPropertyName = "Description";
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Descriptions.DefaultCellStyle = dataGridViewCellStyle2;
             this.Descriptions.FillWeight = 179.7124F;
             this.Descriptions.HeaderText = "Descriptions";
+            this.Descriptions.MinimumWidth = 6;
             this.Descriptions.Name = "Descriptions";
             this.Descriptions.ReadOnly = true;
             this.Descriptions.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -212,26 +233,29 @@
             // 
             this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Price.DataPropertyName = "Price";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle3;
             this.Price.FillWeight = 106.5126F;
             this.Price.HeaderText = "Price";
+            this.Price.MinimumWidth = 6;
             this.Price.Name = "Price";
             this.Price.ReadOnly = true;
             this.Price.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Price.Width = 125;
             // 
             // Stocks
             // 
             this.Stocks.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Stocks.DataPropertyName = "Stock";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Purple;
-            this.Stocks.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Purple;
+            this.Stocks.DefaultCellStyle = dataGridViewCellStyle4;
             this.Stocks.FillWeight = 101.5228F;
             this.Stocks.HeaderText = "Stocks";
+            this.Stocks.MinimumWidth = 6;
             this.Stocks.Name = "Stocks";
             this.Stocks.ReadOnly = true;
             this.Stocks.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -241,13 +265,16 @@
             // 
             this.BarCode.DataPropertyName = "BarCode";
             this.BarCode.HeaderText = "Bar Code";
+            this.BarCode.MinimumWidth = 6;
             this.BarCode.Name = "BarCode";
             this.BarCode.ReadOnly = true;
+            this.BarCode.Width = 125;
             // 
             // Edit
             // 
             this.Edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Edit.HeaderText = "";
+            this.Edit.MinimumWidth = 6;
             this.Edit.Name = "Edit";
             this.Edit.ReadOnly = true;
             this.Edit.Text = "Edit";
@@ -258,6 +285,7 @@
             // 
             this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Delete.HeaderText = "";
+            this.Delete.MinimumWidth = 6;
             this.Delete.Name = "Delete";
             this.Delete.ReadOnly = true;
             this.Delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -267,13 +295,14 @@
             // 
             // FrmItems
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
-            this.ClientSize = new System.Drawing.Size(1309, 494);
+            this.ClientSize = new System.Drawing.Size(1745, 608);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmItems";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FrmItems_Load);

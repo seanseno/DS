@@ -120,18 +120,24 @@ namespace IS.Admin.Setup
                     progressBar1.Value = 0;
                     int progressCount = 0;
 
+                    var ErrorItemList = new List<Items>();
+
+
+                    RequestOrderItemsModel request = new RequestOrderItemsModel();
+                    var RequestOrderId = request.InsertRequestOrderItemsWithUploadItem();
+
                     foreach (DataRow row in dt.Rows)
                     {
                         var itemModel = new ItemsModel();
                         var item = new Items();
-
+                        item.RequestOrderId = RequestOrderId;
                         try
                         {
-                            item.CategoryName = row[cbo1.SelectedIndex - 1].ToString();
-                            item.CompanyName = row[cbo2.SelectedIndex - 1].ToString();
-                            item.GenericName = row[cbo3.SelectedIndex - 1].ToString();
-                            item.BrandName = row[cbo4.SelectedIndex - 1].ToString();
-                            item.Description = row[cbo5.SelectedIndex - 1].ToString();
+                            item.CategoryName = row[cbo1.SelectedIndex - 1].ToString().ToUpper();
+                            item.CompanyName = row[cbo2.SelectedIndex - 1].ToString().ToUpper();
+                            item.GenericName = row[cbo3.SelectedIndex - 1].ToString().ToUpper();
+                            item.BrandName = row[cbo4.SelectedIndex - 1].ToString().ToUpper();
+                            item.Description = row[cbo5.SelectedIndex - 1].ToString().ToUpper();
 
                             if (!row.IsNull(cbo6.SelectedIndex - 1))
                             {
@@ -157,11 +163,15 @@ namespace IS.Admin.Setup
                             item.BarCode = "";
 
 
-                            var reuslt = itemModel.UploadExcel(item);
+                            var ResponseUpload = itemModel.UploadExcel(item);
+                            if (ResponseUpload != null)
+                            {
+                                ErrorItemList.Add(ResponseUpload);
+                            }
                         }
                         catch (Exception ex)
                         {
-
+                            ErrorItemList.Add(item);
                         }
                         finally
                         {
@@ -169,8 +179,21 @@ namespace IS.Admin.Setup
                             progressBar1.Value = progressCount;
                         }
                     }
-                    MessageBox.Show("Item Uploaded!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = DialogResult.OK;
+                    if (ErrorItemList.Count > 0)
+                    {
+                        MessageBox.Show("Item uploaded! but some items does not uploaded, Please check the Item information.", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        FrmNotUploaded frm = new FrmNotUploaded(ErrorItemList);
+                        if (frm.ShowDialog() == DialogResult.OK)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Item Uploaded!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = DialogResult.OK;
+                    }
+
                 }
             }
         }
@@ -294,5 +317,7 @@ namespace IS.Admin.Setup
         {
 
         }
+
+
     }
 }

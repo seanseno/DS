@@ -6,10 +6,10 @@ namespace IS.Database.Models
 {
     public class ItemExtender
     {
-        public string CategoryName { get; set; }
-        public string CompanyName { get; set; }
-        public string GenericName { get; set; }
-        public string BrandName { get; set; }
-        public string Description { get; set; }
+        public virtual string CategoryName { get; set; }
+        public virtual string CompanyName { get; set; }
+        public virtual string GenericName { get; set; }
+        public virtual string BrandName { get; set; }
+        public virtual string Description { get; set; }
     }
 }

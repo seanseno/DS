@@ -7,7 +7,7 @@ namespace IS.Database.Entities
 {
     public class ItemReceivedOrders : ItemExtender
     {
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
         public int RequestOrderId { get; set; }
         public int ItemId { get; set; }
         public DateTime DateReceived { get; set; }
@@ -16,8 +16,8 @@ namespace IS.Database.Entities
         public int Quantity { get; set; }
         public decimal OrderPrice { get; set; }
         public decimal SellingPricePerPiece { get; set; }
-        public DateTime InsertTime { get; set; }
-        public DateTime UpdateTime { get; set; }
-        public int Active { get; set; }
+        public virtual DateTime InsertTime { get; set; }
+        public virtual DateTime UpdateTime { get; set; }
+        public virtual int Active { get; set; }
     }
 }

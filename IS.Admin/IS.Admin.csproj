@@ -183,6 +183,12 @@
     <Compile Include="CustomDataGridView\CustomDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Setup\Items\FrmNotUploaded.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\Items\FrmNotUploaded.Designer.cs">
+      <DependentUpon>FrmNotUploaded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transactions\ReceivedOrders\FrmAddReceivedItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -354,6 +360,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Setup\Companies\FrmEditCompany.resx">
       <DependentUpon>FrmEditCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\Items\FrmNotUploaded.resx">
+      <DependentUpon>FrmNotUploaded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\ReceivedOrders\FrmAddReceivedItem.resx">
       <DependentUpon>FrmAddReceivedItem.cs</DependentUpon>
