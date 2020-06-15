@@ -112,27 +112,27 @@
             this.requestOrdersToolStripMenuItem,
             this.receivedOrdersToolStripMenuItem});
             this.ordersToolStripMenuItem1.Name = "ordersToolStripMenuItem1";
-            this.ordersToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.ordersToolStripMenuItem1.Size = new System.Drawing.Size(109, 22);
             this.ordersToolStripMenuItem1.Text = "Orders";
             // 
             // requestOrdersToolStripMenuItem
             // 
             this.requestOrdersToolStripMenuItem.Name = "requestOrdersToolStripMenuItem";
-            this.requestOrdersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.requestOrdersToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.requestOrdersToolStripMenuItem.Text = "Request Orders";
             this.requestOrdersToolStripMenuItem.Click += new System.EventHandler(this.requestOrdersToolStripMenuItem_Click);
             // 
             // receivedOrdersToolStripMenuItem
             // 
             this.receivedOrdersToolStripMenuItem.Name = "receivedOrdersToolStripMenuItem";
-            this.receivedOrdersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.receivedOrdersToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.receivedOrdersToolStripMenuItem.Text = "Received Orders";
             this.receivedOrdersToolStripMenuItem.Click += new System.EventHandler(this.receivedOrdersToolStripMenuItem_Click);
             // 
             // stocksToolStripMenuItem
             // 
             this.stocksToolStripMenuItem.Name = "stocksToolStripMenuItem";
-            this.stocksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.stocksToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.stocksToolStripMenuItem.Text = "Stocks";
             this.stocksToolStripMenuItem.Click += new System.EventHandler(this.stocksToolStripMenuItem_Click);
             // 
@@ -278,7 +278,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::IS.Admin.Properties.Resources.light_blue_wallpaper_22;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;

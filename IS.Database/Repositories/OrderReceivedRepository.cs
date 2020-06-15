@@ -172,7 +172,7 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@DateReceived", itm.DateReceived));
                     cmd.Parameters.Add(new SqlParameter("@DateManufactured", itm.DateManufactured));
                     cmd.Parameters.Add(new SqlParameter("@ExpirationDate", itm.ExpirationDate));
-                    cmd.Parameters.Add(new SqlParameter("@OrderPrice", itm.OrderPrice));
+                    cmd.Parameters.Add(new SqlParameter("@OrderPrice", itm.OrderPrice)); 
                     cmd.Parameters.Add(new SqlParameter("@SellingPrice", itm.SellingPricePerPiece));
 
                     int rowAffected = cmd.ExecuteNonQuery();

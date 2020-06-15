@@ -65,11 +65,9 @@
             this.groupBox1.Controls.Add(this.btnAdd);
             this.groupBox1.Controls.Add(this.txtSearch);
             this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.Location = new System.Drawing.Point(17, 15);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Location = new System.Drawing.Point(13, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(1712, 578);
+            this.groupBox1.Size = new System.Drawing.Size(1284, 470);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Item List";
@@ -78,10 +76,9 @@
             // 
             this.btnUpload.Image = ((System.Drawing.Image)(resources.GetObject("btnUpload.Image")));
             this.btnUpload.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnUpload.Location = new System.Drawing.Point(1425, 496);
-            this.btnUpload.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpload.Location = new System.Drawing.Point(1069, 403);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(172, 68);
+            this.btnUpload.Size = new System.Drawing.Size(129, 55);
             this.btnUpload.TabIndex = 11;
             this.btnUpload.Text = "Upload From Excel";
             this.btnUpload.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -107,14 +104,13 @@
             this.BarCode,
             this.Edit,
             this.Delete});
-            this.dgvSearch.Location = new System.Drawing.Point(20, 79);
-            this.dgvSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvSearch.Location = new System.Drawing.Point(15, 64);
             this.dgvSearch.Name = "dgvSearch";
             this.dgvSearch.ReadOnly = true;
             this.dgvSearch.RowHeadersWidth = 51;
             this.dgvSearch.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvSearch.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSearch.Size = new System.Drawing.Size(1673, 410);
+            this.dgvSearch.Size = new System.Drawing.Size(1255, 333);
             this.dgvSearch.TabIndex = 10;
             this.dgvSearch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSearch_CellClick);
             // 
@@ -122,10 +118,9 @@
             // 
             this.btnClose.Image = global::IS.Admin.Properties.Resources.Exit;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnClose.Location = new System.Drawing.Point(1605, 496);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClose.Location = new System.Drawing.Point(1204, 403);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(88, 68);
+            this.btnClose.Size = new System.Drawing.Size(66, 55);
             this.btnClose.TabIndex = 9;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -136,10 +131,9 @@
             // 
             this.btnAdd.Image = global::IS.Admin.Properties.Resources.Add;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdd.Location = new System.Drawing.Point(392, 23);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdd.Location = new System.Drawing.Point(294, 19);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(88, 48);
+            this.btnAdd.Size = new System.Drawing.Size(66, 39);
             this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "Add";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -149,20 +143,18 @@
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(55, 30);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSearch.Location = new System.Drawing.Point(41, 24);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(328, 30);
+            this.txtSearch.Size = new System.Drawing.Size(247, 26);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(20, 31);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(15, 25);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(53, 28);
+            this.pictureBox1.Size = new System.Drawing.Size(40, 23);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
@@ -183,7 +175,6 @@
             this.Categories.MinimumWidth = 6;
             this.Categories.Name = "Categories";
             this.Categories.ReadOnly = true;
-            this.Categories.Width = 125;
             // 
             // Company
             // 
@@ -192,7 +183,6 @@
             this.Company.MinimumWidth = 6;
             this.Company.Name = "Company";
             this.Company.ReadOnly = true;
-            this.Company.Width = 125;
             // 
             // GenericName
             // 
@@ -201,7 +191,6 @@
             this.GenericName.MinimumWidth = 6;
             this.GenericName.Name = "GenericName";
             this.GenericName.ReadOnly = true;
-            this.GenericName.Width = 125;
             // 
             // Name1
             // 
@@ -213,7 +202,6 @@
             this.Name1.Name = "Name1";
             this.Name1.ReadOnly = true;
             this.Name1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Name1.Width = 150;
             // 
             // Descriptions
             // 
@@ -268,7 +256,7 @@
             this.BarCode.MinimumWidth = 6;
             this.BarCode.Name = "BarCode";
             this.BarCode.ReadOnly = true;
-            this.BarCode.Width = 125;
+            this.BarCode.Width = 110;
             // 
             // Edit
             // 
@@ -295,14 +283,13 @@
             // 
             // FrmItems
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
-            this.ClientSize = new System.Drawing.Size(1745, 608);
+            this.ClientSize = new System.Drawing.Size(1309, 494);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmItems";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FrmItems_Load);
