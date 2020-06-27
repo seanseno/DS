@@ -45,9 +45,14 @@ namespace IS.Admin.Setup
             _Item.GenericName = txtGenericname.Text;
             _Item.BrandName = txtBrandName.Text;
             _Item.Description = txtDescription.Text;
-            _Item.Price = Convert.ToDecimal(txtPrice.Text);
+            _Item.SellingPricePerPiece = Convert.ToDecimal(txtPrice.Text);
             _Item.BarCode = txtBarcode.Text;
-            _Item.ItemReceivedOrdersId = ((KeyValuePair<int, string>)cboItemStocks.SelectedItem).Key;
+
+            if (cboItemStocks.SelectedItem != null)
+            {
+                _Item.ItemReceivedOrdersId = ((KeyValuePair<int, string>)cboItemStocks.SelectedItem).Key;
+            }
+           
 ;
             //_Item.BrandType = Convert.ToInt32(cboBrand.SelectedValue.ToString());
             if (model.CheckEditDup(_Item.Description, _Item.Id))
@@ -114,7 +119,7 @@ namespace IS.Admin.Setup
             txtGenericname.Text = response.GenericName;
             txtBrandName.Text = response.BrandName;
             txtDescription.Text = response.Description;
-            txtPrice.Text = response.Price.ToString();
+            txtPrice.Text = response.SellingPricePerPiece.ToString();
             lblStock.Text = response.StockString;
             txtBarcode.Text = response.BarCode;
 

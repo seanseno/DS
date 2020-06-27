@@ -87,7 +87,7 @@ namespace IS.Admin.Trasactions
             Item.DateReceived = (DateTime)dgvSearch.CurrentRow.Cells[7].Value;
             Item.DateManufactured = (DateTime)dgvSearch.CurrentRow.Cells[8].Value;
             Item.ExpirationDate = (DateTime)dgvSearch.CurrentRow.Cells[9].Value;
-            Item.OrderPrice = (decimal)dgvSearch.CurrentRow.Cells[10].Value;
+            Item.SupplierPrice = (decimal)dgvSearch.CurrentRow.Cells[10].Value;
             Item.SellingPricePerPiece = (decimal)dgvSearch.CurrentRow.Cells[11].Value;
 
             var Params = new List<string>();

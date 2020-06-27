@@ -18,7 +18,7 @@ namespace IS.Database.Repositories
             {
                 connection.Open();
                 var select = "INSERT INTO RequestOrderItemDetails (RequestOrderItemId,ItemId,Qty,EstimatedPrice) " +
-                        " VALUES ("+ RequestId + ","+ model.TempItemId + "," + model.Stock + "," + model.Price + ")";
+                        " VALUES ("+ RequestId + ","+ model.TempItemId + "," + model.Stock + "," + model.SupplierPrice + ")";
 
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
@@ -76,7 +76,7 @@ namespace IS.Database.Repositories
                             item.GenericName = reader.GetString(3);
                             item.BrandName = reader.GetString(4);
                             item.Description = reader.GetString(5);
-                            item.Price = reader.GetDecimal(6);
+                            item.SellingPricePerPiece = reader.GetDecimal(6);
                             item.Stock = reader.GetInt32(7);
                             if(!reader.IsDBNull(8))
                             {
@@ -121,7 +121,7 @@ namespace IS.Database.Repositories
                             item.GenericName = reader.GetString(3);
                             item.BrandName = reader.GetString(4);
                             item.Description = reader.GetString(5);
-                            item.Price = reader.GetDecimal(6);
+                            item.SellingPricePerPiece = reader.GetDecimal(6);
                             item.Stock = reader.GetInt32(7);
                             if (!reader.IsDBNull(8))
                             {

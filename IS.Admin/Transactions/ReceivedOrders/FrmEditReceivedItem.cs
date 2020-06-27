@@ -118,7 +118,7 @@ namespace IS.Admin.Trasactions
                 itm.DateReceived = DateReceived;
                 itm.DateManufactured = DateManufactured;
                 itm.ExpirationDate = ExpirationDate;
-                itm.OrderPrice = OrderPrice;
+                itm.SupplierPrice = OrderPrice;
                 itm.SellingPricePerPiece = SellingPrice;
 
                 model.Update(itm);
@@ -170,7 +170,7 @@ namespace IS.Admin.Trasactions
                 dtpDateManufactured.Value = response.DateManufactured;
                 dtpExpirationDate.Value = response.ExpirationDate;
 
-                txtOrderPrice.Text = Math.Round(response.OrderPrice,2).ToString();
+                txtOrderPrice.Text = Math.Round(response.SupplierPrice, 2).ToString();
                 txtSellingPrice.Text = Math.Round(response.SellingPricePerPiece).ToString();
 
             }

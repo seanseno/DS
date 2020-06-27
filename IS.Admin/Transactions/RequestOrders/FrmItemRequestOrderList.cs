@@ -170,7 +170,7 @@ namespace IS.Admin.Trasactions
                     item.GenericName = dgvSearch.CurrentRow.Cells[3].Value?.ToString();
                     item.BrandName = dgvSearch.CurrentRow.Cells[4].Value?.ToString();
                     item.Description = dgvSearch.CurrentRow.Cells[5].Value?.ToString();
-                    item.Price = this.InputPrice;
+                    item.SellingPricePerPiece = this.InputPrice;
                     item.Stock = this.InputQty;
                  
                     item.TempItemId = Convert.ToInt32(dgvSearch.CurrentRow.Cells[0].Value);
@@ -233,7 +233,7 @@ namespace IS.Admin.Trasactions
                             if(itm.Id == Id)
                             {
                                 itm.Stock = this.InputQty;
-                                itm.Price = this.InputPrice;
+                                itm.SellingPricePerPiece = this.InputPrice;
                             }
                         }
                        

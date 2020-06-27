@@ -18,6 +18,7 @@ namespace IS.Admin.Setup
         public FrmItems()
         {
             InitializeComponent();
+            this.Shown += new System.EventHandler(this.FrmItems_Shown);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -30,22 +31,23 @@ namespace IS.Admin.Setup
 
         private void FrmItems_Load(object sender, EventArgs e)
         {
-            this.LoadItems();
+          //  this.LoadItems();
         }
 
         private void LoadItems()
         {
+            grpLoading.Visible = true;
+            grpLoading.Refresh();
+
             ItemsModel model = new ItemsModel();
             var response = model.ItemList(txtSearch.Text);
             dgvSearch.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = response;
             txtSearch.Focus();
-        }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            LoadItems();
+            grpLoading.Visible = false;
+            grpLoading.Refresh();
         }
 
         private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -57,7 +59,7 @@ namespace IS.Admin.Setup
             Item.GenericName = dgvSearch.CurrentRow.Cells[3].Value?.ToString();
             Item.BrandName = dgvSearch.CurrentRow.Cells[4].Value?.ToString();
             Item.Description = dgvSearch.CurrentRow.Cells[5].Value.ToString();
-            Item.Price = Convert.ToDecimal(dgvSearch.CurrentRow.Cells[6].Value);
+            Item.SellingPricePerPiece = Convert.ToDecimal(dgvSearch.CurrentRow.Cells[6].Value);
             Item.Stock = (int)dgvSearch.CurrentRow.Cells[7].Value;
 
             Item.ItemReceivedOrdersId = (int)dgvSearch.CurrentRow.Cells[12].Value;
@@ -116,15 +118,18 @@ namespace IS.Admin.Setup
             this.Close();
         }
 
-        private void btnUpload_Click(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
-            FrmUploadExcel frm = new FrmUploadExcel();
-            var response = frm.ShowDialog();
-            if(response == DialogResult.OK)
-            {
-                this.LoadItems();
-            }
+
+            this.LoadItems();
+
         }
+
+        private void FrmItems_Shown(object sender, EventArgs e)
+        {
+            this.LoadItems();
+        }
+
 
         //private void dgvSearch_CellClick_1(object sender, DataGridViewCellEventArgs e)
         //{

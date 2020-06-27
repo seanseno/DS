@@ -15,7 +15,7 @@ namespace IS.Database.Entities
         public DateTime ExpirationDate { get; set; }
         public int Quantity { get; set; }
         public int Stocks { get; set; }
-        public decimal OrderPrice { get; set; }
+        public decimal SupplierPrice { get; set; }
         public decimal SellingPricePerPiece { get; set; }
         public virtual DateTime InsertTime { get; set; }
         public virtual DateTime UpdateTime { get; set; }

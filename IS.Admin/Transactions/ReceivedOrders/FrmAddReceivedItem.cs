@@ -72,7 +72,7 @@ namespace IS.Admin.Trasactions
                         itemReceivedOrders.DateReceived = InputDateReceived;
                         itemReceivedOrders.DateManufactured = InputDateManufactured;
                         itemReceivedOrders.ExpirationDate = InputExpirationDate;
-                        itemReceivedOrders.OrderPrice = InputOrderPrice;
+                        itemReceivedOrders.SupplierPrice = InputOrderPrice;
                         itemReceivedOrders.SellingPricePerPiece = InputSellingPrice;
                         itemReceivedOrders.Quantity = InputQuantity; 
                         model.Insert(itemReceivedOrders);

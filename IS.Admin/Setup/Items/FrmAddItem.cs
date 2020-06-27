@@ -47,7 +47,7 @@ namespace IS.Admin.Setup
                     _Items.GenericName = txtGenericname.Text;
                     _Items.BrandName = txtBrandName.Text;
                     _Items.Description = txtDescription.Text;
-                    _Items.Price = Convert.ToDecimal(txtPrice.Text);
+                    _Items.SellingPricePerPiece = Convert.ToDecimal(txtPrice.Text);
                     _Items.Stock = Convert.ToInt32(txtStock.Value);
                     _Items.BarCode = txtBarcode.Text;
                     var model = new ItemsModel();

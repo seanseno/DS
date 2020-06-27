@@ -28,7 +28,7 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@GenericName", item.GenericName.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@BrandName", item.BrandName.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@Description", item.Description.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@Price", item.Price));
+                    cmd.Parameters.Add(new SqlParameter("@Price", item.SellingPricePerPiece));
                     cmd.Parameters.Add(new SqlParameter("@Stock", item.Stock));
                     cmd.Parameters.Add(new SqlParameter("@BarCode", item.BarCode));
 
@@ -54,7 +54,7 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@GenericName", item.GenericName.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@BrandName", item.BrandName.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@Description", item.Description.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@Price", item.Price));
+                    cmd.Parameters.Add(new SqlParameter("@Price", item.SellingPricePerPiece));
                     cmd.Parameters.Add(new SqlParameter("@Stock", item.Stock));
                     cmd.Parameters.Add(new SqlParameter("@BarCode", item.BarCode));
                     cmd.Parameters.Add(new SqlParameter("@DateManufactured", DateTimeConvertion.ConvertDateString(item.DateManufactured)));
@@ -89,7 +89,7 @@ namespace IS.Database.Repositories
                     " GenericName = '" + item.GenericName  + "', " +
                     " BrandName = '" + item.BrandName?.ToUpper() + "'," +
                     " Description ='" + item.Description.ToUpper() + "', " +
-                    " Price = " + item.Price + ", " +
+                    " Price = " + item.SellingPricePerPiece + ", " +
                     " BarCode ='" + item.BarCode + "', " +
                     " UpdateTime ='" + DateTimeConvertion.ConvertDateString(DateTime.Now) + "', " +
                     " ItemReceivedOrdersId = " + item.ItemReceivedOrdersId + " " +
@@ -167,7 +167,7 @@ namespace IS.Database.Repositories
                             
                             
                             item.Description = reader.GetString(4);
-                            item.Price = Math.Round(reader.GetDecimal(5), 2);
+                            item.SellingPricePerPiece = Math.Round(reader.GetDecimal(5), 2);
                             item.Stock = reader.GetInt32(6);
 
 
@@ -236,7 +236,7 @@ namespace IS.Database.Repositories
                                 item.BrandName = reader.GetString(3);
                             }
                             item.Description = reader.GetString(4);
-                            item.Price = Math.Round(reader.GetDecimal(5), 2);
+                            item.SellingPricePerPiece = Math.Round(reader.GetDecimal(5), 2);
 
                             if (!reader.IsDBNull(6))
                             {

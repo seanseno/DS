@@ -53,6 +53,7 @@ namespace IS.Admin.Setup
             cbo7.DataSource = this.GetColumnList();
             cbo8.DataSource = this.GetColumnList();
             cbo9.DataSource = this.GetColumnList();
+            cbo10.DataSource = this.GetColumnList();
         }
         private void btnBrowse_Click(object sender, EventArgs e)
         {
@@ -139,26 +140,51 @@ namespace IS.Admin.Setup
                             item.BrandName = row[cbo4.SelectedIndex - 1].ToString().ToUpper();
                             item.Description = row[cbo5.SelectedIndex - 1].ToString().ToUpper();
 
+                            lblProgressbar.Text = "..../" + item.Description;
+                            lblProgressbar.Refresh();
                             if (!row.IsNull(cbo6.SelectedIndex - 1))
                             {
-                                item.Price = Convert.ToDecimal(row[cbo6.SelectedIndex - 1]);
+                                item.SupplierPrice = Convert.ToDecimal(row[cbo6.SelectedIndex - 1]);
                             }
                             else
                             {
-                                item.Price = 0;
+                                item.SupplierPrice = 0;
                             }
 
                             if (!row.IsNull(cbo7.SelectedIndex - 1))
                             {
-                                item.Stock = Convert.ToInt32(row[cbo7.SelectedIndex - 1]);
+                                item.SellingPricePerPiece = Convert.ToInt32(row[cbo7.SelectedIndex - 1]);
+                            }
+                            else
+                            {
+                                item.SellingPricePerPiece = 0;
+                            }
+                            if (!row.IsNull(cbo8.SelectedIndex - 1))
+                            {
+                                item.Stock = Convert.ToInt32(row[cbo8.SelectedIndex - 1]);
                             }
                             else
                             {
                                 item.Stock = 0;
                             }
 
-                            item.DateManufactured = Convert.ToDateTime(row[cbo8.SelectedIndex - 1].ToString());
-                            item.ExpirationDate = Convert.ToDateTime(row[cbo9.SelectedIndex - 1].ToString());
+                            if (DateTime.TryParse(row[cbo9.SelectedIndex - 1].ToString(), out DateTime dateManufactured))
+                            {
+                                item.DateManufactured = dateManufactured;
+                            }
+                            else
+                            {
+                                item.DateManufactured = DateTime.Now;
+                            }
+
+                            if (DateTime.TryParse(row[cbo10.SelectedIndex - 1].ToString(), out DateTime expirationDate))
+                            {
+                                item.ExpirationDate = expirationDate;
+                            }
+                            else
+                            {
+                                item.ExpirationDate = DateTime.Now;
+                            }
 
                             item.BarCode = "";
 
@@ -229,11 +255,15 @@ namespace IS.Admin.Setup
             {
                 isSet = false;
             }
-            else if (cbo7.SelectedIndex == 0)
+            else if (cbo8.SelectedIndex == 0)
             {
                 isSet = false;
             }
-            else if (cbo7.SelectedIndex == 0)
+            else if (cbo9.SelectedIndex == 0)
+            {
+                isSet = false;
+            }
+            else if (cbo10.SelectedIndex == 0)
             {
                 isSet = false;
             }
@@ -250,7 +280,8 @@ namespace IS.Admin.Setup
                 cbo1.SelectedIndex == cbo6.SelectedIndex ||
                 cbo1.SelectedIndex == cbo7.SelectedIndex ||
                 cbo1.SelectedIndex == cbo8.SelectedIndex ||
-                cbo1.SelectedIndex == cbo9.SelectedIndex)
+                cbo1.SelectedIndex == cbo9.SelectedIndex ||
+                cbo1.SelectedIndex == cbo10.SelectedIndex )
             {
                 isSet = false;
             }
@@ -261,7 +292,8 @@ namespace IS.Admin.Setup
                 cbo2.SelectedIndex == cbo6.SelectedIndex ||
                 cbo2.SelectedIndex == cbo7.SelectedIndex ||
                 cbo2.SelectedIndex == cbo8.SelectedIndex ||
-                cbo2.SelectedIndex == cbo9.SelectedIndex)
+                cbo2.SelectedIndex == cbo9.SelectedIndex ||
+                cbo2.SelectedIndex == cbo10.SelectedIndex)
             {
                 isSet = false;
             }
@@ -271,7 +303,8 @@ namespace IS.Admin.Setup
                 cbo3.SelectedIndex == cbo6.SelectedIndex ||
                 cbo3.SelectedIndex == cbo7.SelectedIndex ||
                 cbo3.SelectedIndex == cbo8.SelectedIndex ||
-                cbo3.SelectedIndex == cbo9.SelectedIndex)
+                cbo3.SelectedIndex == cbo9.SelectedIndex ||
+                cbo3.SelectedIndex == cbo10.SelectedIndex)
             {
                 isSet = false;
             }
@@ -279,8 +312,9 @@ namespace IS.Admin.Setup
                 cbo4.SelectedIndex == cbo5.SelectedIndex ||
                 cbo4.SelectedIndex == cbo6.SelectedIndex ||
                 cbo4.SelectedIndex == cbo7.SelectedIndex ||
-                cbo5.SelectedIndex == cbo8.SelectedIndex ||
-                cbo5.SelectedIndex == cbo9.SelectedIndex)
+                cbo4.SelectedIndex == cbo8.SelectedIndex ||
+                cbo4.SelectedIndex == cbo9.SelectedIndex ||
+                cbo4.SelectedIndex == cbo10.SelectedIndex)
             {
                 isSet = false;
             }
@@ -288,25 +322,33 @@ namespace IS.Admin.Setup
                 cbo5.SelectedIndex == cbo6.SelectedIndex ||
                 cbo5.SelectedIndex == cbo7.SelectedIndex ||
                 cbo5.SelectedIndex == cbo8.SelectedIndex ||
-                cbo5.SelectedIndex == cbo9.SelectedIndex)
+                cbo5.SelectedIndex == cbo9.SelectedIndex ||
+                cbo5.SelectedIndex == cbo10.SelectedIndex)
             {
                 isSet = false;
             }
             else if (
                 cbo6.SelectedIndex == cbo7.SelectedIndex ||
                 cbo6.SelectedIndex == cbo8.SelectedIndex ||
-                cbo6.SelectedIndex == cbo9.SelectedIndex)
+                cbo6.SelectedIndex == cbo9.SelectedIndex ||
+                cbo6.SelectedIndex == cbo10.SelectedIndex)
             {
                 isSet = false;
             }
             else if (
                 cbo7.SelectedIndex == cbo8.SelectedIndex ||
-                cbo7.SelectedIndex == cbo9.SelectedIndex)
+                cbo7.SelectedIndex == cbo9.SelectedIndex ||
+                cbo7.SelectedIndex == cbo10.SelectedIndex)
             {
                 isSet = false;
             }
             else if (
-                cbo8.SelectedIndex == cbo9.SelectedIndex)
+                cbo8.SelectedIndex == cbo9.SelectedIndex ||
+                cbo8.SelectedIndex == cbo10.SelectedIndex)
+            {
+                isSet = false;
+            }
+            else if (cbo9.SelectedIndex == cbo10.SelectedIndex)
             {
                 isSet = false;
             }

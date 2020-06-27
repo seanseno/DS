@@ -14,13 +14,12 @@ namespace IS.Database.Entities
         public override string GenericName { get; set; }
         public override string BrandName { get; set; }
         public override string Description { get; set; }
-        public decimal Price { get; set; }
         public string BarCode { get; set; }
         public string PriceString
         {
             get
             {
-                return String.Format("{0:n}", Price);
+                return String.Format("{0:n}", SupplierPrice);
             }
         }
 

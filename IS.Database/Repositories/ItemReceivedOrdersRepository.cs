@@ -28,7 +28,7 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@DateReceived", model.DateReceived));
                     cmd.Parameters.Add(new SqlParameter("@DateManufactured", model.DateManufactured));
                     cmd.Parameters.Add(new SqlParameter("@ExpirationDate", model.ExpirationDate));
-                    cmd.Parameters.Add(new SqlParameter("@OrderPrice", model.OrderPrice));
+                    cmd.Parameters.Add(new SqlParameter("@SupplierPrice", model.SupplierPrice));
                     cmd.Parameters.Add(new SqlParameter("@SellingPricePerPiece", model.SellingPricePerPiece));
                     cmd.Parameters.Add(new SqlParameter("@InputQuantity", model.Quantity));
 
@@ -66,7 +66,7 @@ namespace IS.Database.Repositories
             {
                 connection.Open();
                 var select = "SELECT IRO.Id,Ca.CategoryName,Co.CompanyName,I.GenericName,I.BrandName,I.Description," +
-                            "   IRO.Quantity,IRO.DateReceived,IRO.DateManufactured,IRO.ExpirationDate,IRO.OrderPrice,IRO.SellingPricePerPiece" +
+                            "   IRO.Quantity,IRO.DateReceived,IRO.DateManufactured,IRO.ExpirationDate,IRO.SupplierPrice,IRO.SellingPricePerPiece" +
                             " FROM ItemReceivedOrders as IRO " +
                             "   LEFT JOIN Items as I on I.id = IRO.ItemId " +
                             "   LEFT JOIN Companies as Co on Co.id = I.CompanyId " +
@@ -97,7 +97,7 @@ namespace IS.Database.Repositories
                             item.DateReceived = reader.GetDateTime(7);
                             item.DateManufactured = reader.GetDateTime(8);
                             item.ExpirationDate = reader.GetDateTime(9);
-                            item.OrderPrice = reader.GetDecimal(10);
+                            item.SupplierPrice = reader.GetDecimal(10);
                             item.SellingPricePerPiece = reader.GetDecimal(11);
                             Items.Add(item);
                         }
@@ -115,7 +115,7 @@ namespace IS.Database.Repositories
             {
                 connection.Open();
                 var select = "SELECT IRO.Id,Ca.CategoryName,Co.CompanyName,I.GenericName,I.BrandName,I.Description," +
-                            "   IRO.Quantity,IRO.DateReceived,IRO.DateManufactured,IRO.ExpirationDate,IRO.OrderPrice,IRO.SellingPricePerPiece" +
+                            "   IRO.Quantity,IRO.DateReceived,IRO.DateManufactured,IRO.ExpirationDate,IRO.SupplierPrice,IRO.SellingPricePerPiece" +
                             " FROM ItemReceivedOrders as IRO " +
                             "   LEFT JOIN Items as I on I.id = IRO.ItemId " +
                             "   LEFT JOIN Companies as Co on Co.id = I.CompanyId " +
@@ -141,7 +141,7 @@ namespace IS.Database.Repositories
                             item.DateReceived = reader.GetDateTime(7);
                             item.DateManufactured = reader.GetDateTime(8);
                             item.ExpirationDate = reader.GetDateTime(9);
-                            item.OrderPrice = reader.GetDecimal(10);
+                            item.SupplierPrice = reader.GetDecimal(10);
                             item.SellingPricePerPiece = reader.GetDecimal(11);
                             Items.Add(item);
                         }
@@ -158,7 +158,7 @@ namespace IS.Database.Repositories
             {
                 connection.Open();
                 var select = "SELECT IRO.Id,Ca.CategoryName,Co.CompanyName,I.GenericName,I.BrandName,I.Description," +
-                            "   IRO.Quantity,IRO.DateReceived,IRO.DateManufactured,IRO.ExpirationDate,IRO.OrderPrice,IRO.SellingPricePerPiece" +
+                            "   IRO.Quantity,IRO.DateReceived,IRO.DateManufactured,IRO.ExpirationDate,IRO.SupplierPrice,IRO.SellingPricePerPiece" +
                             " FROM ItemReceivedOrders as IRO " +
                             "   LEFT JOIN Items as I on I.id = IRO.ItemId " +
                             "   LEFT JOIN Companies as Co on Co.id = I.CompanyId " +
@@ -183,7 +183,7 @@ namespace IS.Database.Repositories
                             item.DateReceived = reader.GetDateTime(7);
                             item.DateManufactured = reader.GetDateTime(8);
                             item.ExpirationDate = reader.GetDateTime(9);
-                            item.OrderPrice = reader.GetDecimal(10);
+                            item.SupplierPrice = reader.GetDecimal(10);
                             item.SellingPricePerPiece = reader.GetDecimal(11);
                             Items.Add(item);
                         }
@@ -201,7 +201,7 @@ namespace IS.Database.Repositories
             {
                 connection.Open();
                 var select = "SELECT IRO.Id,Ca.CategoryName,Co.CompanyName,I.GenericName,I.BrandName,I.Description," +
-                            "   IRO.Quantity,IRO.DateReceived,IRO.DateManufactured,IRO.ExpirationDate,IRO.OrderPrice,IRO.SellingPricePerPiece,IRO.RequestOrderId" +
+                            "   IRO.Quantity,IRO.DateReceived,IRO.DateManufactured,IRO.ExpirationDate,IRO.SupplierPrice,IRO.SellingPricePerPiece,IRO.RequestOrderId" +
                             " FROM ItemReceivedOrders as IRO " +
                             "   LEFT JOIN Items as I on I.id = IRO.ItemId " +
                             "   LEFT JOIN Companies as Co on Co.id = I.CompanyId " +
@@ -228,7 +228,7 @@ namespace IS.Database.Repositories
                             item.DateReceived = reader.GetDateTime(7);
                             item.DateManufactured = reader.GetDateTime(8);
                             item.ExpirationDate = reader.GetDateTime(9);
-                            item.OrderPrice = reader.GetDecimal(10);
+                            item.SupplierPrice = reader.GetDecimal(10);
                             item.SellingPricePerPiece = reader.GetDecimal(11);
                             item.RequestOrderId = reader.GetInt32(12);
                         }
@@ -247,7 +247,7 @@ namespace IS.Database.Repositories
             {
                 connection.Open();
                 var select = "SELECT IRO.Id,Ca.CategoryName,Co.CompanyName,I.GenericName,I.BrandName,I.Description," +
-                            "   IRO.Quantity,IRO.DateReceived,IRO.DateManufactured,IRO.ExpirationDate,IRO.OrderPrice,IRO.SellingPricePerPiece,IRO.RequestOrderId" +
+                            "   IRO.Quantity,IRO.DateReceived,IRO.DateManufactured,IRO.ExpirationDate,IRO.SupplierPrice,IRO.SellingPricePerPiece,IRO.RequestOrderId" +
                             " FROM ItemReceivedOrders as IRO " +
                             "   LEFT JOIN Items as I on I.id = IRO.ItemId " +
                             "   LEFT JOIN Companies as Co on Co.id = I.CompanyId " +
@@ -273,7 +273,7 @@ namespace IS.Database.Repositories
                             item.DateReceived = reader.GetDateTime(7);
                             item.DateManufactured = reader.GetDateTime(8);
                             item.ExpirationDate = reader.GetDateTime(9);
-                            item.OrderPrice = reader.GetDecimal(10);
+                            item.SupplierPrice = reader.GetDecimal(10);
                             item.SellingPricePerPiece = reader.GetDecimal(11);
                             item.RequestOrderId = reader.GetInt32(12);
                             Items.Add(item);
@@ -303,7 +303,7 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@DateReceived", itm.DateReceived));
                     cmd.Parameters.Add(new SqlParameter("@DateManufactured", itm.DateManufactured));
                     cmd.Parameters.Add(new SqlParameter("@ExpirationDate", itm.ExpirationDate));
-                    cmd.Parameters.Add(new SqlParameter("@OrderPrice", itm.OrderPrice)); 
+                    cmd.Parameters.Add(new SqlParameter("@SupplierPrice", itm.SupplierPrice)); 
                     cmd.Parameters.Add(new SqlParameter("@SellingPrice", itm.SellingPricePerPiece));
 
                     int rowAffected = cmd.ExecuteNonQuery();
