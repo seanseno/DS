@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnUpload = new System.Windows.Forms.Button();
             this.dgvSearch = new System.Windows.Forms.DataGridView();
@@ -47,10 +48,12 @@
             this.Name1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descriptions = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Stocks = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AvailableStock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SellingStock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BarCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ItemReceivedOrdersId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -100,10 +103,12 @@
             this.Name1,
             this.Descriptions,
             this.Price,
-            this.Stocks,
+            this.AvailableStock,
+            this.SellingStock,
             this.BarCode,
             this.Edit,
-            this.Delete});
+            this.Delete,
+            this.ItemReceivedOrdersId});
             this.dgvSearch.Location = new System.Drawing.Point(15, 64);
             this.dgvSearch.Name = "dgvSearch";
             this.dgvSearch.ReadOnly = true;
@@ -175,6 +180,7 @@
             this.Categories.MinimumWidth = 6;
             this.Categories.Name = "Categories";
             this.Categories.ReadOnly = true;
+            this.Categories.Width = 90;
             // 
             // Company
             // 
@@ -183,6 +189,7 @@
             this.Company.MinimumWidth = 6;
             this.Company.Name = "Company";
             this.Company.ReadOnly = true;
+            this.Company.Width = 90;
             // 
             // GenericName
             // 
@@ -191,17 +198,18 @@
             this.GenericName.MinimumWidth = 6;
             this.GenericName.Name = "GenericName";
             this.GenericName.ReadOnly = true;
+            this.GenericName.Width = 90;
             // 
             // Name1
             // 
             this.Name1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Name1.DataPropertyName = "BrandName";
-            this.Name1.FillWeight = 12.25213F;
             this.Name1.HeaderText = "Brand Names";
             this.Name1.MinimumWidth = 6;
             this.Name1.Name = "Name1";
             this.Name1.ReadOnly = true;
             this.Name1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Name1.Width = 90;
             // 
             // Descriptions
             // 
@@ -209,13 +217,12 @@
             this.Descriptions.DataPropertyName = "Description";
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Descriptions.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Descriptions.FillWeight = 179.7124F;
             this.Descriptions.HeaderText = "Descriptions";
             this.Descriptions.MinimumWidth = 6;
             this.Descriptions.Name = "Descriptions";
             this.Descriptions.ReadOnly = true;
             this.Descriptions.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Descriptions.Width = 290;
+            this.Descriptions.Width = 200;
             // 
             // Price
             // 
@@ -234,20 +241,34 @@
             this.Price.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Price.Width = 125;
             // 
-            // Stocks
+            // AvailableStock
             // 
-            this.Stocks.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Stocks.DataPropertyName = "Stock";
+            this.AvailableStock.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.AvailableStock.DataPropertyName = "AvailableStock";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Purple;
-            this.Stocks.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Stocks.FillWeight = 101.5228F;
-            this.Stocks.HeaderText = "Stocks";
-            this.Stocks.MinimumWidth = 6;
-            this.Stocks.Name = "Stocks";
-            this.Stocks.ReadOnly = true;
-            this.Stocks.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Stocks.Width = 95;
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
+            this.AvailableStock.DefaultCellStyle = dataGridViewCellStyle4;
+            this.AvailableStock.FillWeight = 101.5228F;
+            this.AvailableStock.HeaderText = "Available Stock";
+            this.AvailableStock.MinimumWidth = 6;
+            this.AvailableStock.Name = "AvailableStock";
+            this.AvailableStock.ReadOnly = true;
+            this.AvailableStock.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.AvailableStock.Width = 95;
+            // 
+            // SellingStock
+            // 
+            this.SellingStock.DataPropertyName = "Stock";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Green;
+            dataGridViewCellStyle5.Format = "N0";
+            this.SellingStock.DefaultCellStyle = dataGridViewCellStyle5;
+            this.SellingStock.HeaderText = "Active Stocks";
+            this.SellingStock.Name = "SellingStock";
+            this.SellingStock.ReadOnly = true;
+            this.SellingStock.Width = 80;
             // 
             // BarCode
             // 
@@ -256,7 +277,7 @@
             this.BarCode.MinimumWidth = 6;
             this.BarCode.Name = "BarCode";
             this.BarCode.ReadOnly = true;
-            this.BarCode.Width = 110;
+            this.BarCode.Width = 80;
             // 
             // Edit
             // 
@@ -280,6 +301,14 @@
             this.Delete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Delete.Text = "Delete";
             this.Delete.UseColumnTextForButtonValue = true;
+            // 
+            // ItemReceivedOrdersId
+            // 
+            this.ItemReceivedOrdersId.DataPropertyName = "ItemReceivedOrdersId";
+            this.ItemReceivedOrdersId.HeaderText = "ItemReceivedOrdersId";
+            this.ItemReceivedOrdersId.Name = "ItemReceivedOrdersId";
+            this.ItemReceivedOrdersId.ReadOnly = true;
+            this.ItemReceivedOrdersId.Visible = false;
             // 
             // FrmItems
             // 
@@ -317,9 +346,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Name1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descriptions;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Stocks;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AvailableStock;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SellingStock;
         private System.Windows.Forms.DataGridViewTextBoxColumn BarCode;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemReceivedOrdersId;
     }
 }

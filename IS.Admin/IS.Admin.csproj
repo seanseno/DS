@@ -113,6 +113,7 @@
     <Compile Include="Model\CashOnHand\CashierCashOnHandModel.cs" />
     <Compile Include="Model\CompaniesModel.cs" />
     <Compile Include="Model\CategoriesModel.cs" />
+    <Compile Include="Model\ItemReceivedOrdersModel.cs" />
     <Compile Include="Model\ReceivedOrdersModel.cs" />
     <Compile Include="Model\RequestOrderItemsModel.cs" />
     <Compile Include="Model\LoginModel.cs" />
@@ -431,6 +432,7 @@
       <DependentUpon>FrmUpdateCashierDenomination.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\CustomDataGridView.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

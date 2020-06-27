@@ -37,7 +37,9 @@ namespace IS.Database.Entities
         public override DateTime InsertTime { get; set; }
         public override DateTime UpdateTime { get; set; }
         public override int Active { get; set; }
-
+        public int AvailableStock { get; set; }
         public int TempItemId { get; set; }
+        public int ItemReceivedOrdersId { get; set; }
+
     }
 }

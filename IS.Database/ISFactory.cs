@@ -23,6 +23,6 @@ namespace IS.Database
         public CategoriesRepository CategoriesRepository => new CategoriesRepository();
         public RequestOrderItemsRepository RequestOrderItemsRepository  => new RequestOrderItemsRepository();
         public RequestOrderItemDetailsRepository RequestOrderItemDetailsRepository => new RequestOrderItemDetailsRepository();
-        public OrderReceivedRepository OrderReceivedRepository = new OrderReceivedRepository();
+        public ItemReceivedOrdersRepository ItemReceivedOrdersRepository = new ItemReceivedOrdersRepository();
     }
 }

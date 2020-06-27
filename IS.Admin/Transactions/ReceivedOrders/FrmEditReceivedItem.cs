@@ -138,8 +138,8 @@ namespace IS.Admin.Trasactions
 
         private void LoadItm()
         {
-            ReceivedOrdersModel model = new ReceivedOrdersModel();
-            var response = model.FindWithId(this.Id);
+            ItemsModel model = new ItemsModel();
+            var response = model.LoadEdit(this.Id);
             if(response != null)
             {
                 var Params = new List<string>();

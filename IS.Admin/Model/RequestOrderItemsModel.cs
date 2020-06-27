@@ -25,6 +25,12 @@ namespace IS.Admin.Model
             var factory = new ISFactory();
             return factory.RequestOrderItemDetailsRepository.GetListWithId(Id);
         }
+        public IList<Items> RequestOrderItemDetailsListWithItemId(int itemId)
+        {
+            var factory = new ISFactory();
+            return factory.RequestOrderItemDetailsRepository.GetListWithItemId(itemId);
+        }
+        
         public string OrderInfo(int Id)
         {
             var factory = new ISFactory();

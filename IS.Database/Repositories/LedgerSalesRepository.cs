@@ -44,25 +44,6 @@ namespace IS.Database.Repositories
                         connection.Close();
                 }
                 return LedgerId;
-                //var select = "INSERT INTO LedgerSales (CashierId,PayAmount,Change,CustomerName) Values " +
-                //    "("+ cashier.Id + ","+ PayAmount + "," + Change + ",'" + customerName + "'); SELECT SCOPE_IDENTITY();";
-                //using (SqlCommand cmd = new SqlCommand(select, connection))
-                //{
-
-                //    var LedgerSales = new LedgerSales
-                //    {
-                //        Id = Convert.ToInt32(cmd.ExecuteScalar()),
-                //        CashierId = cashier.Id,
-                //        InsertTime = DateTime.Now,
-                //        CustomerName = customerName
-                //    };
-
-
-                //    if (connection.State == System.Data.ConnectionState.Open)
-                //        connection.Close();
-
-                //    return LedgerSales;
-                //}
             }
         }
 

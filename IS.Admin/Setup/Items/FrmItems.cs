@@ -60,6 +60,8 @@ namespace IS.Admin.Setup
             Item.Price = Convert.ToDecimal(dgvSearch.CurrentRow.Cells[6].Value);
             Item.Stock = (int)dgvSearch.CurrentRow.Cells[7].Value;
 
+            Item.ItemReceivedOrdersId = (int)dgvSearch.CurrentRow.Cells[12].Value;
+
             var Params = new List<string>();
             if (!string.IsNullOrEmpty(Item.CategoryName))
             {
@@ -81,7 +83,7 @@ namespace IS.Admin.Setup
             {
                 Params.Add(Item.Description);
             }
-            if (e.ColumnIndex == 9)
+            if (e.ColumnIndex == 10)
             {
                 FrmEditItem frm = new FrmEditItem(Item);
                 if (frm.ShowDialog() == DialogResult.OK)
@@ -90,7 +92,7 @@ namespace IS.Admin.Setup
                     this.LoadItems();
                 };
             }
-            if (e.ColumnIndex == 10)
+            if (e.ColumnIndex == 11)
             {
                 var model = new ItemsModel();
                 if (model.CheckItemIfAlreadyInUse(Item.Id))

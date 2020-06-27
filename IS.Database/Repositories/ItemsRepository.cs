@@ -82,7 +82,7 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-
+                
                 var select = "UPDATE Items SET " +
                     " CategoryId = " + item.CategoryId + ", " +
                     " CompanyId = " + item.CompanyId + ", " +
@@ -91,7 +91,8 @@ namespace IS.Database.Repositories
                     " Description ='" + item.Description.ToUpper() + "', " +
                     " Price = " + item.Price + ", " +
                     " BarCode ='" + item.BarCode + "', " +
-                    " UpdateTime ='" + DateTimeConvertion.ConvertDateString(DateTime.Now) + "' " +
+                    " UpdateTime ='" + DateTimeConvertion.ConvertDateString(DateTime.Now) + "', " +
+                    " ItemReceivedOrdersId = " + item.ItemReceivedOrdersId + " " +
                     " WHERE Id = " + item.Id;
 
                 using (SqlCommand cmd = new SqlCommand(select, connection))
@@ -209,18 +210,14 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT I.Id, I.CompanyId, I.GenericName, I.BrandName, I.Description, I.Price , S.Stock,Co.CompanyName,Ca.CategoryName,I.BarCode" +
-                             " FROM Items AS I " +
-                                " LEFT JOIN Stocks as S on S.ItemId = I.id " +
-                                " LEFT JOIN Companies as Co on Co.id = I.CompanyId " +
-                                " LEFT JOIN Categories as Ca on Ca.Id = I.CategoryId " +
-                                " WHERE I.BrandName Like '%" + keyword + "%'" +
-                                " OR I.Description Like '%" + keyword + "%' " +
-                                " OR I.GenericName Like '%" + keyword + "%' " +
-                                " OR I.BarCode Like '%" + keyword + "%' " +
-                                " OR Co.CompanyName Like '%" + keyword + "%' " +
-                                " OR Ca.CategoryName Like '%" + keyword + "%' " +
-                            " ORDER BY I.Id";
+                var select = "SELECT * FROM ItemsKiosk " +
+                                " WHERE BrandName Like '%" + keyword + "%'" +
+                                " OR Description Like '%" + keyword + "%' " +
+                                " OR GenericName Like '%" + keyword + "%' " +
+                                " OR BarCode Like '%" + keyword + "%' " +
+                                " OR CompanyName Like '%" + keyword + "%' " +
+                                " OR CategoryName Like '%" + keyword + "%' " +
+                            " ORDER BY Id";
 
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
@@ -257,6 +254,15 @@ namespace IS.Database.Repositories
                             {
                                 item.BarCode = reader.GetString(9);
                             }
+                            if (!reader.IsDBNull(10))
+                            {
+                                item.AvailableStock = reader.GetInt32(10);
+                            }
+                            if (!reader.IsDBNull(11))
+                            {
+                                item.ItemReceivedOrdersId = reader.GetInt32(11);
+                            }
+
 
                             Items.Add(item);
                         }

@@ -7,5 +7,11 @@ DELETE FROM LedgerSales;
 DELETE FROM Companies;
 DELETE FROM Categories;
 DELETE FROM Items;
-DELETE RequestOrderItemDetails;
-DELETE RequestOrderItems;
+DELETE FROM RequestOrderItemDetails;
+DELETE FROM RequestOrderItems;
+
+expiration 
+
+1. Formula 
+2. delivery
+3. 

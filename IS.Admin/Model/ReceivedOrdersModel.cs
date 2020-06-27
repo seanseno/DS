@@ -17,33 +17,51 @@ namespace IS.Admin.Model
         public IList<ItemReceivedOrders> OrderReceivedList(string keyword,int RequestId)
         {
             var factory = new ISFactory();
-            return factory.OrderReceivedRepository.Find(keyword, RequestId);
+            return factory.ItemReceivedOrdersRepository.FindList(keyword, RequestId);
         }
+
+        public IList<ItemReceivedOrders> OrderReceivedWithItemId(int itemId)
+        {
+            var factory = new ISFactory();
+            return factory.ItemReceivedOrdersRepository.FindListWithItemId(itemId);
+        }
+
         public IList<Items> ItemList(string keyword)
         {
             var factory = new ISFactory();
             return factory.ItemsRepository.Find(keyword);
         }
+
+        public IList<RequestOrderItems> RequestOrderListWithItemId(int ItemId)
+        {
+            var factory = new ISFactory();
+            var response = factory.RequestOrderItemsRepository.GetListWithItemList(ItemId);
+            return response;
+        }
+
+        public RequestOrderItems GetOrderRequestInfoWithId(int ItemId)
+        {
+            var factory = new ISFactory();
+            var response = factory.RequestOrderItemsRepository.GetOrderRequestInfoWithId(ItemId);
+            return response;
+        }
+
         public void Delete(int? Id)
         {
             var factory = new ISFactory();
-            factory.OrderReceivedRepository.Delete(Id);
+            factory.ItemReceivedOrdersRepository.Delete(Id);
         }
+
         public void Insert(ItemReceivedOrders model)
         {
             var factory = new ISFactory();
-            factory.OrderReceivedRepository.Insert(model);
+            factory.ItemReceivedOrdersRepository.Insert(model);
         }
 
-        public ItemReceivedOrders FindWithId(int? Id)
-        {
-            var factory = new ISFactory();
-           return  factory.OrderReceivedRepository.FindWithId(Id);
-        }
         public void Update(ItemReceivedOrders itm)
         {
             var factory = new ISFactory();
-            factory.OrderReceivedRepository.Update(itm);
+            factory.ItemReceivedOrdersRepository.Update(itm);
         }
     }
 }

@@ -47,7 +47,8 @@ namespace IS.Admin.Setup
             _Item.Description = txtDescription.Text;
             _Item.Price = Convert.ToDecimal(txtPrice.Text);
             _Item.BarCode = txtBarcode.Text;
-
+            _Item.ItemReceivedOrdersId = ((KeyValuePair<int, string>)cboItemStocks.SelectedItem).Key;
+;
             //_Item.BrandType = Convert.ToInt32(cboBrand.SelectedValue.ToString());
             if (model.CheckEditDup(_Item.Description, _Item.Id))
             {
@@ -77,6 +78,35 @@ namespace IS.Admin.Setup
             cboCompanies.DisplayMember = "CompanyName";
             cboCompanies.ValueMember = "Id";
 
+            ReceivedOrdersModel receivedOrdersModel = new ReceivedOrdersModel();
+            var ItemReceivedList = receivedOrdersModel.RequestOrderListWithItemId(_Item.Id);
+
+            var comboSource = new Dictionary<int, string>();
+            comboSource.Add(0, "-Select-");
+
+            if (ItemReceivedList != null)
+            {
+                foreach (var item in ItemReceivedList)
+                {
+                    comboSource.Add(item.Id, item.RequestOrderName + " " + item.OrderDate);
+                }
+            }
+
+            cboAvailableStocks.DataSource = new BindingSource(comboSource, null);
+            cboAvailableStocks.DisplayMember = "Value";
+            cboAvailableStocks.ValueMember = "Key";
+
+            //SET SELECTED INDEX
+            ItemReceivedOrdersModel ReceivedOrdersDetails = new ItemReceivedOrdersModel();
+            var itemReceivedOrder = ReceivedOrdersDetails.ItemReceivedOrderWithId(_Item.ItemReceivedOrdersId);
+
+
+            var ReceivedOrder = receivedOrdersModel.GetOrderRequestInfoWithId(itemReceivedOrder.RequestOrderId);
+            if (ReceivedOrder != null)
+            {
+                cboAvailableStocks.SelectedIndex = cboAvailableStocks.FindStringExact(ReceivedOrder.RequestOrderName + " " + ReceivedOrder.OrderDate);
+            }
+
             ItemsModel items = new ItemsModel();
             var response = items.LoadEdit(_Item.Id);
             cboCategories.SelectedIndex = cboCategories.FindStringExact(response.CategoryName);
@@ -87,7 +117,13 @@ namespace IS.Admin.Setup
             txtPrice.Text = response.Price.ToString();
             lblStock.Text = response.StockString;
             txtBarcode.Text = response.BarCode;
-            this.ActiveControl = cboCompanies;
+
+ 
+            //var AvailableStockString = ItemRecieved.re
+
+            //this.ActiveControl = cboCompanies;
+
+
         }
 
         private void txtBarcode_TextChanged(object sender, EventArgs e)
@@ -99,6 +135,39 @@ namespace IS.Admin.Setup
                     Format = BarcodeFormat.CODE_128
                 };
                 pictureBox1.Image = writer.Write(txtBarcode.Text);
+            }
+        }
+
+        private void cboAvailableStocks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var comboSource1 = new Dictionary<int, string>();
+            comboSource1.Add(0, "-Select-");
+            //cboItemStocks.DataSource = comboSource1;
+            if (cboAvailableStocks.SelectedItem != null)
+            {
+                if (cboAvailableStocks.Items.Count > 1 && cboAvailableStocks.SelectedIndex != 0)
+                {
+                    int Id = ((KeyValuePair<int, string>)cboAvailableStocks.SelectedItem).Key;
+                    ItemReceivedOrdersModel itemReceivedOrdersModel = new ItemReceivedOrdersModel();
+                    var ItemReceivedDetailList = itemReceivedOrdersModel.GetItemReceivedOrderListWithRequestOrderIdAndItemId(Id,_Item.Id);
+
+
+
+                    if (ItemReceivedDetailList != null)
+                    {
+                        foreach (var item in ItemReceivedDetailList)
+                        {
+                            comboSource1.Add(item.Id, "Stocks: " + item.Quantity + " Desc: " + item.Description);
+                           
+                        }
+                    }
+
+                    cboItemStocks.DataSource = new BindingSource(comboSource1, null);
+                    cboItemStocks.DisplayMember = "Value";
+                    cboItemStocks.ValueMember = "Key";
+                    cboItemStocks.SelectedIndex = 1;
+
+                }
             }
         }
     }
