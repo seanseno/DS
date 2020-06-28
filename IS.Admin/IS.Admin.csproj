@@ -121,6 +121,7 @@
     <Compile Include="Model\StocksModel.cs" />
     <Compile Include="Model\ItemsModel.cs" />
     <Compile Include="Model\BrandsModel.cs" />
+    <Compile Include="Model\UploadExcelItem.cs" />
     <Compile Include="Printer\DGVPrinter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

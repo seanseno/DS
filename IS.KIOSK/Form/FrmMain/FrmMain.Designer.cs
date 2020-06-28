@@ -548,7 +548,7 @@
             // Price
             // 
             this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Price.DataPropertyName = "Price";
+            this.Price.DataPropertyName = "SellingPricePerPiece";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Blue;
             dataGridViewCellStyle4.Format = "N2";

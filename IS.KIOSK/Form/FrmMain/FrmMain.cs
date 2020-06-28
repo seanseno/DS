@@ -140,10 +140,17 @@ namespace IS.KIOSK
                     Params.Add(Description);
                 }
 
+                if (dgvSearch.CurrentRow.Cells[6].Value == null || (decimal)dgvSearch.CurrentRow.Cells[6].Value <= 0)
+                {
+                    //MessageBox.Show("Not enough stock for " + description, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    lblError.Text = "Invalid price " + string.Join( " ",Params);
+                    timer1.Start();
+                    return;
+                }
                 if ((int)dgvSearch.CurrentRow.Cells[7].Value < 1)
                 {
                     //MessageBox.Show("Not enough stock for " + description, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    lblError.Text = "Not enough stock for " + string.Join( " ",Params);
+                    lblError.Text = "Not enough stock for " + string.Join(" ", Params);
                     timer1.Start();
                     return;
                 }

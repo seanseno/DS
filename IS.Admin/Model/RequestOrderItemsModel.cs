@@ -69,11 +69,11 @@ namespace IS.Admin.Model
                 }
             }
         }
-        public int InsertRequestOrderItemsWithUploadItem()
+        public int InsertRequestOrderItemsWithUploadItem(DateTime DeliveryDate)
         {
             var factory = new ISFactory();
             int IdNextIdent = (int)factory.RequestOrderItemsRepository.GetNextIdent();
-            string RequestOrdersName = "From Upload Item_" + DateTime.Now.ToShortDateString() + "_" + (IdNextIdent + 1);
+            string RequestOrdersName = "From Upload Item_" + DeliveryDate.ToShortDateString() + "_" + (IdNextIdent + 1);
             int Id = factory.RequestOrderItemsRepository.Insert(Globals.LoginId, RequestOrdersName);
             return Id;
         }

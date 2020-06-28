@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUploadExcel));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnUpload = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -62,8 +62,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgvExcel = new System.Windows.Forms.DataGridView();
             this.grpBox = new System.Windows.Forms.GroupBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblProgressbar = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label13 = new System.Windows.Forms.Label();
+            this.cbo11 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -99,6 +101,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.cbo11);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.cbo6);
             this.groupBox1.Controls.Add(this.label10);
@@ -192,9 +196,9 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(7, 221);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(40, 13);
+            this.label9.Size = new System.Drawing.Size(46, 13);
             this.label9.TabIndex = 31;
-            this.label9.Text = "Stocks";
+            this.label9.Text = "Quantity";
             // 
             // cbo7
             // 
@@ -403,8 +407,8 @@
             // 
             this.dgvExcel.AllowUserToAddRows = false;
             this.dgvExcel.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
-            this.dgvExcel.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
+            this.dgvExcel.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvExcel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvExcel.Location = new System.Drawing.Point(17, 77);
             this.dgvExcel.Name = "dgvExcel";
@@ -430,13 +434,6 @@
             this.grpBox.TabIndex = 3;
             this.grpBox.TabStop = false;
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(212, 586);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(662, 23);
-            this.progressBar1.TabIndex = 23;
-            // 
             // lblProgressbar
             // 
             this.lblProgressbar.AutoSize = true;
@@ -444,6 +441,33 @@
             this.lblProgressbar.Name = "lblProgressbar";
             this.lblProgressbar.Size = new System.Drawing.Size(0, 13);
             this.lblProgressbar.TabIndex = 24;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(212, 586);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(662, 23);
+            this.progressBar1.TabIndex = 23;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(7, 302);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(69, 13);
+            this.label13.TabIndex = 39;
+            this.label13.Text = "Delivery date";
+            // 
+            // cbo11
+            // 
+            this.cbo11.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbo11.FormattingEnabled = true;
+            this.cbo11.Location = new System.Drawing.Point(89, 299);
+            this.cbo11.Name = "cbo11";
+            this.cbo11.Size = new System.Drawing.Size(103, 21);
+            this.cbo11.TabIndex = 38;
             // 
             // FrmUploadExcel
             // 
@@ -506,5 +530,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cbo6;
         private System.Windows.Forms.Label lblProgressbar;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox cbo11;
     }
 }

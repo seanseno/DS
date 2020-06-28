@@ -32,6 +32,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rtbDescription = new System.Windows.Forms.RichTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtSellingPrice = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -44,7 +45,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtQty = new System.Windows.Forms.TextBox();
-            this.rtbDescription = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -109,6 +109,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Input Details";
             // 
+            // rtbDescription
+            // 
+            this.rtbDescription.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.rtbDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbDescription.Location = new System.Drawing.Point(27, 20);
+            this.rtbDescription.Name = "rtbDescription";
+            this.rtbDescription.ReadOnly = true;
+            this.rtbDescription.Size = new System.Drawing.Size(382, 105);
+            this.rtbDescription.TabIndex = 30;
+            this.rtbDescription.Text = "";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -136,9 +147,9 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(26, 262);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(82, 16);
+            this.label6.Size = new System.Drawing.Size(98, 16);
             this.label6.TabIndex = 27;
-            this.label6.Text = "Order Price :";
+            this.label6.Text = "Supplier Price :";
             // 
             // txtOrderPrice
             // 
@@ -224,17 +235,6 @@
             this.txtQty.TabIndex = 0;
             this.txtQty.Text = "0";
             this.txtQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQty_KeyPress);
-            // 
-            // rtbDescription
-            // 
-            this.rtbDescription.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.rtbDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtbDescription.Location = new System.Drawing.Point(27, 20);
-            this.rtbDescription.Name = "rtbDescription";
-            this.rtbDescription.ReadOnly = true;
-            this.rtbDescription.Size = new System.Drawing.Size(382, 105);
-            this.rtbDescription.TabIndex = 30;
-            this.rtbDescription.Text = "";
             // 
             // FrmEditReceivedItem
             // 

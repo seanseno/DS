@@ -54,14 +54,14 @@ namespace IS.KIOSK
                 itemName.Add(item.Description);
             }
             richTextBox1.Text = string.Join(" ", itemName);
-            lblTotal.Text = Math.Round((item.Price * Convert.ToDecimal(txtQty.Text)), 2).ToString();
+            lblTotal.Text = Math.Round((item.SellingPricePerPiece * Convert.ToDecimal(txtQty.Text)), 2).ToString();
         }
 
         private void txtQty_TextChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty((txtQty.Text)))
             {
-                lblTotal.Text = String.Format("{0:N}", Math.Round((item.Price * Convert.ToDecimal(txtQty.Text)), 2));
+                lblTotal.Text = String.Format("{0:N}", Math.Round((item.SellingPricePerPiece * Convert.ToDecimal(txtQty.Text)), 2));
             }
             else
             {
