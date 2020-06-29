@@ -8,12 +8,12 @@ namespace IS.Database.Strategy
 {
     public class CategoriesStrategy : Helper
     {
-        public bool CheckDuplicate(string Name)
+        public bool CheckDuplicate(string CategoryId,string CategoryName)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT CategoryName FROM Categories WHERE CategoryName = '" + Name + "'";
+                var select = "SELECT CategoryName FROM vCategories WHERE CategoryId = '" + CategoryId + "' OR CategoryName = '" + CategoryName + "'";
                 using (SqlCommand cmd = new SqlCommand(select,connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -34,7 +34,7 @@ namespace IS.Database.Strategy
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT CategoryName FROM Categories WHERE CategoryName = '" + Name + "' AND ID != " + CategoryId;
+                var select = "SELECT CategoryName FROM vCategories WHERE CategoryName = '" + Name + "' AND ID != " + CategoryId;
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -49,12 +49,12 @@ namespace IS.Database.Strategy
             }
         }
 
-        public bool CategoryAlreadyInUse(int? CategoryId)
+        public bool CategoryAlreadyInUse(string CategoryId)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT * FROM Items WHERE CategoryId  = " + CategoryId;
+                var select = "SELECT * FROM vItems WHERE CategoryId  = '" + CategoryId + "'";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())

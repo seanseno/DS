@@ -24,9 +24,8 @@ namespace IS.Admin.Setup
         private void FrmEditCategory_Load(object sender, EventArgs e)
         {
             CategoriesModel Categories = new CategoriesModel();
-            var response = Categories.LoadEdit(_Category.Id);
-            txtName.Text = response.CategoryName;
-            txtDescription.Text = response.Description;
+            var response = Categories.LoadEdit(_Category.CategoryId);
+            txtCategoryName.Text = response.CategoryName;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -37,12 +36,11 @@ namespace IS.Admin.Setup
         private void btnSave_Click(object sender, EventArgs e)
         {
             CategoriesModel Categories = new CategoriesModel();
-            _Category.CategoryName = txtName.Text;
-            _Category.Description = txtDescription.Text;
+            _Category.CategoryName = txtCategoryName.Text;
             if (Categories.CheckEditDup(_Category.CategoryName, _Category.Id))
             {
                 MessageBox.Show(_Category.CategoryName + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtName.Focus();
+                txtCategoryName.Focus();
             }
             else
             {

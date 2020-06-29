@@ -167,6 +167,18 @@
     <Compile Include="Setup\Brand\FrmEditBrand.Designer.cs">
       <DependentUpon>FrmEditBrand.cs</DependentUpon>
     </Compile>
+    <Compile Include="Setup\Categories\FrmCategoriesUploadExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\Categories\FrmCategoriesUploadExcel.Designer.cs">
+      <DependentUpon>FrmCategoriesUploadExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setup\Categories\FrmCategoriesNotUploaded.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\Categories\FrmCategoriesNotUploaded.Designer.cs">
+      <DependentUpon>FrmCategoriesNotUploaded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Setup\Companies\FrmAddCompany.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -356,6 +368,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Setup\Brand\FrmEditBrand.resx">
       <DependentUpon>FrmEditBrand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\Categories\FrmCategoriesUploadExcel.resx">
+      <DependentUpon>FrmCategoriesUploadExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\Categories\FrmCategoriesNotUploaded.resx">
+      <DependentUpon>FrmCategoriesNotUploaded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Setup\Companies\FrmAddCompany.resx">
       <DependentUpon>FrmAddCompany.cs</DependentUpon>

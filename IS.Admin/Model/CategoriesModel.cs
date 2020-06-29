@@ -27,10 +27,21 @@ namespace IS.Admin.Model
             var factory = new ISFactory();
             factory.CategoriesRepository.Insert(frm._Categories);
         }
+        public void InsertCategory(Categories model)
+        {
+            var factory = new ISFactory();
+            factory.CategoriesRepository.Insert(model);
+        }
+        public bool CheckDup(Categories model)
+        {
+            var factory = new ISFactory();
+            return factory.CategoriesRepository.CategoriesStrategy.CheckDuplicate(model.CategoryId, model.CategoryName);
+        }
+
         public bool CheckDup(FrmAddCategory frm)
         {
            var factory = new ISFactory();
-           return factory.CategoriesRepository.CategoriesStrategy.CheckDuplicate(frm._Categories.CategoryName);
+           return factory.CategoriesRepository.CategoriesStrategy.CheckDuplicate(frm._Categories.CategoryId,frm._Categories.CategoryName);
         }
         public bool CheckEditDup(string name, int? CategoryId)
         {
@@ -48,13 +59,13 @@ namespace IS.Admin.Model
             var factory = new ISFactory();
             factory.CategoriesRepository.Delete(Category);
         }
-        public Categories LoadEdit(int? CategoryId)
+        public Categories LoadEdit(string CategoryId)
         {
             var factory = new ISFactory();
-            return factory.CategoriesRepository.FindWithId(CategoryId);
+            return factory.CategoriesRepository.FindWithCategoryId(CategoryId);
         }
 
-        public bool CheckCategoryIfAlreadyInUse(int? CategoryId)
+        public bool CheckCategoryIfAlreadyInUse(string CategoryId)
         {
             var factory = new ISFactory();
             return factory.CategoriesRepository.CategoriesStrategy.CategoryAlreadyInUse(CategoryId);

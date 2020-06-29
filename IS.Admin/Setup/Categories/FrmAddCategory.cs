@@ -18,6 +18,7 @@ namespace IS.Admin.Setup
         public FrmAddCategory()
         {
             InitializeComponent();
+            this.ActiveControl = txtCategoryId;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -31,35 +32,30 @@ namespace IS.Admin.Setup
             if(!CheckInput())
             {
                 var CategoriesModel = new CategoriesModel();
-                _Categories.CategoryName = txtName.Text.ToUpper();
-                _Categories.Description = txtDescription.Text.ToUpper();
+                _Categories.CategoryId = txtCategoryId.Text.ToUpper();
+                _Categories.CategoryName = txtCategoryName.Text.ToUpper();
 
                 if (CategoriesModel.CheckDup(this))
                 {
                     MessageBox.Show(_Categories.CategoryName + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtName.Focus();
+                    txtCategoryName.Focus();
                     return;
                 }
-                if (MessageBox.Show("Continue saving " + txtName.Text + ".", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                if (MessageBox.Show("Continue saving " + txtCategoryName.Text + ".", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
                     CategoriesModel.AddCategory(this);
-                    MessageBox.Show(txtName.Text + " Added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(txtCategoryName.Text + " Added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
                 }
             }
         }
 
-        private void FrmAddCategory_Load(object sender, EventArgs e)
-        {
-            this.ActiveControl = txtName;
-        }
-
         private bool CheckInput()
         {
-            if(string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtDescription.Text))
+            if(string.IsNullOrEmpty(txtCategoryName.Text) || string.IsNullOrEmpty(txtCategoryId.Text))
             {
                 MessageBox.Show("Incomplete Details", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtName.Focus();
+                txtCategoryName.Focus();
                 return true;
             }
             return false;

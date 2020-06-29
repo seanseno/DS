@@ -29,11 +29,17 @@ namespace IS.Admin.Setup
 
         private void LoadCategory()
         {
+            grpLoading.Visible = true;
+            grpLoading.Refresh();
+
             CategoriesModel Categories = new CategoriesModel();
             var response = Categories.CategoryList(this, txtSearch.Text);
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = response;
             txtSearch.Focus();
+
+            grpLoading.Visible = false;
+            grpLoading.Refresh();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -45,12 +51,11 @@ namespace IS.Admin.Setup
         {
             var Category = new Categories
             {
-                Id = (int)dgvSearch.CurrentRow.Cells[0].Value,
+                CategoryId = dgvSearch.CurrentRow.Cells[0].Value.ToString(),
                 CategoryName = dgvSearch.CurrentRow.Cells[1].Value.ToString(),
-                Description = dgvSearch.CurrentRow.Cells[2].ToString()
             };
 
-            if (e.ColumnIndex == 3)
+            if (e.ColumnIndex == 2)
             {
                 FrmEditCategory frm = new FrmEditCategory(Category);
                 if (frm.ShowDialog() == DialogResult.OK)
@@ -61,10 +66,10 @@ namespace IS.Admin.Setup
 
                 //MessageBox.Show((e.RowIndex + 1) + "  Row  " + (e.ColumnIndex + 1) + "  Column button clicked ");
             }
-            if (e.ColumnIndex == 4)
+            if (e.ColumnIndex == 3)
             {
                 var model = new CategoriesModel();
-                if (model.CheckCategoryIfAlreadyInUse(Category.Id))
+                if (model.CheckCategoryIfAlreadyInUse(Category.CategoryId))
                 {
                     MessageBox.Show("You can not delete " + Category  + " because this Category already in use", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -86,9 +91,19 @@ namespace IS.Admin.Setup
             this.Close();
         }
 
-        private void FrmCategories_Load(object sender, EventArgs e)
+        private void FrmCategories_Shown(object sender, EventArgs e)
         {
             this.LoadCategory();
+        }
+
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            FrmCategoriesUploadExcel frm = new FrmCategoriesUploadExcel();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                this.LoadCategory();
+
+            }
         }
     }
 }

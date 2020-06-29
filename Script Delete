@@ -9,9 +9,4 @@ DELETE FROM Categories;
 DELETE FROM Items;
 DELETE FROM RequestOrderItemDetails;
 DELETE FROM RequestOrderItems;
-
-expiration 
-
-1. Formula 
-2. delivery
-3. 
+DELETE FROM ItemReceivedOrders;
