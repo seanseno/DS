@@ -39,35 +39,35 @@ namespace IS.KIOSK
 
         private void frmMultiplier_Load(object sender, EventArgs e)
         {
-            item = factory.ItemsRepository.FindWithId(this._ItemId);
-            var itemName = new List<string>();
-            if(!string.IsNullOrEmpty(item.GenericName))
-            {
-                itemName.Add(item.GenericName);
-            }
-            if (!string.IsNullOrEmpty(item.BrandName))
-            {
-                itemName.Add(item.BrandName);
-            }
-            if (!string.IsNullOrEmpty(item.Description))
-            {
-                itemName.Add(item.Description);
-            }
-            richTextBox1.Text = string.Join(" ", itemName);
-            lblTotal.Text = Math.Round((item.SellingPricePerPiece * Convert.ToDecimal(txtQty.Text)), 2).ToString();
+            //item = factory.ItemsRepository.FindWithId(this._ItemId);
+            //var itemName = new List<string>();
+            //if(!string.IsNullOrEmpty(item.GenericName))
+            //{
+            //    itemName.Add(item.GenericName);
+            //}
+            //if (!string.IsNullOrEmpty(item.BrandName))
+            //{
+            //    itemName.Add(item.BrandName);
+            //}
+            //if (!string.IsNullOrEmpty(item.Description))
+            //{
+            //    itemName.Add(item.Description);
+            //}
+            //richTextBox1.Text = string.Join(" ", itemName);
+            //lblTotal.Text = Math.Round((item.SellingPricePerPiece * Convert.ToDecimal(txtQty.Text)), 2).ToString();
         }
 
         private void txtQty_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty((txtQty.Text)))
-            {
-                lblTotal.Text = String.Format("{0:N}", Math.Round((item.SellingPricePerPiece * Convert.ToDecimal(txtQty.Text)), 2));
-            }
-            else
-            {
-                lblTotal.Text = "0.00";
-            }
-            lblError.Visible = false;
+            //if (!string.IsNullOrEmpty((txtQty.Text)))
+            //{
+            //    lblTotal.Text = String.Format("{0:N}", Math.Round((item.SellingPricePerPiece * Convert.ToDecimal(txtQty.Text)), 2));
+            //}
+            //else
+            //{
+            //    lblTotal.Text = "0.00";
+            //}
+            //lblError.Visible = false;
         }
 
         private void txtQty_KeyUp(object sender, KeyEventArgs e)

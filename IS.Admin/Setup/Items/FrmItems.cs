@@ -53,39 +53,15 @@ namespace IS.Admin.Setup
         private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var Item = new Items();
-            Item.Id = (int)dgvSearch.CurrentRow.Cells[0].Value;
+            Item.ItemId = dgvSearch.CurrentRow.Cells[0].Value?.ToString();
             Item.CategoryName = dgvSearch.CurrentRow.Cells[1].Value?.ToString();
-            Item.CompanyName = dgvSearch.CurrentRow.Cells[2].Value?.ToString();
-            Item.GenericName = dgvSearch.CurrentRow.Cells[3].Value?.ToString();
-            Item.BrandName = dgvSearch.CurrentRow.Cells[4].Value?.ToString();
-            Item.Description = dgvSearch.CurrentRow.Cells[5].Value.ToString();
-            Item.SellingPricePerPiece = Convert.ToDecimal(dgvSearch.CurrentRow.Cells[6].Value);
-            Item.Stock = (int)dgvSearch.CurrentRow.Cells[7].Value;
-
-            Item.ItemReceivedOrdersId = (int)dgvSearch.CurrentRow.Cells[12].Value;
-
-            var Params = new List<string>();
-            if (!string.IsNullOrEmpty(Item.CategoryName))
-            {
-                Params.Add(Item.CategoryName);
-            }
-            if (!string.IsNullOrEmpty(Item.CompanyName))
-            {
-                Params.Add(Item.CompanyName);
-            }
-            if (!string.IsNullOrEmpty(Item.GenericName))
-            {
-                Params.Add(Item.GenericName);
-            }
-            if (!string.IsNullOrEmpty(Item.BrandName))
-            {
-                Params.Add(Item.BrandName);
-            }
-            if (!string.IsNullOrEmpty(Item.Description))
-            {
-                Params.Add(Item.Description);
-            }
-            if (e.ColumnIndex == 10)
+            Item.PrincipalName = dgvSearch.CurrentRow.Cells[2].Value?.ToString();
+            Item.ProductName = dgvSearch.CurrentRow.Cells[3].Value?.ToString();
+            Item.Price = Convert.ToDecimal(dgvSearch.CurrentRow.Cells[4].Value);
+            Item.Stock = (int)dgvSearch.CurrentRow.Cells[5].Value;
+            Item.BarCode= dgvSearch.CurrentRow.Cells[6].Value?.ToString();
+            
+            if (e.ColumnIndex == 8)
             {
                 FrmEditItem frm = new FrmEditItem(Item);
                 if (frm.ShowDialog() == DialogResult.OK)
@@ -94,20 +70,20 @@ namespace IS.Admin.Setup
                     this.LoadItems();
                 };
             }
-            if (e.ColumnIndex == 11)
+            if (e.ColumnIndex == 9)
             {
                 var model = new ItemsModel();
-                if (model.CheckItemIfAlreadyInUse(Item.Id))
+                if (model.CheckItemIfAlreadyInUse(Item.ItemId))
                 {
-                    MessageBox.Show("You can not delete " + string.Join(" ", Params) + " because this item is already used!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("You can not delete " + Item.ProductName + " because this item is already used!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    if (MessageBox.Show("Are you sure do want to delete " + string.Join(" ", Params) + ".", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    if (MessageBox.Show("Are you sure do want to delete " + Item.ProductName + ".", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
                         model.DeleteItem(Item);
                         this.LoadItems();
-                        MessageBox.Show(Item.Description + " deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(Item.ProductName + " deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }

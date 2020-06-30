@@ -19,15 +19,15 @@ namespace IS.Admin.Model
         }
         public void UpdateStock(Items item,int? Qty,EnumStock enumStock)
         {
-            //INSERT STOCK
-            var stock = new Stocks
-            {
-                ItemId = item.Id,
-                Stock = item.Stock
-            };
+            ////INSERT STOCK
+            //var stock = new Stocks
+            //{
+            //    ItemId = item.Id,
+            //    Stock = item.Stock
+            //};
 
-            var factory = new ISFactory();
-            factory.StocksRepository.Update(stock, Qty, enumStock);
+            //var factory = new ISFactory();
+            //factory.StocksRepository.Update(stock, Qty, enumStock);
         }
 
         public Items LoadEdit(int? ItemId)

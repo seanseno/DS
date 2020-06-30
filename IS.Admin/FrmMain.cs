@@ -31,12 +31,6 @@ namespace IS.Admin
             frm.ShowDialog();
         }
 
-        private void companiesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmCompanies frm = new FrmCompanies();
-            frm.ShowDialog();
-        }
-
         private void logOfffToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmLogin frm = new FrmLogin();
@@ -112,6 +106,12 @@ namespace IS.Admin
         private void receivedOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmReceivedItems frm = new FrmReceivedItems();
+            frm.ShowDialog();
+        }
+
+        private void principalsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmPrincipals frm = new FrmPrincipals();
             frm.ShowDialog();
         }
     }

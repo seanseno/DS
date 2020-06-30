@@ -150,44 +150,44 @@ namespace IS.Admin.Trasactions
         private void btnSelect_Click(object sender, EventArgs e)
         {
          
-            int Id = (int)dgvSearch.CurrentRow.Cells[0].Value;
-            string Desc = dgvSearch.CurrentRow.Cells[5].Value.ToString();
+            //int Id = (int)dgvSearch.CurrentRow.Cells[0].Value;
+            //string Desc = dgvSearch.CurrentRow.Cells[5].Value.ToString();
 
-            if (OrderItemDetailList.Where(x => x.Description == Desc).Count() > 0)
-            {
-                MessageBox.Show("You selected a existing record!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                frmMultiplier frm = new frmMultiplier(this, Id);
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    tempId++;
-                    Items item = new Items();
-                    item.Id = (int)tempId;
-                    item.CategoryName = dgvSearch.CurrentRow.Cells[1].Value?.ToString();
-                    item.CompanyName = dgvSearch.CurrentRow.Cells[2].Value?.ToString();
-                    item.GenericName = dgvSearch.CurrentRow.Cells[3].Value?.ToString();
-                    item.BrandName = dgvSearch.CurrentRow.Cells[4].Value?.ToString();
-                    item.Description = dgvSearch.CurrentRow.Cells[5].Value?.ToString();
-                    item.SellingPricePerPiece = this.InputPrice;
-                    item.Stock = this.InputQty;
+            //if (OrderItemDetailList.Where(x => x.Description == Desc).Count() > 0)
+            //{
+            //    MessageBox.Show("You selected a existing record!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            //else
+            //{
+            //    frmMultiplier frm = new frmMultiplier(this, Id);
+            //    if (frm.ShowDialog() == DialogResult.OK)
+            //    {
+            //        tempId++;
+            //        Items item = new Items();
+            //        item.Id = (int)tempId;
+            //        item.CategoryName = dgvSearch.CurrentRow.Cells[1].Value?.ToString();
+            //        item.CompanyName = dgvSearch.CurrentRow.Cells[2].Value?.ToString();
+            //        item.GenericName = dgvSearch.CurrentRow.Cells[3].Value?.ToString();
+            //        item.BrandName = dgvSearch.CurrentRow.Cells[4].Value?.ToString();
+            //        item.Description = dgvSearch.CurrentRow.Cells[5].Value?.ToString();
+            //        item.SellingPricePerPiece = this.InputPrice;
+            //        item.Stock = this.InputQty;
                  
-                    item.TempItemId = Convert.ToInt32(dgvSearch.CurrentRow.Cells[0].Value);
-                    OrderItemDetailList.Add(item);
+            //        item.TempItemId = Convert.ToInt32(dgvSearch.CurrentRow.Cells[0].Value);
+            //        OrderItemDetailList.Add(item);
 
-                    dgvDetails.DataSource = null;
-                    dgvDetails.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-                    dgvDetails.AutoGenerateColumns = false;
-                    dgvDetails.DataSource = OrderItemDetailList;
-                    btnSave.Enabled = true;
-                    btnPrint.Enabled = false;
-                }
-                else
-                {
+            //        dgvDetails.DataSource = null;
+            //        dgvDetails.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            //        dgvDetails.AutoGenerateColumns = false;
+            //        dgvDetails.DataSource = OrderItemDetailList;
+            //        btnSave.Enabled = true;
+            //        btnPrint.Enabled = false;
+            //    }
+            //    else
+            //    {
 
-                }
-            }
+            //    }
+            //}
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -216,51 +216,51 @@ namespace IS.Admin.Trasactions
 
         private void dgvDetails_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 9) //Delete
-            {
-                int Id = (int)dgvDetails.CurrentRow.Cells[0].Value;
-                int ItemId = (int)dgvDetails.CurrentRow.Cells[11].Value;
+            //if (e.ColumnIndex == 9) //Delete
+            //{
+            //    int Id = (int)dgvDetails.CurrentRow.Cells[0].Value;
+            //    int ItemId = (int)dgvDetails.CurrentRow.Cells[11].Value;
 
-                decimal Price = Math.Round((decimal)dgvDetails.CurrentRow.Cells[6].Value,2);
-                int Qty = (int)dgvDetails.CurrentRow.Cells[7].Value;
-                if (MessageBox.Show("Edit this record?", "Information.", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                {
-                    frmMultiplier frm = new frmMultiplier(this, ItemId,Qty, Price);
-                    if (frm.ShowDialog() == DialogResult.OK)
-                    {
-                        foreach(var itm in OrderItemDetailList)
-                        {
-                            if(itm.Id == Id)
-                            {
-                                itm.Stock = this.InputQty;
-                                itm.SellingPricePerPiece = this.InputPrice;
-                            }
-                        }
+            //    decimal Price = Math.Round((decimal)dgvDetails.CurrentRow.Cells[6].Value,2);
+            //    int Qty = (int)dgvDetails.CurrentRow.Cells[7].Value;
+            //    if (MessageBox.Show("Edit this record?", "Information.", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            //    {
+            //        frmMultiplier frm = new frmMultiplier(this, ItemId,Qty, Price);
+            //        if (frm.ShowDialog() == DialogResult.OK)
+            //        {
+            //            foreach(var itm in OrderItemDetailList)
+            //            {
+            //                if(itm.Id == Id)
+            //                {
+            //                    itm.Stock = this.InputQty;
+            //                    itm.SellingPricePerPiece = this.InputPrice;
+            //                }
+            //            }
                        
-                        dgvDetails.DataSource = null;
-                        dgvDetails.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-                        dgvDetails.AutoGenerateColumns = false;
-                        dgvDetails.DataSource = OrderItemDetailList;
-                        btnSave.Enabled = true;
-                        btnPrint.Enabled = false;
-                    }
-                }
-            }
-            if (e.ColumnIndex == 10) //Delete
-            {
-                int Id = (int)dgvDetails.CurrentRow.Cells[0].Value;
-                if (MessageBox.Show("Remove this record?", "Information.", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                {
-                    var itm = OrderItemDetailList.Where(x => x.Id == Id).FirstOrDefault();
-                    OrderItemDetailList.Remove(itm);
+            //            dgvDetails.DataSource = null;
+            //            dgvDetails.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            //            dgvDetails.AutoGenerateColumns = false;
+            //            dgvDetails.DataSource = OrderItemDetailList;
+            //            btnSave.Enabled = true;
+            //            btnPrint.Enabled = false;
+            //        }
+            //    }
+            //}
+            //if (e.ColumnIndex == 10) //Delete
+            //{
+            //    int Id = (int)dgvDetails.CurrentRow.Cells[0].Value;
+            //    if (MessageBox.Show("Remove this record?", "Information.", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            //    {
+            //        var itm = OrderItemDetailList.Where(x => x.Id == Id).FirstOrDefault();
+            //        OrderItemDetailList.Remove(itm);
 
-                    dgvDetails.DataSource = null;
-                    dgvDetails.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-                    dgvDetails.AutoGenerateColumns = false;
-                    dgvDetails.DataSource = OrderItemDetailList;
-                    btnSave.Enabled = true;
-                }
-            }
+            //        dgvDetails.DataSource = null;
+            //        dgvDetails.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            //        dgvDetails.AutoGenerateColumns = false;
+            //        dgvDetails.DataSource = OrderItemDetailList;
+            //        btnSave.Enabled = true;
+            //    }
+            //}
         }
     }
 }

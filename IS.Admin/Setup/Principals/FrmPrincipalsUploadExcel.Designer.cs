@@ -1,6 +1,6 @@
 ﻿namespace IS.Admin.Setup
 {
-    partial class FrmUploadExcel
+    partial class FrmPrincipalsUploadExcel
     {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUploadExcel));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipalsUploadExcel));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnUpload = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -53,7 +53,7 @@
             // 
             this.btnClose.Image = global::IS.Admin.Properties.Resources.Exit;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnClose.Location = new System.Drawing.Point(883, 593);
+            this.btnClose.Location = new System.Drawing.Point(898, 586);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(66, 55);
             this.btnClose.TabIndex = 9;
@@ -66,7 +66,7 @@
             // 
             this.btnUpload.Image = global::IS.Admin.Properties.Resources.Upload;
             this.btnUpload.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnUpload.Location = new System.Drawing.Point(789, 593);
+            this.btnUpload.Location = new System.Drawing.Point(817, 586);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(75, 55);
             this.btnUpload.TabIndex = 11;
@@ -93,7 +93,7 @@
             this.groupBox2.Controls.Add(this.cboSheet);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.dgvExcel);
-            this.groupBox2.Location = new System.Drawing.Point(108, 14);
+            this.groupBox2.Location = new System.Drawing.Point(112, 14);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(852, 566);
             this.groupBox2.TabIndex = 22;
@@ -152,8 +152,8 @@
             // 
             this.dgvExcel.AllowUserToAddRows = false;
             this.dgvExcel.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
-            this.dgvExcel.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
+            this.dgvExcel.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvExcel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvExcel.Location = new System.Drawing.Point(17, 77);
             this.dgvExcel.Name = "dgvExcel";
@@ -174,38 +174,37 @@
             this.grpBox.Controls.Add(this.btnClose);
             this.grpBox.Location = new System.Drawing.Point(13, 12);
             this.grpBox.Name = "grpBox";
-            this.grpBox.Size = new System.Drawing.Size(978, 657);
+            this.grpBox.Size = new System.Drawing.Size(985, 654);
             this.grpBox.TabIndex = 3;
             this.grpBox.TabStop = false;
             // 
             // lblProgressbar
             // 
             this.lblProgressbar.AutoSize = true;
-            this.lblProgressbar.Location = new System.Drawing.Point(105, 612);
+            this.lblProgressbar.Location = new System.Drawing.Point(109, 617);
             this.lblProgressbar.Name = "lblProgressbar";
             this.lblProgressbar.Size = new System.Drawing.Size(0, 13);
             this.lblProgressbar.TabIndex = 24;
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(108, 586);
+            this.progressBar1.Location = new System.Drawing.Point(112, 591);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(662, 23);
             this.progressBar1.TabIndex = 23;
             // 
-            // FrmUploadExcel
+            // FrmPrincipalsUploadExcel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
-            this.ClientSize = new System.Drawing.Size(1002, 681);
+            this.ClientSize = new System.Drawing.Size(1017, 683);
             this.ControlBox = false;
             this.Controls.Add(this.grpBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FrmUploadExcel";
+            this.Name = "FrmPrincipalsUploadExcel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
-            this.Load += new System.EventHandler(this.FrmUploadExcel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

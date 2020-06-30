@@ -47,22 +47,28 @@ namespace IS.Admin.Model
             var factory = new ISFactory();
             factory.ItemsRepository.Delete(item);
         }
-        public Items LoadEdit(int? itemId)
+        public Items LoadEdit(string itemId)
         {
             var factory = new ISFactory();
-            return factory.ItemsRepository.FindWithId(itemId);
+            return factory.ItemsRepository.FindWithItemId(itemId);
         }
 
-        public bool CheckItemIfAlreadyInUse(int? itemId)
+        public bool CheckItemIfAlreadyInUse(string itemId)
         {
             var factory = new ISFactory();
             return factory.ItemsRepository.ItemsStrategy.ItemAlreadyInUse(itemId);
         }
 
-        public Items UploadExcel( Items entity)
+        //public Items UploadExcel( Items entity)
+        //{
+        //   var factory = new ISFactory();
+        //   return  factory.ItemsRepository.UploadItem(entity);
+        //}
+
+        public void InsertItem(Items model)
         {
-           var factory = new ISFactory();
-           return  factory.ItemsRepository.UploadItem(entity);
+            var factory = new ISFactory();
+            factory.ItemsRepository.Insert(model);
         }
     }
 }

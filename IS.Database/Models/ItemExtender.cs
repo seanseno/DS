@@ -7,9 +7,8 @@ namespace IS.Database.Models
     public class ItemExtender
     {
         public virtual string CategoryName { get; set; }
-        public virtual string CompanyName { get; set; }
-        public virtual string GenericName { get; set; }
-        public virtual string BrandName { get; set; }
-        public virtual string Description { get; set; }
+        public virtual string PrincipalName { get; set; }
+        public virtual string ActiveString { get; set; }
+        public virtual int Stock { get; set; }
     }
 }

@@ -19,6 +19,7 @@ namespace IS.Admin.Setup
         public FrmAddItem()
         {
             InitializeComponent();
+            this.ActiveControl = txtItemId;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -31,29 +32,19 @@ namespace IS.Admin.Setup
         {
             if (!CheckRequiredInput())
             {
-                if (MessageBox.Show("Are you sure do want to add " + txtBrandName.Text + "?", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                if (MessageBox.Show("Are you sure do want to add " + txtProductName.Text + "?", "Information!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    var CompId = Convert.ToInt32(cboCompanies.SelectedValue.ToString());
-                    if(CompId!=0)
-                    {
-                        _Items.CompanyId = CompId;
-                    }
-                    var CatId = Convert.ToInt32(cboCategories.SelectedValue.ToString());
-                    if (CatId != 0)
-                    {
-                        _Items.CategoryId = CatId;
-                    }
+                    _Items.ItemId = txtItemId.Text;
+                    _Items.CategoryId = cboCategories.SelectedValue.ToString();
+                    _Items.PrincipalId = cboPrincipals.SelectedValue.ToString();
 
-                    _Items.GenericName = txtGenericname.Text;
-                    _Items.BrandName = txtBrandName.Text;
-                    _Items.Description = txtDescription.Text;
-                    _Items.SellingPricePerPiece = Convert.ToDecimal(txtPrice.Text);
-                    _Items.Stock = Convert.ToInt32(txtStock.Value);
+                    _Items.ProductName = txtProductName.Text;
+                    _Items.Price = Convert.ToDecimal(txtPrice.Text);
                     _Items.BarCode = txtBarcode.Text;
                     var model = new ItemsModel();
 
                     model.AddItem(this);
-                    MessageBox.Show(txtBrandName.Text + " Added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(txtProductName.Text + " Added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
                 }
             }
@@ -61,21 +52,17 @@ namespace IS.Admin.Setup
 
         private void FrmAddItem_Load(object sender, EventArgs e)
         {
-            this.ActiveControl = cboCategories;
-
-            CategoriesModel model1 = new CategoriesModel();
-            var Categories = model1.CategoryListWithSelect();
-            cboCategories.DataSource = Categories;
+            CategoriesModel categoriesModel = new CategoriesModel();
+            var categoryList = categoriesModel.CategoryListWithSelect();
+            cboCategories.DataSource = categoryList;
             cboCategories.DisplayMember = "CategoryName";
-            cboCategories.ValueMember = "Id";
+            cboCategories.ValueMember = "CategoryId";
 
-            CompaniesModel model = new CompaniesModel();
-            var Companies = model.CompanyListWithSelect();
-            cboCompanies.DataSource = Companies;
-            cboCompanies.DisplayMember = "CompanyName";
-            cboCompanies.ValueMember = "Id";
-
-            //pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            PrincipalsModel principalsModel = new PrincipalsModel();
+            var principalList = principalsModel.PrincipalListWithSelect();
+            cboPrincipals.DataSource = principalList;
+            cboPrincipals.DisplayMember = "PrincipalName";
+            cboPrincipals.ValueMember = "PrincipalId";
         }
 
         private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
@@ -87,10 +74,10 @@ namespace IS.Admin.Setup
         }
         private bool CheckRequiredInput()
         {
-            if (string.IsNullOrEmpty(txtDescription.Text))
+            if (string.IsNullOrEmpty(txtProductName.Text))
             {
-                MessageBox.Show("Description is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtDescription.Focus();
+                MessageBox.Show("Product Name is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtProductName.Focus();
                 return true;
             }
 
@@ -113,13 +100,6 @@ namespace IS.Admin.Setup
             {
                 MessageBox.Show("Invalid Price", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtPrice.Focus();
-                return true;
-            }
-
-            if (txtStock.Value < 0)
-            {
-                MessageBox.Show("Invalid Stock", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtStock.Focus();
                 return true;
             }
 

@@ -42,31 +42,31 @@ namespace IS.Admin.Setup
 
         private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var item = new Items();
-            item.Id = (int)dgvSearch.CurrentRow.Cells[0].Value;
-            item.GenericName = dgvSearch.CurrentRow.Cells[1].Value?.ToString();
-            item.BrandName = dgvSearch.CurrentRow.Cells[2].Value?.ToString();
-            item.Description = dgvSearch.CurrentRow.Cells[3].Value?.ToString();
-            item.Stock = (int)dgvSearch.CurrentRow.Cells[4].Value;
+            //var item = new Items();
+            //item.Id = (int)dgvSearch.CurrentRow.Cells[0].Value;
+            //item.GenericName = dgvSearch.CurrentRow.Cells[1].Value?.ToString();
+            //item.BrandName = dgvSearch.CurrentRow.Cells[2].Value?.ToString();
+            //item.Description = dgvSearch.CurrentRow.Cells[3].Value?.ToString();
+            //item.Stock = (int)dgvSearch.CurrentRow.Cells[4].Value;
 
-            if (e.ColumnIndex == 5) //add
-            {
-                FrmEditStock frm = new FrmEditStock(item, EnumStock.Credit);
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.LoadStocks();
-                };
-            }
-            if (e.ColumnIndex == 6) //Subract
-            {
-                FrmEditStock frm = new FrmEditStock(item, EnumStock.Debit);
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.LoadStocks();
-                };
-            }
+            //if (e.ColumnIndex == 5) //add
+            //{
+            //    FrmEditStock frm = new FrmEditStock(item, EnumStock.Credit);
+            //    if (frm.ShowDialog() == DialogResult.OK)
+            //    {
+            //        MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        this.LoadStocks();
+            //    };
+            //}
+            //if (e.ColumnIndex == 6) //Subract
+            //{
+            //    FrmEditStock frm = new FrmEditStock(item, EnumStock.Debit);
+            //    if (frm.ShowDialog() == DialogResult.OK)
+            //    {
+            //        MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        this.LoadStocks();
+            //    };
+            //}
 
         }
 

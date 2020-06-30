@@ -41,21 +41,21 @@ namespace IS.Admin.Trasactions
 
         private void frmMultiplier_Load(object sender, EventArgs e)
         {
-            item = factory.ItemsRepository.FindWithId(this._ItemId);
-            var itemName = new List<string>();
-            if(!string.IsNullOrEmpty(item.GenericName))
-            {
-                itemName.Add(item.GenericName);
-            }
-            if (!string.IsNullOrEmpty(item.BrandName))
-            {
-                itemName.Add(item.BrandName);
-            }
-            if (!string.IsNullOrEmpty(item.Description))
-            {
-                itemName.Add(item.Description);
-            }
-            richTextBox1.Text = string.Join(" ", itemName);
+            //item = factory.ItemsRepository.FindWithId(this._ItemId);
+            //var itemName = new List<string>();
+            //if(!string.IsNullOrEmpty(item.GenericName))
+            //{
+            //    itemName.Add(item.GenericName);
+            //}
+            //if (!string.IsNullOrEmpty(item.BrandName))
+            //{
+            //    itemName.Add(item.BrandName);
+            //}
+            //if (!string.IsNullOrEmpty(item.Description))
+            //{
+            //    itemName.Add(item.Description);
+            //}
+            //richTextBox1.Text = string.Join(" ", itemName);
           
         }
 

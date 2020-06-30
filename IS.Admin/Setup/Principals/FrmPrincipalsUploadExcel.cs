@@ -18,11 +18,11 @@ using ZXing;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmCategoriesUploadExcel : Form
+    public partial class FrmPrincipalsUploadExcel : Form
     {
         DataTableCollection tableCollection;
         DataTable dt;
-        public FrmCategoriesUploadExcel()
+        public FrmPrincipalsUploadExcel()
         {
             InitializeComponent();
         }
@@ -73,33 +73,33 @@ namespace IS.Admin.Setup
             {
                 MessageBox.Show("Please select sheet!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
             {
+
                 if (MessageBox.Show("Are you sure do want to continue?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    CategoriesModel request = new CategoriesModel();
+                    PrincipalsModel request = new PrincipalsModel();
                     progressBar1.Maximum = dt.Rows.Count;
                     progressBar1.Minimum = 0;
 
                     progressBar1.Value = 0;
                     int progressCount = 0;
 
-                    var ErrorList = new List<Categories>();
+                    var ErrorList = new List<Principals>();
 
-                    IList<Categories> list = new List<Categories>();
+                    IList<Principals> list = new List<Principals>();
                     foreach (DataRow row in dt.Rows)
                     {
 
-                        var category = new Categories();
-                        category.CategoryId = row[0].ToString().ToUpper();
-                        category.CategoryName = row[1].ToString().ToUpper();
-                        if (!request.CheckDup(category))
+                        var Principal = new Principals();
+                        Principal.PrincipalId = row[0].ToString().ToUpper();
+                        Principal.PrincipalName = row[1].ToString().ToUpper();
+                        if (!request.CheckDup(Principal))
                         {
-                            list.Add(category);
+                            list.Add(Principal);
                         }
                         else
                         {
-                            ErrorList.Add(category);
+                            ErrorList.Add(Principal);
                         }
                     }
 
@@ -107,7 +107,7 @@ namespace IS.Admin.Setup
                     {
                         try
                         {
-                            request.InsertCategory(row);
+                            request.InsertPrincipal(row);
                         }
                         catch (Exception ex)
                         {
@@ -123,8 +123,8 @@ namespace IS.Admin.Setup
 
                     if (ErrorList.Count > 0)
                     {
-                        MessageBox.Show("Categories uploaded! but some rows does not uploaded, Please check the Item information.", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        FrmCategoriesNotUploaded frm = new FrmCategoriesNotUploaded(ErrorList);
+                        MessageBox.Show("Principals uploaded! but some rows does not uploaded, Please check the Item information.", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        FrmPrincipalsNotUploaded frm = new FrmPrincipalsNotUploaded(ErrorList);
                         if (frm.ShowDialog() == DialogResult.OK)
                         {
                             this.DialogResult = DialogResult.OK;
@@ -132,11 +132,10 @@ namespace IS.Admin.Setup
                     }
                     else
                     {
-                        MessageBox.Show("Categories Uploaded!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Principals Uploaded!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.DialogResult = DialogResult.OK;
                     }
                 }
-
             }
         }
     }

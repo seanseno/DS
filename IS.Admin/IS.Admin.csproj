@@ -111,7 +111,7 @@
     <Compile Include="Model\AdministratorsModel.cs" />
     <Compile Include="Model\CashiersModel.cs" />
     <Compile Include="Model\CashOnHand\CashierCashOnHandModel.cs" />
-    <Compile Include="Model\CompaniesModel.cs" />
+    <Compile Include="Model\PrincipalsModel.cs" />
     <Compile Include="Model\CategoriesModel.cs" />
     <Compile Include="Model\ItemReceivedOrdersModel.cs" />
     <Compile Include="Model\ReceivedOrdersModel.cs" />
@@ -120,8 +120,6 @@
     <Compile Include="Model\SalesModel.cs" />
     <Compile Include="Model\StocksModel.cs" />
     <Compile Include="Model\ItemsModel.cs" />
-    <Compile Include="Model\BrandsModel.cs" />
-    <Compile Include="Model\UploadExcelItem.cs" />
     <Compile Include="Printer\DGVPrinter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -149,24 +147,6 @@
     <Compile Include="Setup\Categories\FrmEditCategory.Designer.cs">
       <DependentUpon>FrmEditCategory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Setup\Brand\FrmBrands.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Setup\Brand\FrmBrands.Designer.cs">
-      <DependentUpon>FrmBrands.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Setup\Brand\FrmAddBrand.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Setup\Brand\FrmAddBrand.Designer.cs">
-      <DependentUpon>FrmAddBrand.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Setup\Brand\FrmEditBrand.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Setup\Brand\FrmEditBrand.Designer.cs">
-      <DependentUpon>FrmEditBrand.cs</DependentUpon>
-    </Compile>
     <Compile Include="Setup\Categories\FrmCategoriesUploadExcel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,32 +159,50 @@
     <Compile Include="Setup\Categories\FrmCategoriesNotUploaded.Designer.cs">
       <DependentUpon>FrmCategoriesNotUploaded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Setup\Companies\FrmAddCompany.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Setup\Companies\FrmAddCompany.Designer.cs">
-      <DependentUpon>FrmAddCompany.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Setup\Companies\FrmCompanies.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Setup\Companies\FrmCompanies.Designer.cs">
-      <DependentUpon>FrmCompanies.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Setup\Companies\FrmEditCompany.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Setup\Companies\FrmEditCompany.Designer.cs">
-      <DependentUpon>FrmEditCompany.cs</DependentUpon>
-    </Compile>
     <Compile Include="CustomDataGridView\CustomDataGridView.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Setup\Items\FrmEditItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\Items\FrmEditItem.Designer.cs">
+      <DependentUpon>FrmEditItem.cs</DependentUpon>
     </Compile>
     <Compile Include="Setup\Items\FrmNotUploaded.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Setup\Items\FrmNotUploaded.Designer.cs">
       <DependentUpon>FrmNotUploaded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setup\Principals\FrmAddPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\Principals\FrmAddPrincipal.Designer.cs">
+      <DependentUpon>FrmAddPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setup\Principals\FrmPrincipals.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\Principals\FrmPrincipals.Designer.cs">
+      <DependentUpon>FrmPrincipals.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setup\Principals\FrmPrincipalsNotUploaded.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\Principals\FrmPrincipalsNotUploaded.Designer.cs">
+      <DependentUpon>FrmPrincipalsNotUploaded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setup\Principals\FrmPrincipalsUploadExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\Principals\FrmPrincipalsUploadExcel.Designer.cs">
+      <DependentUpon>FrmPrincipalsUploadExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setup\Principals\FrmEditPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\Principals\FrmEditPrincipal.Designer.cs">
+      <DependentUpon>FrmEditPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Transactions\ReceivedOrders\FrmEditReceivedItem.cs">
       <SubType>Form</SubType>
@@ -253,12 +251,6 @@
     </Compile>
     <Compile Include="Setup\Items\FrmItems.Designer.cs">
       <DependentUpon>FrmItems.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Setup\Items\FrmEditItem.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Setup\Items\FrmEditItem.Designer.cs">
-      <DependentUpon>FrmEditItem.cs</DependentUpon>
     </Compile>
     <Compile Include="Transactions\RequestOrders\FrmInputRequestOrdersName.cs">
       <SubType>Form</SubType>
@@ -360,32 +352,32 @@
     <EmbeddedResource Include="Setup\Categories\FrmEditCategory.resx">
       <DependentUpon>FrmEditCategory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Setup\Brand\FrmBrands.resx">
-      <DependentUpon>FrmBrands.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Setup\Brand\FrmAddBrand.resx">
-      <DependentUpon>FrmAddBrand.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Setup\Brand\FrmEditBrand.resx">
-      <DependentUpon>FrmEditBrand.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Setup\Categories\FrmCategoriesUploadExcel.resx">
       <DependentUpon>FrmCategoriesUploadExcel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Setup\Categories\FrmCategoriesNotUploaded.resx">
       <DependentUpon>FrmCategoriesNotUploaded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Setup\Companies\FrmAddCompany.resx">
-      <DependentUpon>FrmAddCompany.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Setup\Companies\FrmCompanies.resx">
-      <DependentUpon>FrmCompanies.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Setup\Companies\FrmEditCompany.resx">
-      <DependentUpon>FrmEditCompany.cs</DependentUpon>
+    <EmbeddedResource Include="Setup\Items\FrmEditItem.resx">
+      <DependentUpon>FrmEditItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Setup\Items\FrmNotUploaded.resx">
       <DependentUpon>FrmNotUploaded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\Principals\FrmAddPrincipal.resx">
+      <DependentUpon>FrmAddPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\Principals\FrmPrincipals.resx">
+      <DependentUpon>FrmPrincipals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\Principals\FrmPrincipalsNotUploaded.resx">
+      <DependentUpon>FrmPrincipalsNotUploaded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\Principals\FrmPrincipalsUploadExcel.resx">
+      <DependentUpon>FrmPrincipalsUploadExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\Principals\FrmEditPrincipal.resx">
+      <DependentUpon>FrmEditPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\ReceivedOrders\FrmEditReceivedItem.resx">
       <DependentUpon>FrmEditReceivedItem.cs</DependentUpon>
@@ -410,9 +402,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Setup\Items\FrmItems.resx">
       <DependentUpon>FrmItems.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Setup\Items\FrmEditItem.resx">
-      <DependentUpon>FrmEditItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\RequestOrders\FrmInputRequestOrdersName.resx">
       <DependentUpon>FrmInputRequestOrdersName.cs</DependentUpon>

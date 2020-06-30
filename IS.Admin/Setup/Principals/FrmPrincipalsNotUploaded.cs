@@ -13,25 +13,23 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmNotUploaded : Form
+    public partial class FrmPrincipalsNotUploaded : Form
     {
-        IList<Items> ItemList = new List<Items>();
-        public FrmNotUploaded(IList<Items> ItmList)
+        IList<Principals> ErrorList = new List<Principals>();
+        public FrmPrincipalsNotUploaded(IList<Principals> errorList)
         {
             InitializeComponent();
-            ItemList = ItmList;
+            ErrorList = errorList;
             this.ActiveControl = txtSearch;
         }
 
 
         private void LoadItems()
         {
-            ItemsModel model = new ItemsModel();
-            //var response = model.ItemList(txtSearch.Text);
+            PrincipalsModel model = new PrincipalsModel();
 
-            var searchList = ItemList.Where(x => x.ProductName.Contains(txtSearch.Text.ToUpper()) ||
-            x.CategoryName.Contains(txtSearch.Text.ToUpper()) ||
-            x.PrincipalName.Contains(txtSearch.Text.ToUpper())).ToList();
+            var searchList = ErrorList.Where(x => x.PrincipalName.Contains(txtSearch.Text.ToUpper()) ||
+                x.PrincipalId.Contains(txtSearch.Text.ToUpper())).ToList();
 
             dgvSearch.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvSearch.DataSource = null;
@@ -48,7 +46,7 @@ namespace IS.Admin.Setup
             this.DialogResult = DialogResult.Cancel;
         }
 
-        private void FrmNotUploaded_Shown(object sender, EventArgs e)
+        private void FrmPrincipalsNotUploaded_Shown(object sender, EventArgs e)
         {
             grpLoading.Visible = true;
             grpLoading.Refresh();
@@ -64,7 +62,7 @@ namespace IS.Admin.Setup
             LoadItems();
         }
 
-        private void FrmNotUploaded_Load(object sender, EventArgs e)
+        private void FrmPrincipalsNotUploaded_Load(object sender, EventArgs e)
         {
 
         }

@@ -20,16 +20,14 @@ namespace IS.Database.Repositories
                 connection.Open();
 
                 //STORE PROC INSERT ITEM and STOCKS
-                using (SqlCommand cmd = new SqlCommand("spInsertItem", connection))
+                using (SqlCommand cmd = new SqlCommand("spItemInsert", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@CategoryId", item.CategoryId));
-                    cmd.Parameters.Add(new SqlParameter("@CompanyId", item.CompanyId));
-                    cmd.Parameters.Add(new SqlParameter("@GenericName", item.GenericName.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@BrandName", item.BrandName.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@Description", item.Description.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@Price", item.SellingPricePerPiece));
-                    cmd.Parameters.Add(new SqlParameter("@Stock", item.Stock));
+                    cmd.Parameters.Add(new SqlParameter("@ItemId", item.ItemId.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@CategoryId", item.CategoryId.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@PrincipalId", item.PrincipalId.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@ProductName", item.ProductName.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@Price", item.Price));
                     cmd.Parameters.Add(new SqlParameter("@BarCode", item.BarCode));
 
                     int rowAffected = cmd.ExecuteNonQuery();
@@ -39,69 +37,28 @@ namespace IS.Database.Repositories
                 }
             }
         }
-        public Items UploadItem(Items item)
-        {
-            using (SqlConnection connection = new SqlConnection(ConStr))
-            {
-                connection.Open();
-
-                //STORE PROC INSERT ITEM and STOCKS
-                using (SqlCommand cmd = new SqlCommand("spUploadItem", connection))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@CategoryName", item.CategoryName.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@CompanyName", item.CompanyName.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@GenericName", item.GenericName.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@BrandName", item.BrandName.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@Description", item.Description.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@Price", item.SellingPricePerPiece));
-                    cmd.Parameters.Add(new SqlParameter("@Stock", item.Stock));
-                    cmd.Parameters.Add(new SqlParameter("@BarCode", item.BarCode));
-                    cmd.Parameters.Add(new SqlParameter("@DateManufactured", DateTimeConvertion.ConvertDateString(item.DateManufactured)));
-                    cmd.Parameters.Add(new SqlParameter("@ExpirationDate", DateTimeConvertion.ConvertDateString(item.ExpirationDate)));
-                    cmd.Parameters.Add(new SqlParameter("@AdministratorId", Globals.LoginId));
-                    cmd.Parameters.Add(new SqlParameter("@RequestOrderItemId", item.RequestOrderId));
-
-                    var IsAffected = cmd.ExecuteNonQuery();
-
-                    if (connection.State == System.Data.ConnectionState.Open)
-                        connection.Close();
-
-                    if (IsAffected <= 0)
-                    {
-                        return item;
-                    }
-                    return null ;
-                }
-
-            }
-        }
 
         public void Update(Items item)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                
-                var select = "UPDATE Items SET " +
-                    " CategoryId = " + item.CategoryId + ", " +
-                    " CompanyId = " + item.CompanyId + ", " +
-                    " GenericName = '" + item.GenericName  + "', " +
-                    " BrandName = '" + item.BrandName?.ToUpper() + "'," +
-                    " Description ='" + item.Description.ToUpper() + "', " +
-                    " Price = " + item.SellingPricePerPiece + ", " +
-                    " BarCode ='" + item.BarCode + "', " +
-                    " UpdateTime ='" + DateTimeConvertion.ConvertDateString(DateTime.Now) + "', " +
-                    " ItemReceivedOrdersId = " + item.ItemReceivedOrdersId + " " +
-                    " WHERE Id = " + item.Id;
 
-                using (SqlCommand cmd = new SqlCommand(select, connection))
+                using (SqlCommand cmd = new SqlCommand("spItemsUpdate", connection))
                 {
-                    cmd.ExecuteNonQuery();
-                }
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@ItemId", item.ItemId.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@CategoryId", item.CategoryId.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@PrincipalId", item.PrincipalId.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@ProductName", item.ProductName.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@Price", item.Price));
+                    cmd.Parameters.Add(new SqlParameter("@Active", item.Active));
+                    cmd.Parameters.Add(new SqlParameter("@BarCode", item.BarCode));
+                    int rowAffected = cmd.ExecuteNonQuery();
 
-                if (connection.State == System.Data.ConnectionState.Open)
-                    connection.Close();
+                    if (connection.State == System.Data.ConnectionState.Open)
+                        connection.Close();
+                }
 
             }
         }
@@ -112,96 +69,100 @@ namespace IS.Database.Repositories
             {
                 connection.Open();
 
-                var select = "DELETE FROM Items " +
-                    " WHERE Id = " + item.Id;
-
-                using (SqlCommand cmd = new SqlCommand(select, connection))
+                using (SqlCommand cmd = new SqlCommand("spItemsDelete", connection))
                 {
-                    cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@ItemId", item.ItemId.ToUpper()));
+                    int rowAffected = cmd.ExecuteNonQuery();
+
+                    if (connection.State == System.Data.ConnectionState.Open)
+                        connection.Close();
                 }
-
-                select = "DELETE FROM StocksHistory " +
-                " WHERE ItemId = " + item.Id;
-
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    cmd.ExecuteNonQuery();
-                }
-
-                select = "DELETE FROM Stocks " +
-                " WHERE ItemId = " + item.Id;
-
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    cmd.ExecuteNonQuery();
-                }
-
-
-                if (connection.State == System.Data.ConnectionState.Open)
-                    connection.Close();
             }
         }
-        public Items FindWithId(int? id)
+
+        public Items FindWithItemId(string ItemId)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT I.Id, I.CompanyId, I.GenericName, I.BrandName, I.Description, I.Price , " +
-                                " S.Stock,Co.CompanyName,Ca.CategoryName,I.BarCode" +
-                                " FROM Items as I " +
-                                " LEFT JOIN Stocks as S on S.ItemId = I.id " +
-                                " LEFT JOIN Companies as Co on Co.id = I.CompanyId" +
-                                " LEFT JOIN Categories as Ca on Ca.Id = I.CategoryId" +
-                                " WHERE I.Id = " + id;
+                var select = "SELECT * FROM vItems " +
+                          " WHERE ItemId Like '" + ItemId + "'";
 
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-
-                        while (reader.Read())
-                        {
-                            var item = new Items();
-
-                            item.Id = reader.GetInt32(0);
-                            
-                            
-                            item.Description = reader.GetString(4);
-                            item.SellingPricePerPiece = Math.Round(reader.GetDecimal(5), 2);
-                            item.Stock = reader.GetInt32(6);
-
-
-                            if (!reader.IsDBNull(1))
-                            {
-                                item.CompanyId = reader.GetInt32(1);
-                            }
-                            if (!reader.IsDBNull(2))
-                            {
-                                item.GenericName = reader.GetString(2);
-                            }
-                            if (!reader.IsDBNull(3))
-                            {
-                                item.BrandName = reader.GetString(3);
-                            }
-
-                            if (!reader.IsDBNull(7))
-                            {
-                                item.CompanyName = reader.GetString(7);
-                            }
-                            if (!reader.IsDBNull(8))
-                            {
-                                item.CategoryName = reader.GetString(8);
-                            }
-                            if (!reader.IsDBNull(9))
-                            {
-                                item.BarCode = reader.GetString(9);
-                            }
-
-                            return item;
-                        }
-                        return null;
+                        List<Items> Items = new List<Items>();
+                        var List = new ReflectionPopulator<Items>().CreateList(reader);
+                        return List[0];
                     }
                 }
+            }
+        }
+
+        public Items FindWithId(int? id)
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                return null;
+                //var select = "SELECT I.Id, I.CompanyId, I.GenericName, I.BrandName, I.Description, I.Price , " +
+                //                " S.Stock,Co.CompanyName,Ca.CategoryName,I.BarCode" +
+                //                " FROM Items as I " +
+                //                " LEFT JOIN Stocks as S on S.ItemId = I.id " +
+                //                " LEFT JOIN Companies as Co on Co.id = I.CompanyId" +
+                //                " LEFT JOIN Categories as Ca on Ca.Id = I.CategoryId" +
+                //                " WHERE I.Id = " + id;
+
+                //using (SqlCommand cmd = new SqlCommand(select, connection))
+                //{
+                //    using (SqlDataReader reader = cmd.ExecuteReader())
+                //    {
+
+                //        while (reader.Read())
+                //        {
+                //            var item = new Items();
+
+                //            item.Id = reader.GetInt32(0);
+                            
+                            
+                //            item.Description = reader.GetString(4);
+                //            item.SellingPricePerPiece = Math.Round(reader.GetDecimal(5), 2);
+                //            item.Stock = reader.GetInt32(6);
+
+
+                //            if (!reader.IsDBNull(1))
+                //            {
+                //                item.CompanyId = reader.GetInt32(1);
+                //            }
+                //            if (!reader.IsDBNull(2))
+                //            {
+                //                item.GenericName = reader.GetString(2);
+                //            }
+                //            if (!reader.IsDBNull(3))
+                //            {
+                //                item.BrandName = reader.GetString(3);
+                //            }
+
+                //            if (!reader.IsDBNull(7))
+                //            {
+                //                item.CompanyName = reader.GetString(7);
+                //            }
+                //            if (!reader.IsDBNull(8))
+                //            {
+                //                item.CategoryName = reader.GetString(8);
+                //            }
+                //            if (!reader.IsDBNull(9))
+                //            {
+                //                item.BarCode = reader.GetString(9);
+                //            }
+
+                //            return item;
+                //        }
+                //        return null;
+                //    }
+                //}
             }
         }
 
@@ -210,63 +171,20 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT * FROM ItemsKiosk " +
-                                " WHERE BrandName Like '%" + keyword + "%'" +
-                                " OR Description Like '%" + keyword + "%' " +
-                                " OR GenericName Like '%" + keyword + "%' " +
-                                " OR BarCode Like '%" + keyword + "%' " +
-                                " OR CompanyName Like '%" + keyword + "%' " +
+                var select = "SELECT * FROM vItems " +
+                                " WHERE ProductName Like '%" + keyword + "%'" +
                                 " OR CategoryName Like '%" + keyword + "%' " +
-                            " ORDER BY Id";
+                                " OR PrincipalName Like '%" + keyword + "%' " +
+                                " OR BarCode Like '%" + keyword + "%' " +
+                            " ORDER BY ProductName";
 
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         List<Items> Items = new List<Items>();
-                        while (reader.Read())
-                        {
-                            var item = new Items();
-
-                            item.Id = reader.GetInt32(0);
-                            item.CompanyId = reader.GetInt32(1);
-                            item.GenericName = reader.GetString(2);
-                            if (!reader.IsDBNull(3))
-                            {
-                                item.BrandName = reader.GetString(3);
-                            }
-                            item.Description = reader.GetString(4);
-                            item.SellingPricePerPiece = Math.Round(reader.GetDecimal(5), 2);
-
-                            if (!reader.IsDBNull(6))
-                            {
-                                item.Stock = reader.GetInt32(6);
-                            }
-                            if (!reader.IsDBNull(7))
-                            {
-                                item.CompanyName = reader.GetString(7);
-                            }
-                            if (!reader.IsDBNull(8))
-                            {
-                                item.CategoryName = reader.GetString(8);
-                            }
-                            if (!reader.IsDBNull(9))
-                            {
-                                item.BarCode = reader.GetString(9);
-                            }
-                            if (!reader.IsDBNull(10))
-                            {
-                                item.AvailableStock = reader.GetInt32(10);
-                            }
-                            if (!reader.IsDBNull(11))
-                            {
-                                item.ItemReceivedOrdersId = reader.GetInt32(11);
-                            }
-
-
-                            Items.Add(item);
-                        }
-                        return Items;
+                        var List = new ReflectionPopulator<Items>().CreateList(reader);
+                        return List;
                     }
                 }
             }

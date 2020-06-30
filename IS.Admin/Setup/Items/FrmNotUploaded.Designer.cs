@@ -29,21 +29,20 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblTotalCount = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.grpLoading = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.dgvSearch = new System.Windows.Forms.DataGridView();
-            this.Categories = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Company = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GenericName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Name1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descriptions = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnClose = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.lblTotalCount = new System.Windows.Forms.Label();
+            this.ItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrincipalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.grpLoading.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -65,6 +64,15 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Error Item List";
+            // 
+            // lblTotalCount
+            // 
+            this.lblTotalCount.AutoSize = true;
+            this.lblTotalCount.Location = new System.Drawing.Point(12, 407);
+            this.lblTotalCount.Name = "lblTotalCount";
+            this.lblTotalCount.Size = new System.Drawing.Size(46, 13);
+            this.lblTotalCount.TabIndex = 16;
+            this.lblTotalCount.Text = "Total : 0";
             // 
             // btnSearch
             // 
@@ -118,11 +126,11 @@
             this.dgvSearch.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSearch.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Categories,
-            this.Company,
-            this.GenericName,
-            this.Name1,
-            this.Descriptions});
+            this.ItemId,
+            this.PrincipalName,
+            this.CategoryName,
+            this.ProductName,
+            this.Price});
             this.dgvSearch.Location = new System.Drawing.Point(15, 64);
             this.dgvSearch.Name = "dgvSearch";
             this.dgvSearch.ReadOnly = true;
@@ -130,50 +138,6 @@
             this.dgvSearch.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSearch.Size = new System.Drawing.Size(815, 333);
             this.dgvSearch.TabIndex = 10;
-            // 
-            // Categories
-            // 
-            this.Categories.DataPropertyName = "CategoryName";
-            this.Categories.HeaderText = "Categories";
-            this.Categories.Name = "Categories";
-            this.Categories.ReadOnly = true;
-            // 
-            // Company
-            // 
-            this.Company.DataPropertyName = "CompanyName";
-            this.Company.HeaderText = "Company";
-            this.Company.Name = "Company";
-            this.Company.ReadOnly = true;
-            // 
-            // GenericName
-            // 
-            this.GenericName.DataPropertyName = "GenericName";
-            this.GenericName.HeaderText = "GenericName";
-            this.GenericName.Name = "GenericName";
-            this.GenericName.ReadOnly = true;
-            // 
-            // Name1
-            // 
-            this.Name1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Name1.DataPropertyName = "BrandName";
-            this.Name1.FillWeight = 12.25213F;
-            this.Name1.HeaderText = "Brand Names";
-            this.Name1.Name = "Name1";
-            this.Name1.ReadOnly = true;
-            this.Name1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Name1.Width = 150;
-            // 
-            // Descriptions
-            // 
-            this.Descriptions.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Descriptions.DataPropertyName = "Description";
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Descriptions.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Descriptions.FillWeight = 179.7124F;
-            this.Descriptions.HeaderText = "Descriptions";
-            this.Descriptions.Name = "Descriptions";
-            this.Descriptions.ReadOnly = true;
-            this.Descriptions.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // btnClose
             // 
@@ -196,14 +160,44 @@
             this.txtSearch.Size = new System.Drawing.Size(247, 26);
             this.txtSearch.TabIndex = 0;
             // 
-            // lblTotalCount
+            // ItemId
             // 
-            this.lblTotalCount.AutoSize = true;
-            this.lblTotalCount.Location = new System.Drawing.Point(12, 407);
-            this.lblTotalCount.Name = "lblTotalCount";
-            this.lblTotalCount.Size = new System.Drawing.Size(46, 13);
-            this.lblTotalCount.TabIndex = 16;
-            this.lblTotalCount.Text = "Total : 0";
+            this.ItemId.DataPropertyName = "ItemId";
+            this.ItemId.HeaderText = "Item ID";
+            this.ItemId.Name = "ItemId";
+            this.ItemId.ReadOnly = true;
+            // 
+            // PrincipalName
+            // 
+            this.PrincipalName.DataPropertyName = "PrincipalName";
+            this.PrincipalName.HeaderText = "Principals";
+            this.PrincipalName.Name = "PrincipalName";
+            this.PrincipalName.ReadOnly = true;
+            this.PrincipalName.Width = 150;
+            // 
+            // CategoryName
+            // 
+            this.CategoryName.DataPropertyName = "CategoryName";
+            this.CategoryName.HeaderText = "Categories";
+            this.CategoryName.Name = "CategoryName";
+            this.CategoryName.ReadOnly = true;
+            this.CategoryName.Width = 150;
+            // 
+            // ProductName
+            // 
+            this.ProductName.DataPropertyName = "ProductName";
+            this.ProductName.HeaderText = "Product Name";
+            this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
+            this.ProductName.Width = 300;
+            // 
+            // Price
+            // 
+            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Price.DataPropertyName = "Price";
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
             // 
             // FrmNotUploaded
             // 
@@ -234,15 +228,15 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.DataGridView dgvSearch;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Categories;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Company;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GenericName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descriptions;
         private System.Windows.Forms.GroupBox grpLoading;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label lblTotalCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrincipalName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
     }
 }

@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
 using System.Configuration;
+using IS.Common.Utilities;
 
 namespace IS.Database.Strategy
 {
-    public class BrandsStrategy : Helper
+    public class PrincipalsStrategy : Helper
     {
-        public bool CheckDuplicate(string Name)
+        public bool CheckDuplicate(string PrincipalId,string PrincipalName)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT name FROM Brands WHERE Name = '" + Name + "'";
+                var select = "SELECT PrincipalName FROM vPrincipals WHERE PrincipalId = '" + PrincipalId + "' OR PrincipalName = '" + SingleQuoteCorrection.convert(PrincipalName) + "'";
                 using (SqlCommand cmd = new SqlCommand(select,connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -29,12 +30,12 @@ namespace IS.Database.Strategy
         }
 
 
-        public bool CheckEditDuplicate(string Name, int? BrandId)
+        public bool CheckEditDuplicate(string Name, int? PrincipalId)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT name FROM Brands WHERE Name = '" + Name + "' AND ID != " + BrandId;
+                var select = "SELECT PrincipalName FROM vPrincipals WHERE PrincipalName = '" + Name + "' AND ID != " + PrincipalId;
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -49,12 +50,12 @@ namespace IS.Database.Strategy
             }
         }
 
-        public bool BrandAlreadyInUse(int? BrandId)
+        public bool PrincipalAlreadyInUse(string PrincipalId)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT * FROM Items WHERE BrandType  = " + BrandId;
+                var select = "SELECT * FROM vItems WHERE PrincipalId  = '" + PrincipalId + "'";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())

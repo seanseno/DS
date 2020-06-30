@@ -27,30 +27,30 @@ namespace IS.Admin.Setup
 
         private void FrmEditStock_Load(object sender, EventArgs e)
         {
-            StocksModel stocks = new StocksModel();
-            var response = stocks.LoadEdit(_Item.Id);
-            //lblName.Text = response.Name;
-            lblDescription.Text = response.Description;
+            //StocksModel stocks = new StocksModel();
+            //var response = stocks.LoadEdit(_Item.Id);
+            ////lblName.Text = response.Name;
+            //lblDescription.Text = response.Description;
             
-            CurrentStock = response.Stock;
-            lblCurrentStock.Text = CurrentStock.ToString();
-            lblNewStock.Text = CurrentStock.ToString();
+            //CurrentStock = response.Stock;
+            //lblCurrentStock.Text = CurrentStock.ToString();
+            //lblNewStock.Text = CurrentStock.ToString();
 
-            txtStock.Text = "0";
+            //txtStock.Text = "0";
 
-            if(this._EnumStock == EnumStock.Credit)
-            {
-                Color color = Color.FromArgb(128, 255, 255);
-                txtStock.BackColor = color;
-                lblStock.Text = "Credit stock :";
+            //if(this._EnumStock == EnumStock.Credit)
+            //{
+            //    Color color = Color.FromArgb(128, 255, 255);
+            //    txtStock.BackColor = color;
+            //    lblStock.Text = "Credit stock :";
                 
-            }
-            else
-            {
-                Color color = Color.FromArgb(255, 192, 192);
-                txtStock.BackColor = color;
-                lblStock.Text = "Debit stock :";
-            }
+            //}
+            //else
+            //{
+            //    Color color = Color.FromArgb(255, 192, 192);
+            //    txtStock.BackColor = color;
+            //    lblStock.Text = "Debit stock :";
+            //}
      
 
             this.ActiveControl = txtStock;

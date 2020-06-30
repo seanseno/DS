@@ -89,10 +89,10 @@ namespace IS.Database.Repositories
 
                             item.Id = reader.GetInt32(0);
                             item.CategoryName = reader.GetString(1);
-                            item.CompanyName = reader.GetString(2);
-                            item.GenericName = reader.GetString(3);
-                            item.BrandName = reader.GetString(4);
-                            item.Description = reader.GetString(5);
+                            //item.CompanyName = reader.GetString(2);
+                            //item.GenericName = reader.GetString(3);
+                            //item.BrandName = reader.GetString(4);
+                            //item.Description = reader.GetString(5);
                             item.Quantity = reader.GetInt32(6);
                             item.DateReceived = reader.GetDateTime(7);
                             item.DateManufactured = reader.GetDateTime(8);
@@ -133,10 +133,10 @@ namespace IS.Database.Repositories
 
                             item.Id = reader.GetInt32(0);
                             item.CategoryName = reader.GetString(1);
-                            item.CompanyName = reader.GetString(2);
-                            item.GenericName = reader.GetString(3);
-                            item.BrandName = reader.GetString(4);
-                            item.Description = reader.GetString(5);
+                            //item.CompanyName = reader.GetString(2);
+                            //item.GenericName = reader.GetString(3);
+                            //item.BrandName = reader.GetString(4);
+                            //item.Description = reader.GetString(5);
                             item.Quantity = reader.GetInt32(6);
                             item.DateReceived = reader.GetDateTime(7);
                             item.DateManufactured = reader.GetDateTime(8);
@@ -175,10 +175,10 @@ namespace IS.Database.Repositories
 
                             item.Id = reader.GetInt32(0);
                             item.CategoryName = reader.GetString(1);
-                            item.CompanyName = reader.GetString(2);
-                            item.GenericName = reader.GetString(3);
-                            item.BrandName = reader.GetString(4);
-                            item.Description = reader.GetString(5);
+                            //item.CompanyName = reader.GetString(2);
+                            //item.GenericName = reader.GetString(3);
+                            //item.BrandName = reader.GetString(4);
+                            //item.Description = reader.GetString(5);
                             item.Quantity = reader.GetInt32(6);
                             item.DateReceived = reader.GetDateTime(7);
                             item.DateManufactured = reader.GetDateTime(8);
@@ -220,10 +220,10 @@ namespace IS.Database.Repositories
                             
                             item.Id = reader.GetInt32(0);
                             item.CategoryName = reader.GetString(1);
-                            item.CompanyName = reader.GetString(2);
-                            item.GenericName = reader.GetString(3);
-                            item.BrandName = reader.GetString(4);
-                            item.Description = reader.GetString(5);
+                            //item.CompanyName = reader.GetString(2);
+                            //item.GenericName = reader.GetString(3);
+                            //item.BrandName = reader.GetString(4);
+                            //item.Description = reader.GetString(5);
                             item.Quantity = reader.GetInt32(6);
                             item.DateReceived = reader.GetDateTime(7);
                             item.DateManufactured = reader.GetDateTime(8);
@@ -265,10 +265,10 @@ namespace IS.Database.Repositories
                             var item = new ItemReceivedOrders();
                             item.Id = reader.GetInt32(0);
                             item.CategoryName = reader.GetString(1);
-                            item.CompanyName = reader.GetString(2);
-                            item.GenericName = reader.GetString(3);
-                            item.BrandName = reader.GetString(4);
-                            item.Description = reader.GetString(5);
+                            //item.CompanyName = reader.GetString(2);
+                            //item.GenericName = reader.GetString(3);
+                            //item.BrandName = reader.GetString(4);
+                            //item.Description = reader.GetString(5);
                             item.Quantity = reader.GetInt32(6);
                             item.DateReceived = reader.GetDateTime(7);
                             item.DateManufactured = reader.GetDateTime(8);

@@ -7,6 +7,10 @@ namespace IS.Database
 {
     public class ISFactory
     {
+        public CategoriesRepository CategoriesRepository => new CategoriesRepository();
+        public PrincipalsRepository PrincipalsRepository => new PrincipalsRepository();
+
+
         public AdministratorsRepository AdministratorsRepository => new AdministratorsRepository();
         public CashiersRepository CashiersRepository => new CashiersRepository();
         public ItemsRepository ItemsRepository => new ItemsRepository();
@@ -16,11 +20,9 @@ namespace IS.Database
         public LedgerSalesRepository LedgerSalesRepository => new LedgerSalesRepository();
         public StocksRepository StocksRepository => new StocksRepository();
         public StocksHistoryRepository StocksHistoryRepository => new StocksHistoryRepository();
-        public BrandsRepository BrandsRepository => new BrandsRepository();
-        public CompaniesRepository CompaniesRepository => new CompaniesRepository();
         public CashierCashOnHandDenominationRepository CashierCashOnHandDenominationRepository => new CashierCashOnHandDenominationRepository();
         public CashierCashOnHandRepository CashierCashOnHandRepository => new CashierCashOnHandRepository();
-        public CategoriesRepository CategoriesRepository => new CategoriesRepository();
+       
         public RequestOrderItemsRepository RequestOrderItemsRepository  => new RequestOrderItemsRepository();
         public RequestOrderItemDetailsRepository RequestOrderItemDetailsRepository => new RequestOrderItemDetailsRepository();
         public ItemReceivedOrdersRepository ItemReceivedOrdersRepository = new ItemReceivedOrdersRepository();

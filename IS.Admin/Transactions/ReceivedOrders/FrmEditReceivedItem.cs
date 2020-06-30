@@ -138,42 +138,42 @@ namespace IS.Admin.Trasactions
 
         private void LoadItm()
         {
-            ItemsModel model = new ItemsModel();
-            var response = model.LoadEdit(this.Id);
-            if(response != null)
-            {
-                var Params = new List<string>();
-                if (!string.IsNullOrEmpty(response.CategoryName))
-                {
-                    Params.Add(response.CategoryName);
-                }
-                if (!string.IsNullOrEmpty(response.CompanyName))
-                {
-                    Params.Add(response.CompanyName);
-                }
-                if (!string.IsNullOrEmpty(response.GenericName))
-                {
-                    Params.Add(response.GenericName);
-                }
-                if (!string.IsNullOrEmpty(response.BrandName))
-                {
-                    Params.Add(response.BrandName);
-                }
-                if (!string.IsNullOrEmpty(response.Description))
-                {
-                    Params.Add(response.Description);
-                }
-                rtbDescription.Text = string.Join(" ", Params);
+            //ItemsModel model = new ItemsModel();
+            //var response = model.LoadEdit(this.Id);
+            //if(response != null)
+            //{
+            //    var Params = new List<string>();
+            //    if (!string.IsNullOrEmpty(response.CategoryName))
+            //    {
+            //        Params.Add(response.CategoryName);
+            //    }
+            //    if (!string.IsNullOrEmpty(response.CompanyName))
+            //    {
+            //        Params.Add(response.CompanyName);
+            //    }
+            //    if (!string.IsNullOrEmpty(response.GenericName))
+            //    {
+            //        Params.Add(response.GenericName);
+            //    }
+            //    if (!string.IsNullOrEmpty(response.BrandName))
+            //    {
+            //        Params.Add(response.BrandName);
+            //    }
+            //    if (!string.IsNullOrEmpty(response.Description))
+            //    {
+            //        Params.Add(response.Description);
+            //    }
+            //    rtbDescription.Text = string.Join(" ", Params);
 
-                txtQty.Text = response.Quantity.ToString();
-                dtpDateReceived.Value = response.DateReceived;
-                dtpDateManufactured.Value = response.DateManufactured;
-                dtpExpirationDate.Value = response.ExpirationDate;
+            //    txtQty.Text = response.Quantity.ToString();
+            //    dtpDateReceived.Value = response.DateReceived;
+            //    dtpDateManufactured.Value = response.DateManufactured;
+            //    dtpExpirationDate.Value = response.ExpirationDate;
 
-                txtOrderPrice.Text = Math.Round(response.SupplierPrice, 2).ToString();
-                txtSellingPrice.Text = Math.Round(response.SellingPricePerPiece).ToString();
+            //    txtOrderPrice.Text = Math.Round(response.SupplierPrice, 2).ToString();
+            //    txtSellingPrice.Text = Math.Round(response.SellingPricePerPiece).ToString();
 
-            }
+            //}
         }
 
         private void txtQty_KeyPress(object sender, KeyPressEventArgs e)

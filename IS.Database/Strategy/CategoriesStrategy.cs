@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
 using System.Configuration;
+using IS.Common.Utilities;
 
 namespace IS.Database.Strategy
 {
@@ -13,7 +14,7 @@ namespace IS.Database.Strategy
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT CategoryName FROM vCategories WHERE CategoryId = '" + CategoryId + "' OR CategoryName = '" + CategoryName + "'";
+                var select = "SELECT CategoryName FROM vCategories WHERE CategoryId = '" + CategoryId + "' OR CategoryName = '" + SingleQuoteCorrection.convert(CategoryName)  + "'";
                 using (SqlCommand cmd = new SqlCommand(select,connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
