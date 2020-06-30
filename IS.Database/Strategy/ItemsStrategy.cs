@@ -48,7 +48,7 @@ namespace IS.Database.Strategy
                 }
             }
         }
-        public bool ItemAlreadyInUse(int? itemId)
+        public bool ItemAlreadyInUse(string itemId)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
