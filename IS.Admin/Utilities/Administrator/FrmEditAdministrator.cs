@@ -24,9 +24,11 @@ namespace IS.Admin.Setup
         private void FrmEditAdministrator_Load(object sender, EventArgs e)
         {
             AdministratorsModel Administrators = new AdministratorsModel();
-            var response = Administrators.LoadEdit(_Administrator.Id);
+            var response = Administrators.LoadEdit(_Administrator.AdminId);
             txtLogiName.Text = response.Loginname;
             txtFullName.Text = response.Fullname;
+            lblId.Text = response.AdminId;
+            cboUserType.SelectedIndex = response.UserType;
             chkActive.Checked = Convert.ToBoolean(response.Active);
             this.ActiveControl = txtFullName;
         }
@@ -44,7 +46,7 @@ namespace IS.Admin.Setup
                 _Administrator.Fullname = txtFullName.Text;
                 _Administrator.Password = txtPassword.Text;
                 _Administrator.Active = Convert.ToInt32(chkActive.Checked);
-
+                _Administrator.UserType = cboUserType.SelectedIndex;
                 Administrators.UpdateAdministrator(_Administrator);
                 this.DialogResult = DialogResult.OK;
             }

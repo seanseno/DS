@@ -13,14 +13,13 @@ using ZXing;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmEditItem : Form
+    public partial class FrmAddProduct : Form
     {
-        public Items _Items = new Items();
-        public FrmEditItem(Items Items)
+        public Products _Products = new Products();
+        public FrmAddProduct()
         {
             InitializeComponent();
-            this.ActiveControl = cboCategories;
-            this._Items = Items;
+            this.ActiveControl = txtProductId;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -29,9 +28,30 @@ namespace IS.Admin.Setup
             this.Close();
         }
 
-        private void FrmEditItem_Load(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (!CheckRequiredInput())
+            {
+                if (MessageBox.Show("Are you sure do want to add " + txtProductName.Text + "?", "Information!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    _Products.ProductId = txtProductId.Text;
+                    _Products.CategoryId = cboCategories.SelectedValue.ToString();
+                    _Products.PrincipalId = cboPrincipals.SelectedValue.ToString();
 
+                    _Products.ProductName = txtProductName.Text;
+                    _Products.Price = Convert.ToDecimal(txtPrice.Text);
+                    _Products.BarCode = txtBarcode.Text;
+                    var model = new ProductsModel();
+
+                    model.AddItem(this);
+                    MessageBox.Show(txtProductName.Text + " Added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                }
+            }
+        }
+
+        private void FrmAddProduct_Load(object sender, EventArgs e)
+        {
             CategoriesModel categoriesModel = new CategoriesModel();
             var categoryList = categoriesModel.CategoryListWithSelect();
             cboCategories.DataSource = categoryList;
@@ -44,16 +64,8 @@ namespace IS.Admin.Setup
             cboPrincipals.DisplayMember = "PrincipalName";
             cboPrincipals.ValueMember = "PrincipalId";
 
-            ItemsModel itemsModel = new ItemsModel();
-            var response = itemsModel.LoadEdit(_Items.ItemId);
-            lblItemId.Text = response.ItemId;
-            cboCategories.SelectedIndex = cboCategories.FindStringExact(response.CategoryName);
-            cboPrincipals.SelectedIndex = cboPrincipals.FindStringExact(response.PrincipalName);
-            txtProductName.Text = response.ProductName;
-            txtPrice.Text = Math.Round(response.Price,2).ToString();
-            txtBarcode.Text = response.BarCode;
-            chkActive.Checked = response.Active == 1 ? true : false;
-
+            ProductsModel productsModel = new ProductsModel();
+            txtProductId.Text = productsModel.GetNextId();
         }
 
         private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
@@ -106,28 +118,6 @@ namespace IS.Admin.Setup
                     Format = BarcodeFormat.CODE_128
                 };
                 pictureBox1.Image = writer.Write(txtBarcode.Text);
-            }
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (!CheckRequiredInput())
-            {
-                if (MessageBox.Show("Are you sure do want to update " + txtProductName.Text + "?", "Information!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                {
-                    _Items.CategoryId = cboCategories.SelectedValue.ToString();
-                    _Items.PrincipalId = cboPrincipals.SelectedValue.ToString();
-
-                    _Items.ProductName = txtProductName.Text;
-                    _Items.Price = Convert.ToDecimal(txtPrice.Text);
-                    _Items.BarCode = txtBarcode.Text;
-                    _Items.Active = chkActive.Checked == true ? 1 : 0;
-
-                    var model = new ItemsModel();
-
-                    model.UpdateItem(_Items);
-                    this.DialogResult = DialogResult.OK;
-                }
             }
         }
     }

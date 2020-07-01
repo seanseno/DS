@@ -10,7 +10,7 @@ using System.Text;
 
 namespace IS.Database.Repositories
 {
-    public class RequestOrderItemsRepository : Helper
+    public class RequestOrderProductsRepository : Helper
     {
         public int Insert(int? AdminId,string OrderName)
         {
@@ -83,7 +83,7 @@ namespace IS.Database.Repositories
                              " From RequestOrderItems as R " +
                              "  LEFT JOIN Administrators as A on A.Id =R.AdministratorId " +
                              "  INNER JOIN ItemReceivedOrders as IRO on IRO.RequestOrderId =r.Id " +
-                             "  WHERE IRO.ItemId = " + ItemId + " AND IRO.Quantity > 0 ";
+                             "  WHERE IRO.ProductId = " + ItemId + " AND IRO.Quantity > 0 ";
 
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
@@ -199,6 +199,6 @@ namespace IS.Database.Repositories
             } 
         }
 
-        public RequestOrderItemsStrategy RequestOrderItemsStrategy => new RequestOrderItemsStrategy();
+        public RequestOrderProductsStrategy RequestOrderProductsStrategy => new RequestOrderProductsStrategy();
     }
 }

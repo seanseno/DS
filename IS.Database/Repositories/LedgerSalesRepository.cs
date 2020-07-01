@@ -103,7 +103,7 @@ namespace IS.Database.Repositories
                 connection.Open();
                 var select = "SELECT LedgerSales.Id, Orders.CashierId,Cashiers.Fullname, SUM(Items.Price) as TotalAmount, SUM(Orders.Qty) as TotalQty ,LedgerSales.InsertTime " +
                             " FROM Orders " +
-                            " INNER JOIN Items on Items.Id = Orders.ItemId " +
+                            " INNER JOIN Items on Items.Id = Orders.ProductId " +
                             " INNER JOIN   LedgerSales on LedgerSales.CashierId = Orders.CashierId AND LedgerSales.id = Orders.LedgerId " +
                             " INNER JOIN   Cashiers on Cashiers.id = LedgerSales.CashierId " +
                             " GROUP BY LedgerSales.Id,Orders.CashierId,Cashiers.Fullname,LedgerSales.Active,LedgerSales.InsertTime " +
@@ -139,7 +139,7 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT SUM(Items.Price * Orders.Qty) as TotalAmount FROM Orders INNER JOIN Items on Items.id = Orders.ItemId";
+                var select = "SELECT SUM(Items.Price * Orders.Qty) as TotalAmount FROM Orders INNER JOIN Items on Items.id = Orders.ProductId";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())

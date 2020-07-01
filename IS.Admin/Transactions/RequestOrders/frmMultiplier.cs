@@ -15,7 +15,7 @@ namespace IS.Admin.Trasactions
     public partial class frmMultiplier : Form
     {
         ISFactory factory = new ISFactory();
-        Items item = new Items();
+        Products item = new Products();
         FrmItemRequestOrderList _FrmMain = new FrmItemRequestOrderList();
         public int? Qty { get; set; }
         private int? _ItemId { get; set; }
@@ -41,7 +41,7 @@ namespace IS.Admin.Trasactions
 
         private void frmMultiplier_Load(object sender, EventArgs e)
         {
-            //item = factory.ItemsRepository.FindWithId(this._ItemId);
+            //item = factory.ProductsRepository.FindWithId(this._ItemId);
             //var itemName = new List<string>();
             //if(!string.IsNullOrEmpty(item.GenericName))
             //{

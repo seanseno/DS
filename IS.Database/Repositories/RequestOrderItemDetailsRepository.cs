@@ -12,7 +12,7 @@ namespace IS.Database.Repositories
 {
     public class RequestOrderItemDetailsRepository : Helper
     {
-        public void Insert(Items model, int RequestId)
+        public void Insert(Products model, int RequestId)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
@@ -49,7 +49,7 @@ namespace IS.Database.Repositories
 
         }
 
-        public IList<Items> GetListWithId(int? Id)
+        public IList<Products> GetListWithId(int? Id)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
@@ -57,8 +57,8 @@ namespace IS.Database.Repositories
                 return null;
                 //var select = "SELECT ROID.Id,Ca.CategoryName,Co.CompanyName,I.GenericName,I.BrandName, I.Description,ROID.EstimatedPrice,ROID.Qty,I.BarCode,ROID.InsertTime,I.Id as ItemId" +
                 //            " FROM RequestOrderItemDetails as ROID " +
-                //            "   LEFT JOIN RequestOrderItems  as ROI on ROI.Id = ROID.RequestOrderItemId " +
-                //            "   LEFT JOIN Items as I on I.id = ROID.ItemId " +
+                //            "   LEFT JOIN RequestOrderProducts  as ROI on ROI.Id = ROID.RequestOrderItemId " +
+                //            "   LEFT JOIN Products as I on I.id = ROID.ProductId " +
                 //            "   LEFT JOIN Companies as Co on Co.id = I.CompanyId " +
                 //            "   LEFT JOIN Categories as Ca on Ca.Id = I.CategoryId " +
                 //            " WHERE ROI.Id = " + Id + "" +
@@ -67,10 +67,10 @@ namespace IS.Database.Repositories
                 //{
                 //    using (SqlDataReader reader = cmd.ExecuteReader())
                 //    {
-                //        List<Items> Items = new List<Items>();
+                //        List<Products> Products = new List<Products>();
                 //        while (reader.Read())
                 //        {
-                //            var item = new Items();
+                //            var item = new Products();
 
                 //            item.Id = reader.GetInt32(0);
                 //            item.CategoryName = reader.GetString(1);
@@ -87,15 +87,15 @@ namespace IS.Database.Repositories
 
                 //            item.InsertTime = reader.GetDateTime(9);
                 //            item.TempItemId = reader.GetInt32(10);
-                //            Items.Add(item);
+                //            Products.Add(item);
                 //        }
-                //        return Items;
+                //        return Products;
                 //    }
                 //}
             }
         }
 
-        public IList<Items> GetListWithItemId(int? ItemId)
+        public IList<Products> GetListWithItemId(int? ItemId)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
@@ -103,20 +103,20 @@ namespace IS.Database.Repositories
                 return null;
                 //var select = "SELECT ROID.Id,Ca.CategoryName,Co.CompanyName,I.GenericName,I.BrandName, I.Description,ROID.EstimatedPrice,ROID.Qty,I.BarCode,ROID.InsertTime,I.Id as ItemId" +
                 //            " FROM RequestOrderItemDetails as ROID " +
-                //            "   LEFT JOIN RequestOrderItems  as ROI on ROI.Id = ROID.RequestOrderItemId " +
-                //            "   LEFT JOIN Items as I on I.id = ROID.ItemId " +
+                //            "   LEFT JOIN RequestOrderProducts  as ROI on ROI.Id = ROID.RequestOrderItemId " +
+                //            "   LEFT JOIN Products as I on I.id = ROID.ProductId " +
                 //            "   LEFT JOIN Companies as Co on Co.id = I.CompanyId " +
                 //            "   LEFT JOIN Categories as Ca on Ca.Id = I.CategoryId " +
-                //            " WHERE ROID.ItemId = " + ItemId + "" +
+                //            " WHERE ROID.ProductId = " + ItemId + "" +
                 //            " ORDER BY ROID.Id ASC ";
                 //using (SqlCommand cmd = new SqlCommand(select, connection))
                 //{
                 //    using (SqlDataReader reader = cmd.ExecuteReader())
                 //    {
-                //        List<Items> Items = new List<Items>();
+                //        List<Products> Products = new List<Products>();
                 //        while (reader.Read())
                 //        {
-                //            var item = new Items();
+                //            var item = new Products();
 
                 //            item.Id = reader.GetInt32(0);
                 //            item.CategoryName = reader.GetString(1);
@@ -133,9 +133,9 @@ namespace IS.Database.Repositories
 
                 //            item.InsertTime = reader.GetDateTime(9);
                 //            item.TempItemId = reader.GetInt32(10);
-                //            Items.Add(item);
+                //            Products.Add(item);
                 //        }
-                //        return Items;
+                //        return Products;
                 //    }
                 //}
             }

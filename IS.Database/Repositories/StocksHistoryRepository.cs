@@ -18,13 +18,13 @@ namespace IS.Database.Repositories
                 connection.Open();
 
                 var select = "INSERT INTO StocksHistory (ItemId,Stock,Credit,Debit) Values " +
-                    "(" + stock.ItemId + "," + stock.Stock + "," +
+                    "(" + stock.ProductId + "," + stock.Stock + "," +
                     "" + qty + ",0)";
                 if (enumStock == EnumStock.Debit)
                 {
 
                      select = "INSERT INTO StocksHistory (ItemId,Stock,Credit,Debit) Values " +
-                        "(" + stock.ItemId + "," + stock.Stock + "," +
+                        "(" + stock.ProductId + "," + stock.Stock + "," +
                         "0," + qty + ")";
                 }
                 using (SqlCommand cmd = new SqlCommand(select, connection))

@@ -26,23 +26,23 @@ namespace IS.Admin.Model
             return factory.ItemReceivedOrdersRepository.FindListWithItemId(itemId);
         }
 
-        public IList<Items> ItemList(string keyword)
+        public IList<Products> ItemList(string keyword)
         {
             var factory = new ISFactory();
-            return factory.ItemsRepository.Find(keyword);
+            return factory.ProductsRepository.Find(keyword);
         }
 
         public IList<RequestOrderItems> RequestOrderListWithItemId(int ItemId)
         {
             var factory = new ISFactory();
-            var response = factory.RequestOrderItemsRepository.GetListWithItemList(ItemId);
+            var response = factory.RequestOrderProductsRepository.GetListWithItemList(ItemId);
             return response;
         }
 
         public RequestOrderItems GetOrderRequestInfoWithId(int ItemId)
         {
             var factory = new ISFactory();
-            var response = factory.RequestOrderItemsRepository.GetOrderRequestInfoWithId(ItemId);
+            var response = factory.RequestOrderProductsRepository.GetOrderRequestInfoWithId(ItemId);
             return response;
         }
 

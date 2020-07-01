@@ -19,24 +19,24 @@ namespace IS.Database.Repositories
             {
                 connection.Open();
 
-                //STORE PROC INSERT ItemReceivedOrders and STOCKS
-                using (SqlCommand cmd = new SqlCommand("spItemReceivedOrders", connection))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@RequestOrderId", model.RequestOrderId));
-                    cmd.Parameters.Add(new SqlParameter("@ItemId", model.ItemId));
-                    cmd.Parameters.Add(new SqlParameter("@DateReceived", model.DateReceived));
-                    cmd.Parameters.Add(new SqlParameter("@DateManufactured", model.DateManufactured));
-                    cmd.Parameters.Add(new SqlParameter("@ExpirationDate", model.ExpirationDate));
-                    cmd.Parameters.Add(new SqlParameter("@SupplierPrice", model.SupplierPrice));
-                    cmd.Parameters.Add(new SqlParameter("@SellingPricePerPiece", model.SellingPricePerPiece));
-                    cmd.Parameters.Add(new SqlParameter("@InputQuantity", model.Quantity));
+                ////STORE PROC INSERT ItemReceivedOrders and STOCKS
+                //using (SqlCommand cmd = new SqlCommand("spItemReceivedOrders", connection))
+                //{
+                //    cmd.CommandType = CommandType.StoredProcedure;
+                //    cmd.Parameters.Add(new SqlParameter("@RequestOrderId", model.RequestOrderId));
+                //    cmd.Parameters.Add(new SqlParameter("@ItemId", model.ProductId));
+                //    cmd.Parameters.Add(new SqlParameter("@DateReceived", model.DateReceived));
+                //    cmd.Parameters.Add(new SqlParameter("@DateManufactured", model.DateManufactured));
+                //    cmd.Parameters.Add(new SqlParameter("@ExpirationDate", model.ExpirationDate));
+                //    cmd.Parameters.Add(new SqlParameter("@SupplierPrice", model.SupplierPrice));
+                //    cmd.Parameters.Add(new SqlParameter("@SellingPricePerPiece", model.SellingPricePerPiece));
+                //    cmd.Parameters.Add(new SqlParameter("@InputQuantity", model.Quantity));
 
-                    int rowAffected = cmd.ExecuteNonQuery();
+                //    int rowAffected = cmd.ExecuteNonQuery();
 
-                    if (connection.State == System.Data.ConnectionState.Open)
-                        connection.Close();
-                }
+                //    if (connection.State == System.Data.ConnectionState.Open)
+                //        connection.Close();
+                //}
             }
         }
 
@@ -68,7 +68,7 @@ namespace IS.Database.Repositories
                 var select = "SELECT IRO.Id,Ca.CategoryName,Co.CompanyName,I.GenericName,I.BrandName,I.Description," +
                             "   IRO.Quantity,IRO.DateReceived,IRO.DateManufactured,IRO.ExpirationDate,IRO.SupplierPrice,IRO.SellingPricePerPiece" +
                             " FROM ItemReceivedOrders as IRO " +
-                            "   LEFT JOIN Items as I on I.id = IRO.ItemId " +
+                            "   LEFT JOIN Items as I on I.id = IRO.ProductId " +
                             "   LEFT JOIN Companies as Co on Co.id = I.CompanyId " +
                             "   LEFT JOIN Categories as Ca on Ca.Id = I.CategoryId   " +
                             " WHERE " +
@@ -117,7 +117,7 @@ namespace IS.Database.Repositories
                 var select = "SELECT IRO.Id,Ca.CategoryName,Co.CompanyName,I.GenericName,I.BrandName,I.Description," +
                             "   IRO.Quantity,IRO.DateReceived,IRO.DateManufactured,IRO.ExpirationDate,IRO.SupplierPrice,IRO.SellingPricePerPiece" +
                             " FROM ItemReceivedOrders as IRO " +
-                            "   LEFT JOIN Items as I on I.id = IRO.ItemId " +
+                            "   LEFT JOIN Items as I on I.id = IRO.ProductId " +
                             "   LEFT JOIN Companies as Co on Co.id = I.CompanyId " +
                             "   LEFT JOIN Categories as Ca on Ca.Id = I.CategoryId   " +
                             " WHERE I.Id = " + itemId + " " +
@@ -160,7 +160,7 @@ namespace IS.Database.Repositories
                 var select = "SELECT IRO.Id,Ca.CategoryName,Co.CompanyName,I.GenericName,I.BrandName,I.Description," +
                             "   IRO.Quantity,IRO.DateReceived,IRO.DateManufactured,IRO.ExpirationDate,IRO.SupplierPrice,IRO.SellingPricePerPiece" +
                             " FROM ItemReceivedOrders as IRO " +
-                            "   LEFT JOIN Items as I on I.id = IRO.ItemId " +
+                            "   LEFT JOIN Items as I on I.id = IRO.ProductId " +
                             "   LEFT JOIN Companies as Co on Co.id = I.CompanyId " +
                             "   LEFT JOIN Categories as Ca on Ca.Id = I.CategoryId   " +
                             " ORDER BY IRO.Id ASC ";
@@ -203,7 +203,7 @@ namespace IS.Database.Repositories
                 var select = "SELECT IRO.Id,Ca.CategoryName,Co.CompanyName,I.GenericName,I.BrandName,I.Description," +
                             "   IRO.Quantity,IRO.DateReceived,IRO.DateManufactured,IRO.ExpirationDate,IRO.SupplierPrice,IRO.SellingPricePerPiece,IRO.RequestOrderId" +
                             " FROM ItemReceivedOrders as IRO " +
-                            "   LEFT JOIN Items as I on I.id = IRO.ItemId " +
+                            "   LEFT JOIN Items as I on I.id = IRO.ProductId " +
                             "   LEFT JOIN Companies as Co on Co.id = I.CompanyId " +
                             "   LEFT JOIN Categories as Ca on Ca.Id = I.CategoryId   " +
                             " WHERE IRO.Id = " + Id + " " +
@@ -249,10 +249,10 @@ namespace IS.Database.Repositories
                 var select = "SELECT IRO.Id,Ca.CategoryName,Co.CompanyName,I.GenericName,I.BrandName,I.Description," +
                             "   IRO.Quantity,IRO.DateReceived,IRO.DateManufactured,IRO.ExpirationDate,IRO.SupplierPrice,IRO.SellingPricePerPiece,IRO.RequestOrderId" +
                             " FROM ItemReceivedOrders as IRO " +
-                            "   LEFT JOIN Items as I on I.id = IRO.ItemId " +
+                            "   LEFT JOIN Items as I on I.id = IRO.ProductId " +
                             "   LEFT JOIN Companies as Co on Co.id = I.CompanyId " +
                             "   LEFT JOIN Categories as Ca on Ca.Id = I.CategoryId   " +
-                            " WHERE IRO.RequestOrderId = " + RequestOrderId + " AND  IRO.ItemId = " + ItemId + " " +
+                            " WHERE IRO.RequestOrderId = " + RequestOrderId + " AND  IRO.ProductId = " + ItemId + " " +
                             " ORDER BY IRO.Id ASC ";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {

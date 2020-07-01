@@ -13,33 +13,33 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmItems : Form
+    public partial class FrmProducts : Form
     {
-        public FrmItems()
+        public FrmProducts()
         {
             InitializeComponent();
-            this.Shown += new System.EventHandler(this.FrmItems_Shown);
+            this.Shown += new System.EventHandler(this.FrmProducts_Shown);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            FrmAddItem frm = new FrmAddItem();
+            FrmAddProduct frm = new FrmAddProduct();
             frm.ShowDialog();
-            this.LoadItems();
+            this.LoadProducts();
 
         }
 
-        private void FrmItems_Load(object sender, EventArgs e)
+        private void FrmProducts_Load(object sender, EventArgs e)
         {
-          //  this.LoadItems();
+          //  this.LoadProducts();
         }
 
-        private void LoadItems()
+        private void LoadProducts()
         {
             grpLoading.Visible = true;
             grpLoading.Refresh();
 
-            ItemsModel model = new ItemsModel();
+            ProductsModel model = new ProductsModel();
             var response = model.ItemList(txtSearch.Text);
             dgvSearch.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvSearch.AutoGenerateColumns = false;
@@ -52,8 +52,8 @@ namespace IS.Admin.Setup
 
         private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var Item = new Items();
-            Item.ItemId = dgvSearch.CurrentRow.Cells[0].Value?.ToString();
+            var Item = new Products();
+            Item.ProductId = dgvSearch.CurrentRow.Cells[0].Value?.ToString();
             Item.CategoryName = dgvSearch.CurrentRow.Cells[1].Value?.ToString();
             Item.PrincipalName = dgvSearch.CurrentRow.Cells[2].Value?.ToString();
             Item.ProductName = dgvSearch.CurrentRow.Cells[3].Value?.ToString();
@@ -63,17 +63,17 @@ namespace IS.Admin.Setup
             
             if (e.ColumnIndex == 8)
             {
-                FrmEditItem frm = new FrmEditItem(Item);
+                FrmEditProduct frm = new FrmEditProduct(Item);
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.LoadItems();
+                    this.LoadProducts();
                 };
             }
             if (e.ColumnIndex == 9)
             {
-                var model = new ItemsModel();
-                if (model.CheckItemIfAlreadyInUse(Item.ItemId))
+                var model = new ProductsModel();
+                if (model.CheckItemIfAlreadyInUse(Item.ProductId))
                 {
                     MessageBox.Show("You can not delete " + Item.ProductName + " because this item is already used!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -82,7 +82,7 @@ namespace IS.Admin.Setup
                     if (MessageBox.Show("Are you sure do want to delete " + Item.ProductName + ".", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
                         model.DeleteItem(Item);
-                        this.LoadItems();
+                        this.LoadProducts();
                         MessageBox.Show(Item.ProductName + " deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
@@ -97,13 +97,13 @@ namespace IS.Admin.Setup
         private void btnSearch_Click(object sender, EventArgs e)
         {
 
-            this.LoadItems();
+            this.LoadProducts();
 
         }
 
-        private void FrmItems_Shown(object sender, EventArgs e)
+        private void FrmProducts_Shown(object sender, EventArgs e)
         {
-            this.LoadItems();
+            this.LoadProducts();
         }
 
 
@@ -124,7 +124,7 @@ namespace IS.Admin.Setup
         //    }
         //    if (e.ColumnIndex == 6)
         //    {
-        //        var model = new ItemsModel();
+        //        var model = new ProductsModel();
         //        if (model.CheckItemIfAlreadyInUse(Item.Id))
         //        {
         //            MessageBox.Show("You can not delete " + Item.Name + " because this brand already in use", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -38,7 +38,7 @@
             this.dgvSearch = new System.Windows.Forms.DataGridView();
             this.btnClose = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.ItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+
             this.PrincipalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -126,7 +126,6 @@
             this.dgvSearch.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSearch.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ItemId,
             this.PrincipalName,
             this.CategoryName,
             this.ProductName,
@@ -159,13 +158,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(247, 26);
             this.txtSearch.TabIndex = 0;
-            // 
-            // ItemId
-            // 
-            this.ItemId.DataPropertyName = "ItemId";
-            this.ItemId.HeaderText = "Item ID";
-            this.ItemId.Name = "ItemId";
-            this.ItemId.ReadOnly = true;
+
             // 
             // PrincipalName
             // 

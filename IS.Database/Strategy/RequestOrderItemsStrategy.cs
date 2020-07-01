@@ -6,7 +6,7 @@ using System.Configuration;
 
 namespace IS.Database.Strategy
 {
-    public class RequestOrderItemsStrategy : Helper
+    public class RequestOrderProductsStrategy : Helper
     {
         public bool CheckDuplicate(string Name)
         {

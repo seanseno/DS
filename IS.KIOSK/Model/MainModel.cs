@@ -12,9 +12,9 @@ namespace IS.KIOSK.Model
     public class MainModel
     {
         ISFactory factory = new ISFactory();
-        public IList<Items> LoadItems(FrmMain frm, string keywords)
+        public IList<Products> LoadItems(FrmMain frm, string keywords)
         {
-            var resultList = factory.ItemsRepository.Find(keywords);
+            var resultList = factory.ProductsRepository.Find(keywords);
             return resultList;
         }
 

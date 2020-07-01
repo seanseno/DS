@@ -108,7 +108,7 @@ namespace IS.Database.Repositories
                 var select = "SELECT TempLedgerSales.ID, Sum((Items.Price * TempSales.Qty)) as TotalAmount , SUM(TempSales.Qty) as TotalQty ,TempLedgerSales.InsertTime " +
                             " FROM TempLedgerSales " + 
                             " INNER JOIN TempSales on TempSales.TempLedgerId = TempLedgerSales.id " +
-                            " INNER JOIN Items on Items.Id = TempSales.ItemId " +
+                            " INNER JOIN Items on Items.Id = TempSales.ProductId " +
                             " GROUP BY TempLedgerSales.ID,TempLedgerSales.CashierId ,TempLedgerSales.Active,TempLedgerSales.InsertTime " +
                             " HAVING TempLedgerSales.CashierId = " + cashierId + " AND TempLedgerSales.Active = " + (int)EnumActive.NonActive; 
 
@@ -138,7 +138,7 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT SUM(Items.Price * TempSales.Qty) as TotalAmount FROM TempSales INNER JOIN Items on Items.id = TempSales.ItemId";
+                var select = "SELECT SUM(Items.Price * TempSales.Qty) as TotalAmount FROM TempSales INNER JOIN Items on Items.id = TempSales.ProductId";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())

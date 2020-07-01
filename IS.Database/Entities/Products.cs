@@ -5,10 +5,10 @@ using System.Text;
 
 namespace IS.Database.Entities
 {
-    public class Items : ItemExtender
+    public class Products : ProductExtender
     {
         public int Id { get; set; }
-        public string ItemId { get; set; }
+        public string ProductId { get; set; }
         public string CategoryId { get; set; }
         public string PrincipalId { get; set; }
         public string ProductName { get; set; }

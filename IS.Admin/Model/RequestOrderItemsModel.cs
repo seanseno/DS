@@ -12,20 +12,20 @@ using System.Threading.Tasks;
 
 namespace IS.Admin.Model
 {
-    public class RequestOrderItemsModel
+    public class RequestOrderProductsModel
     {
         public IList<RequestOrderItems> ItemList()
         {
             var factory = new ISFactory();
-            return factory.RequestOrderItemsRepository.GetList();
+            return factory.RequestOrderProductsRepository.GetList();
         }
 
-        public IList<Items> RequestOrderItemDetailsList(int Id)
+        public IList<Products> RequestOrderItemDetailsList(int Id)
         {
             var factory = new ISFactory();
             return factory.RequestOrderItemDetailsRepository.GetListWithId(Id);
         }
-        public IList<Items> RequestOrderItemDetailsListWithItemId(int itemId)
+        public IList<Products> RequestOrderItemDetailsListWithItemId(int itemId)
         {
             var factory = new ISFactory();
             return factory.RequestOrderItemDetailsRepository.GetListWithItemId(itemId);
@@ -34,7 +34,7 @@ namespace IS.Admin.Model
         public string OrderInfo(int Id)
         {
             var factory = new ISFactory();
-            var response = factory.RequestOrderItemsRepository.GetOrderRequestInfoWithId(Id);
+            var response = factory.RequestOrderProductsRepository.GetOrderRequestInfoWithId(Id);
             if (response != null)
             {
                 return string.Format("Order Date: {0}, Order By {1}", response.OrderDate, response.AdminName);
@@ -47,7 +47,7 @@ namespace IS.Admin.Model
         public string OrderDate(int Id)
         {
             var factory = new ISFactory();
-            var response = factory.RequestOrderItemsRepository.GetOrderRequestInfoWithId(Id);
+            var response = factory.RequestOrderProductsRepository.GetOrderRequestInfoWithId(Id);
             if (response != null)
             {
                 return string.Format("Order Date: {0}", response.OrderDate.ToString("MM/dd/yyyy"));
@@ -57,10 +57,10 @@ namespace IS.Admin.Model
                 return null;
             }
         }
-        public void Insert(string RequestOrdersName, IList<Items> RequestOrdersList)
+        public void Insert(string RequestOrdersName, IList<Products> RequestOrdersList)
         {
             var factory = new ISFactory();
-            int? Id = factory.RequestOrderItemsRepository.Insert(Globals.LoginId, RequestOrdersName);
+            int? Id = factory.RequestOrderProductsRepository.Insert(Globals.LoginId, RequestOrdersName);
             if(Id != null)
             {
                 foreach(var itm in RequestOrdersList)
@@ -72,12 +72,12 @@ namespace IS.Admin.Model
         public int InsertRequestOrderItemsWithUploadItem(DateTime DeliveryDate)
         {
             var factory = new ISFactory();
-            int IdNextIdent = (int)factory.RequestOrderItemsRepository.GetNextIdent();
+            int IdNextIdent = (int)factory.RequestOrderProductsRepository.GetNextIdent();
             string RequestOrdersName = "From Upload Item_" + DeliveryDate.ToShortDateString() + "_" + (IdNextIdent + 1);
-            int Id = factory.RequestOrderItemsRepository.Insert(Globals.LoginId, RequestOrdersName);
+            int Id = factory.RequestOrderProductsRepository.Insert(Globals.LoginId, RequestOrdersName);
             return Id;
         }
-        public void Update(int? RequestId, IList<Items> RequestOrdersList)
+        public void Update(int? RequestId, IList<Products> RequestOrdersList)
         {
             var factory = new ISFactory();
             factory.RequestOrderItemDetailsRepository.Delete(RequestId);
@@ -91,7 +91,7 @@ namespace IS.Admin.Model
         public bool CheckDupRequestName(string RequestOrdersNamet)
         {
             var factory = new ISFactory();
-            return factory.RequestOrderItemsRepository.RequestOrderItemsStrategy.CheckDuplicate(RequestOrdersNamet);
+            return factory.RequestOrderProductsRepository.RequestOrderProductsStrategy.CheckDuplicate(RequestOrdersNamet);
         }
     }
 }

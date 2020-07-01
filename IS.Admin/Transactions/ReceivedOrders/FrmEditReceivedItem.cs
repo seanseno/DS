@@ -138,7 +138,7 @@ namespace IS.Admin.Trasactions
 
         private void LoadItm()
         {
-            //ItemsModel model = new ItemsModel();
+            //ProductsModel model = new ProductsModel();
             //var response = model.LoadEdit(this.Id);
             //if(response != null)
             //{

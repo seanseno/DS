@@ -43,10 +43,10 @@ namespace IS.Admin.Model
             var factory = new ISFactory();
             factory.AdministratorsRepository.Delete(Administrator);
         }
-        public Administrators LoadEdit(int? AdministratorId)
+        public Administrators LoadEdit(string AdminId)
         {
             var factory = new ISFactory();
-            return factory.AdministratorsRepository.FindAdministratorWithId(AdministratorId);
+            return factory.AdministratorsRepository.FindAdministratorWithAdminId(AdminId);
         }
 
         public bool CheckAdministratorIfAlreadyInUse(int? AdministratorId)
@@ -54,6 +54,11 @@ namespace IS.Admin.Model
             var factory = new ISFactory();
             //return factory.AdministratorsRepository.AdministratorsStrategy.AdministratorAlreadyInUse(AdministratorId);
             return false;
+        }
+        public string GetNextId()
+        {
+            var factory = new ISFactory();
+            return factory.AdministratorsRepository.GetNextId();
         }
     }
 }

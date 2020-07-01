@@ -35,9 +35,9 @@ namespace IS.Admin.Trasactions
 
         private void FrmAddReceivedItem_Load(object sender, EventArgs e)
         {
-            LoadItems();
+            LoadProducts();
 
-            RequestOrderItemsModel RModel = new RequestOrderItemsModel();
+            RequestOrderProductsModel RModel = new RequestOrderProductsModel();
             cboOrders.DataSource = null;
 
             var response1 = RModel.ItemList();
@@ -68,7 +68,7 @@ namespace IS.Admin.Trasactions
                         ReceivedOrdersModel model = new ReceivedOrdersModel();
                         ItemReceivedOrders itemReceivedOrders = new ItemReceivedOrders();
                         itemReceivedOrders.RequestOrderId = OrderId;
-                        itemReceivedOrders.ItemId = ItemId;
+                       // itemReceivedOrders.ProductId = ItemId;
                         itemReceivedOrders.DateReceived = InputDateReceived;
                         itemReceivedOrders.DateManufactured = InputDateManufactured;
                         itemReceivedOrders.ExpirationDate = InputExpirationDate;
@@ -77,7 +77,7 @@ namespace IS.Admin.Trasactions
                         itemReceivedOrders.Quantity = InputQuantity; 
                         model.Insert(itemReceivedOrders);
                         MessageBox.Show("Order Received Added!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadItems();
+                        LoadProducts();
                         this.DialogResult = DialogResult.OK;
                     }
                 }
@@ -91,10 +91,10 @@ namespace IS.Admin.Trasactions
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
-            LoadItems();
+            LoadProducts();
         }
 
-        private void LoadItems()
+        private void LoadProducts()
         {
             ReceivedOrdersModel model = new ReceivedOrdersModel();
             var response = model.ItemList(txtSearch.Text);

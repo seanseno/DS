@@ -15,8 +15,8 @@ namespace IS.Admin.Setup
 {
     public partial class FrmNotUploaded : Form
     {
-        IList<Items> ItemList = new List<Items>();
-        public FrmNotUploaded(IList<Items> ItmList)
+        IList<Products> ItemList = new List<Products>();
+        public FrmNotUploaded(IList<Products> ItmList)
         {
             InitializeComponent();
             ItemList = ItmList;
@@ -24,9 +24,9 @@ namespace IS.Admin.Setup
         }
 
 
-        private void LoadItems()
+        private void LoadProducts()
         {
-            ItemsModel model = new ItemsModel();
+            ProductsModel model = new ProductsModel();
             //var response = model.ItemList(txtSearch.Text);
 
             var searchList = ItemList.Where(x => x.ProductName.Contains(txtSearch.Text.ToUpper()) ||
@@ -53,7 +53,7 @@ namespace IS.Admin.Setup
             grpLoading.Visible = true;
             grpLoading.Refresh();
 
-            this.LoadItems();
+            this.LoadProducts();
 
             grpLoading.Visible = false;
             grpLoading.Refresh();
@@ -61,7 +61,7 @@ namespace IS.Admin.Setup
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            LoadItems();
+            LoadProducts();
         }
 
         private void FrmNotUploaded_Load(object sender, EventArgs e)

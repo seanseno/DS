@@ -31,7 +31,7 @@ namespace IS.Database.Repositories
             {
                 connection.Open();
                 var select = "SELECT Items.Description, TempSales.Qty, (Items.Price * TempSales.Qty) as Amount " +
-                            "FROM TempSales INNER JOIN Items on Items.id = TempSales.ItemId " +
+                            "FROM TempSales INNER JOIN Items on Items.id = TempSales.ProductId " +
                             "WHERE CashieId = " + CashierId + " "+
                             " ORDER BY TempSales.Id";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
@@ -61,7 +61,7 @@ namespace IS.Database.Repositories
                 connection.Open();
                 var select = " SELECT Items.GenericName, Items.BrandName, Items.Description,TempSales.Qty, (Items.Price * TempSales.Qty) as Amount,Items.Id,TempSales.Id,Co.CompanyName,Ca.CategoryName" +
                             " FROM TempSales " +
-                            "   INNER JOIN Items on Items.id = TempSales.ItemId " +
+                            "   INNER JOIN Items on Items.id = TempSales.ProductId " +
                             "   INNER JOIN TempLedgerSales on TempLedgerSales.Id = TempSales.TempLedgerId " +
                             "   LEFT JOIN Companies as Co on Co.id = Items.CompanyId " +
                             "   LEFT JOIN Categories as Ca on Ca.Id = Items.CategoryId " +
@@ -104,7 +104,7 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT SUM(Items.Price * TempSales.Qty) as TotalAmount FROM TempSales INNER JOIN Items on Items.id = TempSales.ItemId";
+                var select = "SELECT SUM(Items.Price * TempSales.Qty) as TotalAmount FROM TempSales INNER JOIN Items on Items.id = TempSales.ProductId";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())

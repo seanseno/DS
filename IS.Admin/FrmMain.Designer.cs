@@ -39,10 +39,7 @@
             this.stocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.itemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.itemsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.uploadItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.principalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.utilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cashiersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,7 +49,9 @@
             this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cashierTotalCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.principalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.uploadProductsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -139,7 +138,7 @@
             this.setupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.categoriesToolStripMenuItem,
             this.principalsToolStripMenuItem,
-            this.itemsToolStripMenuItem});
+            this.productsToolStripMenuItem});
             this.setupToolStripMenuItem.Name = "setupToolStripMenuItem";
             this.setupToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.setupToolStripMenuItem.Text = "Setup";
@@ -151,35 +150,12 @@
             this.categoriesToolStripMenuItem.Text = "Categories";
             this.categoriesToolStripMenuItem.Click += new System.EventHandler(this.categoriesToolStripMenuItem_Click);
             // 
-            // itemsToolStripMenuItem
+            // principalsToolStripMenuItem
             // 
-            this.itemsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.itemsToolStripMenuItem1,
-            this.uploadItemsToolStripMenuItem,
-            this.ordersToolStripMenuItem});
-            this.itemsToolStripMenuItem.Name = "itemsToolStripMenuItem";
-            this.itemsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.itemsToolStripMenuItem.Text = "Items";
-            // 
-            // itemsToolStripMenuItem1
-            // 
-            this.itemsToolStripMenuItem1.Name = "itemsToolStripMenuItem1";
-            this.itemsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.itemsToolStripMenuItem1.Text = "Items";
-            this.itemsToolStripMenuItem1.Click += new System.EventHandler(this.itemsToolStripMenuItem1_Click);
-            // 
-            // uploadItemsToolStripMenuItem
-            // 
-            this.uploadItemsToolStripMenuItem.Name = "uploadItemsToolStripMenuItem";
-            this.uploadItemsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.uploadItemsToolStripMenuItem.Text = "Upload Items";
-            this.uploadItemsToolStripMenuItem.Click += new System.EventHandler(this.uploadItemsToolStripMenuItem_Click);
-            // 
-            // ordersToolStripMenuItem
-            // 
-            this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
-            this.ordersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.ordersToolStripMenuItem.Text = "Orders";
+            this.principalsToolStripMenuItem.Name = "principalsToolStripMenuItem";
+            this.principalsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.principalsToolStripMenuItem.Text = "Principals";
+            this.principalsToolStripMenuItem.Click += new System.EventHandler(this.principalsToolStripMenuItem_Click);
             // 
             // utilitiesToolStripMenuItem
             // 
@@ -251,12 +227,28 @@
             this.panel1.Size = new System.Drawing.Size(800, 100);
             this.panel1.TabIndex = 1;
             // 
-            // principalsToolStripMenuItem
+            // productsToolStripMenuItem
             // 
-            this.principalsToolStripMenuItem.Name = "principalsToolStripMenuItem";
-            this.principalsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.principalsToolStripMenuItem.Text = "Principals";
-            this.principalsToolStripMenuItem.Click += new System.EventHandler(this.principalsToolStripMenuItem_Click);
+            this.productsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.productsToolStripMenuItem1,
+            this.uploadProductsToolStripMenuItem});
+            this.productsToolStripMenuItem.Name = "productsToolStripMenuItem";
+            this.productsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.productsToolStripMenuItem.Text = "Products";
+            // 
+            // productsToolStripMenuItem1
+            // 
+            this.productsToolStripMenuItem1.Name = "productsToolStripMenuItem1";
+            this.productsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.productsToolStripMenuItem1.Text = "Products";
+            this.productsToolStripMenuItem1.Click += new System.EventHandler(this.productsToolStripMenuItem1_Click);
+            // 
+            // uploadProductsToolStripMenuItem
+            // 
+            this.uploadProductsToolStripMenuItem.Name = "uploadProductsToolStripMenuItem";
+            this.uploadProductsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.uploadProductsToolStripMenuItem.Text = "Upload Products";
+            this.uploadProductsToolStripMenuItem.Click += new System.EventHandler(this.uploadProductsToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -285,7 +277,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setupToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem itemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem utilitiesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem;
@@ -297,15 +288,15 @@
         private System.Windows.Forms.ToolStripMenuItem cashOnHandToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cashierTotalCollectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem categoriesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem itemsToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem ordersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem uploadItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem transactionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ordersToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem requestOrdersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem receivedOrdersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stocksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem principalsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem productsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem productsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem uploadProductsToolStripMenuItem;
     }
 }
 

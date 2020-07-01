@@ -87,7 +87,7 @@
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -456,8 +456,7 @@
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9,
             this.Edit,
-            this.Delete,
-            this.ItemId});
+            this.Delete});
             this.dgvDetails.Location = new System.Drawing.Point(15, 123);
             this.dgvDetails.Name = "dgvDetails";
             this.dgvDetails.ReadOnly = true;
@@ -644,14 +643,7 @@
             this.Delete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Delete.Text = "Delete";
             this.Delete.UseColumnTextForButtonValue = true;
-            // 
-            // ItemId
-            // 
-            this.ItemId.DataPropertyName = "TempItemId";
-            this.ItemId.HeaderText = "ItemId";
-            this.ItemId.Name = "ItemId";
-            this.ItemId.ReadOnly = true;
-            this.ItemId.Visible = false;
+
             // 
             // FrmItemRequestOrderList
             // 

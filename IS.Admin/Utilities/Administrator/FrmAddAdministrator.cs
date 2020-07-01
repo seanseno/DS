@@ -18,6 +18,7 @@ namespace IS.Admin.Setup
         public FrmAddAdministrator()
         {
             InitializeComponent();
+            this.ActiveControl = txtItemId;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -31,10 +32,12 @@ namespace IS.Admin.Setup
             if (!CheckInput())
             {
                 var AdministratorsModel = new AdministratorsModel();
+                _Administrators.AdminId = txtItemId.Text;
                 _Administrators.Loginname = txtLogiName.Text;
                 _Administrators.Fullname = txtFullName.Text;
                 _Administrators.Password = txtPassword.Text;
-
+                _Administrators.UserType = cboUserType.SelectedIndex;
+                _Administrators.Active = chkActive.Checked == true ? 1 : 0;
                 if (AdministratorsModel.CheckDup(this))
                 {
                     MessageBox.Show(_Administrators.Loginname + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -49,14 +52,15 @@ namespace IS.Admin.Setup
             }
         }
 
-        private void FrmAddAdministrator_Load(object sender, EventArgs e)
-        {
-            this.ActiveControl = txtLogiName;
-        }
-
         private bool CheckInput()
         {
-            if(string.IsNullOrEmpty(txtLogiName.Text))
+            if (string.IsNullOrEmpty(txtItemId.Text))
+            {
+                MessageBox.Show("Item Id is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtItemId.Focus();
+                return true;
+            }
+            if (string.IsNullOrEmpty(txtLogiName.Text))
             {
                 MessageBox.Show("Login Name is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtLogiName.Focus();
@@ -98,7 +102,19 @@ namespace IS.Admin.Setup
                 txtPassword.Focus();
                 return true;
             }
+            else if (cboUserType.SelectedIndex < 0)
+            {
+                MessageBox.Show("User type is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cboUserType.Focus();
+                return true;
+            }
             return false;
+        }
+
+        private void FrmAddAdministrator_Load(object sender, EventArgs e)
+        {
+            AdministratorsModel administratorsModel = new AdministratorsModel();
+            txtItemId.Text = administratorsModel.GetNextId();
         }
 
     }

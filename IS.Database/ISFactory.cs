@@ -13,7 +13,7 @@ namespace IS.Database
 
         public AdministratorsRepository AdministratorsRepository => new AdministratorsRepository();
         public CashiersRepository CashiersRepository => new CashiersRepository();
-        public ItemsRepository ItemsRepository => new ItemsRepository();
+        public ProductsRepository ProductsRepository => new ProductsRepository();
         public TempLedgerSalesRepository TempLedgerSalesRepository => new TempLedgerSalesRepository();
         public TempSalesRepository TempSalesRepository => new TempSalesRepository();
         public SalesRepository SalesRepository => new SalesRepository();
@@ -23,7 +23,7 @@ namespace IS.Database
         public CashierCashOnHandDenominationRepository CashierCashOnHandDenominationRepository => new CashierCashOnHandDenominationRepository();
         public CashierCashOnHandRepository CashierCashOnHandRepository => new CashierCashOnHandRepository();
        
-        public RequestOrderItemsRepository RequestOrderItemsRepository  => new RequestOrderItemsRepository();
+        public RequestOrderProductsRepository RequestOrderProductsRepository  => new RequestOrderProductsRepository();
         public RequestOrderItemDetailsRepository RequestOrderItemDetailsRepository => new RequestOrderItemDetailsRepository();
         public ItemReceivedOrdersRepository ItemReceivedOrdersRepository = new ItemReceivedOrdersRepository();
     }

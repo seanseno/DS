@@ -27,30 +27,29 @@ namespace IS.Admin.Setup
 
         }
 
-
         private void LoadAdministrator()
         {
+            grpLoading.Visible = true;
+            grpLoading.Refresh();
+
             AdministratorsModel Administrators = new AdministratorsModel();
             var response = Administrators.AdministratorList(this, txtSearch.Text);
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = response;
             txtSearch.Focus();
-        }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            LoadAdministrator();
+            grpLoading.Visible = false;
+            grpLoading.Refresh();
         }
-
         private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var Administrator = new Administrators();
 
-            Administrator.Id = (int)dgvSearch.CurrentRow.Cells[0].Value;
+            Administrator.AdminId = dgvSearch.CurrentRow.Cells[0].Value.ToString();
             Administrator.Loginname = dgvSearch.CurrentRow.Cells[1].Value.ToString();
             Administrator.Fullname = dgvSearch.CurrentRow.Cells[2].Value.ToString();
 
-            if (e.ColumnIndex == 6) //edit
+            if (e.ColumnIndex == 7) //edit
             {
                 FrmEditAdministrator frm = new FrmEditAdministrator(Administrator);
                 if (frm.ShowDialog() == DialogResult.OK)
@@ -58,7 +57,6 @@ namespace IS.Admin.Setup
                     MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.LoadAdministrator();
                 };
-               
             }
         }
 
@@ -67,9 +65,14 @@ namespace IS.Admin.Setup
             this.Close();
         }
 
-        private void FrmAdministrators_Load(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
-            this.LoadAdministrator();
+            LoadAdministrator();
+        }
+
+        private void FrmAdministrators_Shown(object sender, EventArgs e)
+        {
+            LoadAdministrator();
         }
     }
 }

@@ -16,8 +16,8 @@ namespace IS.Admin.Trasactions
 {
     public partial class FrmItemRequestOrderList : Form
     {
-        readonly RequestOrderItemsModel RModel = new RequestOrderItemsModel();
-        IList<Items> OrderItemDetailList = new List<Items>();
+        readonly RequestOrderProductsModel RModel = new RequestOrderProductsModel();
+        IList<Products> OrderItemDetailList = new List<Products>();
         public decimal InputPrice { get; set; }
         public int InputQty { get; set; }
         public string OdersName { get; set; }
@@ -30,12 +30,12 @@ namespace IS.Admin.Trasactions
 
         private void FrmItemRequestOrderList_Load(object sender, EventArgs e)
         {
-            this.LoadItems();
+            this.LoadProducts();
         }
 
-        private void LoadItems()
+        private void LoadProducts()
         {
-            ItemsModel model = new ItemsModel();
+            ProductsModel model = new ProductsModel();
             var response = model.ItemList(txtSearch.Text);
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -65,7 +65,7 @@ namespace IS.Admin.Trasactions
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            LoadItems();
+            LoadProducts();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -163,7 +163,7 @@ namespace IS.Admin.Trasactions
             //    if (frm.ShowDialog() == DialogResult.OK)
             //    {
             //        tempId++;
-            //        Items item = new Items();
+            //        Items item = new Products();
             //        item.Id = (int)tempId;
             //        item.CategoryName = dgvSearch.CurrentRow.Cells[1].Value?.ToString();
             //        item.CompanyName = dgvSearch.CurrentRow.Cells[2].Value?.ToString();

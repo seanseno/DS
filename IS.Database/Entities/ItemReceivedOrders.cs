@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IS.Database.Entities
 {
-    public class ItemReceivedOrders : ItemExtender
+    public class ItemReceivedOrders : ProductExtender
     {
         public virtual int Id { get; set; }
         public int RequestOrderId { get; set; }

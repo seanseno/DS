@@ -13,20 +13,20 @@ namespace IS.Database.Repositories
 {
     public class SalesRepository : Helper
     {
-        public void Insert(string customerName, int CashierId, int ItemId, int? Qty, int LedgerId)
+        public void Insert(string customerName, int CashierId, string ProductId, int? Qty, int LedgerId)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "INSERT INTO Sales (ItemId,Qty,LedgerId) Values " +
-                    "('" + ItemId + "'," + Qty + "," + LedgerId + ")";
+                var select = "INSERT INTO Sales (ProductId,Qty,LedgerId) Values " +
+                    "('" + ProductId + "'," + Qty + "," + LedgerId + ")";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     cmd.ExecuteNonQuery();
                     var factory = new ISFactory();
                     var stock = new Stocks
                     {
-                        ItemId = ItemId,
+                        ProductId = ProductId,
                         Stock = Qty
                     };
                     factory.StocksRepository.Update(stock, Qty, EnumStock.Debit);
@@ -39,7 +39,7 @@ namespace IS.Database.Repositories
             {
                 connection.Open();
                 var select = "SELECT Items.Description, Sales.Qty, (Items.Price * Sales.Qty) as Amount " +
-                            "FROM Sales INNER JOIN Items on Items.id = Sales.ItemId " +
+                            "FROM Sales INNER JOIN Items on Items.id = Sales.ProductId " +
                             "WHERE CashieId = " + CashierId + " "+
                             " ORDER BY Sales.Id";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
@@ -68,7 +68,7 @@ namespace IS.Database.Repositories
             {
                 connection.Open();
                 var select = "SELECT Items.Description,Sales.Qty, (Items.Price * Sales.Qty) as Amount " +
-                            "FROM Sales INNER JOIN Items on Items.id = Sales.ItemId " +
+                            "FROM Sales INNER JOIN Items on Items.id = Sales.ProductId " +
                             "WHERE CashierId = " + CashierId + " " +
                             "       AND Sales.LedgerId  = " + LedgerId + " " +
                             " ORDER BY Sales.Id";
@@ -97,7 +97,7 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT SUM(Items.Price * Sales.Qty) as TotalAmount FROM Sales INNER JOIN Items on Items.id = Sales.ItemId";
+                var select = "SELECT SUM(Items.Price * Sales.Qty) as TotalAmount FROM Sales INNER JOIN Items on Items.id = Sales.ProductId";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -120,7 +120,7 @@ namespace IS.Database.Repositories
             {
                 connection.Open();
                 var select = " SELECT C.Fullname,I.GenericName, I.BrandName,I.Description, SUM(O.Qty * I.Price) as Amount, SUM(O.Qty) as Qty FROM Sales as O " +
-                             " INNER JOIN Items as I on I.Id = O.ItemId " +
+                             " INNER JOIN Items as I on I.Id = O.ProductId " +
                              " INNER JOIN LedgerSales as LO on LO.Id = O.LedgerId " +
                              " INNER JOIN Cashiers as C on C.Id = LO.CashierId " +
                              " WHERE C.Id = " + CashierId + "" +
@@ -129,7 +129,7 @@ namespace IS.Database.Repositories
                 if (CashierId == null || CashierId == 0)
                 {
                     select = " SELECT C.Fullname, I.GenericName,I.BrandName,I.Description, SUM(O.Qty * I.Price) as Amount, SUM(O.Qty) as Qty FROM Sales as O " +
-                                                 " INNER JOIN Items as I on I.Id = O.ItemId " +
+                                                 " INNER JOIN Items as I on I.Id = O.ProductId " +
                                                  " INNER JOIN LedgerSales as LO on LO.Id = O.LedgerId " +
                                                  " INNER JOIN Cashiers as C on C.Id = LO.CashierId " +
                                                  " WHERE O.InsertTime BETWEEN ( CONVERT(datetime,'" + DateTimeConvertion.ConvertDateString((DateTime)dateFrom) + "', 120)) AND ( CONVERT(datetime,'" + DateTimeConvertion.ConvertDateString((DateTime)dateTo) + "', 120)) " +

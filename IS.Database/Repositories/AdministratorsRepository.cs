@@ -3,6 +3,7 @@ using IS.Database.Entities;
 using IS.Database.Strategy;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -16,18 +17,20 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "INSERT INTO Administrators (LoginName,Fullname,Password) Values " +
-                    "('" + Administrator.Loginname.ToUpper() + "'," +
-                    "'" + Administrator.Fullname.ToUpper() + "'," +
-                    "'" + Encrypt.CreateMD5(Administrator.Password,this.IsEncrypt) + "')";
-
-                using (SqlCommand cmd = new SqlCommand(select, connection))
+                using (SqlCommand cmd = new SqlCommand("spAdministratorsInsert", connection))
                 {
-                    cmd.ExecuteNonQuery();
-                }
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@AdminId", Administrator.AdminId.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@Loginame", Administrator.Loginname.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@Fullname", Administrator.Fullname.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@Password", Encrypt.CreateMD5(Administrator.Password, this.IsEncrypt)));
+                    cmd.Parameters.Add(new SqlParameter("@UserType", Administrator.UserType));
+                   
+                    int rowAffected = cmd.ExecuteNonQuery();
 
-                if (connection.State == System.Data.ConnectionState.Open)
-                    connection.Close();
+                    if (connection.State == System.Data.ConnectionState.Open)
+                        connection.Close();
+                }
             }
         }
 
@@ -36,7 +39,7 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT * FROM Administrators" +
+                var select = "SELECT * FROM vAdministrators" +
                              "  WHERE Loginname Like '%" + keyword + "%' " +
                              "  OR Fullname Like '%" + keyword + "%' " +
                              " ORDER BY Id";
@@ -44,28 +47,28 @@ namespace IS.Database.Repositories
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        List<Administrators> Administrators = new List<Administrators>();
-                        while (reader.Read())
+                        var List = new ReflectionPopulator<Administrators>().CreateList(reader);
+                        return List;
+                    }
+                }
+            }
+        }
+        public Administrators FindAdministratorWithAdminId(string id)
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT * FROM vAdministrators WHERE AdminId = '" + id + "'";
+
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
                         {
-                            var Administrator = new Administrators();
-
-                            Administrator.Id = reader.GetInt32(0);
-                            Administrator.Loginname = reader.GetString(1);
-                            if (!reader.IsDBNull(2))
-                            {
-                                Administrator.Fullname = reader.GetString(2);
-                            }
-                            Administrator.Password = reader.GetString(3);
-                            Administrator.InsertTime = reader.GetDateTime(4);
-                            if (!reader.IsDBNull(5))
-                            {
-                                Administrator.UpdateTime = reader.GetDateTime(5);
-                            }
-                            Administrator.Active = reader.GetInt32(6);
-
-                            Administrators.Add(Administrator);
+                            return new ReflectionPopulator<Administrators>().CreateList(reader)[0];
                         }
-                        return Administrators;
+                        return null;
                     }
                 }
             }
@@ -75,23 +78,43 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT * FROM Administrators WHERE Id = " + id;
+                var select = "SELECT * FROM vAdministrators WHERE Id = " + id;
 
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-
-                        while (reader.Read())
+                        if (reader.HasRows)
                         {
-                            var Administrator = new Administrators
+                            return new ReflectionPopulator<Administrators>().CreateList(reader)[0];
+                        }
+                        return null;
+                    }
+                }
+            }
+        }
+        public string GetNextId()
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT Id + 1 as Id From Administrators ORDER BY id DESC";
+
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
                             {
-                                Id = reader.GetInt32(0),
-                                Loginname = reader.GetString(1),
-                                Fullname = reader.GetString(2),
-                                Active = reader.GetInt32(6),
-                            };
-                            return Administrator;
+                                int Id = reader.GetInt32(0);
+                                return "A" + Id.ToString("0000");
+                            }
+                        }
+                        else
+                        {
+                            return "A0001";
                         }
                         return null;
                     }
@@ -99,64 +122,22 @@ namespace IS.Database.Repositories
             }
         }
 
-        public IList<Administrators> FindAdministratorListWithId(int? id)
+
+        public void Delete(Administrators Administrators)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT * FROM Administrators WHERE Id = " + id + " Order by Fullname";
-                if (id == null)
+                using (SqlCommand cmd = new SqlCommand("spAdministratorsDelete", connection))
                 {
-                    select = "SELECT * FROM Administrators  Order by Fullname";
-                }
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@AdminId", Administrators.AdminId.ToUpper()));
+                    int rowAffected = cmd.ExecuteNonQuery();
 
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        var AdministratorList = new List<Administrators>();
-
-                        AdministratorList.Add(new Administrators
-                        {
-                            Id = 0,
-                            Fullname = "-SELECT-"
-                        });
-
-                        while (reader.Read())
-                        {
-                            var Administrator = new Administrators
-                            {
-                                Id = reader.GetInt32(0),
-                                Loginname = reader.GetString(1),
-                                Fullname = reader.GetString(2),
-                            };
-                            AdministratorList.Add(Administrator);
-                        }
-                        return AdministratorList;
-                    }
+                    if (connection.State == System.Data.ConnectionState.Open)
+                        connection.Close();
                 }
             }
-        }
-
-
-        public void Delete(Administrators brand)
-        {
-            //using (SqlConnection connection = new SqlConnection(ConStr))
-            //{
-            //    connection.Open();
-
-            //    var select = "DELETE FROM Administrators " +
-            //        " WHERE Id = " + Administrator.Id;
-
-            //    using (SqlCommand cmd = new SqlCommand(select, connection))
-            //    {
-            //        cmd.ExecuteNonQuery();
-            //    }
-
-            //    if (connection.State == System.Data.ConnectionState.Open)
-            //        connection.Close();
-
-            //}
         }
 
         public void Update(Administrators Administrator)
@@ -164,27 +145,20 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-
-                var select = "UPDATE Administrators SET Fullname = '" + Administrator.Fullname.ToUpper() + "'," +
-                    " Active =" + Administrator.Active + ", " +
-                    " UpdateTime ='" + DateTimeConvertion.ConvertDateString(DateTime.Now) + "' " +
-                    " WHERE Id = " + Administrator.Id;
-                if(!string.IsNullOrEmpty(Administrator.Password.ToUpper()))
+                using (SqlCommand cmd = new SqlCommand("spAdministratorsUpdate", connection))
                 {
-                    select = "UPDATE Administrators SET Fullname = '" + Administrator.Fullname.ToUpper() + "'," +
-                        " Password ='" + Encrypt.CreateMD5(Administrator.Password.ToUpper(), this.IsEncrypt) + "'," +
-                        " Active =" + Administrator.Active + ", " +
-                        " UpdateTime ='" + DateTimeConvertion.ConvertDateString(DateTime.Now) + "' " +
-                        " WHERE Id = " + Administrator.Id;
-                }
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    cmd.ExecuteNonQuery();
-                }
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@AdminId", Administrator.AdminId.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@Fullname", Administrator.Fullname.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@Password", Administrator.Password == "" ? "" : Encrypt.CreateMD5(Administrator.Password, this.IsEncrypt)));
+                    cmd.Parameters.Add(new SqlParameter("@UserType", Administrator.UserType));
+                    cmd.Parameters.Add(new SqlParameter("@Active", Administrator.Active));
 
-                if (connection.State == System.Data.ConnectionState.Open)
-                    connection.Close();
+                    int rowAffected = cmd.ExecuteNonQuery();
 
+                    if (connection.State == System.Data.ConnectionState.Open)
+                        connection.Close();
+                }
             }
         }
         public AdministratorsStrategy AdministratorsStrategy => new AdministratorsStrategy();

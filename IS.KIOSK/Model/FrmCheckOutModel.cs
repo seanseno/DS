@@ -16,7 +16,7 @@ namespace IS.KIOSK.Model
 
             //foreach (var itm in frmMain._TempOrderList)
             //{
-            //    factory.SalesRepository.Insert(ledger.CustomerName, ledger.CashierId, itm.ItemId, itm.Qty, ledger.Id);
+            //    factory.SalesRepository.Insert(ledger.CustomerName, ledger.CashierId, itm.ProductId, itm.Qty, ledger.Id);
             //}
 
             ////DELETE TEMPORARY

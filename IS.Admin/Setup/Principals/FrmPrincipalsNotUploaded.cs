@@ -24,7 +24,7 @@ namespace IS.Admin.Setup
         }
 
 
-        private void LoadItems()
+        private void LoadProducts()
         {
             PrincipalsModel model = new PrincipalsModel();
 
@@ -51,7 +51,7 @@ namespace IS.Admin.Setup
             grpLoading.Visible = true;
             grpLoading.Refresh();
 
-            this.LoadItems();
+            this.LoadProducts();
 
             grpLoading.Visible = false;
             grpLoading.Refresh();
@@ -59,7 +59,7 @@ namespace IS.Admin.Setup
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            LoadItems();
+            LoadProducts();
         }
 
         private void FrmPrincipalsNotUploaded_Load(object sender, EventArgs e)

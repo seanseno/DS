@@ -17,7 +17,7 @@ namespace IS.KIOSK
     {
         public TempLedgerSales _TempLedgerSales { get; set; }
         public IList<TempSales> _TempOrderList { get; set; }
-        public IList<Items> _ItemList { get; set; }
+        public IList<Products> _ItemList { get; set; }
 
         public Cashiers _Cashier { get; set; }
         ISFactory factory = new ISFactory();

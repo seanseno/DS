@@ -15,10 +15,10 @@ namespace IS.Admin.Setup
 {
     public partial class FrmEditStock : Form
     {
-        private Items _Item { get;set;}
+        private Products _Item { get;set;}
         private EnumStock _EnumStock { get; set; }
         private int? CurrentStock { get; set; }
-        public FrmEditStock(Items item, EnumStock enumstock)
+        public FrmEditStock(Products item, EnumStock enumstock)
         {
             InitializeComponent();
             this._Item = item;

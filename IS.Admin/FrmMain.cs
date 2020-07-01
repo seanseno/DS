@@ -79,18 +79,6 @@ namespace IS.Admin
             frm.ShowDialog();
         }
 
-        private void itemsToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            FrmItems frm = new FrmItems();
-            frm.ShowDialog();
-        }
-
-        private void uploadItemsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmUploadExcel frm = new FrmUploadExcel();
-            var response = frm.ShowDialog();
-        }
-
         private void stocksToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmStocks frm = new FrmStocks();
@@ -105,14 +93,26 @@ namespace IS.Admin
 
         private void receivedOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmReceivedItems frm = new FrmReceivedItems();
-            frm.ShowDialog();
+            //FrmReceivedItems frm = new FrmReceivedProducts();
+            //frm.ShowDialog();
         }
 
         private void principalsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmPrincipals frm = new FrmPrincipals();
             frm.ShowDialog();
+        }
+
+        private void productsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FrmProducts frm = new FrmProducts();
+            frm.ShowDialog();
+        }
+
+        private void uploadProductsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmUploadExcel frm = new FrmUploadExcel();
+            var response = frm.ShowDialog();
         }
     }
 }

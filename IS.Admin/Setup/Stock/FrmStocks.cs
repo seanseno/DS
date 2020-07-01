@@ -42,7 +42,7 @@ namespace IS.Admin.Setup
 
         private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //var item = new Items();
+            //var item = new Products();
             //item.Id = (int)dgvSearch.CurrentRow.Cells[0].Value;
             //item.GenericName = dgvSearch.CurrentRow.Cells[1].Value?.ToString();
             //item.BrandName = dgvSearch.CurrentRow.Cells[2].Value?.ToString();

@@ -91,7 +91,7 @@ namespace IS.Admin.Setup
             {
                 if (MessageBox.Show("Are you sure do want to continue?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    ItemsModel request = new ItemsModel();
+                    ProductsModel request = new ProductsModel();
 
                     progressBar1.Maximum = dt.Rows.Count;
                     progressBar1.Minimum = 0;
@@ -99,14 +99,14 @@ namespace IS.Admin.Setup
                     progressBar1.Value = 0;
                     int progressCount = 0;
 
-                    var ErrorList = new List<Items>();
+                    var ErrorList = new List<Products>();
 
-                    IList<Items> list = new List<Items>();
+                    IList<Products> list = new List<Products>();
 
                     foreach (DataRow row in dt.Rows)
                     {
-                        var item = new Items();
-                        item.ItemId = row[0].ToString().ToUpper();
+                        var item = new Products();
+                        item.ProductId = row[0].ToString().ToUpper();
                         item.CategoryId = row[1].ToString().ToUpper();
                         item.CategoryName = row[2].ToString().ToUpper();
                         item.PrincipalId = row[3].ToString().ToUpper();

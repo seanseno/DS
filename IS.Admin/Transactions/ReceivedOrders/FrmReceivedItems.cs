@@ -24,18 +24,18 @@ namespace IS.Admin.Trasactions
         {
             FrmAddReceivedItem frm = new FrmAddReceivedItem();
             frm.ShowDialog();
-            this.LoadItems();
+            this.LoadProducts();
 
         }
 
         private void FrmReceivedItems_Load(object sender, EventArgs e)
         {
-            this.LoadItems();
+            this.LoadProducts();
             this.reloadCboRequestOrderList();
         }
         private void reloadCboRequestOrderList()
         {
-            RequestOrderItemsModel RModel = new RequestOrderItemsModel();
+            RequestOrderProductsModel RModel = new RequestOrderProductsModel();
 
             cboRequestOrderList.DataSource = null;
 
@@ -51,7 +51,7 @@ namespace IS.Admin.Trasactions
             cboRequestOrderList.DisplayMember = "Value";
             cboRequestOrderList.ValueMember = "Key";
         }
-        private void LoadItems()
+        private void LoadProducts()
         {
             if(cboRequestOrderList.Items != null)
             {
@@ -71,12 +71,12 @@ namespace IS.Admin.Trasactions
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            LoadItems();
+            LoadProducts();
         }
 
         private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //var Item = new Items();
+            //var Item = new Products();
             //Item.Id = (int)dgvSearch.CurrentRow.Cells[0].Value;
             //Item.CategoryName = dgvSearch.CurrentRow.Cells[1].Value?.ToString();
             //Item.CompanyName = dgvSearch.CurrentRow.Cells[2].Value?.ToString();
@@ -117,7 +117,7 @@ namespace IS.Admin.Trasactions
             //    if (frm.ShowDialog() == DialogResult.OK)
             //    {
             //        MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        this.LoadItems();
+            //        this.LoadProducts();
             //    };
             //}
             //if (e.ColumnIndex == 13)
@@ -126,7 +126,7 @@ namespace IS.Admin.Trasactions
             //    if (MessageBox.Show("Are you sure do want to delete " + string.Join(" ", Params) + ".", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             //    {
             //        model.Delete(Item.Id);
-            //        this.LoadItems();
+            //        this.LoadProducts();
             //        MessageBox.Show(Item.Description + " deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             //    }
             //}
@@ -141,7 +141,7 @@ namespace IS.Admin.Trasactions
         {
             if (cboRequestOrderList.Items.Count > 1 && cboRequestOrderList.SelectedIndex != 0)
             {
-                this.LoadItems();
+                this.LoadProducts();
             }
             else
             {
@@ -166,7 +166,7 @@ namespace IS.Admin.Trasactions
         //    }
         //    if (e.ColumnIndex == 6)
         //    {
-        //        var model = new ItemsModel();
+        //        var model = new ProductsModel();
         //        if (model.CheckItemIfAlreadyInUse(Item.Id))
         //        {
         //            MessageBox.Show("You can not delete " + Item.Name + " because this brand already in use", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);

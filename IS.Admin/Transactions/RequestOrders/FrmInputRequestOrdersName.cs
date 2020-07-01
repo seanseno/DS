@@ -17,7 +17,7 @@ namespace IS.Admin.Trasactions
     {
         ISFactory factory = new ISFactory();
         FrmItemRequestOrderList _FrmMain = new FrmItemRequestOrderList();
-        RequestOrderItemsModel requestOrderItemsModel = new RequestOrderItemsModel();
+        RequestOrderProductsModel requestOrderProductsModel = new RequestOrderProductsModel();
         public FrmInputRequestOrdersName(FrmItemRequestOrderList model)
         {
             InitializeComponent();
@@ -35,7 +35,7 @@ namespace IS.Admin.Trasactions
             }
             else
             {
-                if(requestOrderItemsModel.CheckDupRequestName(txtOrdersName.Text))
+                if(requestOrderProductsModel.CheckDupRequestName(txtOrdersName.Text))
                 {
                     MessageBox.Show("Request orders name already exist!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtOrdersName.Focus();
