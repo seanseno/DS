@@ -43,8 +43,6 @@
             this.utilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cashiersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addUpdateCashierInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cashOnHandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cashierTotalCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -175,26 +173,10 @@
             // 
             // cashiersToolStripMenuItem
             // 
-            this.cashiersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addUpdateCashierInfoToolStripMenuItem,
-            this.cashOnHandToolStripMenuItem});
             this.cashiersToolStripMenuItem.Name = "cashiersToolStripMenuItem";
-            this.cashiersToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.cashiersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cashiersToolStripMenuItem.Text = "Cashiers";
-            // 
-            // addUpdateCashierInfoToolStripMenuItem
-            // 
-            this.addUpdateCashierInfoToolStripMenuItem.Name = "addUpdateCashierInfoToolStripMenuItem";
-            this.addUpdateCashierInfoToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.addUpdateCashierInfoToolStripMenuItem.Text = "Add/Update Cashier info";
-            this.addUpdateCashierInfoToolStripMenuItem.Click += new System.EventHandler(this.addUpdateCashierInfoToolStripMenuItem_Click);
-            // 
-            // cashOnHandToolStripMenuItem
-            // 
-            this.cashOnHandToolStripMenuItem.Name = "cashOnHandToolStripMenuItem";
-            this.cashOnHandToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.cashOnHandToolStripMenuItem.Text = "Cash On-hand";
-            this.cashOnHandToolStripMenuItem.Click += new System.EventHandler(this.cashOnHandToolStripMenuItem_Click);
+            this.cashiersToolStripMenuItem.Click += new System.EventHandler(this.cashiersToolStripMenuItem_Click);
             // 
             // reportToolStripMenuItem
             // 
@@ -284,8 +266,6 @@
         private System.Windows.Forms.ToolStripMenuItem administratorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cashiersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOfffToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addUpdateCashierInfoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cashOnHandToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cashierTotalCollectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem categoriesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem transactionsToolStripMenuItem;

@@ -3,6 +3,7 @@ using IS.Database.Entities;
 using IS.Database.Strategy;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -16,24 +17,24 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "INSERT INTO Cashiers (LoginName,Fullname,Password) Values " +
-                    "('" + Cashier.Loginname.ToUpper() + "'," +
-                    "'" + Cashier.Fullname.ToUpper() + "'," +
-                    "'" + Encrypt.CreateMD5(Cashier.Password, this.IsEncrypt) + "'); SELECT SCOPE_IDENTITY();";
-
-                using (SqlCommand cmd = new SqlCommand(select, connection))
+                using (SqlCommand cmd = new SqlCommand("spCashiersInsert", connection))
                 {
-                    var model = new Cashiers
-                    {
-                        Id = Convert.ToInt32(cmd.ExecuteScalar()),
-                        Loginname = Cashier.Loginname.ToUpper(),
-                        Fullname = Cashier.Fullname,
-                    };
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@CashierId", Cashier.CashierId.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@Loginname", Cashier.Loginname.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@Fullname", Cashier.Fullname.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@Password", Encrypt.CreateMD5(Cashier.Password, this.IsEncrypt)));
+
+                    int rowAffected = cmd.ExecuteNonQuery();
 
                     if (connection.State == System.Data.ConnectionState.Open)
                         connection.Close();
-
-                    return model;
+                    
+                    if (rowAffected > 0)
+                    {
+                       return  this.FindCashierWithCashierId(Cashier.CashierId.ToUpper());
+                    }
+                    return null;
                 }
 
             }
@@ -44,7 +45,7 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT * FROM Cashiers" +
+                var select = "SELECT * FROM vCashiers" +
                              "  WHERE Loginname Like '%" + keyword + "%' " +
                              "  OR Fullname Like '%" + keyword + "%' " +
                              " ORDER BY Id";
@@ -52,28 +53,28 @@ namespace IS.Database.Repositories
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        List<Cashiers> cashiers = new List<Cashiers>();
-                        while (reader.Read())
+                        return new ReflectionPopulator<Cashiers>().CreateList(reader);
+                    }
+                }
+            }
+        }
+        public Cashiers FindCashierWithCashierId(string CashierId)
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT * FROM vCashiers WHERE CashierId = '" + CashierId + "'";
+
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        if (reader.HasRows)
                         {
-                            var cashier = new Cashiers();
-
-                            cashier.Id = reader.GetInt32(0);
-                            cashier.Loginname = reader.GetString(1);
-                            if (!reader.IsDBNull(2))
-                            {
-                                cashier.Fullname = reader.GetString(2);
-                            }
-                            cashier.Password = reader.GetString(3);
-                            cashier.InsertTime = reader.GetDateTime(4);
-                            if (!reader.IsDBNull(5))
-                            {
-                                cashier.UpdateTime = reader.GetDateTime(5);
-                            }
-                            cashier.Active = reader.GetInt32(6);
-
-                            cashiers.Add(cashier);
+                            return new ReflectionPopulator<Cashiers>().CreateList(reader)[0];
                         }
-                        return cashiers;
+                        return null;
                     }
                 }
             }
@@ -177,27 +178,48 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-
-                var select = "UPDATE Cashiers SET Fullname = '" + Cashier.Fullname.ToUpper() + "'," +
-                    " Active =" + Cashier.Active + ", " +
-                    " UpdateTime ='" + DateTimeConvertion.ConvertDateString(DateTime.Now) + "' " +
-                    " WHERE Id = " + Cashier.Id;
-                if(!string.IsNullOrEmpty(Cashier.Password.ToUpper()))
+                using (SqlCommand cmd = new SqlCommand("spCashiersUpdate", connection))
                 {
-                    select = "UPDATE Cashiers SET Fullname = '" + Cashier.Fullname.ToUpper() + "'," +
-                        " Password ='" + Encrypt.CreateMD5(Cashier.Password.ToUpper(), this.IsEncrypt) + "'," +
-                        " Active =" + Cashier.Active + ", " +
-                        " UpdateTime ='" + DateTimeConvertion.ConvertDateString(DateTime.Now) + "' " +
-                        " WHERE Id = " + Cashier.Id;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@CashierId", Cashier.CashierId.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@Fullname", Cashier.Fullname.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@Password", Cashier.Password == "" ? "" : Encrypt.CreateMD5(Cashier.Password, this.IsEncrypt)));
+                    cmd.Parameters.Add(new SqlParameter("@Active", Cashier.Active));
+
+                    int rowAffected = cmd.ExecuteNonQuery();
+
+                    if (connection.State == System.Data.ConnectionState.Open)
+                        connection.Close();
                 }
+            }
+        }
+
+        public string GetNextId()
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT Id + 1 as Id From Cashiers ORDER BY id DESC";
+
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
-                    cmd.ExecuteNonQuery();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                int Id = reader.GetInt32(0);
+                                return "M" + Id.ToString("0000");
+                            }
+                        }
+                        else
+                        {
+                            return "M0001";
+                        }
+                        return null;
+                    }
                 }
-
-                if (connection.State == System.Data.ConnectionState.Open)
-                    connection.Close();
-
             }
         }
 

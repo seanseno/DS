@@ -73,26 +73,7 @@ namespace IS.Database.Repositories
                 }
             }
         }
-        public Administrators FindAdministratorWithId(int? id)
-        {
-            using (SqlConnection connection = new SqlConnection(ConStr))
-            {
-                connection.Open();
-                var select = "SELECT * FROM vAdministrators WHERE Id = " + id;
 
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            return new ReflectionPopulator<Administrators>().CreateList(reader)[0];
-                        }
-                        return null;
-                    }
-                }
-            }
-        }
         public string GetNextId()
         {
             using (SqlConnection connection = new SqlConnection(ConStr))

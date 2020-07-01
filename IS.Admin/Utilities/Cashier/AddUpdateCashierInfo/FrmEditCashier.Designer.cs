@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEditCashier));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnUploadPhoto = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chkActive = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -41,11 +42,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtLogiName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.PictureBox = new System.Windows.Forms.PictureBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.btnUploadPhoto = new System.Windows.Forms.Button();
-            this.PictureBox = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
@@ -59,10 +60,20 @@
             this.panel1.Controls.Add(this.PictureBox);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnSave);
-            this.panel1.Location = new System.Drawing.Point(3, 8);
+            this.panel1.Location = new System.Drawing.Point(12, 46);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(688, 265);
             this.panel1.TabIndex = 8;
+            // 
+            // btnUploadPhoto
+            // 
+            this.btnUploadPhoto.Location = new System.Drawing.Point(9, 150);
+            this.btnUploadPhoto.Name = "btnUploadPhoto";
+            this.btnUploadPhoto.Size = new System.Drawing.Size(125, 23);
+            this.btnUploadPhoto.TabIndex = 9;
+            this.btnUploadPhoto.Text = "Upload Photo";
+            this.btnUploadPhoto.UseVisualStyleBackColor = true;
+            this.btnUploadPhoto.Click += new System.EventHandler(this.btnUploadPhoto_Click);
             // 
             // groupBox2
             // 
@@ -178,6 +189,15 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Login Name :";
             // 
+            // PictureBox
+            // 
+            this.PictureBox.Image = global::IS.Admin.Properties.Resources.NoPhoto;
+            this.PictureBox.Location = new System.Drawing.Point(9, 14);
+            this.PictureBox.Name = "PictureBox";
+            this.PictureBox.Size = new System.Drawing.Size(125, 130);
+            this.PictureBox.TabIndex = 10;
+            this.PictureBox.TabStop = false;
+            // 
             // btnCancel
             // 
             this.btnCancel.Image = global::IS.Admin.Properties.Resources.Cancel;
@@ -204,35 +224,28 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // btnUploadPhoto
-            // 
-            this.btnUploadPhoto.Location = new System.Drawing.Point(9, 150);
-            this.btnUploadPhoto.Name = "btnUploadPhoto";
-            this.btnUploadPhoto.Size = new System.Drawing.Size(125, 23);
-            this.btnUploadPhoto.TabIndex = 9;
-            this.btnUploadPhoto.Text = "Upload Photo";
-            this.btnUploadPhoto.UseVisualStyleBackColor = true;
-            this.btnUploadPhoto.Click += new System.EventHandler(this.btnUploadPhoto_Click);
-            // 
-            // PictureBox
-            // 
-            this.PictureBox.Image = global::IS.Admin.Properties.Resources.NoPhoto;
-            this.PictureBox.Location = new System.Drawing.Point(9, 14);
-            this.PictureBox.Name = "PictureBox";
-            this.PictureBox.Size = new System.Drawing.Size(125, 130);
-            this.PictureBox.TabIndex = 10;
-            this.PictureBox.TabStop = false;
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(6, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(242, 34);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Edit Cashier Info.";
             // 
             // FrmEditCashier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(701, 285);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(717, 327);
             this.ControlBox = false;
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FrmEditCashier";
@@ -243,6 +256,7 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -265,5 +279,6 @@
         private System.Windows.Forms.Button btnUploadPhoto;
         private System.Windows.Forms.PictureBox PictureBox;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label label7;
     }
 }

@@ -61,18 +61,6 @@ namespace IS.Admin
             }
         }
 
-        private void addUpdateCashierInfoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmCashiers frm = new FrmCashiers();
-            frm.ShowDialog();
-        }
-
-        private void cashOnHandToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmCashierOnhand frm = new FrmCashierOnhand();
-            frm.ShowDialog();
-        }
-
         private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmCategories frm = new FrmCategories();
@@ -113,6 +101,12 @@ namespace IS.Admin
         {
             FrmUploadExcel frm = new FrmUploadExcel();
             var response = frm.ShowDialog();
+        }
+
+        private void cashiersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCashiers frm = new FrmCashiers();
+            frm.ShowDialog();
         }
     }
 }

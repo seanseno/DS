@@ -43,10 +43,10 @@ namespace IS.Admin.Model
             var factory = new ISFactory();
             factory.CashiersRepository.Delete(Cashier);
         }
-        public Cashiers LoadEdit(int? CashierId)
+        public Cashiers LoadEdit(string CashierId)
         {
             var factory = new ISFactory();
-            return factory.CashiersRepository.FindCashierWithId(CashierId);
+            return factory.CashiersRepository.FindCashierWithCashierId(CashierId);
         }
 
         public bool CheckCashierIfAlreadyInUse(int? CashierId)
@@ -54,6 +54,11 @@ namespace IS.Admin.Model
             var factory = new ISFactory();
             //return factory.CashiersRepository.CashiersStrategy.CashierAlreadyInUse(CashierId);
             return false;
+        }
+        public string GetNextId()
+        {
+            var factory = new ISFactory();
+            return factory.CashiersRepository.GetNextId();
         }
     }
 }

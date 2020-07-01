@@ -30,11 +30,17 @@ namespace IS.Admin.Setup
 
         private void LoadCashier()
         {
+            grpLoading.Visible = true;
+            grpLoading.Refresh();
+
             CashiersModel Cashiers = new CashiersModel();
             var response = Cashiers.CashierList(this, txtSearch.Text);
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = response;
             txtSearch.Focus();
+
+            grpLoading.Visible = false;
+            grpLoading.Refresh();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -46,7 +52,7 @@ namespace IS.Admin.Setup
         {
             var Cashier = new Cashiers();
 
-            Cashier.Id = (int)dgvSearch.CurrentRow.Cells[0].Value;
+            Cashier.CashierId = dgvSearch.CurrentRow.Cells[0].Value.ToString();
             Cashier.Loginname = dgvSearch.CurrentRow.Cells[1].Value.ToString();
             Cashier.Fullname = dgvSearch.CurrentRow.Cells[2].Value.ToString();
 
@@ -67,7 +73,7 @@ namespace IS.Admin.Setup
             this.Close();
         }
 
-        private void FrmCashiers_Load(object sender, EventArgs e)
+        private void FrmCashiers_Shown(object sender, EventArgs e)
         {
             this.LoadCashier();
         }

@@ -27,13 +27,13 @@ namespace IS.Admin.Setup
         private void FrmEditCashier_Load(object sender, EventArgs e)
         {
             CashiersModel Cashiers = new CashiersModel();
-            var response = Cashiers.LoadEdit(_Cashier.Id);
+            var response = Cashiers.LoadEdit(_Cashier.CashierId);
             txtLogiName.Text = response.Loginname;
             txtFullName.Text = response.Fullname;
             chkActive.Checked = Convert.ToBoolean(response.Active);
-            if (ImagesUtility.PhotoIsExist(_Cashier.Id))
+            if (ImagesUtility.PhotoIsExist(response.Id))
             {
-                PictureBox.Image = PictureBox.Image = Image.FromStream(new MemoryStream(File.ReadAllBytes(ImagesUtility.LoadCashierPhoto(_Cashier.Id))));
+                PictureBox.Image = PictureBox.Image = Image.FromStream(new MemoryStream(File.ReadAllBytes(ImagesUtility.LoadCashierPhoto(response.Id))));
             }
 
             PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
