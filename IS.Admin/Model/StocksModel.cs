@@ -12,28 +12,21 @@ namespace IS.Admin.Model
 {
     public class StocksModel
     {
-        public IList<Products> StockList(string Keywords)
+        public IList<Stocks> StockList(string Keywords)
         {
             var factory = new ISFactory();
             return factory.StocksRepository.Find(Keywords);
         }
-        public void UpdateStock(Products item,int? Qty,EnumStock enumStock)
-        {
-            ////INSERT STOCK
-            //var stock = new Stocks
-            //{
-            //    ItemId = item.Id,
-            //    Stock = item.Stock
-            //};
-
-            //var factory = new ISFactory();
-            //factory.StocksRepository.Update(stock, Qty, enumStock);
-        }
-
-        public Products LoadEdit(int? ItemId)
+        public void UpdateStock(string ProductId,int Stock, int CurrectStock, EnumStock enumStock)
         {
             var factory = new ISFactory();
-            return factory.StocksRepository.FindWithItemId(ItemId);
+            factory.StocksRepository.Update(ProductId, Stock, CurrectStock, enumStock);
+        }
+
+        public Stocks LoadEdit(string ProductId)
+        {
+            var factory = new ISFactory();
+            return factory.StocksRepository.FindWithProductId(ProductId);
         }
 
     }

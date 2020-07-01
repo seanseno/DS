@@ -34,7 +34,7 @@ namespace IS.KIOSK
             var (cashierId,response) = factory.CashiersRepository.CashiersStrategy.CheckCashierLogin(txtLoginame.Text, txtPassword.Text);
             if (response)
             {
-                kiosk._Cashier = factory.CashiersRepository.FindCashierWithId(cashierId);
+                kiosk._Cashier = factory.CashiersRepository.FindCashierWithCashierId(cashierId);
                 this.DialogResult = DialogResult.OK;
             }
             else

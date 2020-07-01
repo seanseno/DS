@@ -79,39 +79,6 @@ namespace IS.Database.Repositories
                 }
             }
         }
-        public Cashiers FindCashierWithId(int? id)
-        {
-            using (SqlConnection connection = new SqlConnection(ConStr))
-            {
-                connection.Open();
-                var select = "SELECT * FROM Cashiers WHERE Id = " + id;
-
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-
-                        while (reader.Read())
-                        {
-                            var cashier = new Cashiers
-                            {
-                                Id = reader.GetInt32(0),
-                                Loginname = reader.GetString(1),
-                                Fullname = reader.GetString(2),
-                                InsertTime = reader.GetDateTime(4),
-                                Active = reader.GetInt32(6),
-                            };
-                            if (!reader.IsDBNull(5))
-                            {
-                                cashier.UpdateTime = reader.GetDateTime(5);
-                            }
-                            return cashier;
-                        }
-                        return null;
-                    }
-                }
-            }
-        }
 
         public IList<Cashiers> FindCashierListWithId(int? id)
         {

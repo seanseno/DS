@@ -23,7 +23,7 @@ namespace IS.Database.Repositories
                 {
                     
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@CashierId", cashier.Id));
+                    cmd.Parameters.Add(new SqlParameter("@CashierId", cashier.CashierId));
                     cmd.Parameters.Add(new SqlParameter("@PayAmount", PayAmount));
                     cmd.Parameters.Add(new SqlParameter("@Change", Change));
                     cmd.Parameters.Add(new SqlParameter("@CustomerName", customerName));

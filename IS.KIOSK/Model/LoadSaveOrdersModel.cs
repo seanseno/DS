@@ -1,6 +1,7 @@
 ﻿using IS.Database;
 using IS.Database.Entities;
 using IS.Database.Enums;
+using IS.Database.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,9 @@ namespace IS.KIOSK.Model
     public class LoadSaveOrdersModel
     {
         ISFactory _Factory = new ISFactory();
-        public IList<TempLedgerSales> LoadSaveOrderList(FrmMain frm)
+        public IList<TotalTempLedgerInfo> LoadSaveOrderList(FrmMain frm)
         {
-            var resultList = _Factory.TempLedgerSalesRepository.Find(frm._Cashier.Id);
+            var resultList = _Factory.TempLedgerSalesRepository.Find(frm._Cashier.CashierId);
             return resultList;
         }
 

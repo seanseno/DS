@@ -1,10 +1,11 @@
-﻿using System;
+﻿using IS.Database.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace IS.Database.Entities
 {
-    public class Stocks
+    public class Stocks : GlobalExtender
     {
         public int? Id { get; set; }
         public string ProductId { get; set; }
@@ -12,5 +13,6 @@ namespace IS.Database.Entities
         public DateTime? InsertTime { get; set; }
         public DateTime? UpdateTime { get; set; }
         public int Active { get; set; }
+        public string ProductName { get; set; }
     }
 }

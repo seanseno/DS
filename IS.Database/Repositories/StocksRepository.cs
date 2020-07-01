@@ -4,6 +4,7 @@ using IS.Database.Strategy;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -38,103 +39,70 @@ namespace IS.Database.Repositories
             factory.StocksHistoryRepository.Insert(stock, stock.Stock,EnumStock.Credit);
         }
 
-        public void Update(Stocks stock, int? qty, EnumStock enumStock)
-        {
-            //var currentStock = FindWithItemId(stock.ProductId);
-            //int newStock = 0;
-            //if (enumStock == EnumStock.Credit)
-            //{
-            //    newStock = (int)currentStock.Stock + (int)qty;
-            //}
-            //else
-            //{
-            //    newStock = (int)currentStock.Stock - (int)qty;
-            //}
-            //stock.Stock = newStock;
-            //using (SqlConnection connection = new SqlConnection(ConStr))
-            //{
-            //    connection.Open();
-            //    var select = "UPDATE  Stocks SET  Stocks.Stock  = " + newStock + "  " +
-            //        " WHERE ItemId = " + stock.ProductId;
-
-            //    using (SqlCommand cmd = new SqlCommand(select, connection))
-            //    {
-            //        cmd.ExecuteNonQuery();
-            //    }
-
-            //    if (connection.State == System.Data.ConnectionState.Open)
-            //        connection.Close();
-            //}
-
-            //ISFactory factory = new ISFactory();
-            //factory.StocksHistoryRepository.Insert(stock, qty, enumStock);
-        }
-
-        public Products FindWithItemId(int? ItemID)
+        public void Update(string ProductId, int Stock ,int CurrentStock, EnumStock enumStock)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                //var select = "SELECT i.Id, i.BrandName,i.Description,s.Stock  From Stocks as s" +
-                //            " INNER JOIN Products as i on i.Id = s.ProductId " +
-                //            " WHERE s.ProductId = " + ItemID;
+                using (SqlCommand cmd = new SqlCommand("spStocksUpdate", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@ProductId", ProductId.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@Stocks", Stock));
+                    cmd.Parameters.Add(new SqlParameter("@CurrentStocks", CurrentStock));
+                    cmd.Parameters.Add(new SqlParameter("@Operation", (int)enumStock));
 
-                //using (SqlCommand cmd = new SqlCommand(select, connection))
-                //{
-                //    using (SqlDataReader reader = cmd.ExecuteReader())
-                //    {
-                //        List<Products> Products = new List<Products>();
-                //        while (reader.Read())
-                //        {
-                //            var item = new Products
-                //            {
-                //                Id = reader.GetInt32(0),
-                //                BrandName = reader.GetString(1),
-                //                Description = reader.GetString(2),
-                //                Stock = reader.GetInt32(3),
-                //            };
-                //            return item;
-                //        }
-                //        return null;
-                //    }
-                //}
-                return null;
+                    int rowAffected = cmd.ExecuteNonQuery();
+
+                    if (connection.State == System.Data.ConnectionState.Open)
+                        connection.Close();
+                }
+            }
+        }
+
+        public Stocks FindWithProductId(string ProductID)
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT * FROM vProducts " +
+                            " WHERE ProductId = '" + ProductID + "'";
+
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            return new ReflectionPopulator<Stocks>().CreateList(reader)[0];
+                        }
+                        return null;
+                    }
+                }
             }
 
         }
-        public IList<Products> Find(string keyword)
+        public IList<Stocks> Find(string keyword)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                return null;
-                //var select = "SELECT i.Id, i.GenericName, i.BrandName,i.Description,s.Stock  From Stocks as s" +
-                //            " INNER JOIN Products as i on i.Id = s.ProductId " +
-                //            " WHERE i.BrandName Like '%" + keyword + "%' AND i.Description Like '%" + keyword + "%'" +
-                //            " ";
-                //using (SqlCommand cmd = new SqlCommand(select, connection))
-                //{
-                //    using (SqlDataReader reader = cmd.ExecuteReader())
-                //    {
-                //        List<Products> Products = new List<Products>();
-                //        while (reader.Read())
-                //        {
-                //            var item = new Products
-                //            {
-                //                Id = reader.GetInt32(0),
-                //                GenericName = reader.GetString(1),
-                //                BrandName = reader.GetString(2),
-                //                Description = reader.GetString(3),
-                //                Stock = reader.GetInt32(4),
-                //                //InsertTime = reader.GetDateTime(4),
-                //                //Active = reader.GetInt32(6)
-                //            };
+                var select = "SELECT * FROM vStocks " +
+                            " WHERE ProductId like '%" + keyword + "%' OR" +
+                            " ProductName like '%" + keyword + "%'" +
+                            " ORDER BY ProductName";
 
-                //            Products.Add(item);
-                //        }
-                //        return Products;
-                //    }
-                //}
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            return new ReflectionPopulator<Stocks>().CreateList(reader);
+                        }
+                        return null;
+                    }
+                }
             }
         }
         public StocksStrategy StocksStrategy => new StocksStrategy();

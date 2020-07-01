@@ -15,45 +15,44 @@ namespace IS.Admin.Setup
 {
     public partial class FrmEditStock : Form
     {
-        private Products _Item { get;set;}
+        private string _ProductId { get;set;}
         private EnumStock _EnumStock { get; set; }
         private int? CurrentStock { get; set; }
-        public FrmEditStock(Products item, EnumStock enumstock)
+        public FrmEditStock(string ProductId, EnumStock enumstock)
         {
             InitializeComponent();
-            this._Item = item;
+            this._ProductId = ProductId;
             this._EnumStock = enumstock;
+            this.ActiveControl = txtStock;
         }
 
         private void FrmEditStock_Load(object sender, EventArgs e)
         {
-            //StocksModel stocks = new StocksModel();
-            //var response = stocks.LoadEdit(_Item.Id);
-            ////lblName.Text = response.Name;
-            //lblDescription.Text = response.Description;
-            
-            //CurrentStock = response.Stock;
-            //lblCurrentStock.Text = CurrentStock.ToString();
-            //lblNewStock.Text = CurrentStock.ToString();
+            StocksModel stocks = new StocksModel();
+            var response = stocks.LoadEdit(_ProductId);
+            lblItemId.Text = _ProductId;
+            lblDescription.Text = response.ProductName;
 
-            //txtStock.Text = "0";
+            this.CurrentStock = response.Stock == null? 0 : response.Stock;
 
-            //if(this._EnumStock == EnumStock.Credit)
-            //{
-            //    Color color = Color.FromArgb(128, 255, 255);
-            //    txtStock.BackColor = color;
-            //    lblStock.Text = "Credit stock :";
-                
-            //}
-            //else
-            //{
-            //    Color color = Color.FromArgb(255, 192, 192);
-            //    txtStock.BackColor = color;
-            //    lblStock.Text = "Debit stock :";
-            //}
-     
+            lblCurrentStock.Text = string.IsNullOrEmpty(CurrentStock.ToString()) ? "0" : CurrentStock.ToString();
+            lblNewStock.Text = string.IsNullOrEmpty(CurrentStock.ToString()) ? "0" : CurrentStock.ToString();
 
-            this.ActiveControl = txtStock;
+            txtStock.Text = "0";
+
+            if (this._EnumStock == EnumStock.Credit)
+            {
+                Color color = Color.FromArgb(128, 255, 255);
+                txtStock.BackColor = color;
+                lblStock.Text = "Credit stock :";
+
+            }
+            else
+            {
+                Color color = Color.FromArgb(255, 192, 192);
+                txtStock.BackColor = color;
+                lblStock.Text = "Debit stock :";
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -64,7 +63,7 @@ namespace IS.Admin.Setup
         private void btnSave_Click(object sender, EventArgs e)
         {
             var newStock = Convert.ToInt32(lblNewStock.Text);
-            if(newStock < 0 )
+            if (newStock < 0)
             {
                 MessageBox.Show("Invalid Stock.", "Alert!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtStock.Focus();
@@ -72,7 +71,7 @@ namespace IS.Admin.Setup
             else
             {
                 StocksModel stocks = new StocksModel();
-                stocks.UpdateStock(this._Item, Convert.ToInt32(txtStock.Text), _EnumStock);
+                stocks.UpdateStock(this._ProductId, Convert.ToInt32(txtStock.Text), Convert.ToInt32(lblCurrentStock.Text), _EnumStock);
                 this.DialogResult = DialogResult.OK;
             }
         }

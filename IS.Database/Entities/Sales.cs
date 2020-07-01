@@ -17,8 +17,6 @@ namespace IS.Database.Entities
         public DateTime InsertTime { get; set; } 
 
         public string CashierName { get; set; }
-        public string GenericName { get; set; }
-        public string BrandName { get; set; }
-        public string Description { get; set; }
+        public string ProductName { get; set; }
     }
 }

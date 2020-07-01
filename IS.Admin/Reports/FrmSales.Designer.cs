@@ -49,9 +49,7 @@
             this.btnDownload = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GenericName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Name1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descriptions = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Stocks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
@@ -92,9 +90,7 @@
             this.dgvSales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSales.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Fullname,
-            this.GenericName,
-            this.Name1,
-            this.Descriptions,
+            this.ProductName,
             this.Price,
             this.Stocks});
             this.dgvSales.Location = new System.Drawing.Point(17, 19);
@@ -256,36 +252,14 @@
             this.Fullname.ReadOnly = true;
             this.Fullname.Width = 150;
             // 
-            // GenericName
+            // ProductName
             // 
-            this.GenericName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.GenericName.DataPropertyName = "GenericName";
-            this.GenericName.HeaderText = "Generic Name";
-            this.GenericName.Name = "GenericName";
-            this.GenericName.ReadOnly = true;
-            this.GenericName.Width = 120;
-            // 
-            // Name1
-            // 
-            this.Name1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Name1.DataPropertyName = "BrandName";
-            this.Name1.FillWeight = 12.25213F;
-            this.Name1.HeaderText = "Brand Names";
-            this.Name1.Name = "Name1";
-            this.Name1.ReadOnly = true;
-            this.Name1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Name1.Width = 120;
-            // 
-            // Descriptions
-            // 
-            this.Descriptions.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Descriptions.DataPropertyName = "Description";
-            this.Descriptions.FillWeight = 179.7124F;
-            this.Descriptions.HeaderText = "Descriptions";
-            this.Descriptions.Name = "Descriptions";
-            this.Descriptions.ReadOnly = true;
-            this.Descriptions.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Descriptions.Width = 300;
+            this.ProductName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ProductName.DataPropertyName = "ProductName";
+            this.ProductName.HeaderText = "Product Name";
+            this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
+            this.ProductName.Width = 500;
             // 
             // Price
             // 
@@ -364,9 +338,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fullname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GenericName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descriptions;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn Stocks;
     }

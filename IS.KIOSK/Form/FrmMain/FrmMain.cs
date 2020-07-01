@@ -41,23 +41,20 @@ namespace IS.KIOSK
             var response = frm.ShowDialog();
             if (response == DialogResult.OK)
             {
-                load();
+              
             }
             //this.ActiveControl = txtSearch;
         }
         private void load()
         {
-            _TempLedgerSales = factory.TempLedgerSalesRepository.FindDefault(this._Cashier.Id);
+            _TempLedgerSales = factory.TempLedgerSalesRepository.FindDefault(this._Cashier.CashierId);
             _TempOrderList = mainModel.LoadTempOders(this).Item1;
             TotalPrice = mainModel.LoadTempOders(this).Item2;
-            _ItemList = mainModel.LoadItems(this, txtSearch.Text);
 
-            dgvSearch.AutoGenerateColumns = false;
-            dgvSearch.DataSource = _ItemList;
+            loadProduct();
+      
 
-            dgvSearch.StandardTab = true;
-
-            //dgvSearch.Sort(dgvSearch.Columns[0], ListSortDirection.Ascending);
+           // dgvSearch.Sort(dgvSearch.Columns[0], ListSortDirection.Ascending);
 
             dgvOrders.AutoGenerateColumns = false;
             dgvOrders.DataSource = _TempOrderList;
@@ -68,6 +65,13 @@ namespace IS.KIOSK
             txtSearch.Focus();
         }
 
+        private void loadProduct()
+        {
+            this._ItemList = mainModel.LoadItems(this, txtSearch.Text);
+            dgvSearch.AutoGenerateColumns = false;
+            dgvSearch.DataSource = _ItemList;
+            dgvSearch.StandardTab = true;
+        }
         private void CallKeyPress(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == 112) //help
@@ -99,15 +103,6 @@ namespace IS.KIOSK
 
 
         #region Items
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            lblError.Visible = false;
-
-            this._ItemList = mainModel.LoadItems(this, txtSearch.Text);
-            dgvSearch.AutoGenerateColumns = false;
-            dgvSearch.DataSource = _ItemList;
-
-        }
         private void dgvSearch_KeyUp(object sender, KeyEventArgs e)
         {
             ItemSelected( sender,  e);
@@ -122,7 +117,7 @@ namespace IS.KIOSK
             }
             if (e.KeyValue == 13)
             {
-                var id = dgvSearch.CurrentRow.Cells[0].Value;
+                var ProductId = dgvSearch.CurrentRow.Cells[0].Value?.ToString();
                 var GenericName = dgvSearch.CurrentRow.Cells[1].Value?.ToString();
                 var BranName = dgvSearch.CurrentRow.Cells[2].Value?.ToString();
                 var Description = dgvSearch.CurrentRow.Cells[3].Value?.ToString();
@@ -140,28 +135,26 @@ namespace IS.KIOSK
                     Params.Add(Description);
                 }
 
-                if (dgvSearch.CurrentRow.Cells[6].Value == null || (decimal)dgvSearch.CurrentRow.Cells[6].Value <= 0)
+                if ( (decimal)dgvSearch.CurrentRow.Cells[3].Value <= 0)
                 {
-                    //MessageBox.Show("Not enough stock for " + description, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     lblError.Text = "Invalid price " + string.Join( " ",Params);
                     timer1.Start();
                     return;
                 }
-                if ((int)dgvSearch.CurrentRow.Cells[7].Value < 1)
+                if ((int)dgvSearch.CurrentRow.Cells[4].Value < 1)
                 {
-                    //MessageBox.Show("Not enough stock for " + description, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     lblError.Text = "Not enough stock for " + string.Join(" ", Params);
                     timer1.Start();
                     return;
                 }
-                if (factory.TempSalesRepository.TempSalesStrategy.CheckIfOrderExist(this._TempLedgerSales, (int)id))
+                if (factory.TempSalesRepository.TempSalesStrategy.CheckIfOrderExist(this._TempLedgerSales, ProductId))
                 {
                     lblError.Text = string.Join(" ", Params) + " already added!";
                     timer1.Start();
                     // MessageBox.Show(description + " already added!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                frmMultiplier frm = new frmMultiplier(this, (int)id);
+                frmMultiplier frm = new frmMultiplier(this, ProductId);
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     txtSearch.Focus();
@@ -329,6 +322,25 @@ namespace IS.KIOSK
                 MessageBox.Show("No orders detected", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             txtSearch.Focus();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            lblError.Visible = false;
+
+            grpLoading.Visible = true;
+            grpLoading.Refresh();
+
+            this.loadProduct();
+
+
+            grpLoading.Visible = false;
+            grpLoading.Refresh();
+        }
+
+        private void FrmMain_Shown(object sender, EventArgs e)
+        {
+            load();
         }
     }
 }

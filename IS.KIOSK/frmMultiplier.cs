@@ -15,15 +15,15 @@ namespace IS.KIOSK
     public partial class frmMultiplier : Form
     {
         ISFactory factory = new ISFactory();
-        Products item = new Products();
+        Products product = new Products();
         FrmMain _FrmMain = new FrmMain();
         public int? Qty { get; set; }
-        private int? _ItemId { get; set; }
+        private string _ProductId { get; set; }
         int CountErrorlabel = 0;
-        public frmMultiplier(FrmMain model, int? ItemId)
+        public frmMultiplier(FrmMain model, string ProductId)
         {
             InitializeComponent();
-            this._ItemId = ItemId;
+            this._ProductId = ProductId;
             this._FrmMain = model;
         }
 
@@ -39,35 +39,32 @@ namespace IS.KIOSK
 
         private void frmMultiplier_Load(object sender, EventArgs e)
         {
-            //item = factory.ProductsRepository.FindWithId(this._ItemId);
-            //var itemName = new List<string>();
-            //if(!string.IsNullOrEmpty(item.GenericName))
-            //{
-            //    itemName.Add(item.GenericName);
-            //}
-            //if (!string.IsNullOrEmpty(item.BrandName))
-            //{
-            //    itemName.Add(item.BrandName);
-            //}
-            //if (!string.IsNullOrEmpty(item.Description))
-            //{
-            //    itemName.Add(item.Description);
-            //}
-            //richTextBox1.Text = string.Join(" ", itemName);
-            //lblTotal.Text = Math.Round((item.SellingPricePerPiece * Convert.ToDecimal(txtQty.Text)), 2).ToString();
+            this.product = factory.ProductsRepository.FindWithProductId(_ProductId);
+            var itemName = new List<string>();
+            if (!string.IsNullOrEmpty(this.product.CategoryName))
+            {
+                itemName.Add(this.product.CategoryName);
+            }
+            if (!string.IsNullOrEmpty(this.product.ProductName))
+            {
+                itemName.Add(this.product.ProductName);
+            }
+
+            richTextBox1.Text = string.Join(" ", itemName);
+            lblTotal.Text = Math.Round((this.product.Price * Convert.ToDecimal(txtQty.Text)), 2).ToString();
         }
 
         private void txtQty_TextChanged(object sender, EventArgs e)
         {
-            //if (!string.IsNullOrEmpty((txtQty.Text)))
-            //{
-            //    lblTotal.Text = String.Format("{0:N}", Math.Round((item.SellingPricePerPiece * Convert.ToDecimal(txtQty.Text)), 2));
-            //}
-            //else
-            //{
-            //    lblTotal.Text = "0.00";
-            //}
-            //lblError.Visible = false;
+            if (!string.IsNullOrEmpty((txtQty.Text)))
+            {
+                lblTotal.Text = String.Format("{0:N}", Math.Round((this.product.Price * Convert.ToDecimal(txtQty.Text)), 2));
+            }
+            else
+            {
+                lblTotal.Text = "0.00";
+            }
+            lblError.Visible = false;
         }
 
         private void txtQty_KeyUp(object sender, KeyEventArgs e)
@@ -86,7 +83,7 @@ namespace IS.KIOSK
                         }
                         else
                         {
-                            if (!factory.StocksRepository.StocksStrategy.CheckStock(item.Id, Qty))
+                            if (!factory.StocksRepository.StocksStrategy.CheckStock(this.product.ProductId, Qty))
                             {
                                 lblError.Text = "Not enough stock.";
                                 timer1.Start();
@@ -95,7 +92,7 @@ namespace IS.KIOSK
                             }
                             else
                             {
-                                factory.TempSalesRepository.Insert("tempCustomer", _FrmMain._Cashier.Id, item.Id, Qty, (int)_FrmMain._TempLedgerSales.Id);
+                                factory.TempSalesRepository.Insert(product.ProductId, Qty, (int)_FrmMain._TempLedgerSales.Id);
                                 // _frmKiosk.AddTempOrder();
                                 this.Qty = Qty;
                                 this.DialogResult = DialogResult.OK;

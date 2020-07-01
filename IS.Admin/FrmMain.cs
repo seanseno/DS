@@ -61,35 +61,6 @@ namespace IS.Admin
             }
         }
 
-        private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmCategories frm = new FrmCategories();
-            frm.ShowDialog();
-        }
-
-        private void stocksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmStocks frm = new FrmStocks();
-            frm.ShowDialog();
-        }
-
-        private void requestOrdersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmItemRequestOrderList frm = new FrmItemRequestOrderList();
-            frm.ShowDialog();
-        }
-
-        private void receivedOrdersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //FrmReceivedItems frm = new FrmReceivedProducts();
-            //frm.ShowDialog();
-        }
-
-        private void principalsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmPrincipals frm = new FrmPrincipals();
-            frm.ShowDialog();
-        }
 
         private void productsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -106,6 +77,36 @@ namespace IS.Admin
         private void cashiersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmCashiers frm = new FrmCashiers();
+            frm.ShowDialog();
+        }
+
+        private void uploadPrincipalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCategoriesUploadExcel frm = new FrmCategoriesUploadExcel();
+            frm.ShowDialog();
+        }
+
+        private void principalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmPrincipals frm = new FrmPrincipals();
+            frm.ShowDialog();
+        }
+
+        private void categoriesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FrmCategories frm = new FrmCategories();
+            frm.ShowDialog();
+        }
+
+        private void uploadCategoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCategoriesUploadExcel frm = new FrmCategoriesUploadExcel();
+            frm.ShowDialog();
+        }
+
+        private void stocksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmStocks frm = new FrmStocks();
             frm.ShowDialog();
         }
     }

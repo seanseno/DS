@@ -100,12 +100,8 @@ namespace IS.Admin.Setup
                 foreach (var sale in this.SaleList)
                 {
                     var item = new SalesCSV();
-                    item.Id = sale.Id;
-                    item.CashierId = sale.CashierId;
                     item.CashierName = sale.CashierName;
-                    item.GenericName = sale.GenericName;
-                    item.BrandName = sale.BrandName;
-                    item.Description = sale.Description;
+                    item.ProductName = sale.ProductName;
                     item.Qty = sale.Qty;
                     item.Amount = sale.AmountString;
                     SalesList.Add(item);

@@ -9,12 +9,12 @@ namespace IS.Database.Strategy
 {
     public class TempSalesStrategy : Helper
     {
-        public bool CheckIfOrderExist(TempLedgerSales tempLedgerSales, int? ItemId)
+        public bool CheckIfOrderExist(TempLedgerSales tempLedgerSales, string ProductId)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT * FROM TempSales WHERE ItemId = " + ItemId  + " AND  TempLedgerId = " + tempLedgerSales.Id + "";
+                var select = "SELECT * FROM TempSales WHERE ProductId = '" + ProductId + "' AND  TempLedgerId = " + tempLedgerSales.Id + "";
                 using (SqlCommand cmd = new SqlCommand(select,connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())

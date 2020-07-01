@@ -20,59 +20,61 @@ namespace IS.Admin.Setup
             InitializeComponent();
         }
 
-
-        private void FrmStocks_Load(object sender, EventArgs e)
-        {
-            this.LoadStocks();
-        }
-
         private void LoadStocks()
         {
+            grpLoading.Visible = true;
+            grpLoading.Refresh();
+
             StocksModel stocks = new StocksModel();
             var response = stocks.StockList(txtSearch.Text);
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = response;
             txtSearch.Focus();
+
+            grpLoading.Visible = false;
+            grpLoading.Refresh();
+
+
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            LoadStocks();
-        }
 
         private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //var item = new Products();
-            //item.Id = (int)dgvSearch.CurrentRow.Cells[0].Value;
-            //item.GenericName = dgvSearch.CurrentRow.Cells[1].Value?.ToString();
-            //item.BrandName = dgvSearch.CurrentRow.Cells[2].Value?.ToString();
-            //item.Description = dgvSearch.CurrentRow.Cells[3].Value?.ToString();
-            //item.Stock = (int)dgvSearch.CurrentRow.Cells[4].Value;
-
-            //if (e.ColumnIndex == 5) //add
-            //{
-            //    FrmEditStock frm = new FrmEditStock(item, EnumStock.Credit);
-            //    if (frm.ShowDialog() == DialogResult.OK)
-            //    {
-            //        MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        this.LoadStocks();
-            //    };
-            //}
-            //if (e.ColumnIndex == 6) //Subract
-            //{
-            //    FrmEditStock frm = new FrmEditStock(item, EnumStock.Debit);
-            //    if (frm.ShowDialog() == DialogResult.OK)
-            //    {
-            //        MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        this.LoadStocks();
-            //    };
-            //}
+            var ProductId = dgvSearch.CurrentRow.Cells[0].Value?.ToString();
+            if (e.ColumnIndex == 4) //add
+            {
+                FrmEditStock frm = new FrmEditStock(ProductId, EnumStock.Credit);
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    this.LoadStocks();
+                    MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                };
+            }
+            if (e.ColumnIndex == 5) //Subract
+            {
+                FrmEditStock frm = new FrmEditStock(ProductId, EnumStock.Debit);
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.LoadStocks();
+                };
+            }
 
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FrmStocks_Shown(object sender, EventArgs e)
+        {
+            this.LoadStocks();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            this.LoadStocks();
         }
     }
 }

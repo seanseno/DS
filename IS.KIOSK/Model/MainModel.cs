@@ -20,12 +20,11 @@ namespace IS.KIOSK.Model
 
         public (IList<TempSales>,decimal) LoadTempOders(FrmMain frm)
         {
-
-            var tempLedger = factory.TempLedgerSalesRepository.FindDefault(frm._Cashier.Id);
-            if(tempLedger != null)
+            var tempLedger = factory.TempLedgerSalesRepository.FindDefault(frm._Cashier.CashierId);
+            if (tempLedger != null)
             {
-                var tempOders = factory.TempSalesRepository.FindWithLedger(frm._Cashier.Id, tempLedger.Id, EnumActive.Active);
-                if(tempOders != null)
+                var tempOders = factory.TempSalesRepository.FindWithLedger(frm._Cashier.CashierId, tempLedger.Id, EnumActive.Active);
+                if (tempOders != null)
                 {
                     return (tempOders, tempOders.Sum(x => x.Amount));
                 }

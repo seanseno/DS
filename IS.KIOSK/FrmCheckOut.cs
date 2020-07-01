@@ -18,7 +18,7 @@ namespace IS.KIOSK
         {
             InitializeComponent();
             _FrmMain = frm;
-            lblTotalPrice.Text = "Total Price : " + _FrmMain.TotalPrice;
+            lblTotalPrice.Text = "Total Price : " + Math.Round(_FrmMain.TotalPrice,2);
         }
 
 
@@ -106,7 +106,7 @@ namespace IS.KIOSK
             rtxtOrders.Text += "\n";
             foreach (var itm in _FrmMain._TempOrderList)
             {
-                 var descList = WordWrap.Wrap(itm.Qty + " " + itm.GenericName + " " + itm.BrandName + " " + itm.Description + " " + itm.Qty + " " + itm.Amount, 50);
+                 var descList = WordWrap.Wrap(itm.ProductName + " " + itm.Qty + " " + itm.Amount, 50);
                 int Count = 0;
                 foreach(var desc in descList)
                 {

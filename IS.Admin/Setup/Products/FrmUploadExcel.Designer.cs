@@ -43,6 +43,7 @@
             this.grpBox = new System.Windows.Forms.GroupBox();
             this.lblProgressbar = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExcel)).BeginInit();
@@ -53,7 +54,7 @@
             // 
             this.btnClose.Image = global::IS.Admin.Properties.Resources.Exit;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnClose.Location = new System.Drawing.Point(883, 593);
+            this.btnClose.Location = new System.Drawing.Point(892, 514);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(66, 55);
             this.btnClose.TabIndex = 9;
@@ -66,7 +67,7 @@
             // 
             this.btnUpload.Image = global::IS.Admin.Properties.Resources.Upload;
             this.btnUpload.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnUpload.Location = new System.Drawing.Point(789, 593);
+            this.btnUpload.Location = new System.Drawing.Point(798, 514);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(75, 55);
             this.btnUpload.TabIndex = 11;
@@ -95,7 +96,7 @@
             this.groupBox2.Controls.Add(this.dgvExcel);
             this.groupBox2.Location = new System.Drawing.Point(108, 14);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(852, 566);
+            this.groupBox2.Size = new System.Drawing.Size(852, 494);
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Excel Details";
@@ -160,7 +161,7 @@
             this.dgvExcel.ReadOnly = true;
             this.dgvExcel.RowHeadersWidth = 51;
             this.dgvExcel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvExcel.Size = new System.Drawing.Size(815, 463);
+            this.dgvExcel.Size = new System.Drawing.Size(815, 392);
             this.dgvExcel.TabIndex = 12;
             // 
             // grpBox
@@ -172,9 +173,9 @@
             this.grpBox.Controls.Add(this.pictureBox1);
             this.grpBox.Controls.Add(this.btnUpload);
             this.grpBox.Controls.Add(this.btnClose);
-            this.grpBox.Location = new System.Drawing.Point(13, 12);
+            this.grpBox.Location = new System.Drawing.Point(12, 56);
             this.grpBox.Name = "grpBox";
-            this.grpBox.Size = new System.Drawing.Size(978, 657);
+            this.grpBox.Size = new System.Drawing.Size(978, 578);
             this.grpBox.TabIndex = 3;
             this.grpBox.TabStop = false;
             // 
@@ -188,18 +189,29 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(108, 586);
+            this.progressBar1.Location = new System.Drawing.Point(117, 507);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(662, 23);
             this.progressBar1.TabIndex = 23;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(12, 19);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(212, 34);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "Upload Products";
             // 
             // FrmUploadExcel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
-            this.ClientSize = new System.Drawing.Size(1002, 681);
+            this.ClientSize = new System.Drawing.Size(1002, 649);
             this.ControlBox = false;
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.grpBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmUploadExcel";
@@ -213,6 +225,7 @@
             this.grpBox.ResumeLayout(false);
             this.grpBox.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -231,5 +244,6 @@
         private System.Windows.Forms.GroupBox grpBox;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label lblProgressbar;
+        private System.Windows.Forms.Label label3;
     }
 }

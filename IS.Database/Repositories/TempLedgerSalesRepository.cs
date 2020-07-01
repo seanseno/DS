@@ -1,5 +1,6 @@
 ﻿using IS.Database.Entities;
 using IS.Database.Enums;
+using IS.Database.Models;
 using IS.Database.Strategy;
 using System;
 using System.Collections.Generic;
@@ -12,20 +13,20 @@ namespace IS.Database.Repositories
 {
     public class TempLedgerSalesRepository : Helper
     {
-        public TempLedgerSales Insert(int? cashierId, string customerName)
+        public TempLedgerSales Insert(string cashierId, string customerName)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
                 var select = "INSERT INTO TempLedgerSales (CashierId,Active,CustomerName) Values " +
-                    "("+ cashierId + ","+ (int)EnumActive.Active + ",'" + customerName + "'); SELECT SCOPE_IDENTITY();";
+                    "('"+ cashierId + "',"+ (int)EnumActive.Active + ",'" + customerName + "'); SELECT SCOPE_IDENTITY();";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
 
                     var tempLedgerSales = new TempLedgerSales
                     {
                         Id = Convert.ToInt32(cmd.ExecuteScalar()),
-                        CashierId = (int)cashierId,
+                        CashierId = cashierId,
                         CustomerName = customerName,
                         InsertTime = DateTime.Now
                     };
@@ -64,30 +65,19 @@ namespace IS.Database.Repositories
             }
         }
 
-        public TempLedgerSales FindDefault(int? cashierId)
+        public TempLedgerSales FindDefault(string cashierId)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT * From TempLedgerSales  WHERE Active = " + (int)EnumActive.Active + " AND CashierId = " + cashierId + " ORDER BY InsertTime";
+                var select = "SELECT * From vTempLedgerSales  WHERE Active = " + (int)EnumActive.Active + " AND CashierId = '" + cashierId + "' ORDER BY InsertTime";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.HasRows)
                         {
-                            while (reader.Read())
-                            {
-                                var tempLedger = new TempLedgerSales
-                                {
-                                    Id = reader.GetInt32(0),
-                                    CashierId = reader.GetInt32(1),
-                                    InsertTime = reader.GetDateTime(2),
-                                    Active = reader.GetInt32(3),
-                                    CustomerName = reader.GetString(4)
-                                };
-                                return tempLedger;
-                            }
+                           return new ReflectionPopulator<TempLedgerSales>().CreateList(reader)[0];
                         }
                         else
                         {
@@ -95,39 +85,28 @@ namespace IS.Database.Repositories
                             return  factory.TempLedgerSalesRepository.Insert(cashierId,"TempCostumer");
                         }
                     }
-                    return null;
                 }
             }
         }
 
-        public IList<TempLedgerSales> Find(int? cashierId)
+        public IList<TotalTempLedgerInfo> Find(string cashierId)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT TempLedgerSales.ID, Sum((Items.Price * TempSales.Qty)) as TotalAmount , SUM(TempSales.Qty) as TotalQty ,TempLedgerSales.InsertTime " +
+                var select = "SELECT TempLedgerSales.ID, Sum((I.Price * TempSales.Qty)) as TotalAmount , SUM(TempSales.Qty) as TotalQty ,TempLedgerSales.InsertTime " +
                             " FROM TempLedgerSales " + 
                             " INNER JOIN TempSales on TempSales.TempLedgerId = TempLedgerSales.id " +
-                            " INNER JOIN Items on Items.Id = TempSales.ProductId " +
+                            " INNER JOIN Products as I on I.ProductId = TempSales.ProductId " +
                             " GROUP BY TempLedgerSales.ID,TempLedgerSales.CashierId ,TempLedgerSales.Active,TempLedgerSales.InsertTime " +
-                            " HAVING TempLedgerSales.CashierId = " + cashierId + " AND TempLedgerSales.Active = " + (int)EnumActive.NonActive; 
+                            " HAVING TempLedgerSales.CashierId = '" + cashierId + "' AND TempLedgerSales.Active = " + (int)EnumActive.NonActive; 
 
 
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        List<TempLedgerSales> Items = new List<TempLedgerSales>();
-                        while (reader.Read())
-                        {
-                            var item = new TempLedgerSales();
-                            item.Id = reader.GetInt32(0);
-                            item.TotalAmount = reader.GetDecimal(1);
-                            item.TotalQty = reader.GetInt32(2);
-                            item.InsertTime = reader.GetDateTime(3);
-                            Items.Add(item);
-                        }
-                        return Items;
+                        return new ReflectionPopulator<TotalTempLedgerInfo>().CreateList(reader);
                     }
                 }
             }

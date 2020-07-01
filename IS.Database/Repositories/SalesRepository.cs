@@ -18,19 +18,19 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "INSERT INTO Sales (ProductId,Qty,LedgerId) Values " +
-                    "('" + ProductId + "'," + Qty + "," + LedgerId + ")";
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    cmd.ExecuteNonQuery();
-                    var factory = new ISFactory();
-                    var stock = new Stocks
-                    {
-                        ProductId = ProductId,
-                        Stock = Qty
-                    };
-                    factory.StocksRepository.Update(stock, Qty, EnumStock.Debit);
-                }
+                //var select = "INSERT INTO Sales (ProductId,Qty,LedgerId) Values " +
+                //    "('" + ProductId + "'," + Qty + "," + LedgerId + ")";
+                //using (SqlCommand cmd = new SqlCommand(select, connection))
+                //{
+                //    cmd.ExecuteNonQuery();
+                //    var factory = new ISFactory();
+                //    var stock = new Stocks
+                //    {
+                //        ProductId = ProductId,
+                //        Stock = Qty
+                //    };
+                //    factory.StocksRepository.Update(stock, Qty, EnumStock.Debit);
+                //}
             }
         }
         public IList<Sales> Find(int? CashierId)
@@ -119,21 +119,21 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = " SELECT C.Fullname,I.GenericName, I.BrandName,I.Description, SUM(O.Qty * I.Price) as Amount, SUM(O.Qty) as Qty FROM Sales as O " +
-                             " INNER JOIN Items as I on I.Id = O.ProductId " +
+                var select = " SELECT C.Fullname,I.ProductName, SUM(O.Qty * I.Price) as Amount, SUM(O.Qty) as Qty FROM Sales as O " +
+                             " INNER JOIN Products as I on I.ProductId = O.ProductId " +
                              " INNER JOIN LedgerSales as LO on LO.Id = O.LedgerId " +
-                             " INNER JOIN Cashiers as C on C.Id = LO.CashierId " +
+                             " INNER JOIN Cashiers as C on C.CashierId = LO.CashierId " +
                              " WHERE C.Id = " + CashierId + "" +
                              "   AND O.InsertTime BETWEEN ( CONVERT(datetime,'" + DateTimeConvertion.ConvertDateString((DateTime)dateFrom) + "', 120)) AND ( CONVERT(datetime,'" + DateTimeConvertion.ConvertDateString((DateTime)dateTo) + "', 120)) " +
-                             " GROUP BY I.BrandName,I.GenericName, C.Fullname, I.Description ORDER BY C.Fullname,I.BrandName";
+                             " GROUP BY I.ProductName, C.Fullname ORDER BY C.Fullname";
                 if (CashierId == null || CashierId == 0)
                 {
-                    select = " SELECT C.Fullname, I.GenericName,I.BrandName,I.Description, SUM(O.Qty * I.Price) as Amount, SUM(O.Qty) as Qty FROM Sales as O " +
-                                                 " INNER JOIN Items as I on I.Id = O.ProductId " +
-                                                 " INNER JOIN LedgerSales as LO on LO.Id = O.LedgerId " +
-                                                 " INNER JOIN Cashiers as C on C.Id = LO.CashierId " +
-                                                 " WHERE O.InsertTime BETWEEN ( CONVERT(datetime,'" + DateTimeConvertion.ConvertDateString((DateTime)dateFrom) + "', 120)) AND ( CONVERT(datetime,'" + DateTimeConvertion.ConvertDateString((DateTime)dateTo) + "', 120)) " +
-                                                 " GROUP BY I.BrandName,I.GenericName, C.Fullname, I.Description ORDER BY C.Fullname,I.BrandName";
+                            select = " SELECT C.Fullname,I.ProductName, SUM(O.Qty * I.Price) as Amount, SUM(O.Qty) as Qty FROM Sales as O " +
+                                    " INNER JOIN Products as I on I.ProductId = O.ProductId " +
+                                    " INNER JOIN LedgerSales as LO on LO.Id = O.LedgerId " +
+                                    " INNER JOIN Cashiers as C on C.CashierId = LO.CashierId " +
+                                    " WHERE O.InsertTime BETWEEN ( CONVERT(datetime,'" + DateTimeConvertion.ConvertDateString((DateTime)dateFrom) + "', 120)) AND ( CONVERT(datetime,'" + DateTimeConvertion.ConvertDateString((DateTime)dateTo) + "', 120)) " +
+                                " GROUP BY I.ProductName, C.Fullname ORDER BY C.Fullname";
                 }
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
@@ -143,13 +143,11 @@ namespace IS.Database.Repositories
                         while (reader.Read())
                         {
                             var Sale = new Sales();
-
+                            
                             Sale.CashierName = reader.GetString(0);
-                            Sale.GenericName = reader.GetString(1);
-                            Sale.BrandName = reader.GetString(2);
-                            Sale.Description = reader.GetString(3);
-                            Sale.Amount = Math.Round(reader.GetDecimal(4), 2);
-                            Sale.Qty = reader.GetInt32(5);
+                            Sale.ProductName = reader.GetString(1);
+                            Sale.Amount = Math.Round(reader.GetDecimal(2), 2);
+                            Sale.Qty = reader.GetInt32(3);
 
                             Sales.Add(Sale);
                         }
