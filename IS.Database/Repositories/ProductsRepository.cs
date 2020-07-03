@@ -195,7 +195,7 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT Id + 1 as Id From vProducts ORDER BY id DESC";
+                var select = "SELECT Id + 1 as Id From Products ORDER BY id DESC";
 
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
@@ -206,7 +206,7 @@ namespace IS.Database.Repositories
                             while (reader.Read())
                             {
                                 int Id = reader.GetInt32(0);
-                                return "I" + Id.ToString("0000");
+                                return "I" + Id.ToString("000000");
                             }
                         }
                         else

@@ -30,9 +30,6 @@ namespace IS.KIOSK
         {
             InitializeComponent();
             this.KeyPreview = true;
-            // Associate the event-handling method with the
-            // KeyDown event.
-            //this.KeyDown += new KeyEventHandler(FrmMain_KeyDown);
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -341,6 +338,13 @@ namespace IS.KIOSK
         private void FrmMain_Shown(object sender, EventArgs e)
         {
             load();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            dgvSearch.AutoGenerateColumns = false;
+            dgvSearch.DataSource = this._ItemList.Where(x => x.CategoryName.Contains(txtSearch.Text.ToUpper()) || x.ProductName.Contains(txtSearch.Text.ToUpper())).ToList(); 
+            dgvSearch.StandardTab = true;
         }
     }
 }

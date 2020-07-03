@@ -518,6 +518,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Graphicloads-Medical-Health-Prescription.ico" />
+    <None Include="Resources\loading2.gif" />
+    <None Include="Resources\loading1.gif" />
+    <None Include="Resources\Spinner.gif" />
     <None Include="Resources\timer.png" />
     <None Include="Resources\search.png" />
   </ItemGroup>

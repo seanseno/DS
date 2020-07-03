@@ -126,7 +126,7 @@ namespace IS.Database.Repositories
             {
                 connection.Open();
                 var select = "SELECT * FROM vCategories" +
-                        " WHERE CategoryName Like '%" + keyword + "%' ORDER BY CategoryName";
+                        " WHERE CategoryName Like '%" + keyword + "%' or CategoryId Like '%" + keyword + "%' ORDER BY CategoryName";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())

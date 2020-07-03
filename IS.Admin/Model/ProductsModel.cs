@@ -25,11 +25,10 @@ namespace IS.Admin.Model
             //INSERT ITEM
             factory.ProductsRepository.Insert(frm._Products);
         }
-        public bool CheckDup(FrmAddProduct frm)
+        public bool CheckDup(string ProductId)
         {
             var factory = new ISFactory();
-            //return factory.ProductsRepository.ProductsStrategy.CheckDuplicate(frm._Items.Name);
-            return true;
+            return factory.ProductsRepository.ProductsStrategy.CheckDuplicate(ProductId);
         }
         public bool CheckEditDup(string name, int? itemId)
         {

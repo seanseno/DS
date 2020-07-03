@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,51 +16,66 @@ namespace IS.Admin.Setup
 {
     public partial class FrmProducts : Form
     {
+        IList<Products> _ProductList = new List<Products>();
         public FrmProducts()
         {
             InitializeComponent();
-            this.Shown += new System.EventHandler(this.FrmProducts_Shown);
+            //this.Shown += new System.EventHandler(this.FrmProducts_Shown);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             FrmAddProduct frm = new FrmAddProduct();
-            frm.ShowDialog();
-            this.LoadProducts();
-
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                this.LoadProducts();
+            }
+            
         }
 
-        private void FrmProducts_Load(object sender, EventArgs e)
+        private void ProductSearch()
         {
-          //  this.LoadProducts();
+            LoadMemoryProducts();
         }
-
         private void LoadProducts()
         {
-            grpLoading.Visible = true;
-            grpLoading.Refresh();
-
+            SetLoading(true);
+            Thread.Sleep(1);
             ProductsModel model = new ProductsModel();
-            var response = model.ItemList(txtSearch.Text);
-            dgvSearch.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dgvSearch.AutoGenerateColumns = false;
-            dgvSearch.DataSource = response;
-            txtSearch.Focus();
+            this._ProductList = model.ItemList(txtSearch.Text);
+            Thread.Sleep(1);
+            SetLoading(false);
+        }
 
-            grpLoading.Visible = false;
-            grpLoading.Refresh();
+        private void LoadMemoryProducts()
+        {
+            dgvProducts.AutoGenerateColumns = false;
+            dgvProducts.DataSource = this._ProductList.Where(x => x.CategoryName.Contains(txtSearch.Text.ToUpper()) || x.ProductName.Contains(txtSearch.Text.ToUpper())).OrderBy(v=>v.ProductName).ToList();
+            dgvProducts.StandardTab = true;
+        }
+
+        private void DeleteMemoryProducts(string ProductId)
+        {
+            SetLoading(true);
+            var prod = this._ProductList.FirstOrDefault(x=>x.ProductId == ProductId);
+            _ProductList.Remove(prod);
+            dgvProducts.AutoGenerateColumns = false;
+            dgvProducts.DataSource = this._ProductList.Where(x => x.CategoryName.Contains(txtSearch.Text.ToUpper()) || x.ProductName.Contains(txtSearch.Text.ToUpper())).ToList();
+            dgvProducts.StandardTab = true;
+
+            SetLoading(false);
         }
 
         private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var Item = new Products();
-            Item.ProductId = dgvSearch.CurrentRow.Cells[0].Value?.ToString();
-            Item.CategoryName = dgvSearch.CurrentRow.Cells[1].Value?.ToString();
-            Item.PrincipalName = dgvSearch.CurrentRow.Cells[2].Value?.ToString();
-            Item.ProductName = dgvSearch.CurrentRow.Cells[3].Value?.ToString();
-            Item.Price = Convert.ToDecimal(dgvSearch.CurrentRow.Cells[4].Value);
-            Item.Stock = (int)dgvSearch.CurrentRow.Cells[5].Value;
-            Item.BarCode= dgvSearch.CurrentRow.Cells[6].Value?.ToString();
+            Item.ProductId = dgvProducts.CurrentRow.Cells[0].Value?.ToString();
+            Item.CategoryName = dgvProducts.CurrentRow.Cells[1].Value?.ToString();
+            Item.PrincipalName = dgvProducts.CurrentRow.Cells[2].Value?.ToString();
+            Item.ProductName = dgvProducts.CurrentRow.Cells[3].Value?.ToString();
+            Item.Price = Convert.ToDecimal(dgvProducts.CurrentRow.Cells[4].Value);
+            Item.Stock = (int)dgvProducts.CurrentRow.Cells[5].Value;
+            Item.BarCode= dgvProducts.CurrentRow.Cells[6].Value?.ToString();
             
             if (e.ColumnIndex == 8)
             {
@@ -82,7 +98,7 @@ namespace IS.Admin.Setup
                     if (MessageBox.Show("Are you sure do want to delete " + Item.ProductName + ".", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
                         model.DeleteItem(Item);
-                        this.LoadProducts();
+                        this.DeleteMemoryProducts(Item.ProductId);
                         MessageBox.Show(Item.ProductName + " deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
@@ -97,49 +113,43 @@ namespace IS.Admin.Setup
         private void btnSearch_Click(object sender, EventArgs e)
         {
 
-            this.LoadProducts();
+            this.ProductSearch();
 
         }
 
-        private void FrmProducts_Shown(object sender, EventArgs e)
+        private void SetLoading(bool displayLoader)
         {
-            this.LoadProducts();
+            this.Invoke((MethodInvoker)delegate
+            {
+                grpProduct.Enabled = !displayLoader;
+                grpLoading.Visible = displayLoader;
+                grpLoading.Refresh();
+            });
         }
 
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            LoadMemoryProducts();
+        }
 
-        //private void dgvSearch_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    var Item = new Items
-        //    {
-        //        Id = (int)dgvSearch.CurrentRow.Cells[0].Value,
-        //        Name = dgvSearch.CurrentRow.Cells[1].Value.ToString(),
-        //        Description = dgvSearch.CurrentRow.Cells[2].ToString(),
-        //        Price = Convert.ToDecimal(dgvSearch.CurrentRow.Cells[3].ToString()),
-        //        Stock = Convert.ToInt32( dgvSearch.CurrentRow.Cells[4].ToString())
-        //    };
+        private void grpProduct_EnabledChanged(object sender, EventArgs e)
+        {
+            LoadMemoryProducts();
+        }
 
-        //    if (e.ColumnIndex == 3)
-        //    {
+        private void FrmProducts_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                Thread threadInput = new Thread(LoadProducts);
+                threadInput.Start();
+                var xx = "x";
+            }
+            catch (Exception ex)
+            {
 
-        //    }
-        //    if (e.ColumnIndex == 6)
-        //    {
-        //        var model = new ProductsModel();
-        //        if (model.CheckItemIfAlreadyInUse(Item.Id))
-        //        {
-        //            MessageBox.Show("You can not delete " + Item.Name + " because this brand already in use", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        }
-        //        else
-        //        {
-        //            if (MessageBox.Show("Are you sure do want to delete " + Item.Name + ".", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-        //            {
 
-        //                //model.DeleteBrand(brand);
-        //                //MessageBox.Show(brand.Name + " deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //                //this.LoadBrand();
-        //            }
-        //        }
-        //    }
-        //}
+            }
+        }
     }
 }

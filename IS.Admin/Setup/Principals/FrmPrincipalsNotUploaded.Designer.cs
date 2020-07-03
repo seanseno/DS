@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblTotalCount = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -38,8 +38,9 @@
             this.dgvSearch = new System.Windows.Forms.DataGridView();
             this.btnClose = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.CategoryId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrincipalId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrincipalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.grpLoading.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -55,12 +56,12 @@
             this.groupBox1.Controls.Add(this.dgvSearch);
             this.groupBox1.Controls.Add(this.btnClose);
             this.groupBox1.Controls.Add(this.txtSearch);
-            this.groupBox1.Location = new System.Drawing.Point(13, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 46);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(845, 470);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Error Item List";
+            this.groupBox1.Text = "Error Principal List";
             // 
             // lblTotalCount
             // 
@@ -119,12 +120,12 @@
             // 
             this.dgvSearch.AllowUserToAddRows = false;
             this.dgvSearch.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
-            this.dgvSearch.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
+            this.dgvSearch.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSearch.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CategoryId,
-            this.CategoryName});
+            this.PrincipalId,
+            this.PrincipalName});
             this.dgvSearch.Location = new System.Drawing.Point(15, 64);
             this.dgvSearch.Name = "dgvSearch";
             this.dgvSearch.ReadOnly = true;
@@ -154,28 +155,40 @@
             this.txtSearch.Size = new System.Drawing.Size(247, 26);
             this.txtSearch.TabIndex = 0;
             // 
-            // CategoryId
+            // PrincipalId
             // 
-            this.CategoryId.DataPropertyName = "CategoryId";
-            this.CategoryId.HeaderText = "Category ID";
-            this.CategoryId.Name = "CategoryId";
-            this.CategoryId.ReadOnly = true;
+            this.PrincipalId.DataPropertyName = "PrincipalId";
+            this.PrincipalId.HeaderText = "Principal ID";
+            this.PrincipalId.Name = "PrincipalId";
+            this.PrincipalId.ReadOnly = true;
             // 
-            // CategoryName
+            // PrincipalName
             // 
-            this.CategoryName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CategoryName.DataPropertyName = "CategoryName";
-            this.CategoryName.HeaderText = "Category Name";
-            this.CategoryName.Name = "CategoryName";
-            this.CategoryName.ReadOnly = true;
+            this.PrincipalName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PrincipalName.DataPropertyName = "PrincipalName";
+            this.PrincipalName.HeaderText = "Principal Name";
+            this.PrincipalName.Name = "PrincipalName";
+            this.PrincipalName.ReadOnly = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(225, 34);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Not uploaded list";
             // 
             // FrmPrincipalsNotUploaded
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
-            this.ClientSize = new System.Drawing.Size(876, 494);
+            this.ClientSize = new System.Drawing.Size(873, 535);
             this.ControlBox = false;
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FrmPrincipalsNotUploaded";
@@ -189,6 +202,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSearch)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -203,7 +217,8 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label lblTotalCount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CategoryId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrincipalId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrincipalName;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -32,20 +32,28 @@ namespace IS.Admin.Setup
         {
             if (!CheckRequiredInput())
             {
-                if (MessageBox.Show("Are you sure do want to add " + txtProductName.Text + "?", "Information!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                if (CheckAlreadyExist())
                 {
-                    _Products.ProductId = txtProductId.Text;
-                    _Products.CategoryId = cboCategories.SelectedValue.ToString();
-                    _Products.PrincipalId = cboPrincipals.SelectedValue.ToString();
+                    MessageBox.Show("Product ID already exist!", "Information!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtProductId.Focus();
+                }
+                else
+                {
+                    if (MessageBox.Show("Are you sure do want to add " + txtProductName.Text + "?", "Information!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    {
+                        _Products.ProductId = txtProductId.Text;
+                        _Products.CategoryId = cboCategories.SelectedValue.ToString();
+                        _Products.PrincipalId = cboPrincipals.SelectedValue.ToString();
 
-                    _Products.ProductName = txtProductName.Text;
-                    _Products.Price = Convert.ToDecimal(txtPrice.Text);
-                    _Products.BarCode = txtBarcode.Text;
-                    var model = new ProductsModel();
+                        _Products.ProductName = txtProductName.Text;
+                        _Products.Price = Convert.ToDecimal(txtPrice.Text);
+                        _Products.BarCode = txtBarcode.Text;
+                        var model = new ProductsModel();
 
-                    model.AddItem(this);
-                    MessageBox.Show(txtProductName.Text + " Added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = DialogResult.OK;
+                        model.AddItem(this);
+                        MessageBox.Show(txtProductName.Text + " Added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = DialogResult.OK;
+                    }
                 }
             }
         }
@@ -75,6 +83,13 @@ namespace IS.Admin.Setup
                 e.Handled = true;
             }
         }
+
+        private bool CheckAlreadyExist()
+        {
+            ProductsModel productsModel = new ProductsModel();
+            return productsModel.CheckDup(txtProductId.Text.ToUpper());
+        }
+
         private bool CheckRequiredInput()
         {
             if (string.IsNullOrEmpty(txtProductName.Text))

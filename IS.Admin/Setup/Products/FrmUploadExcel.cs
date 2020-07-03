@@ -152,7 +152,7 @@ namespace IS.Admin.Setup
 
                     if (ErrorList.Count > 0)
                     {
-                        MessageBox.Show("Categories uploaded! but some rows does not uploaded, Please check the Item information.", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Product uploaded! but some rows does not uploaded, Please check the Item information.", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         FrmNotUploaded frm = new FrmNotUploaded(ErrorList);
                         if (frm.ShowDialog() == DialogResult.OK)
                         {
@@ -161,7 +161,7 @@ namespace IS.Admin.Setup
                     }
                     else
                     {
-                        MessageBox.Show("Categories Uploaded!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Product Uploaded!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.DialogResult = DialogResult.OK;
                     }
                 }

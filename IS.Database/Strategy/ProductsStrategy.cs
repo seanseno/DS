@@ -8,12 +8,12 @@ namespace IS.Database.Strategy
 {
     public class ProductsStrategy : Helper
     {
-        public bool CheckDuplicate(string Name)
+        public bool CheckDuplicate(string ProductId)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT name FROM items WHERE Name = '" + Name + "'";
+                var select = "SELECT ProductId FROM Products WHERE ProductId = '" + ProductId + "'";
                 using (SqlCommand cmd = new SqlCommand(select,connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -48,16 +48,16 @@ namespace IS.Database.Strategy
                 }
             }
         }
-        public bool ItemAlreadyInUse(string itemId)
+        public bool ItemAlreadyInUse(string ProductId)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select =" SELECT ItemId FROM Sales " +
-                            " WHERE ItemId = " + itemId + " " +
+                var select = " SELECT ProductId FROM Sales " +
+                            " WHERE ProductId = '" + ProductId + "'" +
                             " UNION " +
-                            " SELECT ItemId FROM TempOrders " +
-                            " WHERE ItemId = " + itemId;
+                            " SELECT ProductId FROM TempSales " +
+                            " WHERE ProductId = '" + ProductId + "'";
 
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {

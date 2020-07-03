@@ -4,9 +4,16 @@ DELETE FROM TempSales
 DELETE FROM TempLedgerSales
 DELETE FROM Sales;
 DELETE FROM LedgerSales;
-DELETE FROM Companies;
 DELETE FROM Categories;
-DELETE FROM Items;
+DELETE FROM Products;
 DELETE FROM RequestOrderItemDetails;
 DELETE FROM RequestOrderItems;
 DELETE FROM ItemReceivedOrders;
+
+
+
+
+DELETE FROM Stocks;
+DELETE FROM StocksHistory;
+DELETE FROM TempSales
+DELETE FROM TempLedgerSales
