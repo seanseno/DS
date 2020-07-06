@@ -70,5 +70,11 @@ namespace IS.Admin.Model
             var factory = new ISFactory();
             return factory.CategoriesRepository.CategoriesStrategy.CategoryAlreadyInUse(CategoryId);
         }
+
+        public string GetNextId()
+        {
+            var factory = new ISFactory();
+            return factory.CategoriesRepository.GetNextId();
+        }
     }
 }

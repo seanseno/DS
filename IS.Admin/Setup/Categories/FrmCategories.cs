@@ -14,6 +14,7 @@ namespace IS.Admin.Setup
 {
     public partial class FrmCategories : Form
     {
+        IList<Categories> _list = new List<Categories>();
         public FrmCategories()
         {
             InitializeComponent();
@@ -24,7 +25,7 @@ namespace IS.Admin.Setup
             FrmAddCategory frm = new FrmAddCategory();
             frm.ShowDialog();
             this.LoadCategory();
-
+            DisplayTotal();
         }
 
         private void LoadCategory()
@@ -33,9 +34,9 @@ namespace IS.Admin.Setup
             grpLoading.Refresh();
 
             CategoriesModel Categories = new CategoriesModel();
-            var response = Categories.CategoryList(this, txtSearch.Text);
+            _list = Categories.CategoryList(this, txtSearch.Text);
             dgvSearch.AutoGenerateColumns = false;
-            dgvSearch.DataSource = response;
+            dgvSearch.DataSource = _list;
             txtSearch.Focus();
 
             grpLoading.Visible = false;
@@ -75,6 +76,7 @@ namespace IS.Admin.Setup
 
                         model.DeleteCategory(Category);
                         this.LoadCategory();
+                        DisplayTotal();
                         MessageBox.Show(Category.CategoryName + " deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
@@ -89,6 +91,21 @@ namespace IS.Admin.Setup
         private void FrmCategories_Shown(object sender, EventArgs e)
         {
             this.LoadCategory();
+            DisplayTotal();
+        }
+
+        private void DisplayTotal()
+        {
+            string TotalStr = "Total Record 0";
+            if (_list.Count() > 1)
+            {
+                TotalStr = "Total Record(s) " + _list.Count().ToString("N0");
+            }
+            else if (_list.Count() == 1)
+            {
+                TotalStr = "Total Record " + _list.Count().ToString("N0");
+            }
+            lblTotal.Text = TotalStr;
         }
 
         private void btnUpload_Click(object sender, EventArgs e)
@@ -97,13 +114,29 @@ namespace IS.Admin.Setup
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 this.LoadCategory();
-
+                DisplayTotal();
             }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             LoadCategory();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            //LoadMemoryProducts();
+        }
+        private void LoadMemoryProducts()
+        {
+            dgvSearch.AutoGenerateColumns = false;
+            dgvSearch.DataSource = this._list.Where(x => x.CategoryName.Contains(txtSearch.Text.ToUpper()) || x.CategoryId.Contains(txtSearch.Text.ToUpper())).OrderBy(v => v.CategoryName).ToList();
+            dgvSearch.StandardTab = true;
+        }
+
+        private void FrmCategories_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

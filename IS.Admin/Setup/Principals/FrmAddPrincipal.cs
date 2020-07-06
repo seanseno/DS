@@ -61,5 +61,10 @@ namespace IS.Admin.Setup
             return false;
         }
 
+        private void FrmAddPrincipal_Load(object sender, EventArgs e)
+        {
+            PrincipalsModel principalsModel = new PrincipalsModel();
+            txtPrincipalId.Text = principalsModel.GetNextId();
+        }
     }
 }

@@ -55,7 +55,7 @@ namespace IS.Database.Strategy
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT * FROM vItems WHERE CategoryId  = '" + CategoryId + "'";
+                var select = "SELECT * FROM vProducts WHERE CategoryId  = '" + CategoryId + "'";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())

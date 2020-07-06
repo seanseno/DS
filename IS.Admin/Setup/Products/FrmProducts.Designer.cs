@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grpProduct = new System.Windows.Forms.GroupBox();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.btnUpload = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
             this.ProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,7 +51,6 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.grpLoading = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.pbLoading = new System.Windows.Forms.PictureBox();
             this.grpProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
@@ -60,6 +61,8 @@
             // grpProduct
             // 
             this.grpProduct.BackColor = System.Drawing.Color.White;
+            this.grpProduct.Controls.Add(this.lblTotal);
+            this.grpProduct.Controls.Add(this.btnUpload);
             this.grpProduct.Controls.Add(this.btnSearch);
             this.grpProduct.Controls.Add(this.dgvProducts);
             this.grpProduct.Controls.Add(this.btnClose);
@@ -73,6 +76,28 @@
             this.grpProduct.TabStop = false;
             this.grpProduct.Text = "Item List";
             this.grpProduct.EnabledChanged += new System.EventHandler(this.grpProduct_EnabledChanged);
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(12, 407);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(89, 13);
+            this.lblTotal.TabIndex = 17;
+            this.lblTotal.Text = "Total Record(s) 0";
+            // 
+            // btnUpload
+            // 
+            this.btnUpload.Image = global::IS.Admin.Properties.Resources.excel32;
+            this.btnUpload.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnUpload.Location = new System.Drawing.Point(1132, 403);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(66, 55);
+            this.btnUpload.TabIndex = 13;
+            this.btnUpload.Text = "Upload";
+            this.btnUpload.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
             // 
             // btnSearch
             // 
@@ -91,8 +116,8 @@
             // 
             this.dgvProducts.AllowUserToAddRows = false;
             this.dgvProducts.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
-            this.dgvProducts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
+            this.dgvProducts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProductId,
@@ -157,11 +182,11 @@
             // 
             this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Price.DataPropertyName = "Price";
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle23.Format = "N2";
-            dataGridViewCellStyle23.NullValue = null;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle2;
             this.Price.FillWeight = 106.5126F;
             this.Price.HeaderText = "Price";
             this.Price.MinimumWidth = 6;
@@ -174,11 +199,11 @@
             // 
             this.Stock.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Stock.DataPropertyName = "Stock";
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle24.Format = "N0";
-            dataGridViewCellStyle24.NullValue = "0";
-            this.Stock.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = "0";
+            this.Stock.DefaultCellStyle = dataGridViewCellStyle3;
             this.Stock.FillWeight = 101.5228F;
             this.Stock.HeaderText = "Stocks";
             this.Stock.MinimumWidth = 6;
@@ -243,7 +268,7 @@
             // 
             this.btnAdd.Image = global::IS.Admin.Properties.Resources.Add;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAdd.Location = new System.Drawing.Point(1132, 403);
+            this.btnAdd.Location = new System.Drawing.Point(1060, 403);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(66, 55);
             this.btnAdd.TabIndex = 4;
@@ -274,25 +299,13 @@
             // grpLoading
             // 
             this.grpLoading.BackColor = System.Drawing.Color.White;
-            this.grpLoading.Controls.Add(this.label1);
             this.grpLoading.Controls.Add(this.pbLoading);
-            this.grpLoading.Location = new System.Drawing.Point(570, 160);
+            this.grpLoading.Location = new System.Drawing.Point(590, 190);
             this.grpLoading.Name = "grpLoading";
             this.grpLoading.Size = new System.Drawing.Size(151, 141);
             this.grpLoading.TabIndex = 6;
             this.grpLoading.TabStop = false;
             this.grpLoading.Text = "Please wait..";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Navy;
-            this.label1.Location = new System.Drawing.Point(12, 122);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Retrieving data........";
             // 
             // pbLoading
             // 
@@ -322,7 +335,6 @@
             this.grpProduct.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
             this.grpLoading.ResumeLayout(false);
-            this.grpLoading.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLoading)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -349,7 +361,8 @@
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
         private System.Windows.Forms.GroupBox grpLoading;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pbLoading;
+        private System.Windows.Forms.Button btnUpload;
+        private System.Windows.Forms.Label lblTotal;
     }
 }

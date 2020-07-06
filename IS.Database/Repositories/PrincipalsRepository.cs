@@ -154,6 +154,36 @@ namespace IS.Database.Repositories
                 }
             }
         }
+
+        public string GetNextId()
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT Id + 1 as Id From Principals ORDER BY id DESC";
+
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                int Id = reader.GetInt32(0);
+                                return "P" + Id.ToString("0000");
+                            }
+                        }
+                        else
+                        {
+                            return "P0001";
+                        }
+                        return null;
+
+                    }
+                }
+            }
+        }
         public PrincipalsStrategy PrincipalsStrategy => new PrincipalsStrategy();
     }
 }

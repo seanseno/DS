@@ -45,7 +45,7 @@ namespace IS.Admin.Setup
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            this.DialogResult = DialogResult.OK;
         }
 
         private void FrmNotUploaded_Shown(object sender, EventArgs e)

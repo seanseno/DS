@@ -43,7 +43,7 @@ namespace IS.Admin.Setup
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            this.DialogResult = DialogResult.OK;
         }
 
         private void FrmPrincipalsNotUploaded_Shown(object sender, EventArgs e)

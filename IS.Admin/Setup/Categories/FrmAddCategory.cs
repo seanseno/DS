@@ -61,5 +61,10 @@ namespace IS.Admin.Setup
             return false;
         }
 
+        private void FrmAddCategory_Load(object sender, EventArgs e)
+        {
+            CategoriesModel categoriesModel = new CategoriesModel();
+            txtCategoryId.Text = categoriesModel.GetNextId();
+        }
     }
 }

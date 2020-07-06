@@ -1,228 +1,334 @@
-CREATE TABLE [dbo].[Administrators] (
-    [Id]         INT            IDENTITY (1, 1) NOT NULL,
-    [Loginname]  NVARCHAR (50)  NOT NULL,
-    [Fullname]   NVARCHAR (50)  NOT NULL,
-    [Password]   NVARCHAR (500) NOT NULL,
-    [InsertTime] DATETIME       DEFAULT (getdate()) NOT NULL,
-    [UpdateTime] DATETIME       NULL,
-    [Active]     INT            DEFAULT ((1)) NOT NULL,
-    PRIMARY KEY CLUSTERED ([Loginname] ASC)
-);
+
+DROP TABLE Administrators;
 
 
+/****** Object:  Table [dbo].[Administrators]    Script Date: 7/6/2020 10:30:43 AM ******/
+SET ANSI_NULLS ON
 GO
-CREATE NONCLUSTERED INDEX [IX_Table_Loginname]
-    ON [dbo].[Administrators]([Loginname] ASC);
 
------------------------------------
-
-CREATE TABLE [dbo].[Brands] (
-    [Id]          INT            IDENTITY (1, 1) NOT NULL,
-    [Name]        NVARCHAR (50)  NOT NULL,
-    [Description] NVARCHAR (255) NULL,
-    [InsertTime]  DATETIME       NOT NULL,
-    [UpdateTime]  DATETIME       NULL,
-    [Active]      INT            DEFAULT ((1)) NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
-
-
+SET QUOTED_IDENTIFIER ON
 GO
-CREATE NONCLUSTERED INDEX [IX_Table_Name]
-    ON [dbo].[Brands]([Name] ASC);
 
---------------------
-
-CREATE TABLE [dbo].[CashierCashOnHand] (
-    [Id]         INT           IDENTITY (1, 1) NOT NULL,
-    [CashierId]  NVARCHAR (50) NOT NULL,
-    [Amount]     MONEY         NOT NULL,
-    [InsertTime] DATETIME      DEFAULT (getdate()) NOT NULL,
-    [UpdateTime] DATETIME      NULL,
-    PRIMARY KEY CLUSTERED ([CashierId] ASC)
-);
-
-
+CREATE TABLE [dbo].[Administrators](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[AdminId] [nvarchar](5) NOT NULL,
+	[Loginname] [nvarchar](50) NOT NULL,
+	[Fullname] [nvarchar](50) NOT NULL,
+	[Password] [nvarchar](500) NOT NULL,
+	[UserType] [int] NOT NULL,
+	[InsertTime] [datetime] NOT NULL,
+	[UpdateTime] [datetime] NULL,
+	[Active] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[AdminId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
 GO
-CREATE NONCLUSTERED INDEX [IX_Table_CashierId]
-    ON [dbo].[CashierCashOnHand]([CashierId] ASC);
 
-----
-CREATE TABLE [dbo].[CashierCashOnHandDenomination] (
-    [Id]          INT           IDENTITY (1, 1) NOT NULL,
-    [CashierId]   NVARCHAR (50) NOT NULL,
-    [Thousand]    MONEY         NOT NULL,
-    [FiveHundred] MONEY         NOT NULL,
-    [OneHundred]  MONEY         NOT NULL,
-    [Fifty]       MONEY         NOT NULL,
-    [Twenty]      MONEY         NOT NULL,
-    [Coins]       MONEY         NOT NULL,
-    [Cents]       MONEY         NOT NULL,
-    [InsertTime]  DATETIME      DEFAULT (getdate()) NOT NULL,
-    PRIMARY KEY CLUSTERED ([CashierId] ASC)
-);
-
-
+ALTER TABLE [dbo].[Administrators] ADD  CONSTRAINT [DF_Administrators_UserType]  DEFAULT ((2)) FOR [UserType]
 GO
-CREATE NONCLUSTERED INDEX [IX_Table_CashierId]
-    ON [dbo].[CashierCashOnHandDenomination]([CashierId] ASC);
 
------
-CREATE TABLE [dbo].[Cashiers] (
-    [Id]         INT            IDENTITY (1, 1) NOT NULL,
-    [Loginname]  NVARCHAR (50)  NOT NULL,
-    [Fullname]   NVARCHAR (100) NOT NULL,
-    [Password]   NVARCHAR (500) NOT NULL,
-    [InsertTime] DATETIME       DEFAULT (getdate()) NOT NULL,
-    [UpdateTime] DATETIME       NULL,
-    [Active]     INT            DEFAULT ((1)) NOT NULL,
-    PRIMARY KEY CLUSTERED ([Loginname] ASC)
-);
-
-
+ALTER TABLE [dbo].[Administrators] ADD  DEFAULT (getdate()) FOR [InsertTime]
 GO
-CREATE NONCLUSTERED INDEX [IX_Table_Loginname]
-    ON [dbo].[Cashiers]([Loginname] ASC);
 
-----
-CREATE TABLE [dbo].[Companies] (
-    [Id]          INT            IDENTITY (1, 1) NOT NULL,
-    [CompanyName] NVARCHAR (50)  NOT NULL,
-    [Description] NVARCHAR (255) NULL,
-    [InsertTime]  DATETIME       DEFAULT (getdate()) NOT NULL,
-    [UpdateTime]  DATETIME       NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
-
-
+ALTER TABLE [dbo].[Administrators] ADD  DEFAULT ((1)) FOR [Active]
 GO
-CREATE NONCLUSTERED INDEX [IX_Table_CompanyName]
-    ON [dbo].[Companies]([CompanyName] ASC);
 
----
-CREATE TABLE [dbo].[Items] (
-    [Id]               INT             IDENTITY (1, 1) NOT NULL,
-    [CompanyId]        INT             NULL,
-    [GenericName]      NVARCHAR (255)  NULL,
-    [BrandName]        NVARCHAR (255)  NULL,
-    [Description]      NVARCHAR (1000) NOT NULL,
-    [Price]            MONEY           NOT NULL,
-    [InsertTime]       DATETIME        DEFAULT (getdate()) NOT NULL,
-    [UpdateTime]       DATETIME        NULL,
-    [Active]           INT             DEFAULT ((1)) NOT NULL,
-    [BarCode]          NVARCHAR (100)  NULL,
-    [CategoryId]       INT             NULL,
-    [DateManufactured] DATETIME        NULL,
-    [ExpirationDate]   DATETIME        NULL,
-    CONSTRAINT [PK_Items] PRIMARY KEY CLUSTERED ([Id] ASC)
-);
+INSERT INTO Administrators (AdminId,Loginname, Password,Fullname,UserType) VALUES ('A0001','Admin','4297f44b13955235245b2497399d7a93','Administrator',0);
 
+--------
 
+/****** Object:  Table [dbo].[Cashiers]    Script Date: 7/6/2020 10:34:02 AM ******/
+SET ANSI_NULLS ON
 GO
-CREATE NONCLUSTERED INDEX [IX_Table_Name]
-    ON [dbo].[Items]([BrandName] ASC);
 
----
-CREATE TABLE [dbo].[LedgerSales] (
-    [Id]           INT            IDENTITY (1, 1) NOT NULL,
-    [CashierId]    INT            NOT NULL,
-    [PayAmount]    DECIMAL (18)   NOT NULL,
-    [Change]       DECIMAL (18)   NOT NULL,
-    [CustomerName] NVARCHAR (100) NOT NULL,
-    [InsertTime]   DATETIME       DEFAULT (getdate()) NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
-
-
+SET QUOTED_IDENTIFIER ON
 GO
-CREATE NONCLUSTERED INDEX [IX_Table_CashierId]
-    ON [dbo].[LedgerSales]([Id] ASC);
 
-----
-CREATE TABLE [dbo].[Sales] (
-    [Id]         INT      IDENTITY (1, 1) NOT NULL,
-    [ItemId]     INT      NOT NULL,
-    [Qty]        INT      NOT NULL,
-    [InsertTime] DATETIME DEFAULT (getdate()) NOT NULL,
-    [LedgerId]   INT      NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
+DROP TABLE Cashiers;
 
-
+CREATE TABLE [dbo].[Cashiers](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CashierId] [nvarchar](5) NOT NULL,
+	[Loginname] [nvarchar](50) NOT NULL,
+	[Fullname] [nvarchar](100) NOT NULL,
+	[Password] [nvarchar](500) NOT NULL,
+	[InsertTime] [datetime] NOT NULL,
+	[UpdateTime] [datetime] NULL,
+	[Active] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Loginname] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
 GO
-CREATE NONCLUSTERED INDEX [IX_Table_ItemId]
-    ON [dbo].[Sales]([ItemId] ASC);
 
----
-CREATE TABLE [dbo].[Stocks] (
-    [Id]         INT      IDENTITY (1, 1) NOT NULL,
-    [ItemId]     INT      NOT NULL,
-    [Stock]      INT      NOT NULL,
-    [InsertTime] DATETIME DEFAULT (getdate()) NOT NULL,
-    [UpdateTime] DATETIME NULL,
-    [Active]     INT      NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
-
-
+ALTER TABLE [dbo].[Cashiers] ADD  DEFAULT (getdate()) FOR [InsertTime]
 GO
-CREATE NONCLUSTERED INDEX [IX_Table_Stock]
-    ON [dbo].[Stocks]([Stock] ASC);
 
-----
-CREATE TABLE [dbo].[StocksHistory] (
-    [Id]         INT           IDENTITY (1, 1) NOT NULL,
-    [ItemId]     NVARCHAR (50) NOT NULL,
-    [Stock]      INT           NOT NULL,
-    [Credit]     INT           NOT NULL,
-    [Debit]      INT           NOT NULL,
-    [InsertTime] DATETIME      DEFAULT (getdate()) NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
-
----
-CREATE TABLE [dbo].[TempLedgerOrders] (
-    [Id]           INT            IDENTITY (1, 1) NOT NULL,
-    [CashierId]    INT            NOT NULL,
-    [InsertTime]   DATETIME       DEFAULT (getdate()) NOT NULL,
-    [Active]       INT            DEFAULT ((1)) NOT NULL,
-    [CustomerName] NVARCHAR (100) NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
-
-
+ALTER TABLE [dbo].[Cashiers] ADD  DEFAULT ((1)) FOR [Active]
 GO
-CREATE NONCLUSTERED INDEX [IX_Table_CashierId]
-    ON [dbo].[TempLedgerOrders]([Id] ASC);
-
----
-CREATE TABLE [dbo].[TempOrders] (
-    [Id]           INT      IDENTITY (1, 1) NOT NULL,
-    [ItemId]       INT      NOT NULL,
-    [Qty]          INT      NOT NULL,
-    [InsertTime]   DATETIME DEFAULT (getdate()) NOT NULL,
-    [TempLedgerId] INT      NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
 
 
+--------
+/****** Object:  Table [dbo].[Categories]    Script Date: 7/6/2020 10:34:26 AM ******/
+SET ANSI_NULLS ON
 GO
-CREATE NONCLUSTERED INDEX [IX_Table_ItemId]
-    ON [dbo].[TempOrders]([ItemId] ASC);
 
----
-CREATE TABLE [dbo].[Categories] (
-    [Id]           INT            IDENTITY (1, 1) NOT NULL,
-    [CategoryName] NVARCHAR (50)  NOT NULL,
-    [Description]  NVARCHAR (255) NULL,
-    [InsertTime]   DATETIME       DEFAULT (getdate()) NOT NULL,
-    [UpdateTime]   DATETIME       NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
-
-
+SET QUOTED_IDENTIFIER ON
 GO
-CREATE NONCLUSTERED INDEX [IX_Table_CategoryName]
-    ON [dbo].[Categories]([CategoryName] ASC);
+
+DROP TABLE Categories;
+
+CREATE TABLE [dbo].[Categories](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CategoryId] [nvarchar](5) NOT NULL,
+	[CategoryName] [nvarchar](255) NOT NULL,
+	[InsertTime] [datetime] NOT NULL,
+	[UpdateTime] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[CategoryId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Categories] ADD  DEFAULT (getdate()) FOR [InsertTime]
+GO
+
+--------
+
+/****** Object:  Table [dbo].[LedgerSales]    Script Date: 7/6/2020 10:34:51 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+DROP TABLE LedgerSales
+
+CREATE TABLE [dbo].[LedgerSales](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CashierId] [nvarchar](5) NOT NULL,
+	[PayAmount] [decimal](18, 0) NOT NULL,
+	[Change] [decimal](18, 0) NOT NULL,
+	[CustomerName] [nvarchar](100) NOT NULL,
+	[InsertTime] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[LedgerSales] ADD  DEFAULT (getdate()) FOR [InsertTime]
+GO
+
+--------
+
+/****** Object:  Table [dbo].[Principals]    Script Date: 7/6/2020 10:35:18 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+DROP TABLE Principals;
+
+CREATE TABLE [dbo].[Principals](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[PrincipalId] [nvarchar](5) NOT NULL,
+	[PrincipalName] [nvarchar](255) NOT NULL,
+	[InsertTime] [datetime] NOT NULL,
+	[UpdateTime] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[PrincipalId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Principals] ADD  DEFAULT (getdate()) FOR [InsertTime]
+GO
+
+-------------
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+DROP TABLE Products;
+
+CREATE TABLE [dbo].[Products](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ProductId] [nvarchar](7) NOT NULL,
+	[CategoryId] [nvarchar](5) NOT NULL,
+	[PrincipalId] [nvarchar](5) NOT NULL,
+	[ProductName] [nvarchar](1000) NOT NULL,
+	[Price] [money] NOT NULL,
+	[InsertTime] [datetime] NOT NULL,
+	[UpdateTime] [datetime] NULL,
+	[Active] [int] NOT NULL,
+	[BarCode] [nvarchar](100) NULL,
+ CONSTRAINT [PK_Products] PRIMARY KEY CLUSTERED 
+(
+	[ProductId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Products] ADD  DEFAULT (getdate()) FOR [InsertTime]
+GO
+
+ALTER TABLE [dbo].[Products] ADD  DEFAULT ((1)) FOR [Active]
+GO
+
+--------------
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+DROP TABLE Sales;
+
+CREATE TABLE [dbo].[Sales](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ProductId] [nvarchar](7) NOT NULL,
+	[Qty] [int] NOT NULL,
+	[Price] [money] NOT NULL,
+	[InsertTime] [datetime] NOT NULL,
+	[LedgerId] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Sales] ADD  DEFAULT (getdate()) FOR [InsertTime]
+GO
+
+-----------
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+DROP TABLE Stocks;
+
+CREATE TABLE [dbo].[Stocks](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ProductId] [nvarchar](7) NOT NULL,
+	[Stock] [int] NOT NULL,
+	[InsertTime] [datetime] NOT NULL,
+	[UpdateTime] [datetime] NULL,
+	[Active] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Stocks] ADD  DEFAULT (getdate()) FOR [InsertTime]
+GO
+
+ALTER TABLE [dbo].[Stocks] ADD  DEFAULT ((1)) FOR [Active]
+GO
+
+--------------
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+DROP TABLE [StocksHistory];
+
+CREATE TABLE [dbo].[StocksHistory](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ProductId] [nvarchar](7) NOT NULL,
+	[Stock] [int] NOT NULL,
+	[Credit] [int] NOT NULL,
+	[Debit] [int] NOT NULL,
+	[InsertTime] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[StocksHistory] ADD  DEFAULT (getdate()) FOR [InsertTime]
+GO
+
+-------------------
+
+/****** Object:  Table [dbo].[TempLedgerSales]    Script Date: 7/6/2020 10:38:03 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+DROP TABLE [TempLedgerSales];
+
+CREATE TABLE [dbo].[TempLedgerSales](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CashierId] [nvarchar](5) NOT NULL,
+	[InsertTime] [datetime] NOT NULL,
+	[Active] [int] NOT NULL,
+	[CustomerName] [nvarchar](100) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[TempLedgerSales] ADD  DEFAULT (getdate()) FOR [InsertTime]
+GO
+
+ALTER TABLE [dbo].[TempLedgerSales] ADD  DEFAULT ((1)) FOR [Active]
+GO
+
+--------------
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+DROP TABLE [TempSales];
+
+CREATE TABLE [dbo].[TempSales](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ProductId] [nvarchar](7) NOT NULL,
+	[Qty] [int] NOT NULL,
+	[InsertTime] [datetime] NOT NULL,
+	[TempLedgerId] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[TempSales] ADD  DEFAULT (getdate()) FOR [InsertTime]
+GO
+
+
+
+
+
+
+
+
+
 
 

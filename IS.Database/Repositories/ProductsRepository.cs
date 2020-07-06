@@ -101,68 +101,27 @@ namespace IS.Database.Repositories
             }
         }
 
-        public Products FindWithId(int? id)
+        public int GetTotalCount()
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                return null;
-                //var select = "SELECT I.Id, I.CompanyId, I.GenericName, I.BrandName, I.Description, I.Price , " +
-                //                " S.Stock,Co.CompanyName,Ca.CategoryName,I.BarCode" +
-                //                " FROM Products as I " +
-                //                " LEFT JOIN Stocks as S on S.ProductId = I.id " +
-                //                " LEFT JOIN Companies as Co on Co.id = I.CompanyId" +
-                //                " LEFT JOIN Categories as Ca on Ca.Id = I.CategoryId" +
-                //                " WHERE I.Id = " + id;
+                var select = "SELECT Count(ProductId) as Counts FROM vProducts";
 
-                //using (SqlCommand cmd = new SqlCommand(select, connection))
-                //{
-                //    using (SqlDataReader reader = cmd.ExecuteReader())
-                //    {
-
-                //        while (reader.Read())
-                //        {
-                //            var item = new Products();
-
-                //            item.Id = reader.GetInt32(0);
-                            
-                            
-                //            item.Description = reader.GetString(4);
-                //            item.SellingPricePerPiece = Math.Round(reader.GetDecimal(5), 2);
-                //            item.Stock = reader.GetInt32(6);
-
-
-                //            if (!reader.IsDBNull(1))
-                //            {
-                //                item.CompanyId = reader.GetInt32(1);
-                //            }
-                //            if (!reader.IsDBNull(2))
-                //            {
-                //                item.GenericName = reader.GetString(2);
-                //            }
-                //            if (!reader.IsDBNull(3))
-                //            {
-                //                item.BrandName = reader.GetString(3);
-                //            }
-
-                //            if (!reader.IsDBNull(7))
-                //            {
-                //                item.CompanyName = reader.GetString(7);
-                //            }
-                //            if (!reader.IsDBNull(8))
-                //            {
-                //                item.CategoryName = reader.GetString(8);
-                //            }
-                //            if (!reader.IsDBNull(9))
-                //            {
-                //                item.BarCode = reader.GetString(9);
-                //            }
-
-                //            return item;
-                //        }
-                //        return null;
-                //    }
-                //}
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                return reader.GetInt32(0);
+                            }
+                        }
+                        return 0;
+                    }
+                }
             }
         }
 

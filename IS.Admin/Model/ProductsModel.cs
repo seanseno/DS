@@ -74,5 +74,10 @@ namespace IS.Admin.Model
             var factory = new ISFactory();
             return factory.ProductsRepository.GetNextId();
         }
+        public int GetTotalCount()
+        {
+            var factory = new ISFactory();
+            return factory.ProductsRepository.GetTotalCount();
+        }
     }
 }

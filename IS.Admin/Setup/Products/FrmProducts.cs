@@ -29,6 +29,7 @@ namespace IS.Admin.Setup
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 this.LoadProducts();
+                DisplayTotal();
             }
             
         }
@@ -50,7 +51,7 @@ namespace IS.Admin.Setup
         private void LoadMemoryProducts()
         {
             dgvProducts.AutoGenerateColumns = false;
-            dgvProducts.DataSource = this._ProductList.Where(x => x.CategoryName.Contains(txtSearch.Text.ToUpper()) || x.ProductName.Contains(txtSearch.Text.ToUpper())).OrderBy(v=>v.ProductName).ToList();
+            dgvProducts.DataSource = this._ProductList.Where(x => x.CategoryName.Contains(txtSearch.Text.ToUpper()) || x.ProductName.Contains(txtSearch.Text.ToUpper()) || x.ProductId.Contains(txtSearch.Text.ToUpper())).OrderBy(v=>v.ProductName).ToList();
             dgvProducts.StandardTab = true;
         }
 
@@ -99,6 +100,7 @@ namespace IS.Admin.Setup
                     {
                         model.DeleteItem(Item);
                         this.DeleteMemoryProducts(Item.ProductId);
+                        DisplayTotal();
                         MessageBox.Show(Item.ProductName + " deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
@@ -143,13 +145,41 @@ namespace IS.Admin.Setup
             {
                 Thread threadInput = new Thread(LoadProducts);
                 threadInput.Start();
-                var xx = "x";
             }
             catch (Exception ex)
             {
 
 
             }
+            DisplayTotal();
+
+        }
+
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            FrmUploadExcel frm = new FrmUploadExcel();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                this.FrmProducts_Load(sender,e);
+                DisplayTotal();
+            }
+        }
+
+        private void DisplayTotal()
+        {
+            ProductsModel model = new ProductsModel();
+            int TotalCount = model.GetTotalCount();
+
+            string TotalStr = "Total Record 0";
+            if (TotalCount > 1)
+            {
+                TotalStr = "Total Record(s) " + TotalCount.ToString("N0");
+            }
+            else if (TotalCount == 1)
+            {
+                TotalStr = "Total Record " + TotalCount.ToString("N0");
+            }
+            lblTotal.Text = TotalStr;
         }
     }
 }

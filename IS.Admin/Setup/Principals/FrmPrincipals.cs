@@ -14,6 +14,7 @@ namespace IS.Admin.Setup
 {
     public partial class FrmPrincipals : Form
     {
+        IList<Principals> _list = new List<Principals>();
         public FrmPrincipals()
         {
             InitializeComponent();
@@ -24,6 +25,7 @@ namespace IS.Admin.Setup
             FrmAddPrincipal frm = new FrmAddPrincipal();
             frm.ShowDialog();
             this.LoadPrincipal();
+            DisplayTotal();
 
         }
 
@@ -33,9 +35,9 @@ namespace IS.Admin.Setup
             grpLoading.Refresh();
 
             PrincipalsModel Principals = new PrincipalsModel();
-            var response = Principals.PrincipalList(this, txtSearch.Text);
+             _list = Principals.PrincipalList(this, txtSearch.Text);
             dgvSearch.AutoGenerateColumns = false;
-            dgvSearch.DataSource = response;
+            dgvSearch.DataSource = _list;
             txtSearch.Focus();
 
             grpLoading.Visible = false;
@@ -75,6 +77,7 @@ namespace IS.Admin.Setup
 
                         model.DeletePrincipal(Principal);
                         this.LoadPrincipal();
+                        DisplayTotal();
                         MessageBox.Show(Principal.PrincipalName + " deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
@@ -89,6 +92,21 @@ namespace IS.Admin.Setup
         private void FrmPrincipals_Shown(object sender, EventArgs e)
         {
             this.LoadPrincipal();
+            DisplayTotal();
+        }
+
+        private void DisplayTotal()
+        {
+            string TotalStr = "Total Record 0";
+            if (_list.Count() > 1)
+            {
+                TotalStr = "Total Record(s) " + _list.Count().ToString("N0");
+            }
+            else if (_list.Count() == 1)
+            {
+                TotalStr = "Total Record " + _list.Count().ToString("N0");
+            }
+            lblTotal.Text = TotalStr;
         }
 
         private void btnUpload_Click(object sender, EventArgs e)
@@ -97,7 +115,7 @@ namespace IS.Admin.Setup
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 this.LoadPrincipal();
-
+                DisplayTotal();
             }
         }
 
