@@ -31,11 +31,15 @@ namespace IS.KIOSK
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            var (cashierId,response) = factory.CashiersRepository.CashiersStrategy.CheckCashierLogin(txtLoginame.Text, txtPassword.Text);
+            var (cashierId,response, message) = factory.CashiersRepository.CashiersStrategy.CheckCashierLogin(txtLoginame.Text, txtPassword.Text);
             if (response)
             {
                 kiosk._Cashier = factory.CashiersRepository.FindCashierWithCashierId(cashierId);
                 this.DialogResult = DialogResult.OK;
+            }
+            else if (!string.IsNullOrEmpty(message))
+            {
+                MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {

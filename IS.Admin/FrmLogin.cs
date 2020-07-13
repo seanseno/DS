@@ -25,11 +25,15 @@ namespace IS.Admin
             if (!CheckInput())
             {
                 LoginModel model = new LoginModel();
-                var (Id, IsSuccess) = model.CheckAdminLogin(txtLoginame.Text, txtPassword.Text);
+                var (Id, IsSuccess, message) = model.CheckAdminLogin(txtLoginame.Text, txtPassword.Text);
                 if (IsSuccess)
                 {
                     Globals.SetLoginId((int)Id);
                     this.DialogResult = DialogResult.OK;
+                }
+                if (!string.IsNullOrEmpty(message))
+                {
+                    MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {

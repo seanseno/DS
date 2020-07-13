@@ -11,11 +11,19 @@ namespace IS.Database.Strategy
 {
     public class CashiersStrategy : Helper
     {
-        public (string,bool) CheckCashierLogin(string Loginname, string Password)
+        public (string,bool,string) CheckCashierLogin(string Loginname, string Password)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
-                connection.Open();
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException ex)
+                {
+                    return (null, false, ex.Message);
+                }
+
                 var select = "SELECT * FROM vCashiers WHERE Loginname='" + Loginname + "' AND Password ='" + Encrypt.CreateMD5(Password.ToUpper(), this.IsEncrypt) + "' AND Active = " + (int)EnumActive.Active;
                 using (SqlCommand cmd = new SqlCommand(select,connection))
                 {
@@ -24,9 +32,9 @@ namespace IS.Database.Strategy
                         if (reader.HasRows)
                         {
                             var cashier = new ReflectionPopulator<Cashiers>().CreateList(reader)[0];
-                            return (cashier.CashierId, true);
+                            return (cashier.CashierId, true, string.Empty);
                         }
-                        return ("", false);
+                        return (string.Empty, false, string.Empty);
                     }
                 }
             }

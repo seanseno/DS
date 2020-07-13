@@ -10,11 +10,18 @@ namespace IS.Database.Strategy
 {
     public class AdministratorsStrategy : Helper
     {
-        public  (int?,bool) CheckAdministratorLogin(string Loginname, string Password)
+        public  (int?,bool,string) CheckAdministratorLogin(string Loginname, string Password)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
-                connection.Open();
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException ex)
+                {
+                    return (null, false, ex.Message);
+                }
                 var select = "SELECT * FROM Administrators WHERE Loginname='" + Loginname + "' AND Password ='" + Encrypt.CreateMD5(Password.ToUpper(), this.IsEncrypt) + "' AND Active = " + (int)EnumActive.Active;
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
@@ -26,10 +33,10 @@ namespace IS.Database.Strategy
                             {
                                 int Id = reader.GetInt32(0);
 
-                                return  (Id,true);
+                                return (Id, true,string.Empty);
                             }
                         }
-                        return (null,false);
+                        return (null, false, string.Empty);
                     }
                 }
             }
