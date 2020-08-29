@@ -1,4 +1,5 @@
-﻿using IS.Database.Models;
+﻿
+using IS.Database.Entities.Extender;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace IS.Admin.Setup
+namespace IS.Admin.Transactions
 {
     public partial class FrmEditStock : Form
     {

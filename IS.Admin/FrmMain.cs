@@ -1,5 +1,6 @@
 ﻿using IS.Admin.Setup;
 using IS.Admin.Setup.Cashier;
+using IS.Admin.Transactions;
 using IS.Admin.Trasactions;
 using System;
 using System.Collections.Generic;
@@ -67,12 +68,6 @@ namespace IS.Admin
             frm.ShowDialog();
         }
 
-        private void stocksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmStocks frm = new FrmStocks();
-            frm.ShowDialog();
-        }
-
         private void productsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmProducts frm = new FrmProducts();
@@ -88,6 +83,18 @@ namespace IS.Admin
         private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmCategories frm = new FrmCategories();
+            frm.ShowDialog();
+        }
+
+        private void stocksDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmStocksData frm = new FrmStocksData();
+            frm.ShowDialog();
+        }
+
+        private void stocksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmStocks frm = new FrmStocks();
             frm.ShowDialog();
         }
     }

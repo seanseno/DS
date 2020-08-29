@@ -1,6 +1,6 @@
 ﻿using IS.Database.Entities;
+using IS.Database.Entities.Extender;
 using IS.Database.Enums;
-using IS.Database.Models;
 using IS.Database.Strategy;
 using System;
 using System.Collections.Generic;

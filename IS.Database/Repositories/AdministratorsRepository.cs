@@ -21,7 +21,7 @@ namespace IS.Database.Repositories
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@AdminId", Administrator.AdminId.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@Loginame", Administrator.Loginname.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@Loginname", Administrator.Loginname.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@Fullname", Administrator.Fullname.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@Password", Encrypt.CreateMD5(Administrator.Password, this.IsEncrypt)));
                     cmd.Parameters.Add(new SqlParameter("@UserType", Administrator.UserType));

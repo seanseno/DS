@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace IS.Database.Models
+namespace IS.Database.Entities.Extender
 {
-    public class TempSalesExtender 
+    public class StocksDataExtender
     {
+        public virtual string PrincipalName { get; set; }
         public virtual string ProductName { get; set; }
         public virtual string CategoryName { get; set; }
-        public virtual decimal Amount { get; set; }
     }
 }

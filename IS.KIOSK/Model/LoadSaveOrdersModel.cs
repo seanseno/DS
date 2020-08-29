@@ -1,7 +1,7 @@
 ﻿using IS.Database;
 using IS.Database.Entities;
+using IS.Database.Entities.Extender;
 using IS.Database.Enums;
-using IS.Database.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

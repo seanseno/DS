@@ -346,5 +346,10 @@ namespace IS.KIOSK
             dgvSearch.DataSource = this._ItemList.Where(x => x.CategoryName.Contains(txtSearch.Text.ToUpper()) || x.ProductName.Contains(txtSearch.Text.ToUpper())).ToList(); 
             dgvSearch.StandardTab = true;
         }
+
+        private void dgvSearch_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -1,8 +1,9 @@
-﻿using System;
+﻿using IS.Database.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IS.Database.Models
+namespace IS.Database.Entities.Extender
 {
     public class ProductExtender : GlobalExtender
     {

@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IS.Library", "IS.Library\IS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IS.Common", "IS.Common\IS.Common.csproj", "{00062812-DB72-4F89-A07B-B5AF256950E2}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Front", "FrontInstaller\Front\Front.vdproj", "{33DE919F-0885-4B56-818F-450E4FCC3FAA}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Admin", "AdminInstaller\Admin\Admin.vdproj", "{C34F0B22-8CDB-4319-8746-09F774648664}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,10 @@ Global
 		{00062812-DB72-4F89-A07B-B5AF256950E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00062812-DB72-4F89-A07B-B5AF256950E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00062812-DB72-4F89-A07B-B5AF256950E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33DE919F-0885-4B56-818F-450E4FCC3FAA}.Debug|Any CPU.ActiveCfg = Debug
+		{33DE919F-0885-4B56-818F-450E4FCC3FAA}.Release|Any CPU.ActiveCfg = Release
+		{C34F0B22-8CDB-4319-8746-09F774648664}.Debug|Any CPU.ActiveCfg = Debug
+		{C34F0B22-8CDB-4319-8746-09F774648664}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

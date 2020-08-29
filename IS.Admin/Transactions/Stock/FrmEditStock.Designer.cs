@@ -1,4 +1,4 @@
-﻿namespace IS.Admin.Setup
+﻿namespace IS.Admin.Transactions
 {
     partial class FrmEditStock
     {

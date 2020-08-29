@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace IS.Database.Models
+namespace IS.Database.Entities.Extender
 {
     public class TotalTempLedgerInfo
     {

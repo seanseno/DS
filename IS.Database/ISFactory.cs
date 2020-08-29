@@ -24,6 +24,9 @@ namespace IS.Database
         public CashierCashOnHandRepository CashierCashOnHandRepository => new CashierCashOnHandRepository();
        
         public RequestOrderProductsRepository RequestOrderProductsRepository  => new RequestOrderProductsRepository();
+
+        public StocksDataRepository StocksDataRepository => new StocksDataRepository();
+
         public RequestOrderItemDetailsRepository RequestOrderItemDetailsRepository => new RequestOrderItemDetailsRepository();
         public ItemReceivedOrdersRepository ItemReceivedOrdersRepository = new ItemReceivedOrdersRepository();
     }
