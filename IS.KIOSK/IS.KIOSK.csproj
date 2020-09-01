@@ -97,6 +97,12 @@
     <Compile Include="Form\FrmMain\CustomDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Form\FrmProducts\FrmModalSearchProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FrmProducts\FrmModalSearchProducts.Designer.cs">
+      <DependentUpon>FrmModalSearchProducts.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmCheckOut.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,8 +136,12 @@
     <Compile Include="Model\FrmCheckOutModel.cs" />
     <Compile Include="Model\LoadSaveOrdersModel.cs" />
     <Compile Include="Model\MainModel.cs" />
+    <Compile Include="Model\ProductsModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form\FrmProducts\FrmModalSearchProducts.resx">
+      <DependentUpon>FrmModalSearchProducts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmCheckOut.resx">
       <DependentUpon>FrmCheckOut.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,6 +283,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\click.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

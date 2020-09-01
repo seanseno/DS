@@ -13,10 +13,13 @@ namespace IS.KIOSK
         {
             if (e.KeyData == Keys.Enter)
             {
-                int col = this.CurrentCell.ColumnIndex;
-                int row = this.CurrentCell.RowIndex;
-                this.CurrentCell = this[col, row];
-                e.Handled = true;
+                if (this.CurrentCell != null)
+                {
+                    int col = this.CurrentCell.ColumnIndex;
+                    int row = this.CurrentCell.RowIndex;
+                    this.CurrentCell = this[col, row];
+                    e.Handled = true;
+                }
             }
             base.OnKeyDown(e);
         }

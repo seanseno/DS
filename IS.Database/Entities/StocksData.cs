@@ -13,6 +13,7 @@ namespace IS.Database.Entities
         public decimal SupplierPrice { get; set; }
         public decimal TotalAmount { get; set; }
         public decimal RealUnitPrice { get; set; }
+        public int RemainingQuantity { get; set; }
         public DateTime DeliveryDate { get; set; }
         public DateTime ExpirationDate { get; set; }
         public int Duration { get; set; }

@@ -16,6 +16,7 @@ namespace IS.Admin.Transactions
     public partial class FrmEditStockData : Form
     {
         private StocksData _StockData { get;set;}
+        private Products _Product = new Products();
         public FrmEditStockData(StocksData StockData)
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace IS.Admin.Transactions
             txtSupplierPrice.Text = Math.Round(response.SupplierPrice, 2).ToString("N2");
             txtTotalAmount.Text = Math.Round(response.TotalAmount, 2).ToString("N2");
             txtRealUnitPrice.Text = Math.Round(response.RealUnitPrice, 2).ToString("N2");
-
+            txtRemainingQty.Text = response.RemainingQuantity.ToString("N0");
             dtpDeliveryDate.Value = response.DeliveryDate;
             dtpExpirationDate.Value = response.ExpirationDate;
             txtDuration.Text = response.Duration.ToString("N0");
@@ -57,6 +58,7 @@ namespace IS.Admin.Transactions
                     StocksData.SupplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
                     StocksData.TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
                     StocksData.RealUnitPrice = Convert.ToDecimal(txtRealUnitPrice.Text);
+                    StocksData.RemainingQuantity= Convert.ToInt32(txtRemainingQty.Text);
                     StocksData.DeliveryDate = dtpDeliveryDate.Value;
                     StocksData.ExpirationDate = dtpExpirationDate.Value;
                     StocksData.Duration = Convert.ToInt32(txtDuration.Text);
@@ -88,6 +90,12 @@ namespace IS.Admin.Transactions
                 txtRealUnitPrice.Focus();
                 return true;
             }
+            else if (string.IsNullOrEmpty(txtRemainingQty.Text))
+            {
+                MessageBox.Show("Remaining Quantity is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtRemainingQty.Focus();
+                return true;
+            }
             else if (Convert.ToInt32(txtDuration.Text) <= 0)
             {
                 MessageBox.Show("Invalid Duration, Can not accept 0 or less than 0!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -108,6 +116,7 @@ namespace IS.Admin.Transactions
         private void txtQuantity_TextChanged(object sender, EventArgs e)
         {
             GetTotalAmount();
+            txtRemainingQty.Text = txtQuantity.Text;
         }
 
         private void txtSupplierPrice_KeyPress(object sender, KeyPressEventArgs e)
@@ -121,6 +130,25 @@ namespace IS.Admin.Transactions
         private void txtSupplierPrice_TextChanged(object sender, EventArgs e)
         {
             GetTotalAmount();
+            CategoriesModel model = new CategoriesModel();
+            if (this._Product != null)
+            {
+                var percent = model.GetPercentSuggestedPrice(_Product.CategoryId);
+                if (percent != 0)
+                {
+                    if (string.IsNullOrEmpty(txtSupplierPrice.Text))
+                    {
+                        txtRealUnitPrice.Text = "0.00";
+                    }
+                    else
+                    {
+                        var supplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
+                        //= (F6 * 0.2) + F6
+                        var sellingPrice = ((supplierPrice * (percent / 100)) + supplierPrice);
+                        txtRealUnitPrice.Text = Math.Round(sellingPrice, 2).ToString();
+                    }
+                }
+            }
         }
 
         private void txtRealUnitPrice_KeyPress(object sender, KeyPressEventArgs e)
@@ -152,20 +180,10 @@ namespace IS.Admin.Transactions
             txtDuration.Text = String.Format("{0,10:N0}", (dtpExpirationDate.Value - DateTime.Now).TotalDays);
         }
 
-        //private void btnSave_Click(object sender, EventArgs e)
-        //{
-        //    //StocksDataModel StocksData = new StocksDataModel();
-        //    //_StockData.StockDataName = txtStockDataName.Text;
-        //    //if (StocksData.CheckEditDup(_StockData.StockDataName, _StockData.Id))
-        //    //{
-        //    //    MessageBox.Show(_StockData.StockDataName + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    //    txtStockDataName.Focus();
-        //    //}
-        //    //else
-        //    //{
-        //    //    StocksData.UpdateStockData(_StockData);
-        //    //    this.DialogResult = DialogResult.OK;
-        //    //}
-        //}
+        private void txtProductId_TextChanged(object sender, EventArgs e)
+        {
+            ProductsModel modelProd = new ProductsModel();
+            this._Product = modelProd.FindWithProductId(txtProductId.Text);
+        }
     }
 }

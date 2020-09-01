@@ -27,6 +27,7 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@SupplierPrice", StocksData.SupplierPrice));
                     cmd.Parameters.Add(new SqlParameter("@TotalAmount", StocksData.TotalAmount));
                     cmd.Parameters.Add(new SqlParameter("@RealUnitPrice", StocksData.RealUnitPrice));
+                    cmd.Parameters.Add(new SqlParameter("@RemainingQuantity", StocksData.RemainingQuantity));
                     cmd.Parameters.Add(new SqlParameter("@DeliveryDate", StocksData.DeliveryDate));
                     cmd.Parameters.Add(new SqlParameter("@ExpirationDate", StocksData.ExpirationDate));
                     cmd.Parameters.Add(new SqlParameter("@Duration", StocksData.Duration));
@@ -52,6 +53,7 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@SupplierPrice", StocksData.SupplierPrice));
                     cmd.Parameters.Add(new SqlParameter("@TotalAmount", StocksData.TotalAmount));
                     cmd.Parameters.Add(new SqlParameter("@RealUnitPrice", StocksData.RealUnitPrice));
+                    cmd.Parameters.Add(new SqlParameter("@RemainingQuantity", StocksData.RemainingQuantity));
                     cmd.Parameters.Add(new SqlParameter("@DeliveryDate", StocksData.DeliveryDate));
                     cmd.Parameters.Add(new SqlParameter("@ExpirationDate", StocksData.ExpirationDate));
                     cmd.Parameters.Add(new SqlParameter("@Duration", StocksData.Duration));

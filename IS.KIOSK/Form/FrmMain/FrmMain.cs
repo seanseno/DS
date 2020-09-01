@@ -38,9 +38,9 @@ namespace IS.KIOSK
             var response = frm.ShowDialog();
             if (response == DialogResult.OK)
             {
-              
+                this.ActiveControl = txtCustomerName;
             }
-            //this.ActiveControl = txtSearch;
+            
         }
         private void load()
         {
@@ -48,10 +48,6 @@ namespace IS.KIOSK
             _TempOrderList = mainModel.LoadTempOders(this).Item1;
             TotalPrice = mainModel.LoadTempOders(this).Item2;
 
-            loadProduct();
-      
-
-           // dgvSearch.Sort(dgvSearch.Columns[0], ListSortDirection.Ascending);
 
             dgvOrders.AutoGenerateColumns = false;
             dgvOrders.DataSource = _TempOrderList;
@@ -59,16 +55,9 @@ namespace IS.KIOSK
 
             txtTotal.Text = String.Format("{0:n}", TotalPrice);
 
-            txtSearch.Focus();
         }
 
-        private void loadProduct()
-        {
-            this._ItemList = mainModel.LoadItems(this, txtSearch.Text);
-            dgvSearch.AutoGenerateColumns = false;
-            dgvSearch.DataSource = _ItemList;
-            dgvSearch.StandardTab = true;
-        }
+
         private void CallKeyPress(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == 112) //help
@@ -77,8 +66,12 @@ namespace IS.KIOSK
             }
             if (e.KeyValue == 113) //load
             {
+                this.btnSearch_Click(sender, e);
+            }
+            if (e.KeyValue == 114) //load
+            {
                 this.btnLoad_Click(sender, e);
-            } 
+            }
 
             if (e.KeyValue == 115) //check out
             {
@@ -97,74 +90,6 @@ namespace IS.KIOSK
                 this.btnExit_Click(sender, e);
             }
         }
-
-
-        #region Items
-        private void dgvSearch_KeyUp(object sender, KeyEventArgs e)
-        {
-            ItemSelected( sender,  e);
-        }
-
-        private void ItemSelected(object sender, KeyEventArgs e)
-        {
-            //CallKeyPress(sender, e);
-            if (e.KeyValue == 27)
-            {
-                txtSearch.Focus();
-            }
-            if (e.KeyValue == 13)
-            {
-                var ProductId = dgvSearch.CurrentRow.Cells[0].Value?.ToString();
-                var GenericName = dgvSearch.CurrentRow.Cells[1].Value?.ToString();
-                var BranName = dgvSearch.CurrentRow.Cells[2].Value?.ToString();
-                var Description = dgvSearch.CurrentRow.Cells[3].Value?.ToString();
-                var Params = new List<string>();
-                if(!string.IsNullOrEmpty(GenericName))
-                {
-                    Params.Add(GenericName);
-                }
-                if (!string.IsNullOrEmpty(BranName))
-                {
-                    Params.Add(BranName);
-                }
-                if (!string.IsNullOrEmpty(Description))
-                {
-                    Params.Add(Description);
-                }
-
-                if ( (decimal)dgvSearch.CurrentRow.Cells[3].Value <= 0)
-                {
-                    lblError.Text = "Invalid price " + string.Join( " ",Params);
-                    timer1.Start();
-                    return;
-                }
-                if ((int)dgvSearch.CurrentRow.Cells[4].Value < 1)
-                {
-                    lblError.Text = "Not enough stock for " + string.Join(" ", Params);
-                    timer1.Start();
-                    return;
-                }
-                if (factory.TempSalesRepository.TempSalesStrategy.CheckIfOrderExist(this._TempLedgerSales, ProductId))
-                {
-                    lblError.Text = string.Join(" ", Params) + " already added!";
-                    timer1.Start();
-                    // MessageBox.Show(description + " already added!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-                frmMultiplier frm = new frmMultiplier(this, ProductId);
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    txtSearch.Focus();
-                    load();
-                }
-                else
-                {
-                    txtSearch.Focus();
-                }
-            }
-        }
-
-        #endregion
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -187,7 +112,7 @@ namespace IS.KIOSK
 
         private void dgvSearch_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
         {
-            lblError.Visible = false;
+            //lblError.Visible = false;
         }
 
         private void txtSearch_KeyUp(object sender, KeyEventArgs e)
@@ -199,7 +124,7 @@ namespace IS.KIOSK
         {
             if (e.KeyValue == 18)
             {
-                txtSearch.Focus();
+                //txtSearch.Focus();
 
             }
             CallKeyPress(sender, e);
@@ -238,7 +163,7 @@ namespace IS.KIOSK
                         load();
                     }
                 }
-                txtSearch.Focus();
+                //txtSearch.Focus();
             }
         }
 
@@ -254,18 +179,19 @@ namespace IS.KIOSK
         {
             if (this._TempOrderList != null)
             {
-                FrmCheckOut frm = new FrmCheckOut(this);
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (this._TempOrderList.Count() > 0)
                 {
-                    load();
-                    MessageBox.Show("Orders complete!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    FrmCheckOut frm = new FrmCheckOut(this);
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        load();
+                        MessageBox.Show("Orders complete!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
                 }
             }
-            else
-            {
-                MessageBox.Show("No orders detected", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            txtSearch.Focus();
+            MessageBox.Show("No orders detected", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //txtSearch.Focus();
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -280,7 +206,7 @@ namespace IS.KIOSK
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     load();
-                    txtSearch.Focus();
+                    //txtSearch.Focus();
                 }
             }
         }
@@ -289,67 +215,72 @@ namespace IS.KIOSK
         {
             if (this._TempOrderList != null)
             {
-                if (MessageBox.Show("Are you sure do want to save orders.", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                if (this._TempOrderList.Count() > 0)
                 {
-                    mainModel.SaveOrders(this);
-                    load();
+                    if (MessageBox.Show("Are you sure do want to save orders.", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    {
+                        mainModel.SaveOrders(this);
+                        load();
+                        return;
+                    }
                 }
             }
-            else
-            {
-                MessageBox.Show("No orders detected", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            txtSearch.Focus();
+            MessageBox.Show("No orders detected", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //txtSearch.Focus();
         }
 
         private void btnRemoveAll_Click(object sender, EventArgs e)
         {
             if (this._TempOrderList != null)
             {
-                if (MessageBox.Show("Are you sure do want to delete all order", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                if (this._TempOrderList.Count() > 0)
                 {
-                    MainModel mainModel = new MainModel();
-                    mainModel.DeleteAllTempOrder(this);
-                    load();
-                    MessageBox.Show("Orders deleted", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (MessageBox.Show("Are you sure do want to delete all order", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    {
+                        MainModel mainModel = new MainModel();
+                        mainModel.DeleteAllTempOrder(this);
+                        load();
+                        MessageBox.Show("Orders deleted", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
             else
             {
                 MessageBox.Show("No orders detected", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            txtSearch.Focus();
+            //txtSearch.Focus();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            lblError.Visible = false;
-
-            grpLoading.Visible = true;
-            grpLoading.Refresh();
-
-            this.loadProduct();
-
-
-            grpLoading.Visible = false;
-            grpLoading.Refresh();
-        }
 
         private void FrmMain_Shown(object sender, EventArgs e)
         {
             load();
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            dgvSearch.AutoGenerateColumns = false;
-            dgvSearch.DataSource = this._ItemList.Where(x => x.CategoryName.Contains(txtSearch.Text.ToUpper()) || x.ProductName.Contains(txtSearch.Text.ToUpper())).ToList(); 
-            dgvSearch.StandardTab = true;
-        }
-
         private void dgvSearch_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            FrmModalSearchProducts frm = new FrmModalSearchProducts();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                if (factory.TempSalesRepository.TempSalesStrategy.CheckIfOrderExist(this._TempLedgerSales, frm._ProductId))
+                {
+                    lblError.Text = string.Format("{0} already added! ", frm._ProductName);
+                    timer1.Start();
+                }
+                else
+                {
+                    frmMultiplier frmMultiplier = new frmMultiplier(this, frm._ProductId);
+                    if (frmMultiplier.ShowDialog() == DialogResult.OK)
+                    {
+                        load();
+                    }
+                }
+            }
         }
     }
 }

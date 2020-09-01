@@ -39,12 +39,13 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.dgvSearch = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Name1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Name1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PercentSuggestedPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
             this.grpLoading.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -171,6 +172,7 @@
             this.dgvSearch.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.Name1,
+            this.PercentSuggestedPrice,
             this.Edit,
             this.Delete});
             this.dgvSearch.Location = new System.Drawing.Point(15, 62);
@@ -180,45 +182,6 @@
             this.dgvSearch.Size = new System.Drawing.Size(736, 271);
             this.dgvSearch.TabIndex = 1;
             this.dgvSearch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSearch_CellClick);
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "CategoryId";
-            this.Id.HeaderText = "Category ID";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Id.Width = 70;
-            // 
-            // Name1
-            // 
-            this.Name1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Name1.DataPropertyName = "CategoryName";
-            this.Name1.FillWeight = 12.25213F;
-            this.Name1.HeaderText = "Category Name";
-            this.Name1.Name = "Name1";
-            this.Name1.ReadOnly = true;
-            this.Name1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Name1.Width = 500;
-            // 
-            // Edit
-            // 
-            this.Edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Edit.HeaderText = "Edit";
-            this.Edit.Name = "Edit";
-            this.Edit.ReadOnly = true;
-            this.Edit.Text = "Edit";
-            this.Edit.UseColumnTextForButtonValue = true;
-            this.Edit.Width = 60;
-            // 
-            // Delete
-            // 
-            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Delete.HeaderText = "Delete";
-            this.Delete.Name = "Delete";
-            this.Delete.ReadOnly = true;
-            this.Delete.Text = "Delete";
-            this.Delete.UseColumnTextForButtonValue = true;
             // 
             // txtSearch
             // 
@@ -239,12 +202,58 @@
             this.label2.TabIndex = 16;
             this.label2.Text = "Categories Menu";
             // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "CategoryId";
+            this.Id.HeaderText = "Category ID";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Id.Width = 70;
+            // 
+            // Name1
+            // 
+            this.Name1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Name1.DataPropertyName = "CategoryName";
+            this.Name1.FillWeight = 12.25213F;
+            this.Name1.HeaderText = "Category Name";
+            this.Name1.Name = "Name1";
+            this.Name1.ReadOnly = true;
+            this.Name1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Name1.Width = 400;
+            // 
+            // PercentSuggestedPrice
+            // 
+            this.PercentSuggestedPrice.DataPropertyName = "PercentSuggestedPrice";
+            this.PercentSuggestedPrice.HeaderText = "Percent Suggested Price";
+            this.PercentSuggestedPrice.Name = "PercentSuggestedPrice";
+            this.PercentSuggestedPrice.ReadOnly = true;
+            // 
+            // Edit
+            // 
+            this.Edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Edit.HeaderText = "Edit";
+            this.Edit.Name = "Edit";
+            this.Edit.ReadOnly = true;
+            this.Edit.Text = "Edit";
+            this.Edit.UseColumnTextForButtonValue = true;
+            this.Edit.Width = 60;
+            // 
+            // Delete
+            // 
+            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Delete.HeaderText = "Delete";
+            this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
+            this.Delete.Text = "Delete";
+            this.Delete.UseColumnTextForButtonValue = true;
+            // 
             // FrmCategories
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
-            this.ClientSize = new System.Drawing.Size(799, 483);
+            this.ClientSize = new System.Drawing.Size(792, 482);
             this.ControlBox = false;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
@@ -271,10 +280,6 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name1;
-        private System.Windows.Forms.DataGridViewButtonColumn Edit;
-        private System.Windows.Forms.DataGridViewButtonColumn Delete;
         private System.Windows.Forms.GroupBox grpLoading;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -282,5 +287,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Name1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PercentSuggestedPrice;
+        private System.Windows.Forms.DataGridViewButtonColumn Edit;
+        private System.Windows.Forms.DataGridViewButtonColumn Delete;
     }
 }

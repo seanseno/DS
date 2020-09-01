@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_007C0E3F3ACC4984B530332EFCD8E531"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_00B078341FCF315B88C0302CBE51D945"
         "OwnerKey" = "8:_83E993DB18424F1E812799CA50C594D7"
         "MsmSig" = "8:_UNDEFINED"
@@ -483,12 +489,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_84061C4A60C243F280380222B8EE5ABE"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_84D4D1A1542DD7AA66C664B8B3F5F7AF"
         "OwnerKey" = "8:_83E993DB18424F1E812799CA50C594D7"
         "MsmSig" = "8:_UNDEFINED"
@@ -869,12 +869,6 @@
         {
         "MsmKey" = "8:_FD79A9553EAABFD6361D934CD39BCE72"
         "OwnerKey" = "8:_83E993DB18424F1E812799CA50C594D7"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B6491A1450E606D323F3651D4046803B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1603,6 +1597,12 @@
         "OwnerKey" = "8:_9DD145DE42041B7BD58985FCFEBEF1F2"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B6491A1450E606D323F3651D4046803B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -1621,6 +1621,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -1637,6 +1653,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -1666,6 +1690,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_007C0E3F3ACC4984B530332EFCD8E531"
+            {
+            "SourcePath" = "8:C:\\Users\\admin\\Downloads\\front.ico"
+            "TargetName" = "8:front.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_CD6B3BDAAC4E406A948AF09F3B9B1C2A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_00B078341FCF315B88C0302CBE51D945"
             {
             "AssemblyRegister" = "3:1"
@@ -3774,26 +3818,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_84061C4A60C243F280380222B8EE5ABE"
-            {
-            "SourcePath" = "8:C:\\Users\\admin\\Downloads\\Icon.ico"
-            "TargetName" = "8:Icon.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_CD6B3BDAAC4E406A948AF09F3B9B1C2A"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_84D4D1A1542DD7AA66C664B8B3F5F7AF"
             {
             "AssemblyRegister" = "3:1"
@@ -5617,21 +5641,21 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Front"
-        "ProductCode" = "8:{35E50DD4-D633-4D4D-BE87-C0FC1E8A6DE8}"
-        "PackageCode" = "8:{63E94AF4-1346-483E-AD9E-D817359EBE8D}"
+        "ProductCode" = "8:{EA21CD02-B498-46CC-A5EC-BCFF970FFC5C}"
+        "PackageCode" = "8:{D5F516DD-0C85-4E90-87AA-1BA0BD41D3A4}"
         "UpgradeCode" = "8:{EE4EE877-4403-4B79-8CA8-9946F3A99694}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:Drugs Store"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:Front"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Drugst"
+        "ARPCONTACT" = "8:Sean"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:Drugs Store"
         "ARPURLINFOABOUT" = "8:"
@@ -5738,9 +5762,9 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B3035839A3B94E85848C6E9E53A876C1"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_23FDD477788B4EBA8B507DA43EA56AE1"
             {
-            "Name" = "8:Front"
+            "Name" = "8:Front Drugs Store"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -5749,7 +5773,7 @@
             "Target" = "8:_83E993DB18424F1E812799CA50C594D7"
             "Folder" = "8:_923B2F812190426295C65E1631F8B764"
             "WorkingFolder" = "8:_CD6B3BDAAC4E406A948AF09F3B9B1C2A"
-            "Icon" = "8:_84061C4A60C243F280380222B8EE5ABE"
+            "Icon" = "8:_007C0E3F3ACC4984B530332EFCD8E531"
             "Feature" = "8:"
             }
         }

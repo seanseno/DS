@@ -33,17 +33,6 @@ namespace IS.Admin.Setup
             this.Close();
         }
 
-        private IList<string> GetColumnList()
-        {
-            IList<string> list = new List<string>();
-
-            list.Add("--Select--");
-            foreach (DataColumn c in dt.Columns)
-            {
-                list.Add(c.ColumnName);
-            }
-            return list;
-        }
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {

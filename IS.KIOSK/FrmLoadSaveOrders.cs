@@ -28,9 +28,14 @@ namespace IS.KIOSK
         private void FrmLoadSaveOrders_Load(object sender, EventArgs e)
         {
             dgvTempLedger.AutoGenerateColumns = false;
-            dgvTempLedger.DataSource = loadSaveOrdersModel.LoadSaveOrderList(_FrmMain);
+            var listLoaded = loadSaveOrdersModel.LoadSaveOrderList(_FrmMain);
+            dgvTempLedger.DataSource = listLoaded;
             dgvTempLedger.StandardTab = true;
 
+            if (listLoaded.Count <= 0)
+            {
+                this.DialogResult = DialogResult.Cancel;
+            }
         }
 
         private void dgvTempLedger_KeyUp(object sender, KeyEventArgs e)

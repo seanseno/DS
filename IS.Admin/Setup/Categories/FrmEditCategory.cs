@@ -26,6 +26,7 @@ namespace IS.Admin.Setup
             CategoriesModel Categories = new CategoriesModel();
             var response = Categories.LoadEdit(_Category.CategoryId);
             txtCategoryName.Text = response.CategoryName;
+            txtPercent.Text = response.PercentSuggestedPrice.ToString();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -36,16 +37,29 @@ namespace IS.Admin.Setup
         private void btnSave_Click(object sender, EventArgs e)
         {
             CategoriesModel Categories = new CategoriesModel();
-            _Category.CategoryName = txtCategoryName.Text;
-            if (Categories.CheckEditDup(_Category.CategoryName, _Category.Id))
+
+            if (txtCategoryName.Text == _Category.CategoryName && _Category.PercentSuggestedPrice != Convert.ToDecimal(txtPercent.Text))
             {
-                MessageBox.Show(_Category.CategoryName + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtCategoryName.Focus();
-            }
-            else
-            {
+                _Category.CategoryName = txtCategoryName.Text;
+                _Category.PercentSuggestedPrice = Convert.ToDecimal(txtPercent.Text);
                 Categories.UpdateCategory(_Category);
                 this.DialogResult = DialogResult.OK;
+            }
+            else if (txtCategoryName.Text != _Category.CategoryName)
+            {
+                _Category.CategoryName = txtCategoryName.Text;
+                _Category.PercentSuggestedPrice = Convert.ToDecimal(txtPercent.Text);
+                if (Categories.CheckEditDup(_Category.CategoryName, _Category.Id))
+                {
+                    MessageBox.Show(_Category.CategoryName + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtCategoryName.Focus();
+                }
+                else
+                {
+                    Categories.UpdateCategory(_Category);
+
+                    this.DialogResult = DialogResult.OK;
+                }
             }
         }
     }

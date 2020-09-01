@@ -53,6 +53,8 @@ namespace IS.Admin.Transactions
                     {
                         cboSheet.Items.Add(dt.TableName);
                     }
+                    dgvExcel.DataSource = null;
+                    lblTotal.Text = "Total record(s) : " + cboSheet.Items.Count.ToString("N0");
                 }
             }
         }
@@ -65,78 +67,82 @@ namespace IS.Admin.Transactions
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtFileName.Text))
+            try
             {
-                MessageBox.Show("Excel file is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (string.IsNullOrEmpty(txtFileName.Text))
+                {
+                    MessageBox.Show("Excel file is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (cboSheet.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Please select sheet!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+
+                    if (MessageBox.Show("Are you sure do want to continue?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    {
+                        StocksDataModel request = new StocksDataModel();
+
+                        ProductsModel pModel = new ProductsModel();
+                        progressBar1.Maximum = dt.Rows.Count;
+                        progressBar1.Minimum = 0;
+
+                        progressBar1.Value = 0;
+                        int progressCount = 0;
+
+                        var ErrorList = new List<StocksData>();
+
+                        IList<StocksData> list = new List<StocksData>();
+
+                        int rowIndex = 0;
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            rowIndex++;
+                            if (string.IsNullOrEmpty(row[1].ToString().ToUpper()) ||
+                                string.IsNullOrEmpty(row[4].ToString().ToUpper()) ||
+                                string.IsNullOrEmpty(row[5].ToString().ToUpper()) ||
+                                string.IsNullOrEmpty(row[6].ToString().ToUpper()) ||
+                                string.IsNullOrEmpty(row[7].ToString().ToUpper()) ||
+                                string.IsNullOrEmpty(row[8].ToString().ToUpper()) ||
+                                string.IsNullOrEmpty(row[9].ToString().ToUpper()) ||
+                                string.IsNullOrEmpty(row[10].ToString().ToUpper()))
+                            {
+                                MessageBox.Show(string.Format("Row {0} is not valid, please check the row information!", rowIndex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                dgvExcel.Rows[rowIndex - 1].Selected = true;
+                                return;
+                            }
+                            else if (!pModel.CheckProductIfExist(row[1].ToString().ToUpper()))
+                            {
+                                MessageBox.Show(string.Format("Product ID:{0} does not exist!", row[1].ToString().ToUpper()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                dgvExcel.Rows[rowIndex - 1].Selected = true;
+                                return;
+                            }
+                        }
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            progressCount++;
+                            StocksData stocksData = new StocksData();
+                            stocksData.ProductId = row[1].ToString().ToUpper();
+                            stocksData.Quantity = Convert.ToInt32(row[4].ToString());
+                            stocksData.SupplierPrice = Convert.ToDecimal(row[5].ToString());
+                            stocksData.TotalAmount = Convert.ToDecimal(row[6].ToString());
+                            stocksData.RealUnitPrice = Convert.ToDecimal(row[7].ToString());
+                            stocksData.DeliveryDate = Convert.ToDateTime(row[8].ToString());
+                            stocksData.ExpirationDate = Convert.ToDateTime(row[9].ToString());
+                            stocksData.Duration = Convert.ToInt32(row[10].ToString());
+                            request.InsertStockData(stocksData);
+                            progressBar1.Value = progressCount;
+                        }
+                        MessageBox.Show("Stocks Data Uploaded!", "Completed!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = DialogResult.OK;
+                    }
+                }
             }
-            else if (cboSheet.SelectedIndex < 0)
+            catch (Exception ex)
             {
-                MessageBox.Show("Please select sheet!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                //if (MessageBox.Show("Are you sure do want to continue?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                //{
-                //    StocksDataModel request = new StocksDataModel();
-                //    progressBar1.Maximum = dt.Rows.Count;
-                //    progressBar1.Minimum = 0;
-
-                //    progressBar1.Value = 0;
-                //    int progressCount = 0;
-
-                //    var ErrorList = new List<StocksData>();
-
-                //    IList<StocksData> list = new List<StocksData>();
-                //    foreach (DataRow row in dt.Rows)
-                //    {
-
-                //        var category = new StocksData();
-                //        category.CategoryId = row[0].ToString().ToUpper();
-                //        category.CategoryName = row[1].ToString().ToUpper();
-                //        if (!request.CheckDup(category))
-                //        {
-                //            list.Add(category);
-                //        }
-                //        else
-                //        {
-                //            ErrorList.Add(category);
-                //        }
-                //    }
-
-                //    foreach (var row in list)
-                //    {
-                //        try
-                //        {
-                //            request.InsertCategory(row);
-                //        }
-                //        catch (Exception ex)
-                //        {
-                //            ErrorList.Add(row);
-                //        }
-                //        finally
-                //        {
-                //            progressCount++;
-                //            progressBar1.Value = progressCount;
-                //        }
-
-                //    }
-
-                //    if (ErrorList.Count > 0)
-                //    {
-                //        MessageBox.Show("StocksData uploaded! but some rows does not uploaded, Please check the Item information.", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //        FrmStocksDataNotUploaded frm = new FrmStocksDataNotUploaded(ErrorList);
-                //        if (frm.ShowDialog() == DialogResult.OK)
-                //        {
-                //            this.DialogResult = DialogResult.OK;
-                //        }
-                //    }
-                //    else
-                //    {
-                //        MessageBox.Show("StocksData Uploaded!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //        this.DialogResult = DialogResult.OK;
-                //    }
-                //}
-
+                MessageBox.Show(string.Format("{0}", ex.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

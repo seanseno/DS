@@ -72,5 +72,25 @@ namespace IS.Database.Strategy
                 }
             }
         }
+
+        public bool CheckIfProductExist(string ProductId)
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT ProductId FROM Products WHERE ProductId = '" + ProductId + "'";
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+                }
+            }
+        }
     }
 }

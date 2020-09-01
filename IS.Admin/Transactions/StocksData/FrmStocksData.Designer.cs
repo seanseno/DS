@@ -51,7 +51,8 @@
             this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SupplierPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RealUnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RemainingQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DeliveryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExpirationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,11 +75,9 @@
             this.groupBox1.Controls.Add(this.btnAdd);
             this.groupBox1.Controls.Add(this.dgvSearch);
             this.groupBox1.Controls.Add(this.txtSearch);
-            this.groupBox1.Location = new System.Drawing.Point(16, 68);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Location = new System.Drawing.Point(12, 55);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(1751, 731);
+            this.groupBox1.Size = new System.Drawing.Size(1313, 594);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Stocks Data List";
@@ -86,10 +85,9 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(16, 658);
-            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotal.Location = new System.Drawing.Point(12, 535);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(119, 17);
+            this.lblTotal.Size = new System.Drawing.Size(89, 13);
             this.lblTotal.TabIndex = 15;
             this.lblTotal.Text = "Total Record(s) 0";
             // 
@@ -97,10 +95,9 @@
             // 
             this.btnSearch.Image = global::IS.Admin.Properties.Resources.search;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.Location = new System.Drawing.Point(1523, 23);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearch.Location = new System.Drawing.Point(1142, 19);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(101, 48);
+            this.btnSearch.Size = new System.Drawing.Size(76, 39);
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -111,10 +108,9 @@
             // 
             this.btnUpload.Image = global::IS.Admin.Properties.Resources.excel32;
             this.btnUpload.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnUpload.Location = new System.Drawing.Point(1536, 654);
-            this.btnUpload.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpload.Location = new System.Drawing.Point(1152, 531);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(88, 68);
+            this.btnUpload.Size = new System.Drawing.Size(66, 55);
             this.btnUpload.TabIndex = 3;
             this.btnUpload.Text = "Upload";
             this.btnUpload.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -125,11 +121,9 @@
             // 
             this.grpLoading.Controls.Add(this.label1);
             this.grpLoading.Controls.Add(this.pictureBox2);
-            this.grpLoading.Location = new System.Drawing.Point(848, 249);
-            this.grpLoading.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpLoading.Location = new System.Drawing.Point(636, 202);
             this.grpLoading.Name = "grpLoading";
-            this.grpLoading.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.grpLoading.Size = new System.Drawing.Size(224, 258);
+            this.grpLoading.Size = new System.Drawing.Size(168, 210);
             this.grpLoading.TabIndex = 14;
             this.grpLoading.TabStop = false;
             this.grpLoading.Text = "Pleaase wait..";
@@ -138,20 +132,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 222);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(21, 180);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 17);
+            this.label1.Size = new System.Drawing.Size(102, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Loading...................";
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::IS.Admin.Properties.Resources.timer;
-            this.pictureBox2.Location = new System.Drawing.Point(32, 37);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Location = new System.Drawing.Point(24, 30);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(164, 164);
+            this.pictureBox2.Size = new System.Drawing.Size(123, 133);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
@@ -160,10 +152,9 @@
             // 
             this.btnClose.Image = global::IS.Admin.Properties.Resources.Exit;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnClose.Location = new System.Drawing.Point(1632, 654);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClose.Location = new System.Drawing.Point(1224, 531);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(88, 68);
+            this.btnClose.Size = new System.Drawing.Size(66, 55);
             this.btnClose.TabIndex = 4;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -174,10 +165,9 @@
             // 
             this.btnAdd.Image = global::IS.Admin.Properties.Resources.Add;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdd.Location = new System.Drawing.Point(1632, 21);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdd.Location = new System.Drawing.Point(1224, 17);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(88, 48);
+            this.btnAdd.Size = new System.Drawing.Size(66, 39);
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Add";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -199,29 +189,28 @@
             this.CategoryName,
             this.Quantity,
             this.SupplierPrice,
-            this.TotalAmount,
+            this.RealUnitPrice,
+            this.RemainingQuantity,
             this.DeliveryDate,
             this.ExpirationDate,
             this.Duration,
             this.Edit,
             this.Delete});
-            this.dgvSearch.Location = new System.Drawing.Point(19, 77);
-            this.dgvSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvSearch.Location = new System.Drawing.Point(14, 63);
             this.dgvSearch.Name = "dgvSearch";
             this.dgvSearch.ReadOnly = true;
             this.dgvSearch.RowHeadersWidth = 51;
             this.dgvSearch.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSearch.Size = new System.Drawing.Size(1723, 570);
+            this.dgvSearch.Size = new System.Drawing.Size(1292, 463);
             this.dgvSearch.TabIndex = 1;
             this.dgvSearch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSearch_CellClick);
             // 
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(20, 27);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSearch.Location = new System.Drawing.Point(15, 22);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(1493, 30);
+            this.txtSearch.Size = new System.Drawing.Size(1121, 26);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
@@ -229,10 +218,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(8, 11);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(6, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(300, 42);
+            this.label2.Size = new System.Drawing.Size(241, 34);
             this.label2.TabIndex = 16;
             this.label2.Text = "Stocks Data Menu";
             // 
@@ -266,7 +254,7 @@
             this.ProductId.Name = "ProductId";
             this.ProductId.ReadOnly = true;
             this.ProductId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ProductId.Width = 70;
+            this.ProductId.Width = 60;
             // 
             // ProductName
             // 
@@ -278,7 +266,7 @@
             this.ProductName.Name = "ProductName";
             this.ProductName.ReadOnly = true;
             this.ProductName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ProductName.Width = 300;
+            this.ProductName.Width = 250;
             // 
             // CategoryName
             // 
@@ -317,19 +305,27 @@
             this.SupplierPrice.ReadOnly = true;
             this.SupplierPrice.Width = 80;
             // 
-            // TotalAmount
+            // RealUnitPrice
             // 
-            this.TotalAmount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.TotalAmount.DataPropertyName = "TotalAmount";
+            this.RealUnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.RealUnitPrice.DataPropertyName = "RealUnitPrice";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle4.Format = "N2";
             dataGridViewCellStyle4.NullValue = "0.00";
-            this.TotalAmount.DefaultCellStyle = dataGridViewCellStyle4;
-            this.TotalAmount.HeaderText = "RealUnitPrice";
-            this.TotalAmount.MinimumWidth = 6;
-            this.TotalAmount.Name = "TotalAmount";
-            this.TotalAmount.ReadOnly = true;
-            this.TotalAmount.Width = 80;
+            this.RealUnitPrice.DefaultCellStyle = dataGridViewCellStyle4;
+            this.RealUnitPrice.HeaderText = "Real Unit Price";
+            this.RealUnitPrice.MinimumWidth = 6;
+            this.RealUnitPrice.Name = "RealUnitPrice";
+            this.RealUnitPrice.ReadOnly = true;
+            this.RealUnitPrice.Width = 80;
+            // 
+            // RemainingQuantity
+            // 
+            this.RemainingQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.RemainingQuantity.DataPropertyName = "RemainingQuantity";
+            this.RemainingQuantity.HeaderText = "Remaining Quantity";
+            this.RemainingQuantity.Name = "RemainingQuantity";
+            this.RemainingQuantity.ReadOnly = true;
             // 
             // DeliveryDate
             // 
@@ -339,7 +335,7 @@
             this.DeliveryDate.MinimumWidth = 6;
             this.DeliveryDate.Name = "DeliveryDate";
             this.DeliveryDate.ReadOnly = true;
-            this.DeliveryDate.Width = 125;
+            this.DeliveryDate.Width = 80;
             // 
             // ExpirationDate
             // 
@@ -349,7 +345,7 @@
             this.ExpirationDate.MinimumWidth = 6;
             this.ExpirationDate.Name = "ExpirationDate";
             this.ExpirationDate.ReadOnly = true;
-            this.ExpirationDate.Width = 125;
+            this.ExpirationDate.Width = 80;
             // 
             // Duration
             // 
@@ -384,15 +380,14 @@
             // 
             // FrmStocksData
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
-            this.ClientSize = new System.Drawing.Size(1783, 814);
+            this.ClientSize = new System.Drawing.Size(1337, 665);
             this.ControlBox = false;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmStocksData";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FrmStocksData_Load);
@@ -429,7 +424,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn SupplierPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RealUnitPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RemainingQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn DeliveryDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExpirationDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Duration;

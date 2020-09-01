@@ -51,7 +51,7 @@ namespace IS.Admin.Setup
                 CategoryName = dgvSearch.CurrentRow.Cells[1].Value.ToString(),
             };
 
-            if (e.ColumnIndex == 2)
+            if (e.ColumnIndex == 3)
             {
                 FrmEditCategory frm = new FrmEditCategory(Category);
                 if (frm.ShowDialog() == DialogResult.OK)
@@ -62,7 +62,7 @@ namespace IS.Admin.Setup
 
                 //MessageBox.Show((e.RowIndex + 1) + "  Row  " + (e.ColumnIndex + 1) + "  Column button clicked ");
             }
-            if (e.ColumnIndex == 3)
+            if (e.ColumnIndex == 4)
             {
                 var model = new CategoriesModel();
                 if (model.CheckCategoryIfAlreadyInUse(Category.CategoryId))

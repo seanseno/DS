@@ -24,7 +24,7 @@ namespace IS.Database.Repositories
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@CategoryId", Categories.CategoryId.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@CategoryName", Categories.CategoryName.ToUpper()));
-
+                    cmd.Parameters.Add(new SqlParameter("@PercentSuggestedPrice", Categories.PercentSuggestedPrice));
                     int rowAffected = cmd.ExecuteNonQuery();
 
                     if (connection.State == System.Data.ConnectionState.Open)
@@ -44,7 +44,7 @@ namespace IS.Database.Repositories
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@CategoryId", Categories.CategoryId.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@CategoryName", Categories.CategoryName.ToUpper()));
-
+                    cmd.Parameters.Add(new SqlParameter("@PercentSuggestedPrice", Categories.PercentSuggestedPrice));
                     int rowAffected = cmd.ExecuteNonQuery();
 
                     if (connection.State == System.Data.ConnectionState.Open)
@@ -180,6 +180,30 @@ namespace IS.Database.Repositories
                         }
                         return null;
 
+                    }
+                }
+            }
+        }
+
+        public decimal GetPercentSuggestedPrice(string CategoryId)
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT PercentSuggestedPrice FROM Categories WHERE CategoryId ='" + CategoryId + "'";
+
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                return reader.GetDecimal(0);
+                            }
+                        }
+                        return 0;
                     }
                 }
             }

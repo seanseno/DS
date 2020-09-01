@@ -18,7 +18,7 @@ namespace IS.KIOSK
         {
             InitializeComponent();
             _FrmMain = frm;
-            lblTotalPrice.Text = "Total Price : " + Math.Round(_FrmMain.TotalPrice,2);
+            lblTotalPrice.Text = "Total Price : " + Math.Round(_FrmMain.TotalPrice,2).ToString("N2");
         }
 
 

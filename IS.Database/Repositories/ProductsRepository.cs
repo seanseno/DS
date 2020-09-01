@@ -148,6 +148,33 @@ namespace IS.Database.Repositories
                 }
             }
         }
+        public IList<Products> FindListActive(string keyword)
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT * FROM vProducts " +
+                                " WHERE (ProductName Like '%" + keyword + "%'" +
+                                " OR ProductId Like '%" + keyword + "%' " +
+                                " OR CategoryName Like '%" + keyword + "%' " +
+                                " OR PrincipalName Like '%" + keyword + "%' " +
+                                " OR BarCode Like '%" + keyword + "%' )" +
+                                " AND Price > 0 " +
+                                " AND Stock > 0 " +
+                                " AND Active = " + (int)EnumActive.Active +
+                            " ORDER BY ProductName";
+
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        List<Products> Products = new List<Products>();
+                        var List = new ReflectionPopulator<Products>().CreateList(reader);
+                        return List;
+                    }
+                }
+            }
+        }
 
         public string GetNextId()
         {

@@ -18,6 +18,11 @@ namespace IS.Admin.Model
             return factory.ProductsRepository.Find(Keywords);
         }
 
+        public Products FindWithProductId(string ProductId)
+        {
+            var factory = new ISFactory();
+            return factory.ProductsRepository.FindWithProductId(ProductId);
+        }
         public void AddItem(FrmAddProduct frm)
         {
             var factory = new ISFactory();
@@ -58,11 +63,11 @@ namespace IS.Admin.Model
             return factory.ProductsRepository.ProductsStrategy.ItemAlreadyInUse(itemId);
         }
 
-        //public Items UploadExcel( Items entity)
-        //{
-        //   var factory = new ISFactory();
-        //   return  factory.ProductsRepository.UploadItem(entity);
-        //}
+        public bool CheckProductIfExist(string productId)
+        {
+            var factory = new ISFactory();
+            return factory.ProductsRepository.ProductsStrategy.CheckIfProductExist(productId);
+        }
 
         public void InsertItem(Products model)
         {

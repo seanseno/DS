@@ -55,7 +55,7 @@ namespace IS.Admin.Transactions
             };
 
 
-            if (e.ColumnIndex == 11)
+            if (e.ColumnIndex == 12)
             {
                 FrmEditStockData frm = new FrmEditStockData(stockData);
                 if (frm.ShowDialog() == DialogResult.OK)
@@ -65,7 +65,7 @@ namespace IS.Admin.Transactions
                 };
 
             }
-            if (e.ColumnIndex == 12)
+            if (e.ColumnIndex == 13)
             {
                 if (MessageBox.Show("Are you sure do you want to delete this record?", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {

@@ -16,6 +16,7 @@ namespace IS.Admin.Transactions
     public partial class FrmAddStockData : Form
     {
         public Categories _Categories = new Categories();
+        private Products _Product = new Products();
         public FrmAddStockData()
         {
             InitializeComponent();
@@ -78,6 +79,12 @@ namespace IS.Admin.Transactions
                 txtRealUnitPrice.Focus();
                 return true;
             }
+            else if (string.IsNullOrEmpty(txtRemainingQty.Text))
+            {
+                MessageBox.Show("Remaining Quantity is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtRemainingQty.Focus();
+                return true;
+            }
             else if (Convert.ToInt32(txtDuration.Text) <= 0)
             {
                 MessageBox.Show("Invalid Duration, Can not accept 0 or less than 0!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -99,14 +106,6 @@ namespace IS.Admin.Transactions
             }
         }
 
-
-        private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
-            {
-                e.Handled = true;
-            }
-        }
 
         private void dtpExpirationDate_ValueChanged(object sender, EventArgs e)
         {
@@ -153,17 +152,37 @@ namespace IS.Admin.Transactions
         private void txtSupplierPrice_TextChanged(object sender, EventArgs e)
         {
             GetTotalAmount();
+            CategoriesModel model = new CategoriesModel();
+            if (this._Product != null)
+            {
+                var percent = model.GetPercentSuggestedPrice(_Product.CategoryId);
+                if (percent != 0)
+                {
+                    if (string.IsNullOrEmpty(txtSupplierPrice.Text))
+                    {
+                        txtRealUnitPrice.Text = "0.00";
+                    }
+                    else
+                    {
+                        var supplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
+                        //= (F6 * 0.2) + F6
+                        var sellingPrice = ((supplierPrice * (percent / 100)) + supplierPrice);
+                        txtRealUnitPrice.Text = Math.Round(sellingPrice, 2).ToString();
+                    }
+                }
+            }
         }
 
         private void txtQuantity_TextChanged(object sender, EventArgs e)
         {
             GetTotalAmount();
+            txtRemainingQty.Text = txtQuantity.Text;
         }
         private void GetTotalAmount()
         {
             if (!string.IsNullOrEmpty(txtSupplierPrice.Text) && !string.IsNullOrEmpty(txtQuantity.Text))
             {
-                txtTotalAmount.Text = Math.Round(Convert.ToInt32(txtQuantity.Text) * Convert.ToDecimal(txtSupplierPrice.Text), 2).ToString();
+                txtTotalAmount.Text = Math.Round(Convert.ToInt32(txtQuantity.Text) * Convert.ToDecimal(txtSupplierPrice.Text), 2).ToString("N2");
             }
         }
 
@@ -179,6 +198,7 @@ namespace IS.Admin.Transactions
                     stocksData.SupplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
                     stocksData.TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
                     stocksData.RealUnitPrice = Convert.ToDecimal(txtRealUnitPrice.Text);
+                    stocksData.RemainingQuantity = Convert.ToInt32(txtRemainingQty.Text);
                     stocksData.DeliveryDate = dtpDeliveryDate.Value;
                     stocksData.ExpirationDate = dtpExpirationDate.Value;
                     stocksData.Duration = Convert.ToInt32(txtDuration.Text);
@@ -188,6 +208,20 @@ namespace IS.Admin.Transactions
 
                     this.DialogResult = DialogResult.OK;
                 }
+            }
+        }
+
+        private void txtProductId_TextChanged(object sender, EventArgs e)
+        {
+            ProductsModel modelProd = new ProductsModel();
+            this._Product = modelProd.FindWithProductId(txtProductId.Text);
+        }
+
+        private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
             }
         }
     }

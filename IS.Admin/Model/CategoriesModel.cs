@@ -71,6 +71,12 @@ namespace IS.Admin.Model
             return factory.CategoriesRepository.CategoriesStrategy.CategoryAlreadyInUse(CategoryId);
         }
 
+        public decimal GetPercentSuggestedPrice(string CategoryId)
+        {
+            var factory = new ISFactory();
+            return factory.CategoriesRepository.GetPercentSuggestedPrice(CategoryId);
+        }
+
         public string GetNextId()
         {
             var factory = new ISFactory();
