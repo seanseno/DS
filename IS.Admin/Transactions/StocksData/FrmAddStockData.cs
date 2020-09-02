@@ -202,7 +202,7 @@ namespace IS.Admin.Transactions
                     stocksData.DeliveryDate = dtpDeliveryDate.Value;
                     stocksData.ExpirationDate = dtpExpirationDate.Value;
                     stocksData.Duration = Convert.ToInt32(txtDuration.Text);
-
+                    stocksData.Remarks = txtRemarks.Text;
                     var StocksDataModel = new StocksDataModel();
                     StocksDataModel.InsertStockData(stocksData);
 

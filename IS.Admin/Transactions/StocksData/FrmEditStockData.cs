@@ -38,6 +38,7 @@ namespace IS.Admin.Transactions
             dtpDeliveryDate.Value = response.DeliveryDate;
             dtpExpirationDate.Value = response.ExpirationDate;
             txtDuration.Text = response.Duration.ToString("N0");
+            txtRemarks.Text = response.Remarks;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -62,6 +63,7 @@ namespace IS.Admin.Transactions
                     StocksData.DeliveryDate = dtpDeliveryDate.Value;
                     StocksData.ExpirationDate = dtpExpirationDate.Value;
                     StocksData.Duration = Convert.ToInt32(txtDuration.Text);
+                    StocksData.Remarks = txtRemarks.Text;
 
                     var StocksDataModel = new StocksDataModel();
                     StocksDataModel.UpdateStockData(StocksData);

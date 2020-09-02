@@ -17,6 +17,7 @@ namespace IS.Database.Entities
         public DateTime DeliveryDate { get; set; }
         public DateTime ExpirationDate { get; set; }
         public int Duration { get; set; }
+        public string Remarks { get; set; }
         public DateTime InsertTime { get; set; }
         public DateTime UpdateTime { get; set; }
     }

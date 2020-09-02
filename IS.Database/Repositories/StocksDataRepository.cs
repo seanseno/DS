@@ -31,7 +31,7 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@DeliveryDate", StocksData.DeliveryDate));
                     cmd.Parameters.Add(new SqlParameter("@ExpirationDate", StocksData.ExpirationDate));
                     cmd.Parameters.Add(new SqlParameter("@Duration", StocksData.Duration));
-
+                    cmd.Parameters.Add(new SqlParameter("@Remarks", StocksData.Remarks));
                     int rowAffected = cmd.ExecuteNonQuery();
 
                     if (connection.State == System.Data.ConnectionState.Open)
@@ -57,6 +57,7 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@DeliveryDate", StocksData.DeliveryDate));
                     cmd.Parameters.Add(new SqlParameter("@ExpirationDate", StocksData.ExpirationDate));
                     cmd.Parameters.Add(new SqlParameter("@Duration", StocksData.Duration));
+                    cmd.Parameters.Add(new SqlParameter("@Remarks", StocksData.Remarks));
 
                     int rowAffected = cmd.ExecuteNonQuery();
 

@@ -106,7 +106,8 @@ namespace IS.Admin.Transactions
                                 string.IsNullOrEmpty(row[7].ToString().ToUpper()) ||
                                 string.IsNullOrEmpty(row[8].ToString().ToUpper()) ||
                                 string.IsNullOrEmpty(row[9].ToString().ToUpper()) ||
-                                string.IsNullOrEmpty(row[10].ToString().ToUpper()))
+                                string.IsNullOrEmpty(row[10].ToString().ToUpper()) ||
+                                string.IsNullOrEmpty(row[11].ToString().ToUpper()))
                             {
                                 MessageBox.Show(string.Format("Row {0} is not valid, please check the row information!", rowIndex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 dgvExcel.Rows[rowIndex - 1].Selected = true;
@@ -129,9 +130,11 @@ namespace IS.Admin.Transactions
                             stocksData.SupplierPrice = Convert.ToDecimal(row[5].ToString());
                             stocksData.TotalAmount = Convert.ToDecimal(row[6].ToString());
                             stocksData.RealUnitPrice = Convert.ToDecimal(row[7].ToString());
-                            stocksData.DeliveryDate = Convert.ToDateTime(row[8].ToString());
-                            stocksData.ExpirationDate = Convert.ToDateTime(row[9].ToString());
-                            stocksData.Duration = Convert.ToInt32(row[10].ToString());
+                            stocksData.RemainingQuantity = Convert.ToInt32(row[8].ToString());
+                            stocksData.DeliveryDate = Convert.ToDateTime(row[9].ToString());
+                            stocksData.ExpirationDate = Convert.ToDateTime(row[10].ToString());
+                            stocksData.Duration = Convert.ToInt32(row[11].ToString());
+                            stocksData.Remarks = row[12].ToString().ToUpper();
                             request.InsertStockData(stocksData);
                             progressBar1.Value = progressCount;
                         }

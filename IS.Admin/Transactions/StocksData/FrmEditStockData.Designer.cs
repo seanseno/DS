@@ -33,6 +33,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtRemainingQty = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -55,8 +57,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.txtRemainingQty = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
+            this.txtRemarks = new System.Windows.Forms.RichTextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -80,17 +82,17 @@
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Location = new System.Drawing.Point(11, 52);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(671, 538);
+            this.panel1.Size = new System.Drawing.Size(663, 616);
             this.panel1.TabIndex = 11;
             // 
             // btnSave
             // 
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSave.Location = new System.Drawing.Point(535, 477);
+            this.btnSave.Location = new System.Drawing.Point(535, 553);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(53, 53);
-            this.btnSave.TabIndex = 15;
+            this.btnSave.TabIndex = 30;
             this.btnSave.Text = "Update";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -99,6 +101,8 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.White;
+            this.groupBox3.Controls.Add(this.txtRemarks);
+            this.groupBox3.Controls.Add(this.label14);
             this.groupBox3.Controls.Add(this.txtRemainingQty);
             this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Controls.Add(this.label4);
@@ -120,10 +124,28 @@
             this.groupBox3.Controls.Add(this.groupBox1);
             this.groupBox3.Location = new System.Drawing.Point(16, 15);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(634, 456);
+            this.groupBox3.Size = new System.Drawing.Size(634, 532);
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Input Details";
+            // 
+            // txtRemainingQty
+            // 
+            this.txtRemainingQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRemainingQty.Location = new System.Drawing.Point(131, 317);
+            this.txtRemainingQty.Name = "txtRemainingQty";
+            this.txtRemainingQty.Size = new System.Drawing.Size(82, 26);
+            this.txtRemainingQty.TabIndex = 24;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(23, 323);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(102, 16);
+            this.label13.TabIndex = 36;
+            this.label13.Text = "Remaining Qty :";
             // 
             // label4
             // 
@@ -336,38 +358,38 @@
             // 
             this.btnCancel.Image = global::IS.Admin.Properties.Resources.Cancel;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCancel.Location = new System.Drawing.Point(594, 477);
+            this.btnCancel.Location = new System.Drawing.Point(594, 553);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(56, 53);
-            this.btnCancel.TabIndex = 13;
+            this.btnCancel.TabIndex = 31;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // txtRemainingQty
+            // txtRemarks
             // 
-            this.txtRemainingQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemainingQty.Location = new System.Drawing.Point(131, 317);
-            this.txtRemainingQty.Name = "txtRemainingQty";
-            this.txtRemainingQty.Size = new System.Drawing.Size(82, 26);
-            this.txtRemainingQty.TabIndex = 24;
+            this.txtRemarks.Location = new System.Drawing.Point(131, 454);
+            this.txtRemarks.Name = "txtRemarks";
+            this.txtRemarks.Size = new System.Drawing.Size(357, 61);
+            this.txtRemarks.TabIndex = 29;
+            this.txtRemarks.Text = "";
             // 
-            // label13
+            // label14
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(23, 323);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(102, 16);
-            this.label13.TabIndex = 36;
-            this.label13.Text = "Remaining Qty :";
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(23, 454);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(69, 16);
+            this.label14.TabIndex = 38;
+            this.label14.Text = "Remarks :";
             // 
             // FrmEditStockData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(699, 600);
+            this.ClientSize = new System.Drawing.Size(684, 678);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label3);
@@ -414,5 +436,7 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox txtRemainingQty;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.RichTextBox txtRemarks;
+        private System.Windows.Forms.Label label14;
     }
 }

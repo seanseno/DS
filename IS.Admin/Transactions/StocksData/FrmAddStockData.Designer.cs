@@ -57,6 +57,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtRemarks = new System.Windows.Forms.RichTextBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -136,12 +138,14 @@
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Location = new System.Drawing.Point(12, 46);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(671, 538);
+            this.panel1.Size = new System.Drawing.Size(673, 607);
             this.panel1.TabIndex = 7;
             // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.White;
+            this.groupBox3.Controls.Add(this.txtRemarks);
+            this.groupBox3.Controls.Add(this.label14);
             this.groupBox3.Controls.Add(this.txtRemainingQty);
             this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Controls.Add(this.label4);
@@ -163,7 +167,7 @@
             this.groupBox3.Controls.Add(this.groupBox1);
             this.groupBox3.Location = new System.Drawing.Point(16, 15);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(634, 456);
+            this.groupBox3.Size = new System.Drawing.Size(634, 512);
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Input Details";
@@ -222,7 +226,7 @@
             this.txtDuration.Location = new System.Drawing.Point(131, 408);
             this.txtDuration.Name = "txtDuration";
             this.txtDuration.Size = new System.Drawing.Size(82, 26);
-            this.txtDuration.TabIndex = 28;
+            this.txtDuration.TabIndex = 27;
             this.txtDuration.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDuration_KeyPress);
             // 
             // label11
@@ -343,7 +347,7 @@
             // 
             this.btnCancel.Image = global::IS.Admin.Properties.Resources.Cancel;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCancel.Location = new System.Drawing.Point(594, 477);
+            this.btnCancel.Location = new System.Drawing.Point(595, 533);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(56, 53);
             this.btnCancel.TabIndex = 13;
@@ -356,7 +360,7 @@
             // 
             this.btnAdd.Image = global::IS.Admin.Properties.Resources.Save;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAdd.Location = new System.Drawing.Point(535, 477);
+            this.btnAdd.Location = new System.Drawing.Point(536, 533);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(53, 53);
             this.btnAdd.TabIndex = 12;
@@ -375,12 +379,30 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "Add StockData";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(23, 445);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(69, 16);
+            this.label14.TabIndex = 35;
+            this.label14.Text = "Remarks :";
+            // 
+            // txtRemarks
+            // 
+            this.txtRemarks.Location = new System.Drawing.Point(131, 445);
+            this.txtRemarks.Name = "txtRemarks";
+            this.txtRemarks.Size = new System.Drawing.Size(357, 61);
+            this.txtRemarks.TabIndex = 28;
+            this.txtRemarks.Text = "";
+            // 
             // FrmAddStockData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.ClientSize = new System.Drawing.Size(695, 592);
+            this.ClientSize = new System.Drawing.Size(697, 674);
             this.ControlBox = false;
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
@@ -430,5 +452,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtRemainingQty;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.RichTextBox txtRemarks;
+        private System.Windows.Forms.Label label14;
     }
 }
