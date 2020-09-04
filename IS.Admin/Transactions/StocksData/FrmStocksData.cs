@@ -1,5 +1,7 @@
 ﻿using IS.Admin.Model;
+using IS.Database;
 using IS.Database.Entities;
+using IS.Library.Utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,7 +39,7 @@ namespace IS.Admin.Transactions
             grpLoading.Refresh();
 
             StocksDataModel StocksData = new StocksDataModel();
-            _list = StocksData.StockDataList(this, txtSearch.Text);
+            _list = StocksData.FindWithRemainingQTY(txtSearch.Text);
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = _list;
             txtSearch.Focus();
@@ -156,20 +158,19 @@ namespace IS.Admin.Transactions
             LoadStockData();
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+ 
+        private void dgvSearch_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            //LoadMemoryProducts();
-        }
-        private void LoadMemoryProducts()
-        {
-            //dgvSearch.AutoGenerateColumns = false;
-            //dgvSearch.DataSource = this._list.Where(x => x.StockDataName.Contains(txtSearch.Text.ToUpper()) || x.StockDataId.Contains(txtSearch.Text.ToUpper())).OrderBy(v => v.StockDataName).ToList();
-            //dgvSearch.StandardTab = true;
-        }
+            Helper hp = new Helper();
+            foreach (DataGridViewRow row in dgvSearch.Rows)
+            {
+                var days = DateConvertion.DaysBetween(Convert.ToDateTime(row.Cells[11].Value), DateTime.Now);
 
-        private void FrmStocksData_Load(object sender, EventArgs e)
-        {
-
+                if (days <= hp.ExpirationAlert)
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(237, 114, 116);
+                }
+            }
         }
     }
 }

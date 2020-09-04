@@ -11,11 +11,17 @@ namespace IS.Admin.Model
 {
     public class StocksDataModel
     {
-        public IList<StocksData> StockDataList(FrmStocksData frm, string Keywords)
+        public IList<StocksData> StockDataList(string Keywords)
         {
             var factory = new ISFactory();
             return factory.StocksDataRepository.Find(Keywords);
         }
+        public IList<StocksData> FindWithRemainingQTY(string Keywords)
+        {
+            var factory = new ISFactory();
+            return factory.StocksDataRepository.FindWithRemainingQTY(Keywords);
+        }
+
         public IList<StocksData> StockDataListWithSelect()
         {
             var factory = new ISFactory();

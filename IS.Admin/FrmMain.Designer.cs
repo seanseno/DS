@@ -35,6 +35,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stocksDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.principalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,7 +50,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTotalItems = new System.Windows.Forms.Label();
-            this.stocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sockDataProfitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -81,14 +82,14 @@
             // logOfffToolStripMenuItem
             // 
             this.logOfffToolStripMenuItem.Name = "logOfffToolStripMenuItem";
-            this.logOfffToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logOfffToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.logOfffToolStripMenuItem.Text = "Log Off";
             this.logOfffToolStripMenuItem.Click += new System.EventHandler(this.logOfffToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -104,9 +105,16 @@
             // stocksDataToolStripMenuItem
             // 
             this.stocksDataToolStripMenuItem.Name = "stocksDataToolStripMenuItem";
-            this.stocksDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.stocksDataToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.stocksDataToolStripMenuItem.Text = "Stocks Data";
             this.stocksDataToolStripMenuItem.Click += new System.EventHandler(this.stocksDataToolStripMenuItem_Click);
+            // 
+            // stocksToolStripMenuItem
+            // 
+            this.stocksToolStripMenuItem.Name = "stocksToolStripMenuItem";
+            this.stocksToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.stocksToolStripMenuItem.Text = "Stocks";
+            this.stocksToolStripMenuItem.Click += new System.EventHandler(this.stocksToolStripMenuItem_Click);
             // 
             // setupToolStripMenuItem
             // 
@@ -123,21 +131,21 @@
             // categoriesToolStripMenuItem
             // 
             this.categoriesToolStripMenuItem.Name = "categoriesToolStripMenuItem";
-            this.categoriesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.categoriesToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.categoriesToolStripMenuItem.Text = "Categories";
             this.categoriesToolStripMenuItem.Click += new System.EventHandler(this.categoriesToolStripMenuItem_Click);
             // 
             // principalsToolStripMenuItem
             // 
             this.principalsToolStripMenuItem.Name = "principalsToolStripMenuItem";
-            this.principalsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.principalsToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.principalsToolStripMenuItem.Text = "Principals";
             this.principalsToolStripMenuItem.Click += new System.EventHandler(this.principalsToolStripMenuItem_Click);
             // 
             // productsToolStripMenuItem
             // 
             this.productsToolStripMenuItem.Name = "productsToolStripMenuItem";
-            this.productsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.productsToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.productsToolStripMenuItem.Text = "Products";
             this.productsToolStripMenuItem.Click += new System.EventHandler(this.productsToolStripMenuItem_Click);
             // 
@@ -153,21 +161,22 @@
             // administratorToolStripMenuItem
             // 
             this.administratorToolStripMenuItem.Name = "administratorToolStripMenuItem";
-            this.administratorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.administratorToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.administratorToolStripMenuItem.Text = "Administrator";
             this.administratorToolStripMenuItem.Click += new System.EventHandler(this.administratorToolStripMenuItem_Click);
             // 
             // cashiersToolStripMenuItem
             // 
             this.cashiersToolStripMenuItem.Name = "cashiersToolStripMenuItem";
-            this.cashiersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cashiersToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.cashiersToolStripMenuItem.Text = "Cashiers";
             this.cashiersToolStripMenuItem.Click += new System.EventHandler(this.cashiersToolStripMenuItem_Click);
             // 
             // reportToolStripMenuItem
             // 
             this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.salesToolStripMenuItem});
+            this.salesToolStripMenuItem,
+            this.sockDataProfitToolStripMenuItem});
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.reportToolStripMenuItem.Text = "Reports";
@@ -175,7 +184,7 @@
             // salesToolStripMenuItem
             // 
             this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
-            this.salesToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.salesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.salesToolStripMenuItem.Text = "Sales";
             this.salesToolStripMenuItem.Click += new System.EventHandler(this.salesToolStripMenuItem_Click);
             // 
@@ -238,12 +247,12 @@
             this.lblTotalItems.TabIndex = 0;
             this.lblTotalItems.Text = "Total Items : 10";
             // 
-            // stocksToolStripMenuItem
+            // sockDataProfitToolStripMenuItem
             // 
-            this.stocksToolStripMenuItem.Name = "stocksToolStripMenuItem";
-            this.stocksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.stocksToolStripMenuItem.Text = "Stocks";
-            this.stocksToolStripMenuItem.Click += new System.EventHandler(this.stocksToolStripMenuItem_Click);
+            this.sockDataProfitToolStripMenuItem.Name = "sockDataProfitToolStripMenuItem";
+            this.sockDataProfitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sockDataProfitToolStripMenuItem.Text = "Sock Data Profit";
+            this.sockDataProfitToolStripMenuItem.Click += new System.EventHandler(this.sockDataProfitToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -293,6 +302,7 @@
         private System.Windows.Forms.Label lblTotalItems;
         private System.Windows.Forms.ToolStripMenuItem stocksDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stocksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sockDataProfitToolStripMenuItem;
     }
 }
 

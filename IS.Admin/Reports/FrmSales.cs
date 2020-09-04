@@ -107,7 +107,7 @@ namespace IS.Admin.Setup
                     SalesList.Add(item);
                 }
                 CSV model = new CSV();
-                var filename = model.WriteCSV(lblDownloadPath.Text, SalesList);
+                var filename = model.WriteSalesCSV(lblDownloadPath.Text, SalesList);
                 MessageBox.Show("File downloaded as " + filename, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }

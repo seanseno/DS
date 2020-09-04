@@ -16,5 +16,10 @@ namespace IS.Library.Utility
             var strDate = DateFrom.ToShortDateString() + " 23:59:59";
             return Convert.ToDateTime(strDate);
         }
+
+        public static double DaysBetween(DateTime d1, DateTime  DateTotay)
+        {
+            return (d1 - DateTotay).TotalDays;
+        }
     }
 }

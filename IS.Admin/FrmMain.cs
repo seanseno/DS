@@ -1,4 +1,5 @@
-﻿using IS.Admin.Setup;
+﻿using IS.Admin.Reports;
+using IS.Admin.Setup;
 using IS.Admin.Setup.Cashier;
 using IS.Admin.Transactions;
 using IS.Admin.Trasactions;
@@ -95,6 +96,12 @@ namespace IS.Admin
         private void stocksToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmStocks frm = new FrmStocks();
+            frm.ShowDialog();
+        }
+
+        private void sockDataProfitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmStocksDataReport frm = new FrmStocksDataReport();
             frm.ShowDialog();
         }
     }

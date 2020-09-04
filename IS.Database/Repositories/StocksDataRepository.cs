@@ -154,6 +154,28 @@ namespace IS.Database.Repositories
             }
         }
 
+        public IList<StocksData> FindWithRemainingQTY(string keyword)
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT * FROM vStocksData WHERE " +
+                    "(ProductName Like '%" + keyword + "%' " +
+                    "OR ProductId Like '%" + keyword + "%' " +
+                    "OR CategoryName Like '%" + keyword + "%' " +
+                    "OR PrincipalName Like '%" + keyword + "%') AND RemainingQuantity > 0" +
+                    "ORDER BY ProductName";
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        var List = new ReflectionPopulator<StocksData>().CreateList(reader);
+                        return List;
+                    }
+                }
+            }
+        }
+
         public IList<StocksData> FindWithSelect()
         {
             using (SqlConnection connection = new SqlConnection(ConStr))

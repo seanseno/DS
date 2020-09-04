@@ -9,6 +9,8 @@ namespace IS.Database.Entities.Extender
         public virtual string PrincipalName { get; set; }
         public virtual string ProductName { get; set; }
         public virtual string CategoryName { get; set; }
+        public virtual decimal Profit { get; set; }
+
         //public virtual int RemainingAmount { get; set; }
     }
 }
