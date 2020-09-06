@@ -3,6 +3,7 @@ using IS.Admin.Setup;
 using IS.Admin.Setup.Cashier;
 using IS.Admin.Transactions;
 using IS.Admin.Trasactions;
+using IS.Common.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,11 +36,14 @@ namespace IS.Admin
 
         private void logOfffToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            panel1.Visible = false;
             FrmLogin frm = new FrmLogin();
             var response = frm.ShowDialog();
             if (response == DialogResult.OK)
             {
-
+                timer1.Start();
+                panel1.Visible = true;
+                lblLogin.Text = "Current Login: " + Globals.LoginName;
             }
         }
 
@@ -49,7 +53,9 @@ namespace IS.Admin
             var response = frm.ShowDialog();
             if (response == DialogResult.OK)
             {
-                
+                timer1.Start();
+                panel1.Visible = true;
+                lblLogin.Text = "Current Login: " + Globals.LoginName;
             }
         }
 
@@ -103,6 +109,12 @@ namespace IS.Admin
         {
             FrmStocksDataReport frm = new FrmStocksDataReport();
             frm.ShowDialog();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblTime.Text = DateTime.Now.ToLongTimeString();
+            lblDate.Text = DateTime.Now.ToString("MMMM ddd yyyy - dddd");
         }
     }
 }

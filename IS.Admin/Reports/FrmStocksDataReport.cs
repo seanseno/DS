@@ -3,6 +3,7 @@ using IS.Common.Helper.Extensions;
 using IS.Database;
 using IS.Database.CSV;
 using IS.Database.Entities;
+using IS.Database.Entities.Criteria;
 using IS.Library.CSV;
 using IS.Library.Utility;
 using System;
@@ -27,17 +28,20 @@ namespace IS.Admin.Reports
 
         private void LoadStockData()
         {
+           
             grpLoading.Visible = true;
             grpLoading.Refresh();
 
             StocksDataModel StocksData = new StocksDataModel();
-            _list = StocksData.StockDataList(txtSearch.Text);
+            _list = StocksDataCriteria.MeetCriteria(StocksData.StockDataListReport().ToList(), dtpFrom.Value,dtpTo.Value, txtSearch.Text.ToUpper().Trim());
+
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = _list;
             txtSearch.Focus();
 
             grpLoading.Visible = false;
             grpLoading.Refresh();
+
         }
 
       
@@ -64,11 +68,16 @@ namespace IS.Admin.Reports
                 TotalStr = "Total Record " + _list.Count().ToString("N0");
             }
             lblTotal.Text = TotalStr;
+       
+            lblTotalProfit.Text = _list.Sum(x => x.Profit).ToString("N2");
+            lblTotalQty.Text = _list.Sum(x => x.Quantity).ToString("N0");
+            lblTotalRemaining.Text = _list.Sum(x => x.RemainingQuantity).ToString("N0");
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             LoadStockData();
+            DisplayTotal();
         }
 
  
@@ -79,7 +88,7 @@ namespace IS.Admin.Reports
             {
                 var days = DateConvertion.DaysBetween(Convert.ToDateTime(row.Cells[10].Value), DateTime.Now);
 
-                var remaining = Convert.ToInt32(row.Cells[7].Value);
+                var remaining = Convert.ToInt32(row.Cells[6].Value);
 
                 if (remaining <= 0)
                 {
@@ -131,6 +140,12 @@ namespace IS.Admin.Reports
         private void btnDirectory_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void FrmStocksDataReport_Load(object sender, EventArgs e)
+        {
+            dtpFrom.Value = DateTime.Now;
+            dtpTo.Value = DateTime.Now;
         }
     }
 }

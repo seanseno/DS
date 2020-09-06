@@ -15,6 +15,7 @@ namespace IS.Admin
     public partial class FrmLogin : Form
     {
         int CountErrorlabel = 0;
+        public string LoginName { get; set; }
         public FrmLogin()
         {
             InitializeComponent();
@@ -28,7 +29,8 @@ namespace IS.Admin
                 var (Id, IsSuccess, message) = model.CheckAdminLogin(txtLoginame.Text, txtPassword.Text);
                 if (IsSuccess)
                 {
-                    Globals.SetLoginId((int)Id);
+                    Globals.SetLoginId((int)Id,txtLoginame.Text.Trim());
+
                     this.DialogResult = DialogResult.OK;
                 }
                 if (!string.IsNullOrEmpty(message))

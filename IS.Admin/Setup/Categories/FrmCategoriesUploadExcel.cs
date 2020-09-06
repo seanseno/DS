@@ -95,11 +95,11 @@ namespace IS.Admin.Setup
                         category.CategoryName = row[1].ToString().ToUpper();
                         if (string.IsNullOrEmpty(row[2].ToString()))
                         {
-                            category.PercentSuggestedPrice = 0;
+                            category.PercentSuggestedPrice = "0";
                         }
                         else
                         {
-                            category.PercentSuggestedPrice = Convert.ToDecimal(row[2].ToString().ToUpper());
+                            category.PercentSuggestedPrice =row[2].ToString().ToUpper();
                         }
   
                         if (!request.CheckDup(category))

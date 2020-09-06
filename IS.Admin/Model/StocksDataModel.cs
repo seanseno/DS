@@ -1,6 +1,7 @@
 ﻿using IS.Admin.Transactions;
 using IS.Database;
 using IS.Database.Entities;
+using IS.Database.Entities.Criteria;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,12 @@ namespace IS.Admin.Model
         {
             var factory = new ISFactory();
             return factory.StocksDataRepository.Find(Keywords);
+        }
+
+        public IList<StocksData> StockDataListReport()
+        {
+            var factory = new ISFactory();
+            return factory.StocksDataRepository.Find(null);
         }
         public IList<StocksData> FindWithRemainingQTY(string Keywords)
         {

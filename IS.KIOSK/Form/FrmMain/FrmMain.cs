@@ -1,4 +1,5 @@
-﻿using IS.Database;
+﻿using IS.Common.Utilities;
+using IS.Database;
 using IS.Database.Entities;
 using IS.KIOSK.Model;
 using System;
@@ -38,6 +39,9 @@ namespace IS.KIOSK
             var response = frm.ShowDialog();
             if (response == DialogResult.OK)
             {
+                panel1.Visible = true;
+                timer2.Start();
+                lblLogin.Text = "Current Login: " + Globals.LoginName;
                 this.ActiveControl = txtCustomerName;
             }
             
@@ -281,6 +285,12 @@ namespace IS.KIOSK
                     }
                 }
             }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            lblTime.Text = DateTime.Now.ToLongTimeString();
+            lblDate.Text = DateTime.Now.ToString("MMMM ddd yyyy - dddd");
         }
     }
 }

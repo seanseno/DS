@@ -35,6 +35,7 @@ namespace IS.KIOSK
             if (response)
             {
                 kiosk._Cashier = factory.CashiersRepository.FindCashierWithCashierId(cashierId);
+                Globals.SetLoginId(kiosk._Cashier.Id, txtLoginame.Text.Trim());
                 this.DialogResult = DialogResult.OK;
             }
             else if (!string.IsNullOrEmpty(message))

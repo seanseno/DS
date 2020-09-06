@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,14 +46,21 @@
             this.cashiersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.sockDataProfitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTotalItems = new System.Windows.Forms.Label();
-            this.sockDataProfitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblLogin = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -184,18 +192,16 @@
             // salesToolStripMenuItem
             // 
             this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
-            this.salesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salesToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.salesToolStripMenuItem.Text = "Sales";
             this.salesToolStripMenuItem.Click += new System.EventHandler(this.salesToolStripMenuItem_Click);
             // 
-            // panel1
+            // sockDataProfitToolStripMenuItem
             // 
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 350);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 100);
-            this.panel1.TabIndex = 1;
+            this.sockDataProfitToolStripMenuItem.Name = "sockDataProfitToolStripMenuItem";
+            this.sockDataProfitToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.sockDataProfitToolStripMenuItem.Text = "Sock Data Profit";
+            this.sockDataProfitToolStripMenuItem.Click += new System.EventHandler(this.sockDataProfitToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
@@ -247,12 +253,65 @@
             this.lblTotalItems.TabIndex = 0;
             this.lblTotalItems.Text = "Total Items : 10";
             // 
-            // sockDataProfitToolStripMenuItem
+            // lblLogin
             // 
-            this.sockDataProfitToolStripMenuItem.Name = "sockDataProfitToolStripMenuItem";
-            this.sockDataProfitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sockDataProfitToolStripMenuItem.Text = "Sock Data Profit";
-            this.sockDataProfitToolStripMenuItem.Click += new System.EventHandler(this.sockDataProfitToolStripMenuItem_Click);
+            this.lblLogin.AutoSize = true;
+            this.lblLogin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblLogin.Location = new System.Drawing.Point(3, 67);
+            this.lblLogin.Name = "lblLogin";
+            this.lblLogin.Size = new System.Drawing.Size(138, 13);
+            this.lblLogin.TabIndex = 0;
+            this.lblLogin.Text = "Current Login : SEANPOGZ";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.lblDate);
+            this.panel2.Controls.Add(this.lblTime);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(539, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(261, 94);
+            this.panel2.TabIndex = 5;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.lblLogin);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 356);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(800, 94);
+            this.panel1.TabIndex = 1;
+            this.panel1.Visible = false;
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblDate.Location = new System.Drawing.Point(5, 62);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(117, 20);
+            this.lblDate.TabIndex = 7;
+            this.lblDate.Text = "JUNE 25, 2020";
+            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblTime.Location = new System.Drawing.Point(59, 19);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(186, 31);
+            this.lblTime.TabIndex = 5;
+            this.lblTime.Text = "22: 22:24 PM";
+            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FrmMain
             // 
@@ -274,6 +333,10 @@
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,7 +351,6 @@
         private System.Windows.Forms.ToolStripMenuItem utilitiesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripMenuItem administratorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cashiersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOfffToolStripMenuItem;
@@ -303,6 +365,12 @@
         private System.Windows.Forms.ToolStripMenuItem stocksDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stocksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sockDataProfitToolStripMenuItem;
+        private System.Windows.Forms.Label lblLogin;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

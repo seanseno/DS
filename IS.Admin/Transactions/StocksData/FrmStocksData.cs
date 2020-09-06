@@ -57,7 +57,7 @@ namespace IS.Admin.Transactions
             };
 
 
-            if (e.ColumnIndex == 12)
+            if (e.ColumnIndex == 11)
             {
                 FrmEditStockData frm = new FrmEditStockData(stockData);
                 if (frm.ShowDialog() == DialogResult.OK)
@@ -67,7 +67,7 @@ namespace IS.Admin.Transactions
                 };
 
             }
-            if (e.ColumnIndex == 13)
+            if (e.ColumnIndex == 12)
             {
                 if (MessageBox.Show("Are you sure do you want to delete this record?", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
@@ -164,7 +164,7 @@ namespace IS.Admin.Transactions
             Helper hp = new Helper();
             foreach (DataGridViewRow row in dgvSearch.Rows)
             {
-                var days = DateConvertion.DaysBetween(Convert.ToDateTime(row.Cells[11].Value), DateTime.Now);
+                var days = DateConvertion.DaysBetween(Convert.ToDateTime(row.Cells[10].Value), DateTime.Now);
 
                 if (days <= hp.ExpirationAlert)
                 {
@@ -172,5 +172,7 @@ namespace IS.Admin.Transactions
                 }
             }
         }
+
+
     }
 }

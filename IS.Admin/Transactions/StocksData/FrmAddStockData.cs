@@ -75,7 +75,7 @@ namespace IS.Admin.Transactions
             }
             else if (string.IsNullOrEmpty(txtRealUnitPrice.Text))
             {
-                MessageBox.Show("Real Unit Price is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Suggested Price is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtRealUnitPrice.Focus();
                 return true;
             }
@@ -156,7 +156,7 @@ namespace IS.Admin.Transactions
             if (this._Product != null)
             {
                 var percent = model.GetPercentSuggestedPrice(_Product.CategoryId);
-                if (percent != 0)
+                if (percent != "0")
                 {
                     if (string.IsNullOrEmpty(txtSupplierPrice.Text))
                     {
@@ -166,8 +166,8 @@ namespace IS.Admin.Transactions
                     {
                         var supplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
                         //= (F6 * 0.2) + F6
-                        var sellingPrice = ((supplierPrice * (percent / 100)) + supplierPrice);
-                        txtRealUnitPrice.Text = Math.Round(sellingPrice, 2).ToString();
+                        var sellingPrice = ((supplierPrice * (Convert.ToDecimal(percent) / 100)) + supplierPrice);
+                        txtRealUnitPrice.Text = Math.Round(sellingPrice, 2).ToString("N2");
                     }
                 }
             }
