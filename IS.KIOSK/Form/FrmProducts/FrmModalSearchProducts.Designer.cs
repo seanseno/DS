@@ -33,13 +33,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grpProduct = new System.Windows.Forms.GroupBox();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.dgvProducts = new CustomDataGridView();
+            this.dgvProducts = new IS.KIOSK.CustomDataGridView();
             this.ProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Categories = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrincipalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SupplierPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSelect = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -94,7 +95,8 @@
             this.PrincipalName,
             this.ProductName,
             this.Price,
-            this.Stock});
+            this.Stock,
+            this.SupplierPrice});
             this.dgvProducts.Location = new System.Drawing.Point(15, 64);
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.ReadOnly = true;
@@ -173,6 +175,14 @@
             this.Stock.Name = "Stock";
             this.Stock.ReadOnly = true;
             this.Stock.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // SupplierPrice
+            // 
+            this.SupplierPrice.DataPropertyName = "SupplierPrice";
+            this.SupplierPrice.HeaderText = "SupplierPrice";
+            this.SupplierPrice.Name = "SupplierPrice";
+            this.SupplierPrice.ReadOnly = true;
+            this.SupplierPrice.Visible = false;
             // 
             // btnClose
             // 
@@ -269,7 +279,6 @@
         private System.Windows.Forms.GroupBox grpProduct;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.DataGridView dgvProducts;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox grpLoading;
@@ -281,5 +290,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn Stock;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierPrice;
+        private CustomDataGridView dgvProducts;
     }
 }

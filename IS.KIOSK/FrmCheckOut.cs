@@ -75,6 +75,15 @@ namespace IS.KIOSK
                         var orNumber = frmCheckOutModel.ExecutePayment(this, this._FrmMain);
                         LoadOrders(orNumber);
                         PrintReceipt();
+
+                        MessageBox.Show("Orders complete!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        FrmChange frmchAnge = new FrmChange(changeAmount.ToString("N2"));
+                        frmchAnge.ShowDialog();
+                        //if (frmchAnge.ShowDialog() == DialogResult.OK)
+                        //{
+                        //    return;
+                        //}
                         this.DialogResult = DialogResult.OK;
                     }
                 }

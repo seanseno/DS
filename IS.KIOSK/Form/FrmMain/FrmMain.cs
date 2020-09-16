@@ -189,12 +189,11 @@ namespace IS.KIOSK
                     if (frm.ShowDialog() == DialogResult.OK)
                     {
                         load();
-                        MessageBox.Show("Orders complete!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
+                        //MessageBox.Show("Orders complete!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
-            MessageBox.Show("No orders detected", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //MessageBox.Show("No orders detected", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
             //txtSearch.Focus();
         }
 
@@ -271,9 +270,15 @@ namespace IS.KIOSK
             FrmModalSearchProducts frm = new FrmModalSearchProducts();
             if (frm.ShowDialog() == DialogResult.OK)
             {
+                lblError.Visible = false;
                 if (factory.TempSalesRepository.TempSalesStrategy.CheckIfOrderExist(this._TempLedgerSales, frm._ProductId))
                 {
                     lblError.Text = string.Format("{0} already added! ", frm._ProductName);
+                    timer1.Start();
+                }
+                else if (!factory.StocksDataRepository.StocksDataStrategy.CheckStock(frm._ProductId))
+                {
+                    lblError.Text = string.Format("{0} is out of stock!", frm._ProductName);
                     timer1.Start();
                 }
                 else
@@ -285,8 +290,11 @@ namespace IS.KIOSK
                     }
                 }
             }
+            else
+            {
+                lblError.Visible = false;
+            }
         }
-
         private void timer2_Tick(object sender, EventArgs e)
         {
             lblTime.Text = DateTime.Now.ToLongTimeString();

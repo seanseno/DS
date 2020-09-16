@@ -13,11 +13,15 @@ namespace IS.Database.Entities
         public decimal SupplierPrice { get; set; }
         public decimal TotalAmount { get; set; }
         public decimal RealUnitPrice { get; set; }
+        public decimal ProductSellingPrice { get; set; }
+        
         public int RemainingQuantity { get; set; }
+        public int UnitSold { get; set; }
         public DateTime DeliveryDate { get; set; }
         public DateTime ExpirationDate { get; set; }
         public int Duration { get; set; }
         public string Remarks { get; set; }
+        public string Loginname { get; set; }
         public DateTime InsertTime { get; set; }
         public DateTime UpdateTime { get; set; }
     }

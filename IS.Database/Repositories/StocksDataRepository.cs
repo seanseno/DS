@@ -22,6 +22,7 @@ namespace IS.Database.Repositories
                 using (SqlCommand cmd = new SqlCommand("spStocksDataInsert", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Loginname", StocksData.Loginname.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@ProductId", StocksData.ProductId.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@Quantity", StocksData.Quantity));
                     cmd.Parameters.Add(new SqlParameter("@SupplierPrice", StocksData.SupplierPrice));
@@ -218,6 +219,29 @@ namespace IS.Database.Repositories
                         }
                         return null;
 
+                    }
+                }
+            }
+        }
+
+        public List<string> GetOngoingStockDataProductId(string loginname)
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT ProductId FROM StocksData " +
+                    "WHERE LoginName = '" + loginname +"' AND SupplierPrice = 0 " +
+                    "ORDER BY Id";
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        List<string> productIdList = new List<string>();
+                        while (reader.Read())
+                        {
+                            productIdList.Add(reader[0].ToString());
+                        }
+                        return productIdList;
                     }
                 }
             }

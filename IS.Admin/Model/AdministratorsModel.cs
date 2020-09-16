@@ -48,6 +48,11 @@ namespace IS.Admin.Model
             var factory = new ISFactory();
             return factory.AdministratorsRepository.FindAdministratorWithAdminId(AdminId);
         }
+        public Administrators FindAdministratorWithLoginname(string Loginname)
+        {
+            var factory = new ISFactory();
+            return factory.AdministratorsRepository.FindAdministratorWithLoginname(Loginname);
+        }
 
         public bool CheckAdministratorIfAlreadyInUse(int? AdministratorId)
         {

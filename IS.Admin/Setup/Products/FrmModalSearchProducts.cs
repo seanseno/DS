@@ -20,9 +20,11 @@ namespace IS.Admin.Setup
         IList<Products> _ProductList = new List<Products>();
         public string _ProductId {get;set;}
         public string _ProductName { get; set; }
-        public FrmModalSearchProducts()
+        public IList<string> _Query { get; set; }
+        public FrmModalSearchProducts(List<string> fixedquery = null)
         {
             InitializeComponent();
+            _Query = fixedquery;
             //this.Shown += new System.EventHandler(this.FrmModalSearchProducts_Shown);
         }
 
@@ -35,7 +37,26 @@ namespace IS.Admin.Setup
             SetLoading(true);
             Thread.Sleep(1);
             ProductsModel model = new ProductsModel();
-            this._ProductList = model.ItemList(txtSearch.Text);
+            var response = model.ItemList(txtSearch.Text);
+
+            List<Products> listProduct = new List<Products>();
+
+            if (_Query != null)
+            {
+                foreach (var productId in _Query)
+                {
+                    var prod = new Products();
+                    prod = response.Where(x => x.ProductId == productId).FirstOrDefault();
+                    listProduct.Add(prod);
+                }
+                this._ProductList = listProduct;
+            }
+            else
+            {
+                this._ProductList = response;
+            }
+           
+
             Thread.Sleep(1);
             SetLoading(false);
         }

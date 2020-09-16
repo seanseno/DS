@@ -39,7 +39,8 @@ namespace IS.Admin.Transactions
             grpLoading.Refresh();
 
             StocksDataModel StocksData = new StocksDataModel();
-            _list = StocksData.FindWithRemainingQTY(txtSearch.Text);
+            var response = StocksData.FindWithRemainingQTY(txtSearch.Text);
+            _list = response.Where(x => x.SupplierPrice > 0).ToList();
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = _list;
             txtSearch.Focus();
@@ -59,25 +60,43 @@ namespace IS.Admin.Transactions
 
             if (e.ColumnIndex == 11)
             {
-                FrmEditStockData frm = new FrmEditStockData(stockData);
-                if (frm.ShowDialog() == DialogResult.OK)
+                var Id = Convert.ToInt32(dgvSearch.CurrentRow.Cells[0].Value.ToString());
+                StocksDataModel StocksData = new StocksDataModel();
+                if (StocksData.CheckStockDataIfAlreadyInUse(Id))
                 {
-                    this.LoadStockData();
-                    MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                };
+                    MessageBox.Show("This data already in used", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    FrmEditStockData frm = new FrmEditStockData(stockData);
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        this.LoadStockData();
+                        MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    };
+                }
 
             }
             if (e.ColumnIndex == 12)
             {
-                if (MessageBox.Show("Are you sure do you want to delete this record?", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                var Id = Convert.ToInt32(dgvSearch.CurrentRow.Cells[0].Value.ToString());
+                StocksDataModel StocksData = new StocksDataModel();
+                if (StocksData.CheckStockDataIfAlreadyInUse(Id))
                 {
-                    StocksDataModel StocksData = new StocksDataModel();
-                    StocksData.DeleteStockData(Convert.ToInt32(dgvSearch.CurrentRow.Cells[0].Value.ToString()));
-                    this.LoadStockData();
-                    DisplayTotal();
-                    MessageBox.Show("Row deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
+                    MessageBox.Show("This data already in used", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                else
+                {
+                    if (MessageBox.Show("Are you sure do you want to delete this record?", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    {
+                        StocksData.DeleteStockData(Id);
+                        this.LoadStockData();
+                        DisplayTotal();
+                        MessageBox.Show("Row deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                }
+
             }
 
             //var StockData = new StocksData

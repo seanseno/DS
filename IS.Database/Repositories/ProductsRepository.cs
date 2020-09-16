@@ -46,6 +46,7 @@ namespace IS.Database.Repositories
 
                 using (SqlCommand cmd = new SqlCommand("spProductsUpdate", connection))
                 {
+                   
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@ProductId", item.ProductId.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@CategoryId", item.CategoryId.ToUpper()));
@@ -54,6 +55,8 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@Price", item.Price));
                     cmd.Parameters.Add(new SqlParameter("@Active", item.Active));
                     cmd.Parameters.Add(new SqlParameter("@BarCode", item.BarCode));
+                    cmd.Parameters.Add(new SqlParameter("@LoginName", Globals.LoginName));
+              
                     int rowAffected = cmd.ExecuteNonQuery();
 
                     if (connection.State == System.Data.ConnectionState.Open)
@@ -160,7 +163,6 @@ namespace IS.Database.Repositories
                                 " OR PrincipalName Like '%" + keyword + "%' " +
                                 " OR BarCode Like '%" + keyword + "%' )" +
                                 " AND Price > 0 " +
-                                " AND Stock > 0 " +
                                 " AND Active = " + (int)EnumActive.Active +
                             " ORDER BY ProductName";
 

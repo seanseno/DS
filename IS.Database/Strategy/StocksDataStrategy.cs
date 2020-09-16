@@ -50,12 +50,53 @@ namespace IS.Database.Strategy
             }
         }
 
-        public bool CategoryAlreadyInUse(string CategoryId)
+        public bool StockDataAlreadyInUse(int Id)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT * FROM vProducts WHERE CategoryId  = '" + CategoryId + "'";
+                var select = "SELECT * FROM StocksData " +
+                            "WHERE Id = " + Id + " AND Quantity = RemainingQuantity";
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            return false;
+                        }
+                        return true;
+                    }
+                }
+            }
+        }
+        public bool CheckOngoingStockData(string ProductId)
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT * FROM StocksData WHERE " +
+                    "ProductId = '" + ProductId +"' AND SupplierPrice <= 0";
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+                }
+            }
+        }
+        public bool CheckStock(string ProductId)
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT Stock FROM Stocks " + 
+                    "WHERE ProductId = '" + ProductId + "' AND Stock > 0";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())

@@ -90,6 +90,9 @@
             this.cboUserType.Items.AddRange(new object[] {
             "Super Administrator",
             "Administrator",
+            "Inventory Clerk",
+            "Finance Manager ",
+            "Pharmacy Assistant",
             "Member"});
             this.cboUserType.Location = new System.Drawing.Point(138, 188);
             this.cboUserType.Name = "cboUserType";

@@ -75,12 +75,18 @@ namespace IS.Admin.Model
             return factory.StocksDataRepository.FindWithStockDataId(Id);
         }
 
-        public bool CheckStockDataIfAlreadyInUse(string StockDataId)
+        public bool CheckStockDataIfAlreadyInUse(int Id)
         {
-            //var factory = new ISFactory();
-            //return factory.StocksDataRepository.StocksDataStrategy.StockDataAlreadyInUse(StockDataId);
-            return true;
+            var factory = new ISFactory();
+            return factory.StocksDataRepository.StocksDataStrategy.StockDataAlreadyInUse(Id);
         }
+
+        public bool CheckOngoingStockData(string ProductId)
+        {
+            var factory = new ISFactory();
+            return factory.StocksDataRepository.StocksDataStrategy.CheckOngoingStockData(ProductId);
+        }
+
 
         public string GetNextId()
         {

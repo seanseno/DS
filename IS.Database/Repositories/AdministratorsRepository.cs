@@ -73,6 +73,26 @@ namespace IS.Database.Repositories
                 }
             }
         }
+        public Administrators FindAdministratorWithLoginname(string Loginname)
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT * FROM vAdministrators WHERE loginname = '" + Loginname + "'";
+
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            return new ReflectionPopulator<Administrators>().CreateList(reader)[0];
+                        }
+                        return null;
+                    }
+                }
+            }
+        }
 
         public string GetNextId()
         {

@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -217,6 +232,36 @@
     <Compile Include="Setup\Products\FrmModalSearchProducts.Designer.cs">
       <DependentUpon>FrmModalSearchProducts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Transactions\OngoingStocksData\FrmOngoingAddStockData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\OngoingStocksData\FrmOngoingAddStockData.Designer.cs">
+      <DependentUpon>FrmOngoingAddStockData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\OngoingStocksData\FrmOngoingEditStockData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\OngoingStocksData\FrmOngoingEditStockData.Designer.cs">
+      <DependentUpon>FrmOngoingEditStockData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\OngoingStocksData\FrmOngoingStocksData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\OngoingStocksData\FrmOngoingStocksData.Designer.cs">
+      <DependentUpon>FrmOngoingStocksData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\ProductPriceHistory\FrmEditProductPrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\ProductPriceHistory\FrmEditProductPrice.Designer.cs">
+      <DependentUpon>FrmEditProductPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\ProductPriceHistory\FrmProductPriceHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\ProductPriceHistory\FrmProductPriceHistory.Designer.cs">
+      <DependentUpon>FrmProductPriceHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transactions\ReceivedOrders\FrmEditReceivedItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -318,6 +363,18 @@
     </Compile>
     <Compile Include="Transactions\StocksData\FrmEditStockData.Designer.cs">
       <DependentUpon>FrmEditStockData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\ValidateOngoingStocksData\FrmValidateOngoingEditStockData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\ValidateOngoingStocksData\FrmValidateOngoingEditStockData.Designer.cs">
+      <DependentUpon>FrmValidateOngoingEditStockData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\ValidateOngoingStocksData\FrmValidateOngoingStocksData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\ValidateOngoingStocksData\FrmValidateOngoingStocksData.Designer.cs">
+      <DependentUpon>FrmValidateOngoingStocksData.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Administrator\FrmAddAdministrator.cs">
       <SubType>Form</SubType>
@@ -428,6 +485,21 @@
     <EmbeddedResource Include="Setup\Products\FrmModalSearchProducts.resx">
       <DependentUpon>FrmModalSearchProducts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\OngoingStocksData\FrmOngoingAddStockData.resx">
+      <DependentUpon>FrmOngoingAddStockData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\OngoingStocksData\FrmOngoingEditStockData.resx">
+      <DependentUpon>FrmOngoingEditStockData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\OngoingStocksData\FrmOngoingStocksData.resx">
+      <DependentUpon>FrmOngoingStocksData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\ProductPriceHistory\FrmEditProductPrice.resx">
+      <DependentUpon>FrmEditProductPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\ProductPriceHistory\FrmProductPriceHistory.resx">
+      <DependentUpon>FrmProductPriceHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\ReceivedOrders\FrmEditReceivedItem.resx">
       <DependentUpon>FrmEditReceivedItem.cs</DependentUpon>
     </EmbeddedResource>
@@ -478,6 +550,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\StocksData\FrmEditStockData.resx">
       <DependentUpon>FrmEditStockData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\ValidateOngoingStocksData\FrmValidateOngoingEditStockData.resx">
+      <DependentUpon>FrmValidateOngoingEditStockData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\ValidateOngoingStocksData\FrmValidateOngoingStocksData.resx">
+      <DependentUpon>FrmValidateOngoingStocksData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Administrator\FrmAddAdministrator.resx">
       <DependentUpon>FrmAddAdministrator.cs</DependentUpon>
@@ -588,6 +666,18 @@
     <None Include="Resources\Spinner.gif" />
     <None Include="Resources\timer.png" />
     <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

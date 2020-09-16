@@ -9,6 +9,6 @@ namespace IS.Database.CSV
         public string CashierName { get; set; }
         public string ProductName { get; set; }
         public string Amount { get; set; }
-        public int Qty { get; set; }
+        public string Qty { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using IS.Admin.Model;
 using IS.Admin.Setup;
+using IS.Common.Utilities;
 using IS.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -85,6 +86,24 @@ namespace IS.Admin.Transactions
                 txtRemainingQty.Focus();
                 return true;
             }
+            else if (Convert.ToInt32(txtQuantity.Text) <= 0)
+            {
+                MessageBox.Show("Invalid Quantity, Can not accept 0.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtQuantity.Focus();
+                return true;
+            }
+            else if (Convert.ToDecimal(txtSupplierPrice.Text) <= 0)
+            {
+                MessageBox.Show("Invalid Supplier price, Can not accept 0.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtSupplierPrice.Focus();
+                return true;
+            }
+            else if (Convert.ToInt32(txtDuration.Text) <= 0)
+            {
+                MessageBox.Show("Invalid Duration, Can not accept 0 or less than 0!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dtpExpirationDate.Focus();
+                return true;
+            }
             else if (Convert.ToInt32(txtDuration.Text) <= 0)
             {
                 MessageBox.Show("Invalid Duration, Can not accept 0 or less than 0!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -167,7 +186,7 @@ namespace IS.Admin.Transactions
                         var supplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
                         //= (F6 * 0.2) + F6
                         var sellingPrice = ((supplierPrice * (Convert.ToDecimal(percent) / 100)) + supplierPrice);
-                        txtRealUnitPrice.Text = Math.Round(sellingPrice, 2).ToString("N2");
+                        txtRealUnitPrice.Text = sellingPrice.ToString("N2"); 
                     }
                 }
             }
@@ -190,23 +209,32 @@ namespace IS.Admin.Transactions
         {
             if (!CheckInput())
             {
-                if (MessageBox.Show("Are you sure do you want to save this record?", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                StocksDataModel StocksData = new StocksDataModel();
+                if (StocksData.CheckOngoingStockData(txtProductId.Text))
                 {
-                    StocksData stocksData = new StocksData();
-                    stocksData.ProductId = txtProductId.Text;
-                    stocksData.Quantity = Convert.ToInt32(txtQuantity.Text);
-                    stocksData.SupplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
-                    stocksData.TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
-                    stocksData.RealUnitPrice = Convert.ToDecimal(txtRealUnitPrice.Text);
-                    stocksData.RemainingQuantity = Convert.ToInt32(txtRemainingQty.Text);
-                    stocksData.DeliveryDate = dtpDeliveryDate.Value;
-                    stocksData.ExpirationDate = dtpExpirationDate.Value;
-                    stocksData.Duration = Convert.ToInt32(txtDuration.Text);
-                    stocksData.Remarks = txtRemarks.Text;
-                    var StocksDataModel = new StocksDataModel();
-                    StocksDataModel.InsertStockData(stocksData);
+                    MessageBox.Show("Ongoing Stock detected!" + "\n" + "Product Id: " + txtProductId.Text + "." + "\n" + "Please validate first before you can procced in this transaction!", "Information!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    if (MessageBox.Show("Are you sure do you want to save this record?", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    {
+                        StocksData stocksData = new StocksData();
+                        stocksData.Loginname = Globals.LoginName;
+                        stocksData.ProductId = txtProductId.Text;
+                        stocksData.Quantity = Convert.ToInt32(txtQuantity.Text);
+                        stocksData.SupplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
+                        stocksData.TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
+                        stocksData.RealUnitPrice = Convert.ToDecimal(txtRealUnitPrice.Text);
+                        stocksData.RemainingQuantity = Convert.ToInt32(txtRemainingQty.Text);
+                        stocksData.DeliveryDate = dtpDeliveryDate.Value;
+                        stocksData.ExpirationDate = dtpExpirationDate.Value;
+                        stocksData.Duration = Convert.ToInt32(txtDuration.Text);
+                        stocksData.Remarks = txtRemarks.Text;
+                        var StocksDataModel = new StocksDataModel();
+                        StocksDataModel.InsertStockData(stocksData);
 
-                    this.DialogResult = DialogResult.OK;
+                        this.DialogResult = DialogResult.OK;
+                    }
                 }
             }
         }

@@ -264,7 +264,7 @@
             this.ProductName.Name = "ProductName";
             this.ProductName.ReadOnly = true;
             this.ProductName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ProductName.Width = 250;
+            this.ProductName.Width = 270;
             // 
             // CategoryName
             // 
@@ -274,7 +274,7 @@
             this.CategoryName.MinimumWidth = 6;
             this.CategoryName.Name = "CategoryName";
             this.CategoryName.ReadOnly = true;
-            this.CategoryName.Width = 110;
+            this.CategoryName.Width = 120;
             // 
             // Quantity
             // 
@@ -333,7 +333,7 @@
             this.DeliveryDate.MinimumWidth = 6;
             this.DeliveryDate.Name = "DeliveryDate";
             this.DeliveryDate.ReadOnly = true;
-            this.DeliveryDate.Width = 80;
+            this.DeliveryDate.Width = 120;
             // 
             // ExpirationDate
             // 
@@ -343,7 +343,7 @@
             this.ExpirationDate.MinimumWidth = 6;
             this.ExpirationDate.Name = "ExpirationDate";
             this.ExpirationDate.ReadOnly = true;
-            this.ExpirationDate.Width = 80;
+            this.ExpirationDate.Width = 120;
             // 
             // Edit
             // 

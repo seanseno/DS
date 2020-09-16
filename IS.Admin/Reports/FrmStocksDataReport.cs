@@ -1,5 +1,6 @@
 ﻿using IS.Admin.Model;
 using IS.Common.Helper.Extensions;
+using IS.Common.Utilities;
 using IS.Database;
 using IS.Database.CSV;
 using IS.Database.Entities;
@@ -86,7 +87,7 @@ namespace IS.Admin.Reports
             Helper hp = new Helper();
             foreach (DataGridViewRow row in dgvSearch.Rows)
             {
-                var days = DateConvertion.DaysBetween(Convert.ToDateTime(row.Cells[10].Value), DateTime.Now);
+                var days = DateConvertion.DaysBetween(Convert.ToDateTime(row.Cells[13].Value), DateTime.Now);
 
                 var remaining = Convert.ToInt32(row.Cells[6].Value);
 
@@ -110,37 +111,56 @@ namespace IS.Admin.Reports
             }
             else
             {
-                if (MessageBox.Show("Download this records?", "Question", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "CSV|*.csv", ValidateNames = true })
                 {
-                    var SalesList = new List<StocksDataReportCSV>();
-                    foreach (var stockdata in this._list)
+                    if (sfd.ShowDialog() == DialogResult.OK)
                     {
+                        var SalesList = new List<StocksDataReportCSV>();
+                        foreach (var i in this._list)
+                        {
+                            var item = new StocksDataReportCSV();
+                            item.PrincipalName = i.PrincipalName;
+                            item.ProductName = i.ProductName;
+                            item.CategoryName = i.CategoryName;
+                            item.Quantity = i.Quantity.ToString("N0");
+                            item.SupplierPrice = i.SupplierPrice.ToString("N2");
+                            item.TotalAmount = i.TotalAmount.ToString("N0");
+                            item.RemainingQuanity = i.RemainingQuantity.ToString("N0");
+                            item.UnitSold = i.UnitSold.ToString("N0");
+                            item.ProductSellingPrice = i.ProductSellingPrice.ToString("N2");
+                            item.TotalSales = i.TotalSales.ToString("N2");
+                            item.Profit = i.Profit.ToString("N2");
+                            item.DeliveryDate = i.DeliveryDate.ToString();
+                            item.ExpirationDate = i.ExpirationDate.ToShortDateString();
 
-                        var item = new StocksDataReportCSV();
-                        item.Overwrite(stockdata);
-
-                        SalesList.Add(item);
-                    }
-                    CSV model = new CSV();
-                    try
-                    {
-                        var filename = model.WriteStocksDataCSV(lblDownloadPath.Text, SalesList);
-                        MessageBox.Show("Download Completed!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        System.Diagnostics.Process.Start(filename);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            SalesList.Add(item);
+                        }
+                        CSV model = new CSV();
+                        try
+                        {
+                            var factory = new ISFactory();
+                            var fullname = factory.AdministratorsRepository.FindAdministratorWithLoginname(Globals.LoginName).Fullname;
+                            var filename = model.WriteStocksDataCSV(
+                                sfd.FileName,
+                                SalesList,
+                                dtpFrom.Value,
+                                dtpTo.Value,
+                                fullname,
+                                _list.Sum(x => x.RemainingQuantity).ToString("N0"),
+                                _list.Sum(x => x.TotalSales).ToString("N2"),
+                                _list.Sum(x => x.Profit).ToString("N2")
+                                ); 
+                            System.Diagnostics.Process.Start(filename);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
-
             }
         }
 
-        private void btnDirectory_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void FrmStocksDataReport_Load(object sender, EventArgs e)
         {

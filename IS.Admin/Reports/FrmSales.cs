@@ -1,6 +1,7 @@
 ﻿using IS.Admin.Model;
 using IS.Admin.Printer;
 using IS.Admin.Properties;
+using IS.Common.Utilities;
 using IS.Database;
 using IS.Database.CSV;
 using IS.Database.Entities;
@@ -90,26 +91,49 @@ namespace IS.Admin.Setup
 
         private void btnDownLoad_Click(object sender, EventArgs e)
         {
-            if (SaleList == null || SaleList.Count == 0)
+            try
             {
-                MessageBox.Show("No record found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning) ;
-            }
-            else
-            {
-                var SalesList = new List<SalesCSV>();
-                foreach (var sale in this.SaleList)
+                if (SaleList == null || SaleList.Count == 0)
                 {
-                    var item = new SalesCSV();
-                    item.CashierName = sale.CashierName;
-                    item.ProductName = sale.ProductName;
-                    item.Qty = sale.Qty;
-                    item.Amount = sale.AmountString;
-                    SalesList.Add(item);
+                    MessageBox.Show("No record found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                CSV model = new CSV();
-                var filename = model.WriteSalesCSV(lblDownloadPath.Text, SalesList);
-                MessageBox.Show("File downloaded as " + filename, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                {
+                    using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "CSV|*.csv", ValidateNames = true })
+                    {
+                        if (sfd.ShowDialog() == DialogResult.OK)
+                        {
+                            var SalesList = new List<SalesCSV>();
+                            foreach (var sale in this.SaleList)
+                            {
+                                var item = new SalesCSV();
+                                item.CashierName = sale.CashierName;
+                                item.ProductName = sale.ProductName;
+                                item.Qty = sale.Qty.ToString("N2");
+                                item.Amount = sale.AmountString;
+                                SalesList.Add(item);
+                            }
+                            CSV model = new CSV();
+
+                            var factory = new ISFactory();
+                            var fullname = factory.AdministratorsRepository.FindAdministratorWithLoginname(Globals.LoginName).Fullname;
+                            var filename = model.WriteSalesCSV(sfd.FileName,
+                                SalesList,dtpFrom.Value, 
+                                dtpTo.Value, 
+                                fullname,
+                                SaleList.Sum(x=>x.Amount).ToString("N2"),
+                                SaleList.Sum(x => x.Qty).ToString("N0"));
+                            System.Diagnostics.Process.Start(filename);
+                        }
+                    }
+
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void cboCashier_TextChanged(object sender, EventArgs e)

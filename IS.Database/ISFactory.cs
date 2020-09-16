@@ -14,6 +14,7 @@ namespace IS.Database
         public AdministratorsRepository AdministratorsRepository => new AdministratorsRepository();
         public CashiersRepository CashiersRepository => new CashiersRepository();
         public ProductsRepository ProductsRepository => new ProductsRepository();
+        public ProductPriceHistoryRepository ProductPriceHistoryRepository => new ProductPriceHistoryRepository();
         public TempLedgerSalesRepository TempLedgerSalesRepository => new TempLedgerSalesRepository();
         public TempSalesRepository TempSalesRepository => new TempSalesRepository();
         public SalesRepository SalesRepository => new SalesRepository();

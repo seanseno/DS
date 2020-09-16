@@ -2,6 +2,7 @@
 using ExcelDataReader;
 using IS.Admin.Model;
 using IS.Common.Reader;
+using IS.Common.Utilities;
 using IS.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -125,6 +126,7 @@ namespace IS.Admin.Transactions
                         {
                             progressCount++;
                             StocksData stocksData = new StocksData();
+                            stocksData.Loginname = Globals.LoginName;
                             stocksData.ProductId = row[1].ToString().ToUpper();
                             stocksData.Quantity = Convert.ToInt32(row[4].ToString());
                             stocksData.SupplierPrice = Convert.ToDecimal(row[5].ToString());

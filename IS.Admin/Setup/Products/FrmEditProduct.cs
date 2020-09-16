@@ -50,7 +50,7 @@ namespace IS.Admin.Setup
             cboCategories.SelectedIndex = cboCategories.FindStringExact(response.CategoryName);
             cboPrincipals.SelectedIndex = cboPrincipals.FindStringExact(response.PrincipalName);
             txtProductName.Text = response.ProductName;
-            txtPrice.Text = Math.Round(response.Price,2).ToString();
+            txtPrice.Text = response.Price.ToString("N2");
             txtBarcode.Text = response.BarCode;
             chkActive.Checked = response.Active == 1 ? true : false;
 

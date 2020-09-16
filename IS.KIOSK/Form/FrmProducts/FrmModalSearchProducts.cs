@@ -65,15 +65,24 @@ namespace IS.KIOSK
             SetLoading(false);
         }
 
-        private void btnSelect_Click(object sender, EventArgs e)
-        {
-            if (dgvProducts.Rows.Count > 0)
-            {
-                this._ProductId = dgvProducts.CurrentRow.Cells[0].Value?.ToString();
-                this._ProductName = dgvProducts.CurrentRow.Cells[3].Value?.ToString();
-                this.DialogResult = DialogResult.OK;
-            }
-        }
+        //private void btnSelect_Click(object sender, EventArgs e)
+        //{
+        //    if (dgvProducts.Rows.Count > 0)
+        //    {
+        //        this._ProductId = dgvProducts.CurrentRow.Cells[0].Value?.ToString();
+        //        this._ProductName = dgvProducts.CurrentRow.Cells[3].Value?.ToString();
+
+        //        if (Convert.ToInt32(dgvProducts.CurrentRow.Cells[5].Value) <= 0)
+        //        {
+        //            this.DialogResult = DialogResult.Abort;
+
+        //        }
+        //        else
+        //        {
+        //            this.DialogResult = DialogResult.OK;
+        //        }
+        //    }
+        //}
 
         private void txtSearch_KeyUp(object sender, KeyEventArgs e)
         {
@@ -92,11 +101,30 @@ namespace IS.KIOSK
         {
             if (e.KeyValue == 13)
             {
-                btnSelect_Click(sender,e);
+                btnSelect_Click(sender, e);
             }
             else if (e.KeyValue == 27)
             {
                 btnClose_Click(sender, e);
+            }
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            if (dgvProducts.Rows.Count > 0)
+            {
+                this._ProductId = dgvProducts.CurrentRow.Cells[0].Value?.ToString();
+                this._ProductName = dgvProducts.CurrentRow.Cells[3].Value?.ToString();
+                this.DialogResult = DialogResult.OK;
+                //if (Convert.ToInt32(dgvProducts.CurrentRow.Cells[5].Value) <= 0)
+                //{
+                //    this.DialogResult = DialogResult.Abort;
+
+                //}
+                //else
+                //{
+                //    this.DialogResult = DialogResult.OK;
+                //}
             }
         }
     }

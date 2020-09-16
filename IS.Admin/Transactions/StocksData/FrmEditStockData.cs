@@ -31,9 +31,9 @@ namespace IS.Admin.Transactions
             txtProductId.Text = response.ProductId;
             txtProductName.Text = response.ProductName;
             txtQuantity.Text = response.Quantity.ToString("N0");
-            txtSupplierPrice.Text = Math.Round(response.SupplierPrice, 2).ToString("N2");
-            txtTotalAmount.Text = Math.Round(response.TotalAmount, 2).ToString("N2");
-            txtRealUnitPrice.Text = Math.Round(response.RealUnitPrice, 2).ToString("N2");
+            txtSupplierPrice.Text = response.SupplierPrice.ToString("N2");
+            txtTotalAmount.Text = response.TotalAmount.ToString("N2");
+            txtRealUnitPrice.Text = response.RealUnitPrice.ToString("N2");
             txtRemainingQty.Text = response.RemainingQuantity.ToString("N0");
             dtpDeliveryDate.Value = response.DeliveryDate;
             dtpExpirationDate.Value = response.ExpirationDate;
@@ -96,6 +96,18 @@ namespace IS.Admin.Transactions
             {
                 MessageBox.Show("Remaining Quantity is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtRemainingQty.Focus();
+                return true;
+            }
+            else if (Convert.ToInt32(txtQuantity.Text) <= 0)
+            {
+                MessageBox.Show("Invalid Quantity, Can not accept 0.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtQuantity.Focus();
+                return true;
+            }
+            else if (Convert.ToDecimal(txtSupplierPrice.Text) <= 0)
+            {
+                MessageBox.Show("Invalid Supplier price, Can not accept 0.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtSupplierPrice.Focus();
                 return true;
             }
             else if (Convert.ToInt32(txtDuration.Text) <= 0)
