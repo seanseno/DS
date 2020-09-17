@@ -33,7 +33,7 @@ namespace IS.Admin.Setup
 
         private void FrmMenuAccess_Load(object sender, EventArgs e)
         {
-            var response = factory.AdministratorsRepository.Find(null).Where(x => x.Loginname != "Admin").ToList();
+            var response = factory.AdministratorsRepository.Find(null).Where(x => x.Loginname != "ADMIN").ToList();
             cboName.DataSource = response;
             cboName.DisplayMember = "Fullname";
             cboName.ValueMember = "AdminId";

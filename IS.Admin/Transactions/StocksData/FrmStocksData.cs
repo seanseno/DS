@@ -60,21 +60,13 @@ namespace IS.Admin.Transactions
 
             if (e.ColumnIndex == 11)
             {
-                var Id = Convert.ToInt32(dgvSearch.CurrentRow.Cells[0].Value.ToString());
-                StocksDataModel StocksData = new StocksDataModel();
-                if (StocksData.CheckStockDataIfAlreadyInUse(Id))
+                FrmEditStockData frm = new FrmEditStockData(stockData);
+                if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    MessageBox.Show("This data already in used", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    FrmEditStockData frm = new FrmEditStockData(stockData);
-                    if (frm.ShowDialog() == DialogResult.OK)
-                    {
-                        this.LoadStockData();
-                        MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    };
-                }
+                    this.LoadStockData();
+                    MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                };
+                
 
             }
             if (e.ColumnIndex == 12)

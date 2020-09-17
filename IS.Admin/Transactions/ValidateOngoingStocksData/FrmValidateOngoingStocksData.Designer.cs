@@ -55,6 +55,7 @@
             this.RemainingQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DeliveryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExpirationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Validate = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
             this.grpLoading.SuspendLayout();
@@ -177,6 +178,7 @@
             this.RemainingQuantity,
             this.DeliveryDate,
             this.ExpirationDate,
+            this.Remarks,
             this.Validate});
             this.dgvSearch.Location = new System.Drawing.Point(15, 80);
             this.dgvSearch.Name = "dgvSearch";
@@ -331,6 +333,14 @@
             this.ExpirationDate.ReadOnly = true;
             this.ExpirationDate.Width = 80;
             // 
+            // Remarks
+            // 
+            this.Remarks.DataPropertyName = "Remarks";
+            this.Remarks.HeaderText = "Remarks";
+            this.Remarks.Name = "Remarks";
+            this.Remarks.ReadOnly = true;
+            this.Remarks.Width = 200;
+            // 
             // Validate
             // 
             this.Validate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -389,6 +399,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn RemainingQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn DeliveryDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExpirationDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
         private System.Windows.Forms.DataGridViewButtonColumn Validate;
     }
 }

@@ -132,7 +132,7 @@ namespace IS.Admin.Reports
                             item.Profit = i.Profit.ToString("N2");
                             item.DeliveryDate = i.DeliveryDate.ToString();
                             item.ExpirationDate = i.ExpirationDate.ToShortDateString();
-
+                            item.Remarks = i.Remarks;
                             SalesList.Add(item);
                         }
                         CSV model = new CSV();

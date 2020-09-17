@@ -71,6 +71,7 @@
             this.Profit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DeliveryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExpirationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.grpLoading.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -310,7 +311,8 @@
             this.TotalSales,
             this.Profit,
             this.DeliveryDate,
-            this.ExpirationDate});
+            this.ExpirationDate,
+            this.Remarks});
             this.dgvSearch.Location = new System.Drawing.Point(16, 80);
             this.dgvSearch.Name = "dgvSearch";
             this.dgvSearch.ReadOnly = true;
@@ -481,6 +483,14 @@
             this.ExpirationDate.ReadOnly = true;
             this.ExpirationDate.Width = 80;
             // 
+            // Remarks
+            // 
+            this.Remarks.DataPropertyName = "Remarks";
+            this.Remarks.HeaderText = "Remarks";
+            this.Remarks.Name = "Remarks";
+            this.Remarks.ReadOnly = true;
+            this.Remarks.Width = 200;
+            // 
             // FrmStocksDataReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -544,5 +554,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Profit;
         private System.Windows.Forms.DataGridViewTextBoxColumn DeliveryDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExpirationDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
     }
 }

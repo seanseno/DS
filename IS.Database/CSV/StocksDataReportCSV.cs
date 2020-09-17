@@ -45,6 +45,7 @@ namespace IS.Database.CSV
 
         [Name("Expiration Date")]
         public string ExpirationDate { get; set; }
-        
+
+        public string Remarks { get; set; }
     }
 }

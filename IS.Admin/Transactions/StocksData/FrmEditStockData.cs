@@ -33,14 +33,21 @@ namespace IS.Admin.Transactions
             txtQuantity.Text = response.Quantity.ToString("N0");
             txtSupplierPrice.Text = response.SupplierPrice.ToString("N2");
             txtTotalAmount.Text = response.TotalAmount.ToString("N2");
-            txtRealUnitPrice.Text = response.RealUnitPrice.ToString("N2");
-            txtRemainingQty.Text = response.RemainingQuantity.ToString("N0");
             dtpDeliveryDate.Value = response.DeliveryDate;
             dtpExpirationDate.Value = response.ExpirationDate;
-            txtDuration.Text = response.Duration.ToString("N0");
             txtRemarks.Text = response.Remarks;
+            if (StocksData.CheckStockDataIfAlreadyInUse(_StockData.Id))
+            {
+                txtQuantity.Enabled = false;
+                txtSupplierPrice.Enabled = false;
+                txtRealUnitPrice.Enabled = false;
+                txtRemainingQty.Enabled = false;
+                dtpDeliveryDate.Enabled = false;
+                dtpExpirationDate.Enabled = false;
+                txtDuration.Enabled = false;
+                this.ActiveControl = txtRemarks;
+            }
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
