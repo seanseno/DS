@@ -1,4 +1,5 @@
 ﻿using IS.Admin.Model;
+using IS.Database;
 using IS.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace IS.Admin.Setup
 {
     public partial class FrmCashiers : Form
     {
+        ISFactory factory = new ISFactory();
         public FrmCashiers()
         {
             InitializeComponent();
@@ -61,10 +63,19 @@ namespace IS.Admin.Setup
                 FrmEditCashier frm = new FrmEditCashier(Cashier);
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.LoadCashier();
+                    MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 };
                
+            }
+            if (e.ColumnIndex == 7)
+            {
+                if (MessageBox.Show("Are you sure do you want to delete this record?", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    factory.CashiersRepository.Delete(Cashier);
+                    this.LoadCashier();
+                    MessageBox.Show("Row deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 

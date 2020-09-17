@@ -20,14 +20,16 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmSales : Form
+    public partial class FrmSalesProfit : Form
     {
         Helper helper = new Helper();
         public int? _SearchCashierId { get; set; }
         public DateTime? _SearchDateFrom { get; set; }
         public DateTime? _SearchDateTo { get; set; }
-        public IList<Sales> SaleList = new List<Sales>();
-        public FrmSales()
+        public IList<SalesProfit> SaleList = new List<SalesProfit>();
+        ISFactory factory = new ISFactory();
+
+        public FrmSalesProfit()
         {
             InitializeComponent();
             this.ActiveControl = cboCashier;
@@ -56,11 +58,23 @@ namespace IS.Admin.Setup
         private void LoadSales()
         {
             SalesModel sModel = new SalesModel();
-            var (sResponse,totalAmount) = sModel.SaleList(this._SearchCashierId,this._SearchDateFrom,this._SearchDateTo);
+
+            var response = factory.SalesRepository.FindSalesProfit(this._SearchCashierId, this._SearchDateFrom, this._SearchDateTo);
+
             dgvSales.AutoGenerateColumns = false;
-            dgvSales.DataSource = sResponse;
-            lblTotalAmount.Text = "Total Sales : " + String.Format("{0:n}", totalAmount);
-            SaleList = sResponse;
+            dgvSales.DataSource = response;
+
+            lblTotalAmount.Text = "Total Sales : 0.00";
+            lblTotalProfit.Text = "Total Profit : .00";
+            if (response != null)
+            {
+                lblTotalAmount.Text = "Total Sales : " + String.Format("{0:n}", response.Sum(x => x.TotalSales));
+                lblTotalProfit.Text = "Total Profit : " + String.Format("{0:n}", response.Sum(x => x.Profit));
+            }
+           
+           
+
+            SaleList = response;
         }
 
         private void LoadSearchValue()
@@ -100,27 +114,35 @@ namespace IS.Admin.Setup
                     {
                         if (sfd.ShowDialog() == DialogResult.OK)
                         {
-                            var SalesList = new List<SalesCSV>();
+                            var SalesList = new List<SalesProfitCSV>();
                             foreach (var sale in this.SaleList)
                             {
-                                var item = new SalesCSV();
-                                item.CashierName = sale.CashierName;
+                                var item = new SalesProfitCSV();
+                                item.Fullname = sale.Fullname;
+                                item.PrincipalName = sale.PrincipalName;
+                                item.CategoryName = sale.CategoryName;
+                                item.ProductId = sale.ProductId;
                                 item.ProductName = sale.ProductName;
-                                item.Qty = sale.Qty.ToString("N2");
-                                item.Amount = sale.AmountString;
-                                item.InsertTime = sale.InsertTime;
+                                item.SoldQuantity = sale.SoldQuantity.ToString("N0");
+                                item.SupplierPrice = sale.SupplierPrice.ToString("N2");
+                                item.TotalAmount = sale.TotalAmount.ToString("N2");
+                                item.TotalSales = sale.TotalSales.ToString("N2");
+                                item.Profit = sale.Profit.ToString("N2");
+                                item.InsertTime = sale.InsertTime.ToString();
                                 SalesList.Add(item);
                             }
                             CSV model = new CSV();
 
                             var factory = new ISFactory();
                             var fullname = factory.AdministratorsRepository.FindAdministratorWithLoginname(Globals.LoginName).Fullname;
-                            var filename = model.WriteSalesCSV(sfd.FileName,
-                                SalesList,dtpFrom.Value, 
-                                dtpTo.Value, 
+                            var filename = model.WriteSalesProfitCSV(
+                                sfd.FileName,
+                                SalesList,
+                                dtpFrom.Value,
+                                dtpTo.Value,
                                 fullname,
-                                SaleList.Sum(x=>x.Amount).ToString("N2"),
-                                SaleList.Sum(x => x.Qty).ToString("N0"));
+                                SaleList.Sum(x => x.TotalSales).ToString("N2"),
+                                SaleList.Sum(x => x.Profit).ToString("N2"));
                             System.Diagnostics.Process.Start(filename);
                         }
                     }
@@ -148,22 +170,5 @@ namespace IS.Admin.Setup
         {
             LoadSearchValue();
         }
-
-        //private void btnPrint_Click(object sender, EventArgs e)
-        //{
-        //    DGVPrinter printer = new DGVPrinter();
-        //    printer.Title = "Sales Report";
-        //    printer.SubTitle = string.Format("Date : {0} - {1}", _SearchDateFrom.Value.ToString("MM/dd/yyyy"),_SearchDateTo.Value.ToString("MM/dd/yyyy"));
-        //    printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
-        //    printer.PageNumbers = true;
-        //    printer.PageNumberInHeader = false;
-        //    printer.PorportionalColumns = true;
-        //    printer.HeaderCellAlignment = StringAlignment.Near;
-        //    printer.Footer = "Total Collections: " + String.Format("{0:n}", SaleList.Sum(x => x.Amount))  + " Total Quantity: " + SaleList.Sum(x => x.Qty);
-        //    printer.FooterSpacing = 15;
-        //    printer.printDocument.DefaultPageSettings.Landscape = true;
-        //    printer.PrintDataGridView(dgvSales);
-            
-        //}
     }
 }

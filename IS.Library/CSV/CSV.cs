@@ -73,5 +73,36 @@ namespace IS.Library.CSV
             }
 
         }
+
+        public string WriteSalesProfitCSV(
+            string DownloadPath,
+            IList<SalesProfitCSV> list,
+            DateTime dateFrom,
+            DateTime dateTo,
+            string PreparedBY,
+            string TotalSales,
+            string TotalProfit)
+        {
+            using (var writer = new StreamWriter(DownloadPath))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                writer.WriteLine("Stocks Data Report");
+                writer.WriteLine("Date: " + dateFrom.ToShortDateString() + " - " + dateTo.ToShortDateString());
+                writer.WriteLine("Prepared by :" + PreparedBY);
+                writer.WriteLine("");
+
+                csv.WriteRecords(list);
+
+                writer.WriteLine("");
+                var total = new SalesProfitCSV();
+                total.Fullname = "TOTAL:";
+                total.TotalSales = TotalSales;
+                total.Profit = TotalProfit;
+                csv.WriteRecord(total);
+
+                return DownloadPath;
+            }
+
+        }
     }
 }

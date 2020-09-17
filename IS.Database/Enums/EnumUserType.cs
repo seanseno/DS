@@ -20,8 +20,5 @@ namespace IS.Database.Enums
 
         //Pharmacy Assistant - Enter Daily Sales"
         PharmacyAssistant =4 ,
-
-        //Enter ongoing stocks
-        Member = 5
     }
 }

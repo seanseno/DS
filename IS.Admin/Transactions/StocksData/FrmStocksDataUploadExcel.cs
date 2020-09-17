@@ -3,6 +3,7 @@ using ExcelDataReader;
 using IS.Admin.Model;
 using IS.Common.Reader;
 using IS.Common.Utilities;
+using IS.Database;
 using IS.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,9 @@ namespace IS.Admin.Transactions
     {
         DataTableCollection tableCollection;
         DataTable dt;
+
+        ISFactory factory = new ISFactory();
+            
         public FrmStocksDataUploadExcel()
         {
             InitializeComponent();
@@ -120,6 +124,12 @@ namespace IS.Admin.Transactions
                                 dgvExcel.Rows[rowIndex - 1].Selected = true;
                                 return;
                             }
+                            else if (factory.StocksDataRepository.StocksDataStrategy.CheckOngoingStockData(row[1].ToString().ToUpper()))
+                            {
+                                MessageBox.Show("Ongoing Stock detected!" + "\n" + "Product Id: " + row[1].ToString().ToUpper() + "." + "\n" + "Please validate first before you can procced in this transaction!", "Information!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                                
                         }
 
                         foreach (DataRow row in dt.Rows)

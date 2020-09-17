@@ -5,6 +5,7 @@ using IS.Admin.Setup.Cashier;
 using IS.Admin.Transactions;
 using IS.Admin.Trasactions;
 using IS.Common.Utilities;
+using IS.Database;
 using IS.Database.Enums;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace IS.Admin
 {
     public partial class FrmMain : Form
     {
+        ISFactory factory = new ISFactory();
         public FrmMain()
         {
             InitializeComponent();
@@ -50,53 +52,40 @@ namespace IS.Admin
 
         private void MenuEnable()
         {
-            var administratorsModel = new AdministratorsModel();
-            var admin = administratorsModel.FindAdministratorWithLoginname(Globals.LoginName.ToString());
-            if (admin != null)
+            if (Globals.LoginName == "ADMIN")
             {
+                DisableAllMenu(true);
+            }
+            else
+            {
+                var admin = factory.AdministratorsRepository.FindAdministratorWithLoginname(Globals.LoginName);
+                var MenuAccess = factory.MenuAccessRepository.GetListWithAdminId(admin.AdminId);
 
-                if (admin.UserType == (int)EnumUserType.Member)
+                foreach (ToolStripMenuItem item in menuStrip1.Items)
                 {
-                    menuToolStripMenuItem.Visible = true;
-                    logOffToolStripMenuItem.Visible = true;
-                    exitToolStripMenuItem.Visible = true;
+                    if (MenuAccess.Where(x => x.MenuText == item.Text).Count() > 0)
+                    {
+                        item.Visible = true;
+                    }
+                    foreach (ToolStripMenuItem sub in item.DropDownItems)
+                    {
+                        if (MenuAccess.Where(x => x.MenuText == sub.Text).Count() > 0)
+                        {
+                            sub.Visible = true;
+                        }
+                        foreach (ToolStripItem sub1 in sub.DropDownItems)
+                        {
+                            if (MenuAccess.Where(x => x.MenuText == sub1.Text).Count() > 0)
+                            {
+                                sub1.Visible = true;
+                            }
+                        }
 
-                    transactionsToolStripMenuItem.Visible = true;
-                    stocksToolStripMenuItem.Visible = true;
-                    ongoingStocksDataToolStripMenuItem.Visible = true;
-                }
-                else if (admin.UserType == (int)EnumUserType.SuperAdministrator)
-                {
-                    DisableAllMenu(true);
-                }
-                else if (admin.UserType == (int)EnumUserType.Administrator)
-                {
+                    }
 
-                    
-
-                }
-                else if (admin.UserType == (int)EnumUserType.InventoryClerk)
-                {
-                    menuToolStripMenuItem.Visible = true;
-                    logOffToolStripMenuItem.Visible = true;
-                    exitToolStripMenuItem.Visible = true;
-                    transactionsToolStripMenuItem.Visible = true;
-                    stocksToolStripMenuItem.Visible = true;
-                    stocksDataToolStripMenuItem.Visible = true;
-                    verifyingStocksDataToolStripMenuItem.Visible = true;
-                    allStocksToolStripMenuItem.Visible = true;
-                }
-                else if (admin.UserType == (int)EnumUserType.FinanceManager)
-                {
-                    menuToolStripMenuItem.Visible = true;
-                    logOffToolStripMenuItem.Visible = true;
-                    exitToolStripMenuItem.Visible = true;
-
-                    reportToolStripMenuItem.Visible = true;
-                    salesToolStripMenuItem.Visible = true;
-                    sockDataProfitToolStripMenuItem.Visible = true;
                 }
             }
+
         }
         private void administratorToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -185,35 +174,52 @@ namespace IS.Admin
         }
         private void DisableAllMenu(bool value)
         {
-            //MENU
-            menuToolStripMenuItem.Visible = value;
-            logOffToolStripMenuItem.Visible = value;
-            exitToolStripMenuItem.Visible = value;
+            foreach (ToolStripMenuItem item in menuStrip1.Items)
+            {
+                item.Visible = value;
+                foreach (ToolStripMenuItem sub in item.DropDownItems)
+                {
+                    sub.Visible = value;
+                    foreach (ToolStripItem sub1 in sub.DropDownItems)
+                    {
+                        sub1.Visible = value;
+                    }
 
-            //Transactions
-            transactionsToolStripMenuItem.Visible = value;
-            stocksToolStripMenuItem.Visible = value;
-            stocksDataToolStripMenuItem.Visible = value;
-            ongoingStocksDataToolStripMenuItem.Visible = value;
-            verifyingStocksDataToolStripMenuItem.Visible = value;
-            allStocksToolStripMenuItem.Visible = value;
+                }
 
-            //setup
-            setupToolStripMenuItem.Visible = value;
-            categoriesToolStripMenuItem.Visible = value;
-            principalsToolStripMenuItem.Visible = value;
-            productsToolStripMenuItem.Visible = value;
+            }
 
-            //Utilities
-            utilitiesToolStripMenuItem.Visible = value;
-            administratorToolStripMenuItem.Visible = value;
-            cashiersToolStripMenuItem.Visible = value;
+            ////MENU
+            //menuToolStripMenuItem.Visible = value;
+            //logOffToolStripMenuItem.Visible = value;
+            //exitToolStripMenuItem.Visible = value;
 
-            //reports
-            reportToolStripMenuItem.Visible = value;
-            salesToolStripMenuItem.Visible = value;
+            ////Transactions
+            //transactionsToolStripMenuItem.Visible = value;
+            //stocksToolStripMenuItem.Visible = value;
+            //stocksDataToolStripMenuItem.Visible = value;
+            //ongoingStocksDataToolStripMenuItem.Visible = value;
+            //verifyingStocksDataToolStripMenuItem.Visible = value;
+            //allStocksToolStripMenuItem.Visible = value;
 
-            sockDataProfitToolStripMenuItem.Visible = value;
+            //productPriceHistoryToolStripMenuItem.Visible = value;
+
+            ////setup
+            //setupToolStripMenuItem.Visible = value;
+            //categoriesToolStripMenuItem.Visible = value;
+            //principalsToolStripMenuItem.Visible = value;
+            //productsToolStripMenuItem.Visible = value;
+
+            ////Utilities
+            //utilitiesToolStripMenuItem.Visible = value;
+            //administratorToolStripMenuItem.Visible = value;
+            //cashiersToolStripMenuItem.Visible = value;
+
+            ////reports
+            //reportToolStripMenuItem.Visible = value;
+            //salesToolStripMenuItem.Visible = value;
+
+            //sockDataProfitToolStripMenuItem.Visible = value;
         }
         private void stocksDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -224,6 +230,18 @@ namespace IS.Admin
         private void productPriceHistoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmProductPriceHistory frm = new FrmProductPriceHistory();
+            frm.ShowDialog();
+        }
+
+        private void salesProfitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmSalesProfit frm = new FrmSalesProfit();
+            frm.ShowDialog();
+        }
+
+        private void accessMenuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmMenuAccess frm = new FrmMenuAccess(this.menuStrip1);
             frm.ShowDialog();
         }
     }

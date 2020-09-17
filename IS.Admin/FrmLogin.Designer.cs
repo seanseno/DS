@@ -92,7 +92,7 @@
             this.txtLoginame.Name = "txtLoginame";
             this.txtLoginame.Size = new System.Drawing.Size(231, 22);
             this.txtLoginame.TabIndex = 0;
-            this.txtLoginame.Text = "admin";
+            this.txtLoginame.Text = "Admin";
             this.txtLoginame.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLoginame_KeyDown);
             // 
             // lblPassword

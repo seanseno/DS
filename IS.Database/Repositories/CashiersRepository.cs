@@ -120,24 +120,22 @@ namespace IS.Database.Repositories
         }
 
 
-        public void Delete(Cashiers brand)
+        public void Delete(Cashiers Cashiers)
         {
-            //using (SqlConnection connection = new SqlConnection(ConStr))
-            //{
-            //    connection.Open();
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand("spCashiersDelete", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@CashierId", Cashiers.CashierId.ToUpper()));
 
-            //    var select = "DELETE FROM Cashiers " +
-            //        " WHERE Id = " + Cashier.Id;
+                    int rowAffected = cmd.ExecuteNonQuery();
 
-            //    using (SqlCommand cmd = new SqlCommand(select, connection))
-            //    {
-            //        cmd.ExecuteNonQuery();
-            //    }
-
-            //    if (connection.State == System.Data.ConnectionState.Open)
-            //        connection.Close();
-
-            //}
+                    if (connection.State == System.Data.ConnectionState.Open)
+                        connection.Close();
+                }
+            }
         }
 
         public void Update(Cashiers Cashier)

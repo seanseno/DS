@@ -1,4 +1,6 @@
 ﻿using IS.Admin.Model;
+using IS.Common.Utilities;
+using IS.Database;
 using IS.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,7 @@ namespace IS.Admin.Setup
 {
     public partial class FrmAdministrators : Form
     {
+        ISFactory factory = new ISFactory();
         public FrmAdministrators()
         {
             InitializeComponent();
@@ -34,6 +37,12 @@ namespace IS.Admin.Setup
 
             AdministratorsModel Administrators = new AdministratorsModel();
             var response = Administrators.AdministratorList(this, txtSearch.Text);
+
+            if (Globals.LoginName != "ADMIN")
+            {
+                response = response.Where(x => x.Loginname.ToUpper() != "ADMIN").ToList();
+            }
+
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = response;
             txtSearch.Focus();
@@ -49,14 +58,23 @@ namespace IS.Admin.Setup
             Administrator.Loginname = dgvSearch.CurrentRow.Cells[1].Value.ToString();
             Administrator.Fullname = dgvSearch.CurrentRow.Cells[2].Value.ToString();
 
-            if (e.ColumnIndex == 7) //edit
+            if (e.ColumnIndex == 6) //edit
             {
                 FrmEditAdministrator frm = new FrmEditAdministrator(Administrator);
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.LoadAdministrator();
+                    MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 };
+            }
+            if (e.ColumnIndex == 7)
+            {
+                if (MessageBox.Show("Are you sure do you want to delete this record?", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    factory.AdministratorsRepository.Delete(Administrator);
+                    this.LoadAdministrator();
+                    MessageBox.Show("Row deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 

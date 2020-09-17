@@ -36,7 +36,6 @@ namespace IS.Admin.Setup
                 _Administrators.Loginname = txtLogiName.Text;
                 _Administrators.Fullname = txtFullName.Text;
                 _Administrators.Password = txtPassword.Text;
-                _Administrators.UserType = cboUserType.SelectedIndex;
                 _Administrators.Active = chkActive.Checked == true ? 1 : 0;
                 if (AdministratorsModel.CheckDup(this))
                 {
@@ -100,12 +99,6 @@ namespace IS.Admin.Setup
             {
                 MessageBox.Show("Password must be at least 6 characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtPassword.Focus();
-                return true;
-            }
-            else if (cboUserType.SelectedIndex < 0)
-            {
-                MessageBox.Show("User type is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cboUserType.Focus();
                 return true;
             }
             return false;

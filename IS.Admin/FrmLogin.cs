@@ -29,7 +29,7 @@ namespace IS.Admin
                 var (Id, IsSuccess, message) = model.CheckAdminLogin(txtLoginame.Text, txtPassword.Text);
                 if (IsSuccess)
                 {
-                    Globals.SetLoginId((int)Id,txtLoginame.Text.Trim());
+                    Globals.SetLoginId((int)Id,txtLoginame.Text.ToUpper().Trim());
 
                     this.DialogResult = DialogResult.OK;
                 }

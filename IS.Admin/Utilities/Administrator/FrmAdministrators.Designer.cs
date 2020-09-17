@@ -43,7 +43,6 @@
             this.Name1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descriptions = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Active = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InsertTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UpdateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -152,7 +151,6 @@
             this.Name1,
             this.Descriptions,
             this.Active,
-            this.UserType,
             this.InsertTime,
             this.UpdateTime,
             this.Edit,
@@ -200,7 +198,7 @@
             this.Name1.Name = "Name1";
             this.Name1.ReadOnly = true;
             this.Name1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Name1.Width = 120;
+            this.Name1.Width = 130;
             // 
             // Descriptions
             // 
@@ -211,7 +209,7 @@
             this.Descriptions.Name = "Descriptions";
             this.Descriptions.ReadOnly = true;
             this.Descriptions.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Descriptions.Width = 220;
+            this.Descriptions.Width = 250;
             // 
             // Active
             // 
@@ -220,13 +218,6 @@
             this.Active.Name = "Active";
             this.Active.ReadOnly = true;
             this.Active.Width = 90;
-            // 
-            // UserType
-            // 
-            this.UserType.DataPropertyName = "UserTypeString";
-            this.UserType.HeaderText = "User Type";
-            this.UserType.Name = "UserType";
-            this.UserType.ReadOnly = true;
             // 
             // InsertTime
             // 
@@ -306,7 +297,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Name1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descriptions;
         private System.Windows.Forms.DataGridViewTextBoxColumn Active;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserType;
         private System.Windows.Forms.DataGridViewTextBoxColumn InsertTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn UpdateTime;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;

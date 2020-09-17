@@ -19,4 +19,20 @@ namespace IS.Database.Entities
         public string CashierName { get; set; }
         public string ProductName { get; set; }
     }
+
+    public class SalesProfit
+    {
+        public string Fullname { get; set; }
+        public string PrincipalName { get; set; }
+        public string CategoryName { get; set; }
+        public string ProductId { get; set; }
+        public string ProductName { get; set; }
+        public int SoldQuantity { get; set; }
+        public decimal SupplierPrice { get; set; }
+        public decimal TotalAmount { get; set; }
+        public decimal SellingPrice { get; set; }
+        public decimal TotalSales { get; set; }
+        public decimal Profit { get; set; }
+        public DateTime InsertTime { get; set; }
+    }
 }

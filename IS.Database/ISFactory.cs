@@ -30,5 +30,8 @@ namespace IS.Database
 
         public RequestOrderItemDetailsRepository RequestOrderItemDetailsRepository => new RequestOrderItemDetailsRepository();
         public ItemReceivedOrdersRepository ItemReceivedOrdersRepository = new ItemReceivedOrdersRepository();
+        public MenuAccessRepository MenuAccessRepository = new MenuAccessRepository();
+
+        
     }
 }

@@ -139,6 +139,12 @@
     <Compile Include="Printer\DGVPrinter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\FrmSalesProfit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\FrmSalesProfit.Designer.cs">
+      <DependentUpon>FrmSalesProfit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\FrmSales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -424,6 +430,12 @@
     <Compile Include="Utilities\Cashier\CashOnHand\FrmUpdateCashierDenomination.Designer.cs">
       <DependentUpon>FrmUpdateCashierDenomination.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\MenuAccess\FrmMenuAccess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\MenuAccess\FrmMenuAccess.Designer.cs">
+      <DependentUpon>FrmMenuAccess.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -440,6 +452,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\FrmSalesProfit.resx">
+      <DependentUpon>FrmSalesProfit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\FrmSales.resx">
       <DependentUpon>FrmSales.cs</DependentUpon>
     </EmbeddedResource>
@@ -580,6 +595,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Cashier\CashOnHand\FrmUpdateCashierDenomination.resx">
       <DependentUpon>FrmUpdateCashierDenomination.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\MenuAccess\FrmMenuAccess.resx">
+      <DependentUpon>FrmMenuAccess.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\CustomDataGridView.datasource" />

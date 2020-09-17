@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEditAdministrator));
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblId = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.chkActive = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
@@ -43,10 +45,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.cboUserType = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblId = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -60,7 +58,7 @@
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Location = new System.Drawing.Point(12, 46);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(558, 352);
+            this.panel1.Size = new System.Drawing.Size(558, 319);
             this.panel1.TabIndex = 8;
             // 
             // groupBox2
@@ -68,8 +66,6 @@
             this.groupBox2.BackColor = System.Drawing.Color.White;
             this.groupBox2.Controls.Add(this.lblId);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.cboUserType);
-            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.chkActive);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.txtConfirmPassword);
@@ -82,15 +78,35 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(11, 14);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(535, 261);
+            this.groupBox2.Size = new System.Drawing.Size(535, 235);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Input Details";
             // 
+            // lblId
+            // 
+            this.lblId.AutoSize = true;
+            this.lblId.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblId.Location = new System.Drawing.Point(143, 25);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(70, 24);
+            this.lblId.TabIndex = 21;
+            this.lblId.Text = "I00001";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(24, 31);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(68, 16);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "Admin ID :";
+            // 
             // chkActive
             // 
             this.chkActive.AutoSize = true;
-            this.chkActive.Location = new System.Drawing.Point(147, 223);
+            this.chkActive.Location = new System.Drawing.Point(147, 198);
             this.chkActive.Name = "chkActive";
             this.chkActive.Size = new System.Drawing.Size(15, 14);
             this.chkActive.TabIndex = 5;
@@ -100,7 +116,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(19, 219);
+            this.label5.Location = new System.Drawing.Point(19, 194);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 16);
             this.label5.TabIndex = 8;
@@ -185,7 +201,7 @@
             // 
             this.btnCancel.Image = global::IS.Admin.Properties.Resources.Cancel;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCancel.Location = new System.Drawing.Point(482, 281);
+            this.btnCancel.Location = new System.Drawing.Point(490, 255);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(56, 53);
             this.btnCancel.TabIndex = 7;
@@ -198,7 +214,7 @@
             // 
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSave.Location = new System.Drawing.Point(423, 281);
+            this.btnSave.Location = new System.Drawing.Point(431, 255);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(53, 53);
             this.btnSave.TabIndex = 6;
@@ -206,49 +222,6 @@
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // cboUserType
-            // 
-            this.cboUserType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboUserType.FormattingEnabled = true;
-            this.cboUserType.Items.AddRange(new object[] {
-            "Super Administrator",
-            "Administrator",
-            "Member"});
-            this.cboUserType.Location = new System.Drawing.Point(147, 189);
-            this.cboUserType.Name = "cboUserType";
-            this.cboUserType.Size = new System.Drawing.Size(121, 21);
-            this.cboUserType.TabIndex = 4;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(19, 189);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 16);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "User Type :";
-            // 
-            // lblId
-            // 
-            this.lblId.AutoSize = true;
-            this.lblId.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblId.Location = new System.Drawing.Point(143, 25);
-            this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(70, 24);
-            this.lblId.TabIndex = 21;
-            this.lblId.Text = "I00001";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(24, 31);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(68, 16);
-            this.label7.TabIndex = 20;
-            this.label7.Text = "Admin ID :";
             // 
             // label8
             // 
@@ -265,7 +238,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(582, 417);
+            this.ClientSize = new System.Drawing.Size(582, 382);
             this.ControlBox = false;
             this.Controls.Add(this.label8);
             this.Controls.Add(this.panel1);
@@ -297,8 +270,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox chkActive;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cboUserType;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;

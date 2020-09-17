@@ -30,8 +30,6 @@
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chkActive = new System.Windows.Forms.CheckBox();
-            this.cboUserType = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.txtItemId = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
@@ -46,6 +44,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -53,9 +52,8 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.White;
-            this.groupBox2.Controls.Add(this.chkActive);
-            this.groupBox2.Controls.Add(this.cboUserType);
             this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.chkActive);
             this.groupBox2.Controls.Add(this.txtItemId);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.txtConfirmPassword);
@@ -68,7 +66,7 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(8, 14);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(535, 248);
+            this.groupBox2.Size = new System.Drawing.Size(535, 207);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Input Details";
@@ -76,38 +74,11 @@
             // chkActive
             // 
             this.chkActive.AutoSize = true;
-            this.chkActive.Location = new System.Drawing.Point(138, 221);
+            this.chkActive.Location = new System.Drawing.Point(138, 186);
             this.chkActive.Name = "chkActive";
-            this.chkActive.Size = new System.Drawing.Size(56, 17);
+            this.chkActive.Size = new System.Drawing.Size(15, 14);
             this.chkActive.TabIndex = 6;
-            this.chkActive.Text = "Active";
             this.chkActive.UseVisualStyleBackColor = true;
-            // 
-            // cboUserType
-            // 
-            this.cboUserType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboUserType.FormattingEnabled = true;
-            this.cboUserType.Items.AddRange(new object[] {
-            "Super Administrator",
-            "Administrator",
-            "Inventory Clerk",
-            "Finance Manager ",
-            "Pharmacy Assistant",
-            "Member"});
-            this.cboUserType.Location = new System.Drawing.Point(138, 188);
-            this.cboUserType.Name = "cboUserType";
-            this.cboUserType.Size = new System.Drawing.Size(121, 21);
-            this.cboUserType.TabIndex = 5;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(16, 188);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 16);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "User Type :";
             // 
             // txtItemId
             // 
@@ -211,14 +182,14 @@
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Location = new System.Drawing.Point(12, 57);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(556, 330);
+            this.panel1.Size = new System.Drawing.Size(556, 292);
             this.panel1.TabIndex = 7;
             // 
             // btnCancel
             // 
             this.btnCancel.Image = global::IS.Admin.Properties.Resources.Cancel;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCancel.Location = new System.Drawing.Point(487, 268);
+            this.btnCancel.Location = new System.Drawing.Point(487, 227);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(56, 53);
             this.btnCancel.TabIndex = 8;
@@ -231,7 +202,7 @@
             // 
             this.btnAdd.Image = global::IS.Admin.Properties.Resources.Save;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAdd.Location = new System.Drawing.Point(428, 268);
+            this.btnAdd.Location = new System.Drawing.Point(428, 227);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(53, 53);
             this.btnAdd.TabIndex = 7;
@@ -250,12 +221,22 @@
             this.label7.TabIndex = 7;
             this.label7.Text = "Add Administor";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(17, 184);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 16);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Active :";
+            // 
             // FrmAddAdministrator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(573, 406);
+            this.ClientSize = new System.Drawing.Size(578, 371);
             this.ControlBox = false;
             this.Controls.Add(this.label7);
             this.Controls.Add(this.panel1);
@@ -290,8 +271,7 @@
         private System.Windows.Forms.TextBox txtItemId;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox chkActive;
-        private System.Windows.Forms.ComboBox cboUserType;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
     }
 }
