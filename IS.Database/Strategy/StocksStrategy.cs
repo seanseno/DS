@@ -13,7 +13,7 @@ namespace IS.Database.Strategy
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT stock FROM Stocks WHERE ProductId = '" + ProductId + "'";
+                var select = "SELECT stock FROM vStocks WHERE ProductId = '" + ProductId + "'";
                 using (SqlCommand cmd = new SqlCommand(select,connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -29,6 +29,32 @@ namespace IS.Database.Strategy
                                 }
                                 return false;
                             }
+                        }
+                        return false;
+                    }
+                }
+            }
+        }
+        public bool HaveStock(string ProductId)
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT stock FROM vStocks WHERE ProductId = '" + ProductId + "'";
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+                            var Stock = reader.GetInt32(0);
+                            if (Stock <= 0)
+                            {
+                                return false;
+
+                            }
+                            return true;
                         }
                         return false;
                     }

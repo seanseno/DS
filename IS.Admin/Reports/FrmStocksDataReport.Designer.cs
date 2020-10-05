@@ -36,17 +36,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblTotalRemaining = new System.Windows.Forms.Label();
+            this.lblTotalQty = new System.Windows.Forms.Label();
+            this.lblTotalProfit = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dtpTo = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.dtpFrom = new System.Windows.Forms.DateTimePicker();
             this.lblSearchFrom = new System.Windows.Forms.Label();
-            this.lblTotalRemaining = new System.Windows.Forms.Label();
-            this.lblTotalQty = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblTotalProfit = new System.Windows.Forms.Label();
             this.btnDownload = new System.Windows.Forms.Button();
             this.lblTotal = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -55,8 +53,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvSearch = new System.Windows.Forms.DataGridView();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.PrincipalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,7 +68,10 @@
             this.DeliveryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExpirationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.grpLoading.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSearch)).BeginInit();
@@ -81,17 +80,12 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
+            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.dtpTo);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.dtpFrom);
             this.groupBox1.Controls.Add(this.lblSearchFrom);
-            this.groupBox1.Controls.Add(this.lblTotalRemaining);
-            this.groupBox1.Controls.Add(this.lblTotalQty);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.lblTotalProfit);
             this.groupBox1.Controls.Add(this.btnDownload);
             this.groupBox1.Controls.Add(this.lblTotal);
             this.groupBox1.Controls.Add(this.btnSearch);
@@ -105,6 +99,51 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Stocks Data List";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel1.Controls.Add(this.lblTotalRemaining);
+            this.panel1.Controls.Add(this.lblTotalQty);
+            this.panel1.Controls.Add(this.lblTotalProfit);
+            this.panel1.Location = new System.Drawing.Point(16, 498);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(320, 90);
+            this.panel1.TabIndex = 44;
+            // 
+            // lblTotalRemaining
+            // 
+            this.lblTotalRemaining.AutoSize = true;
+            this.lblTotalRemaining.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalRemaining.Location = new System.Drawing.Point(10, 58);
+            this.lblTotalRemaining.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTotalRemaining.Name = "lblTotalRemaining";
+            this.lblTotalRemaining.Size = new System.Drawing.Size(115, 17);
+            this.lblTotalRemaining.TabIndex = 2;
+            this.lblTotalRemaining.Text = "Total Remaining:";
+            // 
+            // lblTotalQty
+            // 
+            this.lblTotalQty.AutoSize = true;
+            this.lblTotalQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalQty.Location = new System.Drawing.Point(10, 33);
+            this.lblTotalQty.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTotalQty.Name = "lblTotalQty";
+            this.lblTotalQty.Size = new System.Drawing.Size(101, 17);
+            this.lblTotalQty.TabIndex = 1;
+            this.lblTotalQty.Text = "Total Quantity:";
+            // 
+            // lblTotalProfit
+            // 
+            this.lblTotalProfit.AutoSize = true;
+            this.lblTotalProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalProfit.Location = new System.Drawing.Point(10, 11);
+            this.lblTotalProfit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTotalProfit.Name = "lblTotalProfit";
+            this.lblTotalProfit.Size = new System.Drawing.Size(81, 17);
+            this.lblTotalProfit.TabIndex = 0;
+            this.lblTotalProfit.Text = "Total Profit:";
             // 
             // label5
             // 
@@ -149,67 +188,6 @@
             this.lblSearchFrom.Size = new System.Drawing.Size(77, 16);
             this.lblSearchFrom.TabIndex = 39;
             this.lblSearchFrom.Text = "Date From :";
-            // 
-            // lblTotalRemaining
-            // 
-            this.lblTotalRemaining.AutoSize = true;
-            this.lblTotalRemaining.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalRemaining.Location = new System.Drawing.Point(155, 534);
-            this.lblTotalRemaining.Name = "lblTotalRemaining";
-            this.lblTotalRemaining.Size = new System.Drawing.Size(18, 20);
-            this.lblTotalRemaining.TabIndex = 38;
-            this.lblTotalRemaining.Text = "0";
-            // 
-            // lblTotalQty
-            // 
-            this.lblTotalQty.AutoSize = true;
-            this.lblTotalQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalQty.Location = new System.Drawing.Point(155, 514);
-            this.lblTotalQty.Name = "lblTotalQty";
-            this.lblTotalQty.Size = new System.Drawing.Size(18, 20);
-            this.lblTotalQty.TabIndex = 37;
-            this.lblTotalQty.Text = "0";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(12, 534);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(124, 20);
-            this.label7.TabIndex = 36;
-            this.label7.Text = "Total Remaining";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(12, 514);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(111, 20);
-            this.label6.TabIndex = 35;
-            this.label6.Text = "Total Quantity ";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 494);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 20);
-            this.label3.TabIndex = 32;
-            this.label3.Text = "Total Profit : ";
-            // 
-            // lblTotalProfit
-            // 
-            this.lblTotalProfit.AutoSize = true;
-            this.lblTotalProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalProfit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblTotalProfit.Location = new System.Drawing.Point(155, 494);
-            this.lblTotalProfit.Name = "lblTotalProfit";
-            this.lblTotalProfit.Size = new System.Drawing.Size(89, 20);
-            this.lblTotalProfit.TabIndex = 31;
-            this.lblTotalProfit.Text = "300,000.00";
             // 
             // btnDownload
             // 
@@ -322,24 +300,6 @@
             this.dgvSearch.TabIndex = 4;
             this.dgvSearch.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSearch_DataBindingComplete);
             // 
-            // txtSearch
-            // 
-            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(76, 26);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(287, 26);
-            this.txtSearch.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(263, 34);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Stocks Data Report";
-            // 
             // PrincipalName
             // 
             this.PrincipalName.DataPropertyName = "PrincipalName";
@@ -402,6 +362,7 @@
             this.SupplierPrice.MinimumWidth = 6;
             this.SupplierPrice.Name = "SupplierPrice";
             this.SupplierPrice.ReadOnly = true;
+            this.SupplierPrice.Width = 125;
             // 
             // TotalAmount
             // 
@@ -410,13 +371,16 @@
             dataGridViewCellStyle4.Format = "N2";
             this.TotalAmount.DefaultCellStyle = dataGridViewCellStyle4;
             this.TotalAmount.HeaderText = "Total Amount";
+            this.TotalAmount.MinimumWidth = 6;
             this.TotalAmount.Name = "TotalAmount";
             this.TotalAmount.ReadOnly = true;
+            this.TotalAmount.Width = 125;
             // 
             // RemainingQuantity
             // 
             this.RemainingQuantity.DataPropertyName = "RemainingQuantity";
             this.RemainingQuantity.HeaderText = "Remaining Quantity";
+            this.RemainingQuantity.MinimumWidth = 6;
             this.RemainingQuantity.Name = "RemainingQuantity";
             this.RemainingQuantity.ReadOnly = true;
             this.RemainingQuantity.Width = 60;
@@ -425,6 +389,7 @@
             // 
             this.UnitSold.DataPropertyName = "UnitSold";
             this.UnitSold.HeaderText = "Unit Sold";
+            this.UnitSold.MinimumWidth = 6;
             this.UnitSold.Name = "UnitSold";
             this.UnitSold.ReadOnly = true;
             this.UnitSold.Width = 60;
@@ -440,6 +405,7 @@
             this.ProductSellingPrice.MinimumWidth = 6;
             this.ProductSellingPrice.Name = "ProductSellingPrice";
             this.ProductSellingPrice.ReadOnly = true;
+            this.ProductSellingPrice.Width = 125;
             // 
             // TotalSales
             // 
@@ -449,8 +415,10 @@
             dataGridViewCellStyle6.NullValue = null;
             this.TotalSales.DefaultCellStyle = dataGridViewCellStyle6;
             this.TotalSales.HeaderText = "Total Sales";
+            this.TotalSales.MinimumWidth = 6;
             this.TotalSales.Name = "TotalSales";
             this.TotalSales.ReadOnly = true;
+            this.TotalSales.Width = 125;
             // 
             // Profit
             // 
@@ -462,6 +430,7 @@
             dataGridViewCellStyle7.NullValue = null;
             this.Profit.DefaultCellStyle = dataGridViewCellStyle7;
             this.Profit.HeaderText = "Profit";
+            this.Profit.MinimumWidth = 6;
             this.Profit.Name = "Profit";
             this.Profit.ReadOnly = true;
             this.Profit.Width = 60;
@@ -473,6 +442,7 @@
             this.DeliveryDate.MinimumWidth = 6;
             this.DeliveryDate.Name = "DeliveryDate";
             this.DeliveryDate.ReadOnly = true;
+            this.DeliveryDate.Width = 125;
             // 
             // ExpirationDate
             // 
@@ -487,9 +457,28 @@
             // 
             this.Remarks.DataPropertyName = "Remarks";
             this.Remarks.HeaderText = "Remarks";
+            this.Remarks.MinimumWidth = 6;
             this.Remarks.Name = "Remarks";
             this.Remarks.ReadOnly = true;
             this.Remarks.Width = 200;
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(76, 26);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(287, 26);
+            this.txtSearch.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(263, 34);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Stocks Data Report";
             // 
             // FrmStocksDataReport
             // 
@@ -502,11 +491,12 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FrmStocksDataReport";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FrmStocksDataReport_Load);
             this.Shown += new System.EventHandler(this.FrmStocksData_Shown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.grpLoading.ResumeLayout(false);
             this.grpLoading.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -529,12 +519,6 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Button btnDownload;
-        private System.Windows.Forms.Label lblTotalRemaining;
-        private System.Windows.Forms.Label lblTotalQty;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblTotalProfit;
         private System.Windows.Forms.DateTimePicker dtpTo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dtpFrom;
@@ -555,5 +539,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DeliveryDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExpirationDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblTotalRemaining;
+        private System.Windows.Forms.Label lblTotalQty;
+        private System.Windows.Forms.Label lblTotalProfit;
     }
 }

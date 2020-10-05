@@ -19,7 +19,7 @@ namespace IS.Admin.Setup
         public FrmEditProduct(Products Products)
         {
             InitializeComponent();
-            this.ActiveControl = cboCategories;
+            this.ActiveControl = txtProductName;
             this._Products = Products;
         }
 
@@ -31,29 +31,13 @@ namespace IS.Admin.Setup
 
         private void FrmEditProduct_Load(object sender, EventArgs e)
         {
-
-            CategoriesModel categoriesModel = new CategoriesModel();
-            var categoryList = categoriesModel.CategoryListWithSelect();
-            cboCategories.DataSource = categoryList;
-            cboCategories.DisplayMember = "CategoryName";
-            cboCategories.ValueMember = "CategoryId";
-
-            PrincipalsModel principalsModel = new PrincipalsModel();
-            var principalList = principalsModel.PrincipalListWithSelect();
-            cboPrincipals.DataSource = principalList;
-            cboPrincipals.DisplayMember = "PrincipalName";
-            cboPrincipals.ValueMember = "PrincipalId";
-
             ProductsModel ProductsModel = new ProductsModel();
             var response = ProductsModel.LoadEdit(_Products.ProductId);
             lblItemId.Text = response.ProductId;
-            cboCategories.SelectedIndex = cboCategories.FindStringExact(response.CategoryName);
-            cboPrincipals.SelectedIndex = cboPrincipals.FindStringExact(response.PrincipalName);
             txtProductName.Text = response.ProductName;
             txtPrice.Text = response.Price.ToString("N2");
             txtBarcode.Text = response.BarCode;
             chkActive.Checked = response.Active == 1 ? true : false;
-
         }
 
         private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
@@ -115,9 +99,6 @@ namespace IS.Admin.Setup
             {
                 if (MessageBox.Show("Are you sure do want to update " + txtProductName.Text + "?", "Information!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    _Products.CategoryId = cboCategories.SelectedValue.ToString();
-                    _Products.PrincipalId = cboPrincipals.SelectedValue.ToString();
-
                     _Products.ProductName = txtProductName.Text;
                     _Products.Price = Convert.ToDecimal(txtPrice.Text);
                     _Products.BarCode = txtBarcode.Text;
@@ -130,5 +111,6 @@ namespace IS.Admin.Setup
                 }
             }
         }
+
     }
 }

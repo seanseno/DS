@@ -65,7 +65,7 @@ namespace IS.Database.Repositories
             }
         }
 
-        public TempLedgerSales FindDefault(string cashierId)
+        public TempLedgerSales FindDefault(string cashierId,string CustomerName)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
@@ -82,7 +82,7 @@ namespace IS.Database.Repositories
                         else
                         {
                             var factory = new ISFactory();
-                            return  factory.TempLedgerSalesRepository.Insert(cashierId,"TempCostumer");
+                            return  factory.TempLedgerSalesRepository.Insert(cashierId, CustomerName);
                         }
                     }
                 }
@@ -132,7 +132,6 @@ namespace IS.Database.Repositories
                 }
             }
         }
-
-         public TempLedgerSalesStrategy TempLedgerSalesStrategy => new TempLedgerSalesStrategy();
+        public TempLedgerSalesStrategy TempLedgerSalesStrategy => new TempLedgerSalesStrategy();
     }
 }

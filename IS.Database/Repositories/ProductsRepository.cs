@@ -13,6 +13,43 @@ namespace IS.Database.Repositories
 {
     public class ProductsRepository : Helper
     {
+        public List<Products> GetList()
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT * FROM vProducts";
+
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        List<Products> Products = new List<Products>();
+                        var List = new ReflectionPopulator<Products>().CreateList(reader);
+                        return List;
+                    }
+                }
+            }
+        }
+        public List<ProductsKiosk> GetListFromKiosk()
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT * FROM vProductsKiosk";
+
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        List<ProductsKiosk> Products = new List<ProductsKiosk>();
+                        var List = new ReflectionPopulator<ProductsKiosk>().CreateList(reader);
+                        return List;
+                    }
+                }
+            }
+        }
+        
         public void Insert(Products item)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
@@ -24,8 +61,6 @@ namespace IS.Database.Repositories
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@ProductId", item.ProductId.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@CategoryId", item.CategoryId.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@PrincipalId", item.PrincipalId.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@ProductName", item.ProductName.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@Price", item.Price));
                     cmd.Parameters.Add(new SqlParameter("@BarCode", item.BarCode));
@@ -49,8 +84,6 @@ namespace IS.Database.Repositories
                    
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@ProductId", item.ProductId.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@CategoryId", item.CategoryId.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@PrincipalId", item.PrincipalId.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@ProductName", item.ProductName.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@Price", item.Price));
                     cmd.Parameters.Add(new SqlParameter("@Active", item.Active));

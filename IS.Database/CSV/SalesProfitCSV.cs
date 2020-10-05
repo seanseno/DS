@@ -29,7 +29,8 @@ namespace IS.Database.CSV
         public string TotalSales { get; set; }
         [Name("Profit")]
         public string Profit { get; set; }
-        [Name("InsertTime")]
+
+        [Name("Date Time")]
         public string InsertTime { get; set; }
     }
 }

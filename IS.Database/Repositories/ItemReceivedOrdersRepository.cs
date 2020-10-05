@@ -88,7 +88,7 @@ namespace IS.Database.Repositories
                             var item = new ItemReceivedOrders();
 
                             item.Id = reader.GetInt32(0);
-                            item.CategoryName = reader.GetString(1);
+                           // item.CategoryName = reader.GetString(1);
                             //item.CompanyName = reader.GetString(2);
                             //item.GenericName = reader.GetString(3);
                             //item.BrandName = reader.GetString(4);
@@ -132,7 +132,7 @@ namespace IS.Database.Repositories
                             var item = new ItemReceivedOrders();
 
                             item.Id = reader.GetInt32(0);
-                            item.CategoryName = reader.GetString(1);
+                            //item.CategoryName = reader.GetString(1);
                             //item.CompanyName = reader.GetString(2);
                             //item.GenericName = reader.GetString(3);
                             //item.BrandName = reader.GetString(4);
@@ -174,7 +174,7 @@ namespace IS.Database.Repositories
                             var item = new ItemReceivedOrders();
 
                             item.Id = reader.GetInt32(0);
-                            item.CategoryName = reader.GetString(1);
+                            //item.CategoryName = reader.GetString(1);
                             //item.CompanyName = reader.GetString(2);
                             //item.GenericName = reader.GetString(3);
                             //item.BrandName = reader.GetString(4);
@@ -219,7 +219,7 @@ namespace IS.Database.Repositories
                             reader.Read();
                             
                             item.Id = reader.GetInt32(0);
-                            item.CategoryName = reader.GetString(1);
+                            //item.CategoryName = reader.GetString(1);
                             //item.CompanyName = reader.GetString(2);
                             //item.GenericName = reader.GetString(3);
                             //item.BrandName = reader.GetString(4);
@@ -264,7 +264,7 @@ namespace IS.Database.Repositories
                         {
                             var item = new ItemReceivedOrders();
                             item.Id = reader.GetInt32(0);
-                            item.CategoryName = reader.GetString(1);
+                           //item.CategoryName = reader.GetString(1);
                             //item.CompanyName = reader.GetString(2);
                             //item.GenericName = reader.GetString(3);
                             //item.BrandName = reader.GetString(4);

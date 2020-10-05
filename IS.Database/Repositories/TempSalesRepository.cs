@@ -12,6 +12,21 @@ namespace IS.Database.Repositories
 {
     public class TempSalesRepository : Helper
     {
+        public IList<TempSales> GetList()
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT * FROM vTempSales";
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        return new ReflectionPopulator<TempSales>().CreateList(reader);
+                    }
+                }
+            }
+        }
         public void Insert(string ProductId, int Qty, int TempLedgerId)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))

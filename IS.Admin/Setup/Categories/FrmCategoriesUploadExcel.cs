@@ -84,68 +84,66 @@ namespace IS.Admin.Setup
                     progressBar1.Value = 0;
                     int progressCount = 0;
 
-                    var ErrorList = new List<Categories>();
-
                     IList<Categories> list = new List<Categories>();
+                 
+                    int rowIndex = 0;
                     foreach (DataRow row in dt.Rows)
                     {
-
+                        rowIndex++;
                         var category = new Categories();
                         category.CategoryId = row[0].ToString().ToUpper();
                         category.CategoryName = row[1].ToString().ToUpper();
-                        if (string.IsNullOrEmpty(row[2].ToString()))
+                        category.PercentSuggestedPrice = row[2].ToString().ToUpper();
+                        lblpbar.Text = "Checking...\\category id:" + category.CategoryId + "\\category name:" + category.CategoryName;
+                        lblpbar.Refresh();
+                        if (string.IsNullOrEmpty(category.CategoryId) ||
+                            string.IsNullOrEmpty(category.CategoryName))
                         {
-                            category.PercentSuggestedPrice = "0";
+                            MessageBox.Show(string.Format("Row {0} has null value or empty, please check the row columns information!", rowIndex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            dgvExcel.Rows[rowIndex - 1].Selected = true;
+                            progressBar1.Value = 0;
+                            lblpbar.Text = "";
+                            lblpbar.Refresh();
+                            return;
                         }
-                        else
+                        else if (request.CheckDup(category))
                         {
-                            category.PercentSuggestedPrice =row[2].ToString().ToUpper();
+                            MessageBox.Show(string.Format("Row {0}, Principal Id :{1} or Principal Name :{2} already exist!", rowIndex, category.CategoryId.ToUpper(), category.CategoryName.ToUpper()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            dgvExcel.Rows[rowIndex - 1].Selected = true;
+                            progressBar1.Value = 0;
+                            lblpbar.Text = "";
+                            lblpbar.Refresh();
+                            return;
                         }
-  
-                        if (!request.CheckDup(category))
-                        {
-                            list.Add(category);
-                        }
-                        else
-                        {
-                            ErrorList.Add(category);
-                        }
+                        list.Add(category);
+                    }
+
+                    if (list.GroupBy(x => x.CategoryId).Any(g => g.Count() > 1)
+                        ||
+                        list.GroupBy(x => x.CategoryName).Any(g => g.Count() > 1))
+                    {
+                        MessageBox.Show("Duplicate Category Id or Category Name found in your data excel!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        progressBar1.Value = 0;
+                        lblpbar.Text = "";
+                        return;
                     }
 
                     foreach (var row in list)
                     {
-                        try
-                        {
-                            request.InsertCategory(row);
-                        }
-                        catch (Exception ex)
-                        {
-                            ErrorList.Add(row);
-                        }
-                        finally
-                        {
-                            progressCount++;
-                            progressBar1.Value = progressCount;
-                        }
+                        
+                        lblpbar.Text = "Inserting...\\category id:" + row.CategoryId + "\\category name:" + row.CategoryName;
+                        lblpbar.Refresh();
+                        request.InsertCategory(row);
+ 
+                        progressCount++;
+                        progressBar1.Value = progressCount;
 
                     }
-
-                    if (ErrorList.Count > 0)
-                    {
-                        MessageBox.Show("Categories uploaded! but some rows does not uploaded, Please check the Item information.", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        FrmCategoriesNotUploaded frm = new FrmCategoriesNotUploaded(ErrorList);
-                        if (frm.ShowDialog() == DialogResult.OK)
-                        {
-                            this.DialogResult = DialogResult.OK;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Categories Uploaded!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.DialogResult = DialogResult.OK;
-                    }
+                    lblpbar.Text = "";
+                    lblpbar.Refresh();
+                    MessageBox.Show("Categories Uploaded!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
                 }
-
             }
         }
     }

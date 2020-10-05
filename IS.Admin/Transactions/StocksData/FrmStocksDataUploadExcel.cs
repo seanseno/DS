@@ -104,29 +104,31 @@ namespace IS.Admin.Transactions
                         foreach (DataRow row in dt.Rows)
                         {
                             rowIndex++;
-                            if (string.IsNullOrEmpty(row[1].ToString().ToUpper()) ||
+                            if (string.IsNullOrEmpty(row[0].ToString().ToUpper()) || 
+                                string.IsNullOrEmpty(row[2].ToString().ToUpper()) ||
                                 string.IsNullOrEmpty(row[4].ToString().ToUpper()) ||
-                                string.IsNullOrEmpty(row[5].ToString().ToUpper()) ||
                                 string.IsNullOrEmpty(row[6].ToString().ToUpper()) ||
                                 string.IsNullOrEmpty(row[7].ToString().ToUpper()) ||
                                 string.IsNullOrEmpty(row[8].ToString().ToUpper()) ||
                                 string.IsNullOrEmpty(row[9].ToString().ToUpper()) ||
                                 string.IsNullOrEmpty(row[10].ToString().ToUpper()) ||
-                                string.IsNullOrEmpty(row[11].ToString().ToUpper()))
+                                string.IsNullOrEmpty(row[11].ToString().ToUpper()) ||
+                                string.IsNullOrEmpty(row[12].ToString().ToUpper()) ||
+                                string.IsNullOrEmpty(row[13].ToString().ToUpper()))
                             {
                                 MessageBox.Show(string.Format("Row {0} is not valid, please check the row information!", rowIndex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 dgvExcel.Rows[rowIndex - 1].Selected = true;
                                 return;
                             }
-                            else if (!pModel.CheckProductIfExist(row[1].ToString().ToUpper()))
+                            else if (!pModel.CheckProductIfExist(row[2].ToString().ToUpper()))
                             {
-                                MessageBox.Show(string.Format("Product ID:{0} does not exist!", row[1].ToString().ToUpper()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show(string.Format("Product ID:{0} does not exist!", row[2].ToString().ToUpper()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 dgvExcel.Rows[rowIndex - 1].Selected = true;
                                 return;
                             }
-                            else if (factory.StocksDataRepository.StocksDataStrategy.CheckOngoingStockData(row[1].ToString().ToUpper()))
+                            else if (factory.StocksDataRepository.StocksDataStrategy.CheckOngoingStockData(row[2].ToString().ToUpper()))
                             {
-                                MessageBox.Show("Ongoing Stock detected!" + "\n" + "Product Id: " + row[1].ToString().ToUpper() + "." + "\n" + "Please validate first before you can procced in this transaction!", "Information!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Ongoing Stock detected!" + "\n" + "Product Id: " + row[2].ToString().ToUpper() + "." + "\n" + "Please validate first before you can procced in this transaction!", "Information!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
                                 
@@ -137,16 +139,17 @@ namespace IS.Admin.Transactions
                             progressCount++;
                             StocksData stocksData = new StocksData();
                             stocksData.Loginname = Globals.LoginName;
-                            stocksData.ProductId = row[1].ToString().ToUpper();
-                            stocksData.Quantity = Convert.ToInt32(row[4].ToString());
-                            stocksData.SupplierPrice = Convert.ToDecimal(row[5].ToString());
-                            stocksData.TotalAmount = Convert.ToDecimal(row[6].ToString());
-                            stocksData.RealUnitPrice = Convert.ToDecimal(row[7].ToString());
-                            stocksData.RemainingQuantity = Convert.ToInt32(row[8].ToString());
-                            stocksData.DeliveryDate = Convert.ToDateTime(row[9].ToString());
-                            stocksData.ExpirationDate = Convert.ToDateTime(row[10].ToString());
-                            stocksData.Duration = Convert.ToInt32(row[11].ToString());
-                            stocksData.Remarks = row[12].ToString().ToUpper();
+                            stocksData.PrincipalId = row[0].ToString().ToUpper();
+                            stocksData.ProductId = row[2].ToString().ToUpper();
+                            stocksData.CategoryId = row[4].ToString().ToUpper();
+                            stocksData.Quantity = Convert.ToInt32(row[6].ToString());
+                            stocksData.SupplierPrice = Convert.ToDecimal(row[7].ToString());
+                            stocksData.TotalAmount = Convert.ToDecimal(row[8].ToString());
+                            stocksData.SuggestedPrice = Convert.ToDecimal(row[9].ToString());
+                            stocksData.RemainingQuantity = Convert.ToInt32(row[10].ToString());
+                            stocksData.DeliveryDate = Convert.ToDateTime(row[11].ToString());
+                            stocksData.ExpirationDate = Convert.ToDateTime(row[12].ToString());
+                            stocksData.Remarks = row[14].ToString().ToUpper();
                             request.InsertStockData(stocksData);
                             progressBar1.Value = progressCount;
                         }

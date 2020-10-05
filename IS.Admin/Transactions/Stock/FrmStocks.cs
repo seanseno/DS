@@ -1,4 +1,5 @@
 ﻿using IS.Admin.Model;
+using IS.Database;
 using IS.Database.Entities;
 using IS.Database.Enums;
 using System;
@@ -15,6 +16,8 @@ namespace IS.Admin.Transactions
 {
     public partial class FrmStocks : Form
     {
+        ISFactory factory = new ISFactory();
+
         public FrmStocks()
         {
             InitializeComponent();
@@ -25,16 +28,22 @@ namespace IS.Admin.Transactions
             grpLoading.Visible = true;
             grpLoading.Refresh();
 
-            StocksModel stocks = new StocksModel();
-            var response = stocks.StockList(txtSearch.Text);
+            var response = factory.StocksRepository.Find(txtSearch.Text);
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = response;
             txtSearch.Focus();
 
             grpLoading.Visible = false;
             grpLoading.Refresh();
-
-
+            if (response == null)
+            {
+                lblTotalStocks.Text = "Total Stock(s): 0";
+            }
+            else
+            {
+                lblTotalStocks.Text = "Total Stock(s): " + response.Sum(x => x.Stock)?.ToString("N0");
+            }
+            
         }
 
 
@@ -75,6 +84,11 @@ namespace IS.Admin.Transactions
         private void btnSearch_Click(object sender, EventArgs e)
         {
             this.LoadStocks();
+        }
+
+        private void FrmStocks_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

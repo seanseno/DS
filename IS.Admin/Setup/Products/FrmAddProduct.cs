@@ -42,8 +42,6 @@ namespace IS.Admin.Setup
                     if (MessageBox.Show("Are you sure do want to add " + txtProductName.Text + "?", "Information!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
                         _Products.ProductId = txtProductId.Text;
-                        _Products.CategoryId = cboCategories.SelectedValue.ToString();
-                        _Products.PrincipalId = cboPrincipals.SelectedValue.ToString();
 
                         _Products.ProductName = txtProductName.Text;
                         _Products.Price = Convert.ToDecimal(txtPrice.Text);
@@ -60,18 +58,6 @@ namespace IS.Admin.Setup
 
         private void FrmAddProduct_Load(object sender, EventArgs e)
         {
-            CategoriesModel categoriesModel = new CategoriesModel();
-            var categoryList = categoriesModel.CategoryListWithSelect();
-            cboCategories.DataSource = categoryList;
-            cboCategories.DisplayMember = "CategoryName";
-            cboCategories.ValueMember = "CategoryId";
-
-            PrincipalsModel principalsModel = new PrincipalsModel();
-            var principalList = principalsModel.PrincipalListWithSelect();
-            cboPrincipals.DataSource = principalList;
-            cboPrincipals.DisplayMember = "PrincipalName";
-            cboPrincipals.ValueMember = "PrincipalId";
-
             ProductsModel productsModel = new ProductsModel();
             txtProductId.Text = productsModel.GetNextId();
         }

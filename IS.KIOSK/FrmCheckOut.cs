@@ -1,4 +1,5 @@
 ﻿using IS.Common.Utilities;
+using IS.Database;
 using IS.KIOSK.Model;
 using System;
 using System.Drawing;
@@ -14,6 +15,8 @@ namespace IS.KIOSK
         public decimal payAmount { get; set; }
         public decimal changeAmount { get; set; }
         int CountErrorlabel = 0;
+
+        ISFactory factory = new ISFactory();
         public FrmCheckOut(FrmMain frm)
         {
             InitializeComponent();
@@ -60,31 +63,41 @@ namespace IS.KIOSK
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            if (decimal.TryParse(txtAmount.Text, out decimal Amount))
+            if (CheckIsStock())
             {
-                if (Amount > 0)
+
+                if (decimal.TryParse(txtAmount.Text, out decimal Amount))
                 {
-                    if (changeAmount < 0)
+                    if (Amount > 0)
                     {
-                        lblError.Text = "Negative payment detected!";
-                        timer1.Start();
+                        if (changeAmount < 0)
+                        {
+                            lblError.Text = "Negative payment detected!";
+                            timer1.Start();
+                        }
+                        else
+                        {
+                            var frmCheckOutModel = new FrmCheckOutModel();
+                            var orNumber = frmCheckOutModel.ExecutePayment(this, this._FrmMain);
+                            LoadOrders(orNumber);
+                            PrintReceipt();
+
+                            MessageBox.Show("Orders complete!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            FrmChange frmchAnge = new FrmChange(changeAmount.ToString("N2"));
+                            frmchAnge.ShowDialog();
+                            //if (frmchAnge.ShowDialog() == DialogResult.OK)
+                            //{
+                            //    return;
+                            //}
+                            this.DialogResult = DialogResult.OK;
+                        }
                     }
                     else
                     {
-                        var frmCheckOutModel = new FrmCheckOutModel();
-                        var orNumber = frmCheckOutModel.ExecutePayment(this, this._FrmMain);
-                        LoadOrders(orNumber);
-                        PrintReceipt();
-
-                        MessageBox.Show("Orders complete!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        FrmChange frmchAnge = new FrmChange(changeAmount.ToString("N2"));
-                        frmchAnge.ShowDialog();
-                        //if (frmchAnge.ShowDialog() == DialogResult.OK)
-                        //{
-                        //    return;
-                        //}
-                        this.DialogResult = DialogResult.OK;
+                        lblError.Text = "Payment not detected!";
+                        timer1.Start();
+                        txtAmount.Focus();
                     }
                 }
                 else
@@ -94,12 +107,21 @@ namespace IS.KIOSK
                     txtAmount.Focus();
                 }
             }
-            else
+        }
+
+        private bool CheckIsStock()
+        {
+            var response = factory.TempSalesRepository.GetList();
+            var list = response.Where(x => x.TempLedgerId == _FrmMain._TempLedgerSales.Id).ToList();
+            foreach (var item in list)
             {
-                lblError.Text = "Payment not detected!";
-                timer1.Start();
-                txtAmount.Focus();
+                if (!factory.StocksRepository.StocksStrategy.HaveStock(item.ProductId))
+                {
+                    MessageBox.Show("Not enough stock! " + item.ProductName, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return false;
+                }
             }
+            return true;
         }
 
         private void LoadOrders(int? OrNumber)

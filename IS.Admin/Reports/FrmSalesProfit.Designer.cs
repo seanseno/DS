@@ -36,20 +36,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblTotalProfit = new System.Windows.Forms.Label();
             this.lblTotalAmount = new System.Windows.Forms.Label();
             this.dgvSales = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cboCashier = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dtpTo = new System.Windows.Forms.DateTimePicker();
-            this.dtpFrom = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.btnDownload = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblTotalProfit = new System.Windows.Forms.Label();
             this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrincipalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,7 +51,19 @@
             this.TotalSales = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Profit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InsertTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cboCashier = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtpTo = new System.Windows.Forms.DateTimePicker();
+            this.dtpFrom = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnDownload = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSales)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -69,8 +71,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
-            this.groupBox1.Controls.Add(this.lblTotalProfit);
-            this.groupBox1.Controls.Add(this.lblTotalAmount);
+            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.dgvSales);
             this.groupBox1.Location = new System.Drawing.Point(18, 165);
             this.groupBox1.Name = "groupBox1";
@@ -79,17 +80,38 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sales List";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel1.Controls.Add(this.lblTotalProfit);
+            this.panel1.Controls.Add(this.lblTotalAmount);
+            this.panel1.Location = new System.Drawing.Point(17, 396);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(320, 54);
+            this.panel1.TabIndex = 27;
+            // 
+            // lblTotalProfit
+            // 
+            this.lblTotalProfit.AutoSize = true;
+            this.lblTotalProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalProfit.Location = new System.Drawing.Point(10, 33);
+            this.lblTotalProfit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTotalProfit.Name = "lblTotalProfit";
+            this.lblTotalProfit.Size = new System.Drawing.Size(85, 17);
+            this.lblTotalProfit.TabIndex = 1;
+            this.lblTotalProfit.Text = "Total Profit :";
+            // 
             // lblTotalAmount
             // 
             this.lblTotalAmount.AutoSize = true;
-            this.lblTotalAmount.BackColor = System.Drawing.Color.Blue;
-            this.lblTotalAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalAmount.ForeColor = System.Drawing.Color.White;
-            this.lblTotalAmount.Location = new System.Drawing.Point(20, 399);
+            this.lblTotalAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalAmount.Location = new System.Drawing.Point(10, 11);
+            this.lblTotalAmount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTotalAmount.Name = "lblTotalAmount";
-            this.lblTotalAmount.Size = new System.Drawing.Size(191, 24);
-            this.lblTotalAmount.TabIndex = 24;
-            this.lblTotalAmount.Text = "Total Amount : 0.00";
+            this.lblTotalAmount.Size = new System.Drawing.Size(100, 17);
+            this.lblTotalAmount.TabIndex = 0;
+            this.lblTotalAmount.Text = "Total Amount :";
             // 
             // dgvSales
             // 
@@ -113,9 +135,132 @@
             this.dgvSales.Location = new System.Drawing.Point(17, 19);
             this.dgvSales.Name = "dgvSales";
             this.dgvSales.ReadOnly = true;
+            this.dgvSales.RowHeadersWidth = 51;
             this.dgvSales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSales.Size = new System.Drawing.Size(1205, 364);
             this.dgvSales.TabIndex = 10;
+            // 
+            // Fullname
+            // 
+            this.Fullname.DataPropertyName = "Fullname";
+            this.Fullname.HeaderText = "Cashier";
+            this.Fullname.MinimumWidth = 6;
+            this.Fullname.Name = "Fullname";
+            this.Fullname.ReadOnly = true;
+            this.Fullname.Width = 150;
+            // 
+            // PrincipalName
+            // 
+            this.PrincipalName.DataPropertyName = "PrincipalName";
+            this.PrincipalName.HeaderText = "Principal";
+            this.PrincipalName.MinimumWidth = 6;
+            this.PrincipalName.Name = "PrincipalName";
+            this.PrincipalName.ReadOnly = true;
+            this.PrincipalName.Width = 200;
+            // 
+            // CategoryName
+            // 
+            this.CategoryName.DataPropertyName = "CategoryName";
+            this.CategoryName.HeaderText = "Category";
+            this.CategoryName.MinimumWidth = 6;
+            this.CategoryName.Name = "CategoryName";
+            this.CategoryName.ReadOnly = true;
+            this.CategoryName.Width = 200;
+            // 
+            // ProductName
+            // 
+            this.ProductName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ProductName.DataPropertyName = "ProductName";
+            this.ProductName.HeaderText = "Product";
+            this.ProductName.MinimumWidth = 6;
+            this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
+            this.ProductName.Width = 500;
+            // 
+            // SoldQuantity
+            // 
+            this.SoldQuantity.DataPropertyName = "SoldQuantity";
+            dataGridViewCellStyle2.Format = "N0";
+            this.SoldQuantity.DefaultCellStyle = dataGridViewCellStyle2;
+            this.SoldQuantity.HeaderText = "Sold Quantity";
+            this.SoldQuantity.MinimumWidth = 6;
+            this.SoldQuantity.Name = "SoldQuantity";
+            this.SoldQuantity.ReadOnly = true;
+            this.SoldQuantity.Width = 125;
+            // 
+            // SupplierPrice
+            // 
+            this.SupplierPrice.DataPropertyName = "SupplierPrice";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = "0.00";
+            this.SupplierPrice.DefaultCellStyle = dataGridViewCellStyle3;
+            this.SupplierPrice.HeaderText = "Supplier Price";
+            this.SupplierPrice.MinimumWidth = 6;
+            this.SupplierPrice.Name = "SupplierPrice";
+            this.SupplierPrice.ReadOnly = true;
+            this.SupplierPrice.Width = 125;
+            // 
+            // TotalAmount
+            // 
+            this.TotalAmount.DataPropertyName = "TotalAmount";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = "0.00";
+            this.TotalAmount.DefaultCellStyle = dataGridViewCellStyle4;
+            this.TotalAmount.HeaderText = "Total Amount";
+            this.TotalAmount.MinimumWidth = 6;
+            this.TotalAmount.Name = "TotalAmount";
+            this.TotalAmount.ReadOnly = true;
+            this.TotalAmount.Width = 125;
+            // 
+            // SellingPrice
+            // 
+            this.SellingPrice.DataPropertyName = "SellingPrice";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = "0.00";
+            this.SellingPrice.DefaultCellStyle = dataGridViewCellStyle5;
+            this.SellingPrice.HeaderText = "Selling Price";
+            this.SellingPrice.MinimumWidth = 6;
+            this.SellingPrice.Name = "SellingPrice";
+            this.SellingPrice.ReadOnly = true;
+            this.SellingPrice.Width = 125;
+            // 
+            // TotalSales
+            // 
+            this.TotalSales.DataPropertyName = "TotalSales";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = "0.00";
+            this.TotalSales.DefaultCellStyle = dataGridViewCellStyle6;
+            this.TotalSales.HeaderText = "Total Sales";
+            this.TotalSales.MinimumWidth = 6;
+            this.TotalSales.Name = "TotalSales";
+            this.TotalSales.ReadOnly = true;
+            this.TotalSales.Width = 125;
+            // 
+            // Profit
+            // 
+            this.Profit.DataPropertyName = "Profit";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Format = "N2";
+            dataGridViewCellStyle7.NullValue = "0.00";
+            this.Profit.DefaultCellStyle = dataGridViewCellStyle7;
+            this.Profit.HeaderText = "Profit";
+            this.Profit.MinimumWidth = 6;
+            this.Profit.Name = "Profit";
+            this.Profit.ReadOnly = true;
+            this.Profit.Width = 125;
+            // 
+            // InsertTime
+            // 
+            this.InsertTime.DataPropertyName = "InsertTime";
+            this.InsertTime.HeaderText = "DateTime";
+            this.InsertTime.MinimumWidth = 6;
+            this.InsertTime.Name = "InsertTime";
+            this.InsertTime.ReadOnly = true;
+            this.InsertTime.Width = 125;
             // 
             // groupBox2
             // 
@@ -228,122 +373,6 @@
             this.label7.TabIndex = 19;
             this.label7.Text = "Sales Profit Report";
             // 
-            // lblTotalProfit
-            // 
-            this.lblTotalProfit.AutoSize = true;
-            this.lblTotalProfit.BackColor = System.Drawing.Color.Blue;
-            this.lblTotalProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalProfit.ForeColor = System.Drawing.Color.White;
-            this.lblTotalProfit.Location = new System.Drawing.Point(20, 430);
-            this.lblTotalProfit.Name = "lblTotalProfit";
-            this.lblTotalProfit.Size = new System.Drawing.Size(191, 24);
-            this.lblTotalProfit.TabIndex = 25;
-            this.lblTotalProfit.Text = "Total Amount : 0.00";
-            // 
-            // Fullname
-            // 
-            this.Fullname.DataPropertyName = "Fullname";
-            this.Fullname.HeaderText = "Cashier";
-            this.Fullname.Name = "Fullname";
-            this.Fullname.ReadOnly = true;
-            this.Fullname.Width = 150;
-            // 
-            // PrincipalName
-            // 
-            this.PrincipalName.DataPropertyName = "PrincipalName";
-            this.PrincipalName.HeaderText = "Principal";
-            this.PrincipalName.Name = "PrincipalName";
-            this.PrincipalName.ReadOnly = true;
-            this.PrincipalName.Width = 200;
-            // 
-            // CategoryName
-            // 
-            this.CategoryName.DataPropertyName = "CategoryName";
-            this.CategoryName.HeaderText = "Category";
-            this.CategoryName.Name = "CategoryName";
-            this.CategoryName.ReadOnly = true;
-            this.CategoryName.Width = 200;
-            // 
-            // ProductName
-            // 
-            this.ProductName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ProductName.DataPropertyName = "ProductName";
-            this.ProductName.HeaderText = "Product";
-            this.ProductName.Name = "ProductName";
-            this.ProductName.ReadOnly = true;
-            this.ProductName.Width = 500;
-            // 
-            // SoldQuantity
-            // 
-            this.SoldQuantity.DataPropertyName = "SoldQuantity";
-            dataGridViewCellStyle2.Format = "N0";
-            this.SoldQuantity.DefaultCellStyle = dataGridViewCellStyle2;
-            this.SoldQuantity.HeaderText = "Sold Quantity";
-            this.SoldQuantity.Name = "SoldQuantity";
-            this.SoldQuantity.ReadOnly = true;
-            // 
-            // SupplierPrice
-            // 
-            this.SupplierPrice.DataPropertyName = "SupplierPrice";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = "0.00";
-            this.SupplierPrice.DefaultCellStyle = dataGridViewCellStyle3;
-            this.SupplierPrice.HeaderText = "Supplier Price";
-            this.SupplierPrice.Name = "SupplierPrice";
-            this.SupplierPrice.ReadOnly = true;
-            // 
-            // TotalAmount
-            // 
-            this.TotalAmount.DataPropertyName = "TotalAmount";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = "0.00";
-            this.TotalAmount.DefaultCellStyle = dataGridViewCellStyle4;
-            this.TotalAmount.HeaderText = "Total Amount";
-            this.TotalAmount.Name = "TotalAmount";
-            this.TotalAmount.ReadOnly = true;
-            // 
-            // SellingPrice
-            // 
-            this.SellingPrice.DataPropertyName = "SellingPrice";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = "0.00";
-            this.SellingPrice.DefaultCellStyle = dataGridViewCellStyle5;
-            this.SellingPrice.HeaderText = "Selling Price";
-            this.SellingPrice.Name = "SellingPrice";
-            this.SellingPrice.ReadOnly = true;
-            // 
-            // TotalSales
-            // 
-            this.TotalSales.DataPropertyName = "TotalSales";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N2";
-            dataGridViewCellStyle6.NullValue = "0.00";
-            this.TotalSales.DefaultCellStyle = dataGridViewCellStyle6;
-            this.TotalSales.HeaderText = "Total Sales";
-            this.TotalSales.Name = "TotalSales";
-            this.TotalSales.ReadOnly = true;
-            // 
-            // Profit
-            // 
-            this.Profit.DataPropertyName = "Profit";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "N2";
-            dataGridViewCellStyle7.NullValue = "0.00";
-            this.Profit.DefaultCellStyle = dataGridViewCellStyle7;
-            this.Profit.HeaderText = "Profit";
-            this.Profit.Name = "Profit";
-            this.Profit.ReadOnly = true;
-            // 
-            // InsertTime
-            // 
-            this.InsertTime.DataPropertyName = "InsertTime";
-            this.InsertTime.HeaderText = "DateTime";
-            this.InsertTime.Name = "InsertTime";
-            this.InsertTime.ReadOnly = true;
-            // 
             // FrmSalesProfit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -358,10 +387,10 @@
             this.Controls.Add(this.btnClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FrmSalesProfit";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FrmSales_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSales)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -383,10 +412,8 @@
         private System.Windows.Forms.DateTimePicker dtpFrom;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblTotalAmount;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label lblTotalProfit;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fullname;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrincipalName;
         private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;
@@ -398,5 +425,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalSales;
         private System.Windows.Forms.DataGridViewTextBoxColumn Profit;
         private System.Windows.Forms.DataGridViewTextBoxColumn InsertTime;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblTotalProfit;
+        private System.Windows.Forms.Label lblTotalAmount;
     }
 }

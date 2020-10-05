@@ -31,29 +31,7 @@ namespace IS.Admin.Transactions
             this.Close();
         }
 
-        //private void btnAdd_Click(object sender, EventArgs e)
-        //{
-        //    if (!CheckInput())
-        //    {
-        //        var StocksDataModel = new StocksDataModel();
-        //        _Categories.StockDataId = txtStockDataId.Text.ToUpper();
-        //        _Categories.StockDataName = txtStockDataName.Text.ToUpper();
-        //        StocksDataModel.StockDat
-        //        if (CategoriesModel.CheckDup(this))
-        //        {
-        //            MessageBox.Show(_Categories.StockDataName + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //            txtStockDataName.Focus();
-        //            return;
-        //        }
-        //        if (MessageBox.Show("Continue saving " + txtStockDataName.Text + ".", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-        //        {
-        //            CategoriesModel.AddStockData(this);
-        //            MessageBox.Show(txtStockDataName.Text + " Added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //            this.DialogResult = DialogResult.OK;
-        //        }
-        //        //}
-        //    }
-        //}
+
         private bool CheckInput()
         {
             if (string.IsNullOrEmpty(txtProductName.Text))
@@ -98,15 +76,9 @@ namespace IS.Admin.Transactions
                 txtSupplierPrice.Focus();
                 return true;
             }
-            else if (Convert.ToInt32(txtDuration.Text) <= 0)
+            else if (Convert.ToDateTime(dtpExpirationDate.Value.ToShortDateString()) < Convert.ToDateTime(DateTime.Now.ToShortDateString()))
             {
-                MessageBox.Show("Invalid Duration, Can not accept 0 or less than 0!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                dtpExpirationDate.Focus();
-                return true;
-            }
-            else if (Convert.ToInt32(txtDuration.Text) <= 0)
-            {
-                MessageBox.Show("Invalid Duration, Can not accept 0 or less than 0!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid Expiration date, date now is greather than expiration date!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 dtpExpirationDate.Focus();
                 return true;
             }
@@ -121,15 +93,10 @@ namespace IS.Admin.Transactions
             {
                 txtProductId.Text = frm._ProductId;
                 txtProductName.Text = frm._ProductName;
-                txtQuantity.Focus();
+                cboPrincipals.Focus();
             }
         }
 
-
-        private void dtpExpirationDate_ValueChanged(object sender, EventArgs e)
-        {
-            txtDuration.Text = String.Format("{0,10:N0}", (dtpExpirationDate.Value - DateTime.Now).TotalDays);
-        }
 
         private void txtDuration_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -143,6 +110,19 @@ namespace IS.Admin.Transactions
         {
             dtpDeliveryDate.Value = DateTime.Now;
             dtpExpirationDate.Value = DateTime.Now;
+
+            CategoriesModel categoriesModel = new CategoriesModel();
+            var categoryList = categoriesModel.CategoryListWithSelect();
+            cboCategories.DataSource = categoryList;
+            cboCategories.DisplayMember = "CategoryName";
+            cboCategories.ValueMember = "CategoryId";
+
+            PrincipalsModel principalsModel = new PrincipalsModel();
+            var principalList = principalsModel.PrincipalListWithSelect();
+            cboPrincipals.DataSource = principalList;
+            cboPrincipals.DisplayMember = "PrincipalName";
+            cboPrincipals.ValueMember = "PrincipalId";
+
         }
         private void txtRealUnitPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -171,25 +151,7 @@ namespace IS.Admin.Transactions
         private void txtSupplierPrice_TextChanged(object sender, EventArgs e)
         {
             GetTotalAmount();
-            CategoriesModel model = new CategoriesModel();
-            if (this._Product != null)
-            {
-                var percent = model.GetPercentSuggestedPrice(_Product.CategoryId);
-                if (percent != "0")
-                {
-                    if (string.IsNullOrEmpty(txtSupplierPrice.Text))
-                    {
-                        txtRealUnitPrice.Text = "0.00";
-                    }
-                    else
-                    {
-                        var supplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
-                        //= (F6 * 0.2) + F6
-                        var sellingPrice = ((supplierPrice * (Convert.ToDecimal(percent) / 100)) + supplierPrice);
-                        txtRealUnitPrice.Text = sellingPrice.ToString("N2"); 
-                    }
-                }
-            }
+            GetSuggestedPrice();
         }
 
         private void txtQuantity_TextChanged(object sender, EventArgs e)
@@ -202,6 +164,29 @@ namespace IS.Admin.Transactions
             if (!string.IsNullOrEmpty(txtSupplierPrice.Text) && !string.IsNullOrEmpty(txtQuantity.Text))
             {
                 txtTotalAmount.Text = Math.Round(Convert.ToInt32(txtQuantity.Text) * Convert.ToDecimal(txtSupplierPrice.Text), 2).ToString("N2");
+            }
+        }
+
+        private void GetSuggestedPrice()
+        {
+            CategoriesModel model = new CategoriesModel();
+            if (this._Product != null)
+            {
+                var percent = model.GetPercentSuggestedPrice(cboCategories.SelectedValue.ToString());
+                if (!string.IsNullOrEmpty(percent))
+                {
+                    if (string.IsNullOrEmpty(txtSupplierPrice.Text))
+                    {
+                        txtRealUnitPrice.Text = "0.00";
+                    }
+                    else
+                    {
+                        var supplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
+                        //= (F6 * 0.2) + F6
+                        var sellingPrice = ((supplierPrice * (Convert.ToDecimal(percent) / 100)) + supplierPrice);
+                        txtRealUnitPrice.Text = sellingPrice.ToString("N2");
+                    }
+                }
             }
         }
 
@@ -221,14 +206,15 @@ namespace IS.Admin.Transactions
                         StocksData stocksData = new StocksData();
                         stocksData.Loginname = Globals.LoginName;
                         stocksData.ProductId = txtProductId.Text;
+                        stocksData.PrincipalId = cboPrincipals.SelectedValue.ToString();
+                        stocksData.CategoryId = cboCategories.SelectedValue.ToString();
                         stocksData.Quantity = Convert.ToInt32(txtQuantity.Text);
                         stocksData.SupplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
                         stocksData.TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
-                        stocksData.RealUnitPrice = Convert.ToDecimal(txtRealUnitPrice.Text);
+                        stocksData.SuggestedPrice = Convert.ToDecimal(txtRealUnitPrice.Text);
                         stocksData.RemainingQuantity = Convert.ToInt32(txtRemainingQty.Text);
                         stocksData.DeliveryDate = dtpDeliveryDate.Value;
                         stocksData.ExpirationDate = dtpExpirationDate.Value;
-                        stocksData.Duration = Convert.ToInt32(txtDuration.Text);
                         stocksData.Remarks = txtRemarks.Text;
                         var StocksDataModel = new StocksDataModel();
                         StocksDataModel.InsertStockData(stocksData);
@@ -251,6 +237,11 @@ namespace IS.Admin.Transactions
             {
                 e.Handled = true;
             }
+        }
+
+        private void cboCategories_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetSuggestedPrice();
         }
     }
 }

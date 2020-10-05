@@ -114,44 +114,35 @@ namespace IS.Database.Repositories
         }
 
 
-        public IList<Sales> Find(int? CashierId, DateTime? dateFrom, DateTime? dateTo)
+        public IList<ReportTotalSales> GetTotalSales(DateTime? DateFrom,DateTime? DateTo)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
-                connection.Open();
-                var select = " SELECT C.Fullname,I.ProductName, SUM(O.Qty * I.Price) as Amount, SUM(O.Qty) as Qty, O.InsertTime FROM Sales as O " +
-                             " INNER JOIN Products as I on I.ProductId = O.ProductId " +
-                             " INNER JOIN LedgerSales as LO on LO.Id = O.LedgerId " +
-                             " INNER JOIN Cashiers as C on C.CashierId = LO.CashierId " +
-                             " WHERE C.Id = " + CashierId + "" +
-                             "   AND O.InsertTime BETWEEN ( CONVERT(datetime,'" + DateTimeConvertion.ConvertDateString((DateTime)dateFrom) + "', 120)) AND ( CONVERT(datetime,'" + DateTimeConvertion.ConvertDateString((DateTime)dateTo) + "', 120)) " +
-                             " GROUP BY I.ProductName, C.Fullname,O.InsertTime ORDER BY C.Fullname";
-                if (CashierId == null || CashierId == 0)
+                string QueryDate = string.Empty;
+                if (DateFrom != null || DateTo != null)
                 {
-                            select = " SELECT C.Fullname,I.ProductName, SUM(O.Qty * I.Price) as Amount, SUM(O.Qty) as Qty, O.InsertTime FROM Sales as O " +
-                                    " INNER JOIN Products as I on I.ProductId = O.ProductId " +
-                                    " INNER JOIN LedgerSales as LO on LO.Id = O.LedgerId " +
-                                    " INNER JOIN Cashiers as C on C.CashierId = LO.CashierId " +
-                                    " WHERE O.InsertTime BETWEEN ( CONVERT(datetime,'" + DateTimeConvertion.ConvertDateString((DateTime)dateFrom) + "', 120)) AND ( CONVERT(datetime,'" + DateTimeConvertion.ConvertDateString((DateTime)dateTo) + "', 120)) " +
-                                " GROUP BY I.ProductName, C.Fullname,O.InsertTime ORDER BY C.Fullname";
+                    QueryDate = "WHERE O.InsertTime BETWEEN '" + DateFrom + "' AND '"+ DateTo + "'";
                 }
+                connection.Open();
+                var select = " SELECT C.Fullname,I.ProductId, I.ProductName, " +
+                             " SUM(O.Qty * I.Price) as TotalAmount,  " +
+	                         " SUM(O.Qty) as TotalQty " +
+                             " FROM Sales as O " +
+                             "  INNER JOIN Products as I on I.ProductId = O.ProductId " +
+                             "  INNER JOIN LedgerSales as LO on LO.Id = O.LedgerId " +
+                             "  INNER JOIN Cashiers as C on C.CashierId = LO.CashierId " +
+                             " " + QueryDate + " " +
+                             " GROUP BY I.ProductId,I.ProductName, C.Fullname ";
+
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        List<Sales> Sales = new List<Sales>();
-                        while (reader.Read())
+                        if (reader.HasRows)
                         {
-                            var Sale = new Sales();
-                            
-                            Sale.CashierName = reader.GetString(0);
-                            Sale.ProductName = reader.GetString(1);
-                            Sale.Amount = Math.Round(reader.GetDecimal(2), 2);
-                            Sale.Qty = reader.GetInt32(3);
-                            Sale.InsertTime  = reader.GetDateTime(4);
-                            Sales.Add(Sale);
+                            return new ReflectionPopulator<ReportTotalSales>().CreateList(reader);
                         }
-                        return Sales;
+                        return null;
                     }
                 }
             }

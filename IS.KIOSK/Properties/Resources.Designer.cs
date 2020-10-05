@@ -143,6 +143,26 @@ namespace IS.KIOSK.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap click1 {
+            get {
+                object obj = ResourceManager.GetObject("click1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Close {
+            get {
+                object obj = ResourceManager.GetObject("Close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Image1 {
             get {
                 object obj = ResourceManager.GetObject("Image1", resourceCulture);
@@ -196,6 +216,16 @@ namespace IS.KIOSK.Properties {
         internal static System.Drawing.Bitmap LoadSave {
             get {
                 object obj = ResourceManager.GetObject("LoadSave", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LOGO_PharmaChic {
+            get {
+                object obj = ResourceManager.GetObject("LOGO PharmaChic", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

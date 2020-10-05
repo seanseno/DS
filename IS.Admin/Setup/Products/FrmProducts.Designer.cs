@@ -30,7 +30,6 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grpProduct = new System.Windows.Forms.GroupBox();
             this.lblTotal = new System.Windows.Forms.Label();
             this.btnUpload = new System.Windows.Forms.Button();
@@ -43,11 +42,8 @@
             this.grpLoading = new System.Windows.Forms.GroupBox();
             this.pbLoading = new System.Windows.Forms.PictureBox();
             this.ProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Categories = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrincipalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BarCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Active = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -121,11 +117,8 @@
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProductId,
-            this.Categories,
-            this.PrincipalName,
             this.ProductName,
             this.Price,
-            this.Stock,
             this.BarCode,
             this.Active,
             this.Edit,
@@ -213,25 +206,6 @@
             this.ProductId.Name = "ProductId";
             this.ProductId.ReadOnly = true;
             this.ProductId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ProductId.Width = 70;
-            // 
-            // Categories
-            // 
-            this.Categories.DataPropertyName = "CategoryName";
-            this.Categories.HeaderText = "Categories";
-            this.Categories.MinimumWidth = 6;
-            this.Categories.Name = "Categories";
-            this.Categories.ReadOnly = true;
-            this.Categories.Width = 150;
-            // 
-            // PrincipalName
-            // 
-            this.PrincipalName.DataPropertyName = "PrincipalName";
-            this.PrincipalName.HeaderText = "Principals";
-            this.PrincipalName.MinimumWidth = 6;
-            this.PrincipalName.Name = "PrincipalName";
-            this.PrincipalName.ReadOnly = true;
-            this.PrincipalName.Width = 150;
             // 
             // ProductName
             // 
@@ -241,7 +215,7 @@
             this.ProductName.MinimumWidth = 6;
             this.ProductName.Name = "ProductName";
             this.ProductName.ReadOnly = true;
-            this.ProductName.Width = 320;
+            this.ProductName.Width = 600;
             // 
             // Price
             // 
@@ -259,23 +233,6 @@
             this.Price.ReadOnly = true;
             this.Price.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Price.Width = 125;
-            // 
-            // Stock
-            // 
-            this.Stock.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Stock.DataPropertyName = "Stock";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = "0";
-            this.Stock.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Stock.FillWeight = 101.5228F;
-            this.Stock.HeaderText = "Stocks";
-            this.Stock.MinimumWidth = 6;
-            this.Stock.Name = "Stock";
-            this.Stock.ReadOnly = true;
-            this.Stock.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Stock.Width = 95;
             // 
             // BarCode
             // 
@@ -296,7 +253,7 @@
             // Edit
             // 
             this.Edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Edit.HeaderText = "";
+            this.Edit.HeaderText = "Edit";
             this.Edit.MinimumWidth = 6;
             this.Edit.Name = "Edit";
             this.Edit.ReadOnly = true;
@@ -306,8 +263,7 @@
             // 
             // Delete
             // 
-            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Delete.HeaderText = "";
+            this.Delete.HeaderText = "Delete";
             this.Delete.MinimumWidth = 6;
             this.Delete.Name = "Delete";
             this.Delete.ReadOnly = true;
@@ -315,6 +271,7 @@
             this.Delete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Delete.Text = "Delete";
             this.Delete.UseColumnTextForButtonValue = true;
+            this.Delete.Width = 50;
             // 
             // FrmProducts
             // 
@@ -354,11 +311,8 @@
         private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Categories;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrincipalName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Stock;
         private System.Windows.Forms.DataGridViewTextBoxColumn BarCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn Active;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;

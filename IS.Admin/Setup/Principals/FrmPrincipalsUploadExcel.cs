@@ -87,54 +87,61 @@ namespace IS.Admin.Setup
                     var ErrorList = new List<Principals>();
 
                     IList<Principals> list = new List<Principals>();
+
+                    int rowIndex = 0;
                     foreach (DataRow row in dt.Rows)
                     {
-
+                        rowIndex++;
                         var Principal = new Principals();
                         Principal.PrincipalId = row[0].ToString().ToUpper();
                         Principal.PrincipalName = row[1].ToString().ToUpper();
-                        if (!request.CheckDup(Principal))
+                        lblpbar.Text = "Checking...\\principal id:" + Principal.PrincipalId + "\\principal name:" + Principal.PrincipalName;
+                        lblpbar.Refresh();
+                        if (string.IsNullOrEmpty(Principal.PrincipalId) ||
+                            string.IsNullOrEmpty(Principal.PrincipalName) )
                         {
-                            list.Add(Principal);
+                            MessageBox.Show(string.Format("Row {0} has null value or empty, please check the row columns information!", rowIndex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            dgvExcel.Rows[rowIndex - 1].Selected = true;
+                            progressBar1.Value = 0;
+                            lblpbar.Text = "";
+                            lblpbar.Refresh();
+                            return;
                         }
-                        else
+                        else if (request.CheckDup(Principal))
                         {
-                            ErrorList.Add(Principal);
+                            MessageBox.Show(string.Format("Row {0}, Principal Id :{1} or Principal Name :{2} already exist!", rowIndex, Principal.PrincipalId.ToUpper(), Principal.PrincipalName.ToUpper()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            dgvExcel.Rows[rowIndex - 1].Selected = true;
+                            progressBar1.Value = 0;
+                            lblpbar.Text = "";
+                            lblpbar.Refresh();
+                            return;
                         }
+                        list.Add(Principal);
+                    }
+
+
+                    if (list.GroupBy(x => x.PrincipalId).Any(g => g.Count() > 1)
+                        ||
+                        list.GroupBy(x => x.PrincipalId).Any(g => g.Count() > 1))
+                    {
+                        MessageBox.Show("Duplicate Principal Id or Principal Name found in your data excel!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        progressBar1.Value = 0;
+                        lblpbar.Text = "";
+                        return;
                     }
 
                     foreach (var row in list)
                     {
-                        try
-                        {
-                            request.InsertPrincipal(row);
-                        }
-                        catch (Exception ex)
-                        {
-                            ErrorList.Add(row);
-                        }
-                        finally
-                        {
-                            progressCount++;
-                            progressBar1.Value = progressCount;
-                        }
-
+                        lblpbar.Text = "Inserting...\\principal id:" + row.PrincipalName + "\\principal name:" + row.PrincipalName;
+                        lblpbar.Refresh();
+                        request.InsertPrincipal(row);
+                        progressCount++;
+                        progressBar1.Value = progressCount;
                     }
-
-                    if (ErrorList.Count > 0)
-                    {
-                        MessageBox.Show("Principals uploaded! but some rows does not uploaded, Please check the Item information.", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        FrmPrincipalsNotUploaded frm = new FrmPrincipalsNotUploaded(ErrorList);
-                        if (frm.ShowDialog() == DialogResult.OK)
-                        {
-                            this.DialogResult = DialogResult.OK;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Principals Uploaded!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.DialogResult = DialogResult.OK;
-                    }
+                    lblpbar.Text = "";
+                    lblpbar.Refresh();
+                    MessageBox.Show("Principals Uploaded!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
                 }
             }
         }

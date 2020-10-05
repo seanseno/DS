@@ -31,29 +31,6 @@ namespace IS.Admin.Transactions
             this.Close();
         }
 
-        //private void btnAdd_Click(object sender, EventArgs e)
-        //{
-        //    if (!CheckInput())
-        //    {
-        //        var StocksDataModel = new StocksDataModel();
-        //        _Categories.StockDataId = txtStockDataId.Text.ToUpper();
-        //        _Categories.StockDataName = txtStockDataName.Text.ToUpper();
-        //        StocksDataModel.StockDat
-        //        if (CategoriesModel.CheckDup(this))
-        //        {
-        //            MessageBox.Show(_Categories.StockDataName + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //            txtStockDataName.Focus();
-        //            return;
-        //        }
-        //        if (MessageBox.Show("Continue saving " + txtStockDataName.Text + ".", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-        //        {
-        //            CategoriesModel.AddStockData(this);
-        //            MessageBox.Show(txtStockDataName.Text + " Added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //            this.DialogResult = DialogResult.OK;
-        //        }
-        //        //}
-        //    }
-        //}
         private bool CheckInput()
         {
             if (string.IsNullOrEmpty(txtProductName.Text))
@@ -69,9 +46,9 @@ namespace IS.Admin.Transactions
                 return true;
             }
 
-            else if (Convert.ToInt32(txtDuration.Text) <= 0)
+            else if (Convert.ToDateTime(dtpExpirationDate.Value.ToShortDateString()) < Convert.ToDateTime(DateTime.Now.ToShortDateString()))
             {
-                MessageBox.Show("Invalid Duration, Can not accept 0 or less than 0!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid Expiration date, date now is greather than expiration date!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 dtpExpirationDate.Focus();
                 return true;
             }
@@ -90,12 +67,6 @@ namespace IS.Admin.Transactions
             }
         }
 
-
-        private void dtpExpirationDate_ValueChanged(object sender, EventArgs e)
-        {
-            txtDuration.Text = String.Format("{0,10:N0}", (dtpExpirationDate.Value - DateTime.Now).TotalDays);
-        }
-
         private void txtDuration_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
@@ -108,6 +79,21 @@ namespace IS.Admin.Transactions
         {
             dtpDeliveryDate.Value = DateTime.Now;
             dtpExpirationDate.Value = DateTime.Now;
+
+            dtpDeliveryDate.Value = DateTime.Now;
+            dtpExpirationDate.Value = DateTime.Now;
+
+            CategoriesModel categoriesModel = new CategoriesModel();
+            var categoryList = categoriesModel.CategoryListWithSelect();
+            cboCategories.DataSource = categoryList;
+            cboCategories.DisplayMember = "CategoryName";
+            cboCategories.ValueMember = "CategoryId";
+
+            PrincipalsModel principalsModel = new PrincipalsModel();
+            var principalList = principalsModel.PrincipalListWithSelect();
+            cboPrincipals.DataSource = principalList;
+            cboPrincipals.DisplayMember = "PrincipalName";
+            cboPrincipals.ValueMember = "PrincipalId";
         }
 
 
@@ -123,12 +109,13 @@ namespace IS.Admin.Transactions
                     stocksData.Quantity = Convert.ToInt32(txtQuantity.Text);
                     stocksData.SupplierPrice = 0;
                     stocksData.TotalAmount = 0;
-                    stocksData.RealUnitPrice = 0;
+                    stocksData.SuggestedPrice = 0;
                     stocksData.RemainingQuantity = Convert.ToInt32(txtQuantity.Text);
                     stocksData.DeliveryDate = dtpDeliveryDate.Value;
                     stocksData.ExpirationDate = dtpExpirationDate.Value;
-                    stocksData.Duration = Convert.ToInt32(txtDuration.Text);
                     stocksData.Remarks = txtRemarks.Text;
+                    stocksData.PrincipalId = cboPrincipals.SelectedValue.ToString();
+                    stocksData.CategoryId = cboCategories.SelectedValue.ToString();
                     var StocksDataModel = new StocksDataModel();
                     StocksDataModel.InsertStockData(stocksData);
 

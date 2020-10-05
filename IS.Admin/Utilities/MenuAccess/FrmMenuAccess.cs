@@ -43,74 +43,82 @@ namespace IS.Admin.Setup
 
         private void loadTreeView()
         {
-            treeView1.Nodes.Clear();
-
-            var MenuAccess = factory.MenuAccessRepository.GetListWithAdminId(cboName.SelectedValue.ToString());
-
-            int index1 = 0;
-            int index2 = 0;
-            foreach (ToolStripMenuItem item in _MenuStrip.Items)
+            if (cboName.SelectedValue != null)
             {
-                if (MenuAccess.Where(x => x.MenuText == item.Text).Count() > 0)
-                {
-                    treeView1.Nodes.Add(item.Text).Checked = true;
-                }
-                else
-                {
-                    treeView1.Nodes.Add(item.Text);
-                }
+                treeView1.Nodes.Clear();
+                var MenuAccess = factory.MenuAccessRepository.GetListWithAdminId(cboName.SelectedValue.ToString());
 
-                foreach (ToolStripMenuItem sub in item.DropDownItems)
+                int index1 = 0;
+                int index2 = 0;
+                foreach (ToolStripMenuItem item in _MenuStrip.Items)
                 {
-
-                    if (MenuAccess.Where(x => x.MenuText == sub.Text).Count() > 0)
+                    if (MenuAccess.Where(x => x.MenuText == item.Text).Count() > 0)
                     {
-                        treeView1.Nodes[index1].Nodes.Add(sub.Text).Checked = true;
+                        treeView1.Nodes.Add(item.Text).Checked = true;
                     }
                     else
                     {
-                        treeView1.Nodes[index1].Nodes.Add(sub.Text);
+                        treeView1.Nodes.Add(item.Text);
                     }
 
-                    foreach (ToolStripItem sub1 in sub.DropDownItems)
+                    foreach (ToolStripMenuItem sub in item.DropDownItems)
                     {
 
-                        if (MenuAccess.Where(x => x.MenuText == sub1.Text).Count() > 0)
+                        if (MenuAccess.Where(x => x.MenuText == sub.Text).Count() > 0)
                         {
-                            treeView1.Nodes[index1].Nodes[index2].Nodes.Add(sub1.Text).Checked = true;
+                            treeView1.Nodes[index1].Nodes.Add(sub.Text).Checked = true;
                         }
                         else
                         {
-                            treeView1.Nodes[index1].Nodes[index2].Nodes.Add(sub1.Text);
+                            treeView1.Nodes[index1].Nodes.Add(sub.Text);
                         }
 
+                        foreach (ToolStripItem sub1 in sub.DropDownItems)
+                        {
+
+                            if (MenuAccess.Where(x => x.MenuText == sub1.Text).Count() > 0)
+                            {
+                                treeView1.Nodes[index1].Nodes[index2].Nodes.Add(sub1.Text).Checked = true;
+                            }
+                            else
+                            {
+                                treeView1.Nodes[index1].Nodes[index2].Nodes.Add(sub1.Text);
+                            }
+
+                        }
+                        index2++;
                     }
-                    index2++;
+                    index1++;
+                    index2 = 0;
                 }
-                index1++;
-                index2 = 0;
             }
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure do want to save this access menu?", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (cboName.SelectedValue == null)
             {
-                var menuChecked = GetCheckedNodes(treeView1.Nodes);
-                MenuAccess model = new MenuAccess();
-                model.AdminId = cboName.SelectedValue.ToString();
-                factory.MenuAccessRepository.Delete(model);
-
-                foreach (string menu in menuChecked)
-                {
-                    model = new MenuAccess();
-                    model.AdminId = cboName.SelectedValue.ToString();
-                    model.MenuText = menu;
-                    factory.MenuAccessRepository.Insert(model);
-                }
-                MessageBox.Show("Access menu save!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Question);
-                cboName.Focus();
+                MessageBox.Show("User not found!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-   
+            else
+            {
+                if (MessageBox.Show("Are you sure do want to save this access menu?", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    var menuChecked = GetCheckedNodes(treeView1.Nodes);
+                    MenuAccess model = new MenuAccess();
+                    model.AdminId = cboName.SelectedValue.ToString();
+                    factory.MenuAccessRepository.Delete(model);
+
+                    foreach (string menu in menuChecked)
+                    {
+                        model = new MenuAccess();
+                        model.AdminId = cboName.SelectedValue.ToString();
+                        model.MenuText = menu;
+                        factory.MenuAccessRepository.Insert(model);
+                    }
+                    MessageBox.Show("Access menu save!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                    cboName.Focus();
+                }
+            }
         }
 
         public List<string> GetCheckedNodes(TreeNodeCollection nodes)

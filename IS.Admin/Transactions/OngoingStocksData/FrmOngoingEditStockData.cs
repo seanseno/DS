@@ -1,5 +1,6 @@
 ﻿using IS.Admin.Model;
 using IS.Common.Helper.Extensions;
+using IS.Database;
 using IS.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace IS.Admin.Transactions
     {
         private StocksData _StockData { get;set;}
         private Products _Product = new Products();
+        ISFactory factory = new ISFactory();
         public FrmOingingEditStockData(StocksData StockData)
         {
             InitializeComponent();
@@ -26,15 +28,39 @@ namespace IS.Admin.Transactions
         private void FrmEditStockData_Load(object sender, EventArgs e)
         {
             StocksDataModel StocksData = new StocksDataModel();
-            var response = StocksData.LoadEdit(_StockData.Id);
+            _StockData = StocksData.LoadEdit(_StockData.Id);
 
-            txtProductId.Text = response.ProductId;
-            txtProductName.Text = response.ProductName;
-            txtQuantity.Text = response.Quantity.ToString("N0");
-            dtpDeliveryDate.Value = response.DeliveryDate;
-            dtpExpirationDate.Value = response.ExpirationDate;
-            txtDuration.Text = response.Duration.ToString("N0");
-            txtRemarks.Text = response.Remarks;
+            txtProductId.Text = _StockData.ProductId;
+            txtProductName.Text = _StockData.ProductName;
+            txtQuantity.Text = _StockData.Quantity.ToString("N0");
+            dtpDeliveryDate.Value = _StockData.DeliveryDate;
+            dtpExpirationDate.Value = _StockData.ExpirationDate;
+            txtRemarks.Text = _StockData.Remarks;
+
+            CategoriesModel categoriesModel = new CategoriesModel();
+            var categoryList = categoriesModel.CategoryListWithSelect();
+            cboCategories.DataSource = categoryList;
+            cboCategories.DisplayMember = "CategoryName";
+            cboCategories.ValueMember = "CategoryId";
+
+            PrincipalsModel principalsModel = new PrincipalsModel();
+            var principalList = principalsModel.PrincipalListWithSelect();
+            cboPrincipals.DataSource = principalList;
+            cboPrincipals.DisplayMember = "PrincipalName";
+            cboPrincipals.ValueMember = "PrincipalId";
+
+            cboCategories.SelectedIndex = cboCategories.FindStringExact(_StockData.CategoryName);
+            cboPrincipals.SelectedIndex = cboPrincipals.FindStringExact(_StockData.PrincipalName);
+
+            //if (factory.StocksDataRepository.StocksDataStrategy.StockDataAlreadyInUse(_StockData.Id))
+            //{
+            //    cboPrincipals.Enabled = false;
+            //    cboCategories.Enabled = false;
+            //    txtQuantity.Enabled = false;
+            //    dtpDeliveryDate.Enabled = false;
+            //    dtpExpirationDate.Enabled = false;
+            //    ActiveControl = txtRemarks;
+            //}
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -48,17 +74,25 @@ namespace IS.Admin.Transactions
             {
                 if (MessageBox.Show("Are you sure do you want to save this record?", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    StocksData StocksData = new StocksData();
-
-                    StocksData.Id = _StockData.Id;
-                    StocksData.Quantity = Convert.ToInt32(txtQuantity.Text);
-                    StocksData.DeliveryDate = dtpDeliveryDate.Value;
-                    StocksData.ExpirationDate = dtpExpirationDate.Value;
-                    StocksData.Duration = Convert.ToInt32(txtDuration.Text);
-                    StocksData.Remarks = txtRemarks.Text;
+                    if (Convert.ToInt32(txtQuantity.Text) > _StockData.Quantity )
+                    {
+                        var AddQty = Convert.ToInt32(txtQuantity.Text) - _StockData.Quantity ;
+                        _StockData.RemainingQuantity = _StockData.RemainingQuantity + AddQty;
+                    }
+                    else if (Convert.ToInt32(txtQuantity.Text) < _StockData.Quantity)
+                    {
+                        var MinuQty =  _StockData.Quantity - Convert.ToInt32(txtQuantity.Text);
+                        _StockData.RemainingQuantity = _StockData.RemainingQuantity - MinuQty;
+                    }
+                    _StockData.Quantity = Convert.ToInt32(txtQuantity.Text);
+                    _StockData.DeliveryDate = dtpDeliveryDate.Value;
+                    _StockData.ExpirationDate = dtpExpirationDate.Value;
+                    _StockData.Remarks = txtRemarks.Text;
+                    _StockData.PrincipalId = cboPrincipals.SelectedValue.ToString();
+                    _StockData.CategoryId = cboCategories.SelectedValue.ToString();
 
                     var StocksDataModel = new StocksDataModel();
-                    StocksDataModel.UpdateStockData(StocksData);
+                    StocksDataModel.UpdateStockData(_StockData);
                     this.DialogResult = DialogResult.OK;
                 }
             }
@@ -78,9 +112,9 @@ namespace IS.Admin.Transactions
                 txtQuantity.Focus();
                 return true;
             }
-            else if (Convert.ToInt32(txtDuration.Text) <= 0)
+            else if (Convert.ToDateTime(dtpExpirationDate.Value.ToShortDateString()) < Convert.ToDateTime(DateTime.Now.ToShortDateString()))
             {
-                MessageBox.Show("Invalid Duration, Can not accept 0 or less than 0!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid Expiration date, date now is greather than expiration date!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 dtpExpirationDate.Focus();
                 return true;
             }
@@ -109,12 +143,6 @@ namespace IS.Admin.Transactions
             {
                 e.Handled = true;
             }
-        }
-
-
-        private void dtpExpirationDate_ValueChanged(object sender, EventArgs e)
-        {
-            txtDuration.Text = String.Format("{0,10:N0}", (dtpExpirationDate.Value - DateTime.Now).TotalDays);
         }
 
         private void txtProductId_TextChanged(object sender, EventArgs e)

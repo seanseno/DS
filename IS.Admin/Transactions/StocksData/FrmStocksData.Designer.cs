@@ -44,14 +44,15 @@
             this.dgvSearch = new System.Windows.Forms.DataGridView();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.History = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrincipalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrincipalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SupplierPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RealUnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SuggestedPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RemainingQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DeliveryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExpirationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -95,7 +96,7 @@
             // 
             this.btnSearch.Image = global::IS.Admin.Properties.Resources.search;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.Location = new System.Drawing.Point(1142, 19);
+            this.btnSearch.Location = new System.Drawing.Point(1142, 17);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(76, 39);
             this.btnSearch.TabIndex = 1;
@@ -182,14 +183,15 @@
             this.dgvSearch.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSearch.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.History,
             this.Id,
-            this.PrincipalName,
             this.ProductId,
-            this.ProductName,
+            this.PrincipalName,
             this.CategoryName,
+            this.ProductName,
             this.Quantity,
             this.SupplierPrice,
-            this.RealUnitPrice,
+            this.SuggestedPrice,
             this.RemainingQuantity,
             this.DeliveryDate,
             this.ExpirationDate,
@@ -224,6 +226,15 @@
             this.label2.TabIndex = 16;
             this.label2.Text = "Stocks Data Menu";
             // 
+            // History
+            // 
+            this.History.HeaderText = "History";
+            this.History.Name = "History";
+            this.History.ReadOnly = true;
+            this.History.Text = "History";
+            this.History.UseColumnTextForButtonValue = true;
+            this.History.Width = 60;
+            // 
             // Id
             // 
             this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -234,16 +245,6 @@
             this.Id.ReadOnly = true;
             this.Id.Visible = false;
             this.Id.Width = 125;
-            // 
-            // PrincipalName
-            // 
-            this.PrincipalName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.PrincipalName.DataPropertyName = "PrincipalName";
-            this.PrincipalName.HeaderText = "Principal Name";
-            this.PrincipalName.MinimumWidth = 6;
-            this.PrincipalName.Name = "PrincipalName";
-            this.PrincipalName.ReadOnly = true;
-            this.PrincipalName.Width = 120;
             // 
             // ProductId
             // 
@@ -256,6 +257,26 @@
             this.ProductId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.ProductId.Width = 60;
             // 
+            // PrincipalName
+            // 
+            this.PrincipalName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.PrincipalName.DataPropertyName = "PrincipalName";
+            this.PrincipalName.HeaderText = "Principal Name";
+            this.PrincipalName.MinimumWidth = 6;
+            this.PrincipalName.Name = "PrincipalName";
+            this.PrincipalName.ReadOnly = true;
+            this.PrincipalName.Width = 120;
+            // 
+            // CategoryName
+            // 
+            this.CategoryName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.CategoryName.DataPropertyName = "CategoryName";
+            this.CategoryName.HeaderText = "Category Name";
+            this.CategoryName.MinimumWidth = 6;
+            this.CategoryName.Name = "CategoryName";
+            this.CategoryName.ReadOnly = true;
+            this.CategoryName.Width = 120;
+            // 
             // ProductName
             // 
             this.ProductName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -267,16 +288,6 @@
             this.ProductName.ReadOnly = true;
             this.ProductName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.ProductName.Width = 270;
-            // 
-            // CategoryName
-            // 
-            this.CategoryName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.CategoryName.DataPropertyName = "CategoryName";
-            this.CategoryName.HeaderText = "Category Name";
-            this.CategoryName.MinimumWidth = 6;
-            this.CategoryName.Name = "CategoryName";
-            this.CategoryName.ReadOnly = true;
-            this.CategoryName.Width = 120;
             // 
             // Quantity
             // 
@@ -305,27 +316,29 @@
             this.SupplierPrice.ReadOnly = true;
             this.SupplierPrice.Width = 80;
             // 
-            // RealUnitPrice
+            // SuggestedPrice
             // 
-            this.RealUnitPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.RealUnitPrice.DataPropertyName = "RealUnitPrice";
+            this.SuggestedPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.SuggestedPrice.DataPropertyName = "SuggestedPrice";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle4.Format = "N2";
             dataGridViewCellStyle4.NullValue = "0.00";
-            this.RealUnitPrice.DefaultCellStyle = dataGridViewCellStyle4;
-            this.RealUnitPrice.HeaderText = "Suggested Price";
-            this.RealUnitPrice.MinimumWidth = 6;
-            this.RealUnitPrice.Name = "RealUnitPrice";
-            this.RealUnitPrice.ReadOnly = true;
-            this.RealUnitPrice.Width = 80;
+            this.SuggestedPrice.DefaultCellStyle = dataGridViewCellStyle4;
+            this.SuggestedPrice.HeaderText = "Suggested Price";
+            this.SuggestedPrice.MinimumWidth = 6;
+            this.SuggestedPrice.Name = "SuggestedPrice";
+            this.SuggestedPrice.ReadOnly = true;
+            this.SuggestedPrice.Width = 80;
             // 
             // RemainingQuantity
             // 
             this.RemainingQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.RemainingQuantity.DataPropertyName = "RemainingQuantity";
             this.RemainingQuantity.HeaderText = "Remaining Quantity";
+            this.RemainingQuantity.MinimumWidth = 6;
             this.RemainingQuantity.Name = "RemainingQuantity";
             this.RemainingQuantity.ReadOnly = true;
+            this.RemainingQuantity.Width = 125;
             // 
             // DeliveryDate
             // 
@@ -351,6 +364,7 @@
             // 
             this.Remarks.DataPropertyName = "Remarks";
             this.Remarks.HeaderText = "Remarks";
+            this.Remarks.MinimumWidth = 6;
             this.Remarks.Name = "Remarks";
             this.Remarks.ReadOnly = true;
             this.Remarks.Width = 200;
@@ -414,14 +428,15 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.DataGridViewButtonColumn History;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrincipalName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrincipalName;
         private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn SupplierPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RealUnitPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SuggestedPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn RemainingQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn DeliveryDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExpirationDate;

@@ -22,6 +22,37 @@ namespace IS.Admin.Setup
             InitializeComponent();
         }
 
+
+        private void LoadData()
+        {
+            var response = factory.ProductPriceHistoryRepository.GetList(txtSearch.Text);
+            dgvSearch.AutoGenerateColumns = false;
+            dgvSearch.DataSource = response;
+            txtSearch.Focus();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
+        private void FrmProductPriceHistory_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             var productIdList = factory.StocksDataRepository.GetOngoingStockDataProductId(Globals.LoginName);
@@ -43,36 +74,6 @@ namespace IS.Admin.Setup
                     }
                 }
             }
-        }
-
-
-        private void LoadData()
-        {
-            var response = factory.ProductPriceHistoryRepository.GetList(txtSearch.Text);
-            dgvSearch.AutoGenerateColumns = false;
-            dgvSearch.DataSource = response;
-            txtSearch.Focus();
-        }
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            LoadData();
-        }
-
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            LoadData();
-        }
-
-        private void FrmProductPriceHistory_Load(object sender, EventArgs e)
-        {
-            LoadData();
         }
     }
 }

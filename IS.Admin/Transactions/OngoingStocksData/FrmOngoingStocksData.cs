@@ -1,6 +1,7 @@
 ﻿using IS.Admin.Model;
 using IS.Database;
 using IS.Database.Entities;
+using IS.Database.Entities.Criteria;
 using IS.Library.Utility;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace IS.Admin.Transactions
     public partial class FrmOngoingStocksData : Form
     {
         IList<StocksData> _list = new List<StocksData>();
+        ISFactory factory = new ISFactory();
+        //Criteria criteria = new Criteria();
         public FrmOngoingStocksData()
         {
             InitializeComponent();
@@ -38,9 +41,17 @@ namespace IS.Admin.Transactions
             grpLoading.Visible = true;
             grpLoading.Refresh();
 
-            StocksDataModel StocksData = new StocksDataModel();
-            var response = StocksData.FindWithRemainingQTY(txtSearch.Text);
-            _list = response.Where(x => x.SupplierPrice <= 0).ToList();
+
+            var response = factory.StocksDataRepository.GetList();
+            _list = response.Where(
+                    x => x.SupplierPrice <= 0 &&
+                    (
+                        x.CategoryName.Contains(txtSearch.Text.ToUpper()) ||
+                        x.PrincipalName.Contains(txtSearch.Text.ToUpper()) ||
+                        x.ProductName.Contains(txtSearch.Text.ToUpper())
+                    )
+                ).ToList();
+            //_list = criteria.StocksDataCriteria.
 
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = _list;
@@ -55,34 +66,29 @@ namespace IS.Admin.Transactions
 
             var stockData = new StocksData
             {
-                Id = Convert.ToInt32(dgvSearch.CurrentRow.Cells[0].Value.ToString())
+                Id = Convert.ToInt32(dgvSearch.CurrentRow.Cells[1].Value.ToString())
             };
 
-
-            if (e.ColumnIndex == 9)
+            if (e.ColumnIndex == 0)
             {
-                var Id = Convert.ToInt32(dgvSearch.CurrentRow.Cells[0].Value.ToString());
-                StocksDataModel StocksData = new StocksDataModel();
-                if (StocksData.CheckStockDataIfAlreadyInUse(Id))
-                {
-                    MessageBox.Show("This data already in used", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    FrmOingingEditStockData frm = new FrmOingingEditStockData(stockData);
-                    if (frm.ShowDialog() == DialogResult.OK)
-                    {
-                        this.LoadStockData();
-                        MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    };
-                }
-
+                FrmOngoingStocksDataHistory frm = new FrmOngoingStocksDataHistory(stockData.Id);
+                frm.Show();
             }
-            if (e.ColumnIndex == 10)
+
+            if (e.ColumnIndex == 11)
             {
-                var Id = Convert.ToInt32(dgvSearch.CurrentRow.Cells[0].Value.ToString());
+                FrmOingingEditStockData frm = new FrmOingingEditStockData(stockData);
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    this.LoadStockData();
+                    MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                };
+            }
+            if (e.ColumnIndex == 12)
+            {
+            
                 StocksDataModel StocksData = new StocksDataModel();
-                if (StocksData.CheckStockDataIfAlreadyInUse(Id))
+                if (StocksData.CheckStockDataIfAlreadyInUse(stockData.Id))
                 {
                     MessageBox.Show("This data already in used", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -90,7 +96,7 @@ namespace IS.Admin.Transactions
                 {
                     if (MessageBox.Show("Are you sure do you want to delete this record?", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
-                        StocksData.DeleteStockData(Id);
+                        StocksData.DeleteStockData(stockData.Id);
                         this.LoadStockData();
                         DisplayTotal();
                         MessageBox.Show("Row deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -99,43 +105,6 @@ namespace IS.Admin.Transactions
                     }
                 }
             }
-
-            //var StockData = new StocksData
-            //{
-            //    StockDataId = dgvSearch.CurrentRow.Cells[0].Value.ToString(),
-            //    StockDataName = dgvSearch.CurrentRow.Cells[1].Value.ToString(),
-            //};
-
-            //if (e.ColumnIndex == 2)
-            //{
-            //    FrmEditStockData frm = new FrmEditStockData(StockData);
-            //    if (frm.ShowDialog() == DialogResult.OK)
-            //    {
-            //        MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        this.LoadStockData();
-            //    };
-
-            //    //MessageBox.Show((e.RowIndex + 1) + "  Row  " + (e.ColumnIndex + 1) + "  Column button clicked ");
-            //}
-            //if (e.ColumnIndex == 3)
-            //{
-            //    var model = new StocksDataModel();
-            //    if (model.CheckStockDataIfAlreadyInUse(StockData.StockDataId))
-            //    {
-            //        MessageBox.Show("You can not delete " + StockData  + " because this StockData already in use", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //    else
-            //    {
-            //        if (MessageBox.Show("Are you sure do want to delete " + StockData.StockDataName + ".", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-            //        {
-
-            //            model.DeleteStockData(StockData);
-            //            this.LoadStockData();
-            //            DisplayTotal();
-            //            MessageBox.Show(StockData.StockDataName + " deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        }
-            //    }
-            //}
         }
 
         private void btnClose_Click(object sender, EventArgs e)

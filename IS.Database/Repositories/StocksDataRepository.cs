@@ -13,6 +13,25 @@ namespace IS.Database.Repositories
 {
     public class StocksDataRepository : Helper
     {
+
+        public IList<StocksData> GetList()
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT * FROM vStocksData " +
+                    "ORDER BY ProductName";
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        var List = new ReflectionPopulator<StocksData>().CreateList(reader);
+                        return List;
+                    }
+                }
+            }
+        }
+
         public void Insert(StocksData StocksData)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
@@ -24,14 +43,15 @@ namespace IS.Database.Repositories
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@Loginname", StocksData.Loginname.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@ProductId", StocksData.ProductId.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@PrincipalId", StocksData.PrincipalId.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@CategoryId", StocksData.CategoryId.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@Quantity", StocksData.Quantity));
                     cmd.Parameters.Add(new SqlParameter("@SupplierPrice", StocksData.SupplierPrice));
                     cmd.Parameters.Add(new SqlParameter("@TotalAmount", StocksData.TotalAmount));
-                    cmd.Parameters.Add(new SqlParameter("@RealUnitPrice", StocksData.RealUnitPrice));
+                    cmd.Parameters.Add(new SqlParameter("@SuggestedPrice", StocksData.SuggestedPrice));
                     cmd.Parameters.Add(new SqlParameter("@RemainingQuantity", StocksData.RemainingQuantity));
                     cmd.Parameters.Add(new SqlParameter("@DeliveryDate", StocksData.DeliveryDate));
                     cmd.Parameters.Add(new SqlParameter("@ExpirationDate", StocksData.ExpirationDate));
-                    cmd.Parameters.Add(new SqlParameter("@Duration", StocksData.Duration));
                     cmd.Parameters.Add(new SqlParameter("@Remarks", StocksData.Remarks));
                     int rowAffected = cmd.ExecuteNonQuery();
 
@@ -50,15 +70,17 @@ namespace IS.Database.Repositories
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@Id", StocksData.Id));
+                    cmd.Parameters.Add(new SqlParameter("@PrincipalId", StocksData.PrincipalId.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@CategoryId", StocksData.CategoryId.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@Quantity", StocksData.Quantity));
                     cmd.Parameters.Add(new SqlParameter("@SupplierPrice", StocksData.SupplierPrice));
                     cmd.Parameters.Add(new SqlParameter("@TotalAmount", StocksData.TotalAmount));
-                    cmd.Parameters.Add(new SqlParameter("@RealUnitPrice", StocksData.RealUnitPrice));
+                    cmd.Parameters.Add(new SqlParameter("@SuggestedPrice", StocksData.SuggestedPrice));
                     cmd.Parameters.Add(new SqlParameter("@RemainingQuantity", StocksData.RemainingQuantity));
                     cmd.Parameters.Add(new SqlParameter("@DeliveryDate", StocksData.DeliveryDate));
                     cmd.Parameters.Add(new SqlParameter("@ExpirationDate", StocksData.ExpirationDate));
-                    cmd.Parameters.Add(new SqlParameter("@Duration", StocksData.Duration));
                     cmd.Parameters.Add(new SqlParameter("@Remarks", StocksData.Remarks));
+                    cmd.Parameters.Add(new SqlParameter("@TransactionBy", Globals.LoginName.ToUpper()));
 
                     int rowAffected = cmd.ExecuteNonQuery();
 

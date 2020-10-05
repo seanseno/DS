@@ -34,23 +34,10 @@ namespace IS.Admin.Setup
         private void FrmEditProduct_Load(object sender, EventArgs e)
         {
 
-            CategoriesModel categoriesModel = new CategoriesModel();
-            var categoryList = categoriesModel.CategoryListWithSelect();
-            cboCategories.DataSource = categoryList;
-            cboCategories.DisplayMember = "CategoryName";
-            cboCategories.ValueMember = "CategoryId";
-
-            PrincipalsModel principalsModel = new PrincipalsModel();
-            var principalList = principalsModel.PrincipalListWithSelect();
-            cboPrincipals.DataSource = principalList;
-            cboPrincipals.DisplayMember = "PrincipalName";
-            cboPrincipals.ValueMember = "PrincipalId";
-
             ProductsModel ProductsModel = new ProductsModel();
             var response = ProductsModel.LoadEdit(_Products.ProductId);
             lblItemId.Text = response.ProductId;
-            cboCategories.SelectedIndex = cboCategories.FindStringExact(response.CategoryName);
-            cboPrincipals.SelectedIndex = cboPrincipals.FindStringExact(response.PrincipalName);
+
             txtProductName.Text = response.ProductName;
             txtPrice.Text = response.Price.ToString("N2");
         }

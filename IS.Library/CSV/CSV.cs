@@ -14,7 +14,7 @@ namespace IS.Library.CSV
     public class CSV 
     {
         public string WriteSalesCSV(string DownloadPath, 
-            IList<SalesCSV> list,
+            IList<TotalSalesCSV> list,
             DateTime dateFrom, 
             DateTime dateTo, 
             string PreparedBY,
@@ -32,7 +32,7 @@ namespace IS.Library.CSV
                 csv.WriteRecords(list);
 
                 writer.WriteLine("");
-                var total = new SalesCSV();
+                var total = new TotalSalesCSV();
                 total.CashierName = "TOTAL:";
                 total.ProductName = string.Empty;
                 total.Amount = TotalAmount;

@@ -16,11 +16,5 @@ namespace IS.Admin.Model
             return factory.CashiersRepository.FindCashierListWithId(Id);
         }
 
-        public (IList<Sales>,decimal) SaleList(int? CashierId, DateTime? DateFrom, DateTime? DateTo)
-        {
-            var factory = new ISFactory();
-            var sale = factory.SalesRepository.Find(CashierId, DateFrom, DateTo);
-            return (sale, sale.Sum(x => x.Amount));
-        }
     }
 }

@@ -31,16 +31,12 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtProductId = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.cboCategories = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtBarcode = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.cboPrincipals = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.txtProductName = new System.Windows.Forms.TextBox();
@@ -60,19 +56,15 @@
             this.groupBox2.BackColor = System.Drawing.Color.White;
             this.groupBox2.Controls.Add(this.txtProductId);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.cboCategories);
-            this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.groupBox1);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.cboPrincipals);
-            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.txtPrice);
             this.groupBox2.Controls.Add(this.txtProductName);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Location = new System.Drawing.Point(22, 16);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(509, 422);
+            this.groupBox2.Size = new System.Drawing.Size(509, 325);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Input Details";
@@ -97,33 +89,13 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "Item ID :";
             // 
-            // cboCategories
-            // 
-            this.cboCategories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCategories.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboCategories.FormattingEnabled = true;
-            this.cboCategories.Location = new System.Drawing.Point(139, 71);
-            this.cboCategories.Name = "cboCategories";
-            this.cboCategories.Size = new System.Drawing.Size(357, 24);
-            this.cboCategories.TabIndex = 1;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(21, 72);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(80, 16);
-            this.label10.TabIndex = 17;
-            this.label10.Text = "Categories :";
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txtBarcode);
-            this.groupBox1.Location = new System.Drawing.Point(139, 210);
+            this.groupBox1.Location = new System.Drawing.Point(139, 133);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(355, 165);
             this.groupBox1.TabIndex = 15;
@@ -172,37 +144,17 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(22, 228);
+            this.label7.Location = new System.Drawing.Point(22, 151);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(71, 16);
             this.label7.TabIndex = 12;
             this.label7.Text = "Bar Code :";
             // 
-            // cboPrincipals
-            // 
-            this.cboPrincipals.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPrincipals.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboPrincipals.FormattingEnabled = true;
-            this.cboPrincipals.Location = new System.Drawing.Point(139, 105);
-            this.cboPrincipals.Name = "cboPrincipals";
-            this.cboPrincipals.Size = new System.Drawing.Size(357, 24);
-            this.cboPrincipals.TabIndex = 2;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(21, 108);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 16);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Principals :";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(22, 188);
+            this.label5.Location = new System.Drawing.Point(22, 111);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 16);
             this.label5.TabIndex = 8;
@@ -211,7 +163,7 @@
             // txtPrice
             // 
             this.txtPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrice.Location = new System.Drawing.Point(139, 178);
+            this.txtPrice.Location = new System.Drawing.Point(139, 101);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(160, 26);
             this.txtPrice.TabIndex = 4;
@@ -223,7 +175,7 @@
             // 
             this.txtProductName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtProductName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProductName.Location = new System.Drawing.Point(139, 144);
+            this.txtProductName.Location = new System.Drawing.Point(139, 67);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(357, 26);
             this.txtProductName.TabIndex = 3;
@@ -232,7 +184,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(22, 150);
+            this.label2.Location = new System.Drawing.Point(22, 73);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 16);
             this.label2.TabIndex = 3;
@@ -246,14 +198,14 @@
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Location = new System.Drawing.Point(12, 46);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(548, 517);
+            this.panel1.Size = new System.Drawing.Size(548, 415);
             this.panel1.TabIndex = 7;
             // 
             // btnCancel
             // 
             this.btnCancel.Image = global::IS.Admin.Properties.Resources.Cancel;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCancel.Location = new System.Drawing.Point(475, 456);
+            this.btnCancel.Location = new System.Drawing.Point(475, 347);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(56, 53);
             this.btnCancel.TabIndex = 8;
@@ -266,7 +218,7 @@
             // 
             this.btnAdd.Image = global::IS.Admin.Properties.Resources.Save;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAdd.Location = new System.Drawing.Point(416, 456);
+            this.btnAdd.Location = new System.Drawing.Point(416, 347);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(53, 53);
             this.btnAdd.TabIndex = 7;
@@ -290,7 +242,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(580, 577);
+            this.ClientSize = new System.Drawing.Size(570, 479);
             this.ControlBox = false;
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
@@ -321,16 +273,12 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtPrice;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cboPrincipals;
         private System.Windows.Forms.TextBox txtBarcode;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ComboBox cboCategories;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtProductId;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;

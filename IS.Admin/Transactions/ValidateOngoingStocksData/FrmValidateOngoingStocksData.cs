@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Transactions
 {
-    public partial class FrmValidateOngoingStocksData : Form
+    public partial class FrmValidateOngoingStocksData : FormSettings
     {
         IList<StocksData> _list = new List<StocksData>();
         public FrmValidateOngoingStocksData()
@@ -58,7 +58,7 @@ namespace IS.Admin.Transactions
             };
 
 
-            if (e.ColumnIndex == 11)
+            if (e.ColumnIndex == 12)
             {
                 FrmValidateOngoingEditStockData frm = new FrmValidateOngoingEditStockData(stockData);
                 if (frm.ShowDialog() == DialogResult.OK)
@@ -163,6 +163,11 @@ namespace IS.Admin.Transactions
             }
         }
 
-
+        private void FrmValidateOngoingStocksData_Load(object sender, EventArgs e)
+        {
+            //this.Size = new System.Drawing.Size(1265, 670);
+    
+            //this.MySettings();
+        }
     }
 }

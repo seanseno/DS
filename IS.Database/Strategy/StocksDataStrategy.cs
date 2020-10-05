@@ -95,7 +95,7 @@ namespace IS.Database.Strategy
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT Stock FROM Stocks " + 
+                var select = "SELECT Stock FROM vProductsKiosk " + 
                     "WHERE ProductId = '" + ProductId + "' AND Stock > 0";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {

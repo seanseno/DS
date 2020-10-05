@@ -70,9 +70,9 @@ namespace IS.Admin.Reports
             }
             lblTotal.Text = TotalStr;
        
-            lblTotalProfit.Text = _list.Sum(x => x.Profit).ToString("N2");
-            lblTotalQty.Text = _list.Sum(x => x.Quantity).ToString("N0");
-            lblTotalRemaining.Text = _list.Sum(x => x.RemainingQuantity).ToString("N0");
+            lblTotalProfit.Text = "Total Profit: " + _list.Sum(x => x.Profit).ToString("N2");
+            lblTotalQty.Text = "Total Quantity: " + _list.Sum(x => x.Quantity).ToString("N0");
+            lblTotalRemaining.Text = "Total Remaining: " + _list.Sum(x => x.RemainingQuantity).ToString("N0");
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

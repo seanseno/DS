@@ -40,17 +40,9 @@ namespace IS.KIOSK
         private void frmMultiplier_Load(object sender, EventArgs e)
         {
             this.product = factory.ProductsRepository.FindWithProductId(_ProductId);
-            var itemName = new List<string>();
-            if (!string.IsNullOrEmpty(this.product.CategoryName))
-            {
-                itemName.Add(this.product.CategoryName);
-            }
-            if (!string.IsNullOrEmpty(this.product.ProductName))
-            {
-                itemName.Add(this.product.ProductName);
-            }
 
-            richTextBox1.Text = string.Join(" ", itemName);
+            richTextBox1.Text = product.ProductName;
+
             lblTotal.Text = Math.Round((this.product.Price * Convert.ToDecimal(txtQty.Text)), 2).ToString();
         }
 

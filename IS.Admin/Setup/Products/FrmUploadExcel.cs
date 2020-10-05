@@ -2,6 +2,7 @@
 using ExcelDataReader;
 using IS.Admin.Model;
 using IS.Common.Reader;
+using IS.Database;
 using IS.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace IS.Admin.Setup
     {
         DataTableCollection tableCollection;
         DataTable dt;
+        ISFactory factory = new ISFactory();
         public FrmUploadExcel()
         {
             InitializeComponent();
@@ -88,71 +90,80 @@ namespace IS.Admin.Setup
                     progressBar1.Value = 0;
                     int progressCount = 0;
 
-                    var ErrorList = new List<Products>();
-
                     IList<Products> list = new List<Products>();
 
+
+                    int rowIndex = 0;
                     foreach (DataRow row in dt.Rows)
                     {
-                        var item = new Products();
-                        item.ProductId = row[0].ToString().ToUpper();
-                        item.CategoryId = row[1].ToString().ToUpper();
-                        item.CategoryName = row[2].ToString().ToUpper();
-                        item.PrincipalId = row[3].ToString().ToUpper();
-                        item.PrincipalName = row[4].ToString().ToUpper();
-                        item.ProductName = row[5].ToString().ToUpper();
-                        if (decimal.TryParse(row[6].ToString(), out decimal Price))
+                        var Products = new Products
                         {
-                            item.Price = Price;
-                        }
-                        else
-                        {
-                            item.Price = 0;
-                        }
-                        list.Add(item);
+                            ProductId = row[0].ToString().ToUpper(),
+                            ProductName = row[1].ToString().ToUpper(),
+                            Price = Convert.ToDecimal(row[2].ToString().ToUpper()),
+                            BarCode = row[3].ToString().ToUpper()
+                        };
 
-                        if (string.IsNullOrEmpty(row[7].ToString().ToUpper()))
+                        rowIndex++;
+
+                        lblpbar.Text = "Checking...\\product id:" + Products.ProductId + "\\product name:" + Products.ProductName;
+                        lblpbar.Refresh();
+
+                        if (string.IsNullOrEmpty(row[0].ToString().ToUpper())  |
+                            string.IsNullOrEmpty(row[1].ToString().ToUpper()) ||
+                            string.IsNullOrEmpty(row[2].ToString().ToUpper()))
                         {
-                            item.BarCode = "";
+                            MessageBox.Show(string.Format("Row {0} has null value or empty, please check the row columns information!", rowIndex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            dgvExcel.Rows[rowIndex - 1].Selected = true;
+                            lblpbar.Text = "";
+                            lblpbar.Refresh();
+                            return;
                         }
-                        else
+                        else if (factory.ProductsRepository.ProductsStrategy.CheckIfProductExist(row[0].ToString().ToUpper()))
                         {
-                            item.BarCode = row[7].ToString().ToUpper();
+                            MessageBox.Show(string.Format("Row {0}, Product Id :{1} already exist!", rowIndex, row[0].ToString().ToUpper()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            dgvExcel.Rows[rowIndex - 1].Selected = true;
+                            lblpbar.Text = "";
+                            lblpbar.Refresh();
+                            return;
                         }
+                        else if (!decimal.TryParse(row[2].ToString().ToUpper(), out decimal price))
+                        {
+                            MessageBox.Show(string.Format("Row {0}, Price :{1} is not valid!", rowIndex, row[1].ToString().ToUpper()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            dgvExcel.Rows[rowIndex - 1].Selected = true;
+                            lblpbar.Text = "";
+                            lblpbar.Refresh();
+                            return;
+                        }
+                        list.Add(Products);
                     }
+
+
+                    if (list.GroupBy(x => x.ProductId).Any(g => g.Count() > 1)
+                        ||
+                        list.GroupBy(x => x.ProductName).Any(g => g.Count() > 1))
+                    {
+                        MessageBox.Show("Duplicate Product Id or Product Name found in your data excel!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        lblpbar.Text = "";
+                        lblpbar.Refresh();
+                        return;
+                    }
+
 
                     foreach (var row in list)
                     {
-                        try
-                        {
-                            request.InsertItem(row);
-                        }
-                        catch (Exception ex)
-                        {
-                            ErrorList.Add(row);
-                        }
-                        finally
-                        {
-                            progressCount++;
-                            progressBar1.Value = progressCount;
-                        }
+                        lblpbar.Text = "Inserting...\\product id:" + row.ProductId + "\\product name:" + row.ProductName;
+                        lblpbar.Refresh();
+                        factory.ProductsRepository.Insert(row);
 
+                        progressCount++;
+                        progressBar1.Value = progressCount;
                     }
 
-                    if (ErrorList.Count > 0)
-                    {
-                        MessageBox.Show("Product uploaded! but some rows does not uploaded, Please check the Item information.", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        FrmNotUploaded frm = new FrmNotUploaded(ErrorList);
-                        if (frm.ShowDialog() == DialogResult.OK)
-                        {
-                            this.DialogResult = DialogResult.OK;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Product Uploaded!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.DialogResult = DialogResult.OK;
-                    }
+                    lblpbar.Text = "";
+                    lblpbar.Refresh();
+                    MessageBox.Show("Product Uploaded!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
                 }
             }
         }

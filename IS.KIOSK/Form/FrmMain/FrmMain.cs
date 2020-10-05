@@ -35,12 +35,13 @@ namespace IS.KIOSK
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            panel1.Visible = true;
+            timer2.Start();
+
             frmLogin frm = new frmLogin(this);
             var response = frm.ShowDialog();
             if (response == DialogResult.OK)
             {
-                panel1.Visible = true;
-                timer2.Start();
                 lblLogin.Text = "Current Login: " + Globals.LoginName;
                 this.ActiveControl = txtCustomerName;
             }
@@ -48,9 +49,9 @@ namespace IS.KIOSK
         }
         private void load()
         {
-            _TempLedgerSales = factory.TempLedgerSalesRepository.FindDefault(this._Cashier.CashierId);
-            _TempOrderList = mainModel.LoadTempOders(this).Item1;
-            TotalPrice = mainModel.LoadTempOders(this).Item2;
+            _TempLedgerSales = factory.TempLedgerSalesRepository.FindDefault(this._Cashier.CashierId,txtCustomerName.Text.ToUpper());
+            _TempOrderList = mainModel.LoadTempOders(this,txtCustomerName.Text).Item1;
+            TotalPrice = mainModel.LoadTempOders(this, txtCustomerName.Text).Item2;
 
 
             dgvOrders.AutoGenerateColumns = false;

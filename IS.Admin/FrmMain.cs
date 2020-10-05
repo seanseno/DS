@@ -32,11 +32,6 @@ namespace IS.Admin
             Application.Exit();
         }
 
-        private void salesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmSales frm = new FrmSales();
-            frm.ShowDialog();
-        }
         private void FrmMain_Load(object sender, EventArgs e)
         {
             FrmLogin frm = new FrmLogin();
@@ -122,11 +117,7 @@ namespace IS.Admin
         }
 
 
-        private void sockDataProfitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmStocksDataReport frm = new FrmStocksDataReport();
-            frm.ShowDialog();
-        }
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -227,12 +218,6 @@ namespace IS.Admin
             frm.ShowDialog();
         }
 
-        private void productPriceHistoryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmProductPriceHistory frm = new FrmProductPriceHistory();
-            frm.ShowDialog();
-        }
-
         private void salesProfitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmSalesProfit frm = new FrmSalesProfit();
@@ -242,6 +227,26 @@ namespace IS.Admin
         private void accessMenuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmMenuAccess frm = new FrmMenuAccess(this.menuStrip1);
+            frm.ShowDialog();
+        }
+
+
+
+        private void salesStocksDataProfitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmStocksDataReport frm = new FrmStocksDataReport();
+            frm.ShowDialog();
+        }
+
+        private void totalSalesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmSales frm = new FrmSales();
+            frm.ShowDialog();
+        }
+
+        private void changeProductPriceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmProductPriceHistory frm = new FrmProductPriceHistory();
             frm.ShowDialog();
         }
     }

@@ -18,9 +18,9 @@ namespace IS.KIOSK.Model
             return resultList;
         }
 
-        public (IList<TempSales>,decimal) LoadTempOders(FrmMain frm)
+        public (IList<TempSales>,decimal) LoadTempOders(FrmMain frm,string CustomerName)
         {
-            var tempLedger = factory.TempLedgerSalesRepository.FindDefault(frm._Cashier.CashierId);
+            var tempLedger = factory.TempLedgerSalesRepository.FindDefault(frm._Cashier.CashierId, CustomerName);
             if (tempLedger != null)
             {
                 var tempOders = factory.TempSalesRepository.FindWithLedger(frm._Cashier.CashierId, tempLedger.Id, EnumActive.Active);

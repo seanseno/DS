@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Transactions
 {
-    public partial class FrmStocksData : Form
+    public partial class FrmStocksData : FormSettings
     {
         IList<StocksData> _list = new List<StocksData>();
         public FrmStocksData()
@@ -54,11 +54,15 @@ namespace IS.Admin.Transactions
 
             var stockData = new StocksData
             {
-                Id = Convert.ToInt32(dgvSearch.CurrentRow.Cells[0].Value.ToString())
+                Id = Convert.ToInt32(dgvSearch.CurrentRow.Cells[1].Value.ToString())
             };
 
-
-            if (e.ColumnIndex == 11)
+            if (e.ColumnIndex == 0)
+            {
+                FrmStocksDataHistory frm = new FrmStocksDataHistory(stockData.Id);
+                frm.Show();
+            }
+            if (e.ColumnIndex == 13)
             {
                 FrmEditStockData frm = new FrmEditStockData(stockData);
                 if (frm.ShowDialog() == DialogResult.OK)
@@ -69,11 +73,10 @@ namespace IS.Admin.Transactions
                 
 
             }
-            if (e.ColumnIndex == 12)
+            if (e.ColumnIndex == 14)
             {
-                var Id = Convert.ToInt32(dgvSearch.CurrentRow.Cells[0].Value.ToString());
                 StocksDataModel StocksData = new StocksDataModel();
-                if (StocksData.CheckStockDataIfAlreadyInUse(Id))
+                if (StocksData.CheckStockDataIfAlreadyInUse(stockData.Id))
                 {
                     MessageBox.Show("This data already in used", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -81,7 +84,7 @@ namespace IS.Admin.Transactions
                 {
                     if (MessageBox.Show("Are you sure do you want to delete this record?", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
-                        StocksData.DeleteStockData(Id);
+                        StocksData.DeleteStockData(stockData.Id);
                         this.LoadStockData();
                         DisplayTotal();
                         MessageBox.Show("Row deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -175,7 +178,7 @@ namespace IS.Admin.Transactions
             Helper hp = new Helper();
             foreach (DataGridViewRow row in dgvSearch.Rows)
             {
-                var days = DateConvertion.DaysBetween(Convert.ToDateTime(row.Cells[10].Value), DateTime.Now);
+                var days = DateConvertion.DaysBetween(Convert.ToDateTime(row.Cells[11].Value), DateTime.Now);
 
                 if (days <= hp.ExpirationAlert)
                 {

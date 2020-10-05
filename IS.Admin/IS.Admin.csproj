@@ -111,6 +111,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,12 +190,6 @@
     <Compile Include="Setup\Categories\FrmCategoriesUploadExcel.Designer.cs">
       <DependentUpon>FrmCategoriesUploadExcel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Setup\Categories\FrmCategoriesNotUploaded.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Setup\Categories\FrmCategoriesNotUploaded.Designer.cs">
-      <DependentUpon>FrmCategoriesNotUploaded.cs</DependentUpon>
-    </Compile>
     <Compile Include="CustomDataGridView\CustomDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -195,12 +198,6 @@
     </Compile>
     <Compile Include="Setup\Products\FrmEditProduct.Designer.cs">
       <DependentUpon>FrmEditProduct.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Setup\Products\FrmNotUploaded.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Setup\Products\FrmNotUploaded.Designer.cs">
-      <DependentUpon>FrmNotUploaded.cs</DependentUpon>
     </Compile>
     <Compile Include="Setup\Principals\FrmAddPrincipal.cs">
       <SubType>Form</SubType>
@@ -213,12 +210,6 @@
     </Compile>
     <Compile Include="Setup\Principals\FrmPrincipals.Designer.cs">
       <DependentUpon>FrmPrincipals.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Setup\Principals\FrmPrincipalsNotUploaded.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Setup\Principals\FrmPrincipalsNotUploaded.Designer.cs">
-      <DependentUpon>FrmPrincipalsNotUploaded.cs</DependentUpon>
     </Compile>
     <Compile Include="Setup\Principals\FrmPrincipalsUploadExcel.cs">
       <SubType>Form</SubType>
@@ -255,6 +246,12 @@
     </Compile>
     <Compile Include="Transactions\OngoingStocksData\FrmOngoingStocksData.Designer.cs">
       <DependentUpon>FrmOngoingStocksData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\OngoingStocksData\FrmOngoingStocksDataHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\OngoingStocksData\FrmOngoingStocksDataHistory.Designer.cs">
+      <DependentUpon>FrmOngoingStocksDataHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="Transactions\ProductPriceHistory\FrmEditProductPrice.cs">
       <SubType>Form</SubType>
@@ -327,6 +324,12 @@
     </Compile>
     <Compile Include="Transactions\RequestOrders\frmMultiplier.Designer.cs">
       <DependentUpon>frmMultiplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\StocksDataHistory\FrmStocksDataHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\StocksDataHistory\FrmStocksDataHistory.Designer.cs">
+      <DependentUpon>FrmStocksDataHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Stock\FrmStocks.cs">
       <SubType>Form</SubType>
@@ -436,6 +439,9 @@
     <Compile Include="Utilities\MenuAccess\FrmMenuAccess.Designer.cs">
       <DependentUpon>FrmMenuAccess.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -473,23 +479,14 @@
     <EmbeddedResource Include="Setup\Categories\FrmCategoriesUploadExcel.resx">
       <DependentUpon>FrmCategoriesUploadExcel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Setup\Categories\FrmCategoriesNotUploaded.resx">
-      <DependentUpon>FrmCategoriesNotUploaded.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Setup\Products\FrmEditProduct.resx">
       <DependentUpon>FrmEditProduct.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Setup\Products\FrmNotUploaded.resx">
-      <DependentUpon>FrmNotUploaded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Setup\Principals\FrmAddPrincipal.resx">
       <DependentUpon>FrmAddPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Setup\Principals\FrmPrincipals.resx">
       <DependentUpon>FrmPrincipals.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Setup\Principals\FrmPrincipalsNotUploaded.resx">
-      <DependentUpon>FrmPrincipalsNotUploaded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Setup\Principals\FrmPrincipalsUploadExcel.resx">
       <DependentUpon>FrmPrincipalsUploadExcel.cs</DependentUpon>
@@ -508,6 +505,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\OngoingStocksData\FrmOngoingStocksData.resx">
       <DependentUpon>FrmOngoingStocksData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\OngoingStocksData\FrmOngoingStocksDataHistory.resx">
+      <DependentUpon>FrmOngoingStocksDataHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\ProductPriceHistory\FrmEditProductPrice.resx">
       <DependentUpon>FrmEditProductPrice.cs</DependentUpon>
@@ -544,6 +544,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\RequestOrders\frmMultiplier.resx">
       <DependentUpon>frmMultiplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\StocksDataHistory\FrmStocksDataHistory.resx">
+      <DependentUpon>FrmStocksDataHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Stock\FrmStocks.resx">
       <DependentUpon>FrmStocks.cs</DependentUpon>

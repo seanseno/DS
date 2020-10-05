@@ -46,18 +46,20 @@
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.btnSave);
-            this.panel1.Location = new System.Drawing.Point(12, 46);
+            this.panel1.Location = new System.Drawing.Point(16, 57);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(521, 145);
+            this.panel1.Size = new System.Drawing.Size(695, 178);
             this.panel1.TabIndex = 8;
             // 
             // btnCancel
             // 
             this.btnCancel.Image = global::IS.Admin.Properties.Resources.Cancel;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCancel.Location = new System.Drawing.Point(456, 83);
+            this.btnCancel.Location = new System.Drawing.Point(608, 102);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(56, 53);
+            this.btnCancel.Size = new System.Drawing.Size(75, 65);
             this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -69,9 +71,11 @@
             this.groupBox2.BackColor = System.Drawing.Color.White;
             this.groupBox2.Controls.Add(this.txtPrincipalName);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(8, 14);
+            this.groupBox2.Location = new System.Drawing.Point(11, 17);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(504, 63);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Size = new System.Drawing.Size(672, 78);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Input Details";
@@ -79,28 +83,31 @@
             // txtPrincipalName
             // 
             this.txtPrincipalName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrincipalName.Location = new System.Drawing.Point(128, 21);
+            this.txtPrincipalName.Location = new System.Drawing.Point(171, 26);
+            this.txtPrincipalName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPrincipalName.Name = "txtPrincipalName";
-            this.txtPrincipalName.Size = new System.Drawing.Size(362, 26);
+            this.txtPrincipalName.Size = new System.Drawing.Size(481, 30);
             this.txtPrincipalName.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(19, 27);
+            this.label1.Location = new System.Drawing.Point(25, 33);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 16);
+            this.label1.Size = new System.Drawing.Size(138, 20);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Category Name : ";
+            this.label1.Text = "Principal Name : ";
             // 
             // btnSave
             // 
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSave.Location = new System.Drawing.Point(397, 83);
+            this.btnSave.Location = new System.Drawing.Point(529, 102);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(53, 53);
+            this.btnSave.Size = new System.Drawing.Size(71, 65);
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Update";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -111,21 +118,23 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 9);
+            this.label3.Location = new System.Drawing.Point(8, 11);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(178, 34);
+            this.label3.Size = new System.Drawing.Size(221, 42);
             this.label3.TabIndex = 10;
             this.label3.Text = "Edit Principal";
             // 
             // FrmEditPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(549, 208);
+            this.ClientSize = new System.Drawing.Size(732, 256);
             this.ControlBox = false;
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmEditPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FrmEditPrincipal_Load);

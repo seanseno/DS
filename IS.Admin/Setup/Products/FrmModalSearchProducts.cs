@@ -1,6 +1,8 @@
 ﻿using IS.Admin.Model;
 using IS.Common.Reader;
+using IS.Database;
 using IS.Database.Entities;
+using IS.Database.Entities.Criteria;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +23,8 @@ namespace IS.Admin.Setup
         public string _ProductId {get;set;}
         public string _ProductName { get; set; }
         public IList<string> _Query { get; set; }
+        Criteria criteria = new Criteria();
+        ISFactory factory = new ISFactory();
         public FrmModalSearchProducts(List<string> fixedquery = null)
         {
             InitializeComponent();
@@ -28,16 +32,12 @@ namespace IS.Admin.Setup
             //this.Shown += new System.EventHandler(this.FrmModalSearchProducts_Shown);
         }
 
-        private void ProductSearch()
-        {
-            LoadMemoryProducts();
-        }
         private void LoadProducts()
         {
             SetLoading(true);
             Thread.Sleep(1);
-            ProductsModel model = new ProductsModel();
-            var response = model.ItemList(txtSearch.Text);
+
+            var response = factory.ProductsRepository.GetList();
 
             List<Products> listProduct = new List<Products>();
 
@@ -46,7 +46,7 @@ namespace IS.Admin.Setup
                 foreach (var productId in _Query)
                 {
                     var prod = new Products();
-                    prod = response.Where(x => x.ProductId == productId).FirstOrDefault();
+                    prod =  response.Where(x => x.ProductId == productId).FirstOrDefault();
                     listProduct.Add(prod);
                 }
                 this._ProductList = listProduct;
@@ -63,63 +63,14 @@ namespace IS.Admin.Setup
 
         private void LoadMemoryProducts()
         {
+            dgvProducts.DataSource = null;
             dgvProducts.AutoGenerateColumns = false;
-            dgvProducts.DataSource = this._ProductList.Where(x => x.CategoryName.Contains(txtSearch.Text.ToUpper()) || x.ProductName.Contains(txtSearch.Text.ToUpper()) || x.ProductId.Contains(txtSearch.Text.ToUpper())).OrderBy(v=>v.ProductName).ToList();
+            dgvProducts.DataSource = criteria.ProductCriteria.MeetCriteria(this._ProductList.ToList(), txtSearch.Text.ToUpper()).OrderBy(x=> x.ProductName).ToList();
             dgvProducts.StandardTab = true;
+            dgvProducts.Refresh();
         }
 
-        private void DeleteMemoryProducts(string ProductId)
-        {
-            SetLoading(true);
-            var prod = this._ProductList.FirstOrDefault(x=>x.ProductId == ProductId);
-            _ProductList.Remove(prod);
-            dgvProducts.AutoGenerateColumns = false;
-            dgvProducts.DataSource = this._ProductList.Where(x => x.CategoryName.Contains(txtSearch.Text.ToUpper()) || x.ProductName.Contains(txtSearch.Text.ToUpper())).ToList();
-            dgvProducts.StandardTab = true;
-
-            SetLoading(false);
-        }
-
-        //private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    var Item = new Products();
-        //    Item.ProductId = dgvProducts.CurrentRow.Cells[0].Value?.ToString();
-        //    Item.CategoryName = dgvProducts.CurrentRow.Cells[1].Value?.ToString();
-        //    Item.PrincipalName = dgvProducts.CurrentRow.Cells[2].Value?.ToString();
-        //    Item.ProductName = dgvProducts.CurrentRow.Cells[3].Value?.ToString();
-        //    Item.Price = Convert.ToDecimal(dgvProducts.CurrentRow.Cells[4].Value);
-        //    Item.Stock = (int)dgvProducts.CurrentRow.Cells[5].Value;
-        //    Item.BarCode= dgvProducts.CurrentRow.Cells[6].Value?.ToString();
-            
-        //    if (e.ColumnIndex == 8)
-        //    {
-        //        FrmEditProduct frm = new FrmEditProduct(Item);
-        //        if (frm.ShowDialog() == DialogResult.OK)
-        //        {
-        //            MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //            this.LoadProducts();
-        //        };
-        //    }
-        //    if (e.ColumnIndex == 9)
-        //    {
-        //        var model = new ProductsModel();
-        //        if (model.CheckItemIfAlreadyInUse(Item.ProductId))
-        //        {
-        //            MessageBox.Show("You can not delete " + Item.ProductName + " because this item is already used!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        }
-        //        else
-        //        {
-        //            if (MessageBox.Show("Are you sure do want to delete " + Item.ProductName + ".", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-        //            {
-        //                model.DeleteItem(Item);
-        //                this.DeleteMemoryProducts(Item.ProductId);
-        //                DisplayTotal();
-        //                MessageBox.Show(Item.ProductName + " deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //            }
-        //        }
-        //    }
-        //}
-
+  
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -128,7 +79,7 @@ namespace IS.Admin.Setup
         private void btnSearch_Click(object sender, EventArgs e)
         {
 
-            this.ProductSearch();
+            LoadMemoryProducts();
 
         }
 
@@ -142,10 +93,6 @@ namespace IS.Admin.Setup
             });
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            LoadMemoryProducts();
-        }
 
         private void grpProduct_EnabledChanged(object sender, EventArgs e)
         {
@@ -190,9 +137,11 @@ namespace IS.Admin.Setup
             if (dgvProducts.Rows.Count > 0)
             {
                 this._ProductId = dgvProducts.CurrentRow.Cells[0].Value?.ToString();
-                this._ProductName = dgvProducts.CurrentRow.Cells[3].Value?.ToString();
+                this._ProductName = dgvProducts.CurrentRow.Cells[1].Value?.ToString();
                 this.DialogResult = DialogResult.OK;
             }
         }
+
+
     }
 }

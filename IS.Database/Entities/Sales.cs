@@ -35,4 +35,14 @@ namespace IS.Database.Entities
         public decimal Profit { get; set; }
         public DateTime InsertTime { get; set; }
     }
+
+    public class ReportTotalSales
+    {
+        public string Fullname { get; set; }
+        public string ProductId { get; set; }
+        public string ProductName { get; set; }
+        public decimal? TotalAmount { get; set; }
+        public int? TotalQty { get; set; }
+    }
+   
 }

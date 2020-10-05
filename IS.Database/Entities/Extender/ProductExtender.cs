@@ -7,8 +7,6 @@ namespace IS.Database.Entities.Extender
 {
     public class ProductExtender : GlobalExtender
     {
-        public virtual string CategoryName { get; set; }
-        public virtual string PrincipalName { get; set; }
         public virtual int Stock { get; set; }
     }
 }

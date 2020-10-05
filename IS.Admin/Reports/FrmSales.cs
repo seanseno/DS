@@ -5,6 +5,7 @@ using IS.Common.Utilities;
 using IS.Database;
 using IS.Database.CSV;
 using IS.Database.Entities;
+using IS.Database.Entities.Criteria;
 using IS.Library.CSV;
 using IS.Library.Utility;
 using System;
@@ -26,60 +27,44 @@ namespace IS.Admin.Setup
         public int? _SearchCashierId { get; set; }
         public DateTime? _SearchDateFrom { get; set; }
         public DateTime? _SearchDateTo { get; set; }
-        public IList<Sales> SaleList = new List<Sales>();
+        public IList<ReportTotalSales> SaleList = new List<ReportTotalSales>();
+        ISFactory factory = new ISFactory();
         public FrmSales()
         {
             InitializeComponent();
-            this.ActiveControl = cboCashier;
+            this.ActiveControl = txtSearch;
         }
 
         private void FrmSales_Load(object sender, EventArgs e)
         {
-            this.LoadCashier();
+            this.Size = new System.Drawing.Size(1050, 710);
         }
 
-        private void LoadCashier()
-        {
-            dtpFrom.Value = DateTime.Now;
-            dtpTo.Value = DateTime.Now;
-            SalesModel model = new SalesModel();
-            var response = model.CashierList(null);
+        //private void LoadCashier()
+        //{
+        //    dtpFrom.Value = DateTime.Now;
+        //    dtpTo.Value = DateTime.Now;
+        //    SalesModel model = new SalesModel();
+        //    var response = model.CashierList(null);
             
-            cboCashier.DataSource = response;
-            cboCashier.DisplayMember = "Fullname";
-            cboCashier.ValueMember = "Id";
-
-            this._SearchDateFrom = DateConvertion.ConvertDateFromTime(dtpFrom.Value);
-            this._SearchDateTo = DateConvertion.ConvertDateToTime(dtpTo.Value);
-            LoadSales();
-        }
+        //    this._SearchDateFrom = DateConvertion.ConvertDateFromTime(dtpFrom.Value);
+        //    this._SearchDateTo = DateConvertion.ConvertDateToTime(dtpTo.Value);
+        //    LoadSales();
+        //}
         private void LoadSales()
         {
-            SalesModel sModel = new SalesModel();
-            var (sResponse,totalAmount) = sModel.SaleList(this._SearchCashierId,this._SearchDateFrom,this._SearchDateTo);
+            this._SearchDateFrom = DateConvertion.ConvertDateFromTime(dtpFrom.Value);
+            this._SearchDateTo = DateConvertion.ConvertDateToTime(dtpTo.Value);
+
+            var response = factory.SalesRepository.GetTotalSales(this._SearchDateFrom, this._SearchDateTo);
+            var sResponse = ReportTotalSalesCriteria.MeetCriteria(response.ToList(), txtSearch.Text.ToUpper().Trim());
             dgvSales.AutoGenerateColumns = false;
             dgvSales.DataSource = sResponse;
-            lblTotalAmount.Text = "Total Sales : " + String.Format("{0:n}", totalAmount);
+            lblTotalAmount.Text = "Total Sales : " + String.Format("{0:n}", sResponse.Sum(x=>x.TotalAmount));
+            lblTotalQty.Text = "Total Quantity : " + String.Format("{0:#,##0}", sResponse.Sum(x => x.TotalQty));
             SaleList = sResponse;
         }
 
-        private void LoadSearchValue()
-        {
-            if (cboCashier.SelectedValue != null)
-            {
-                try
-                {
-                    this._SearchCashierId = (int)cboCashier.SelectedValue;
-                }
-                catch (Exception ex)
-                {
-
-                }
-            }
-            this._SearchDateFrom = DateConvertion.ConvertDateFromTime(dtpFrom.Value);
-            this._SearchDateTo = DateConvertion.ConvertDateToTime(dtpTo.Value);
-            this.LoadSales();
-        }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -100,15 +85,14 @@ namespace IS.Admin.Setup
                     {
                         if (sfd.ShowDialog() == DialogResult.OK)
                         {
-                            var SalesList = new List<SalesCSV>();
+                            var SalesList = new List<TotalSalesCSV>();
                             foreach (var sale in this.SaleList)
                             {
-                                var item = new SalesCSV();
-                                item.CashierName = sale.CashierName;
+                                var item = new TotalSalesCSV();
+                                item.CashierName = sale.Fullname;
                                 item.ProductName = sale.ProductName;
-                                item.Qty = sale.Qty.ToString("N2");
-                                item.Amount = sale.AmountString;
-                                item.InsertTime = sale.InsertTime;
+                                item.Qty = sale.TotalQty?.ToString("N2");
+                                item.Amount = sale.TotalAmount?.ToString("N2");
                                 SalesList.Add(item);
                             }
                             CSV model = new CSV();
@@ -116,11 +100,11 @@ namespace IS.Admin.Setup
                             var factory = new ISFactory();
                             var fullname = factory.AdministratorsRepository.FindAdministratorWithLoginname(Globals.LoginName).Fullname;
                             var filename = model.WriteSalesCSV(sfd.FileName,
-                                SalesList,dtpFrom.Value, 
-                                dtpTo.Value, 
+                                SalesList, dtpFrom.Value,
+                                dtpTo.Value,
                                 fullname,
-                                SaleList.Sum(x=>x.Amount).ToString("N2"),
-                                SaleList.Sum(x => x.Qty).ToString("N0"));
+                                SaleList.Sum(x => x.TotalAmount)?.ToString("N2"),
+                                SaleList.Sum(x => x.TotalQty)?.ToString("N0"));
                             System.Diagnostics.Process.Start(filename);
                         }
                     }
@@ -134,20 +118,11 @@ namespace IS.Admin.Setup
 
         }
 
-        private void cboCashier_TextChanged(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
-            LoadSearchValue();
+            LoadSales();
         }
 
-        private void dtpFrom_ValueChanged(object sender, EventArgs e)
-        {
-            LoadSearchValue();
-        }
-
-        private void dtpTo_ValueChanged(object sender, EventArgs e)
-        {
-            LoadSearchValue();
-        }
 
         //private void btnPrint_Click(object sender, EventArgs e)
         //{
@@ -163,7 +138,7 @@ namespace IS.Admin.Setup
         //    printer.FooterSpacing = 15;
         //    printer.printDocument.DefaultPageSettings.Landscape = true;
         //    printer.PrintDataGridView(dgvSales);
-            
+
         //}
     }
 }
