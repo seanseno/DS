@@ -1,6 +1,8 @@
 ﻿using IS.Common.Utilities;
 using IS.Database;
+using IS.Database.CSV;
 using IS.Database.Views;
+using IS.Library.CSV;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,7 +40,57 @@ namespace IS.Admin.Reports
 
         private void btnDownload_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (_list == null || _list.Count == 0)
+                {
+                    MessageBox.Show("No record found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "CSV|*.csv", ValidateNames = true })
+                    {
+                        if (sfd.ShowDialog() == DialogResult.OK)
+                        {
+                            var SalesList = new List<StocksCSV>();
+                            foreach (var sale in this._list)
+                            {
+                                var item = new StocksCSV();
+                                item.PrincipalName = sale.PrincipalName;
+                                item.ProductName = sale.ProductName;
+                                item.CategoryName = sale.CategoryName;
+                                item.Quantity = sale.Quantity.ToString("N0");
+                                item.SupplierPrice = sale.SupplierPrice.ToString("N2");
+                                item.TotalAmount = sale.TotalAmount.ToString("N2");
+                                item.UnitPriceWithAddedFormula = sale.UnitPriceWithAddedFormula.ToString("N2");
+                                item.UnitSold = sale.UnitSold.ToString("N0");
+                                item.RemainingQuantity = sale.RemainingQuantity.ToString("N0");
+                                item.RemainingAmount = sale.RemainingAmount.ToString("N2");
+                                item.Remarks = sale.Remarks;
+                                SalesList.Add(item);
+                            }
 
+                            CSV model = new CSV();
+
+                            var factory = new ISFactory();
+                            var fullname = factory.AdministratorsRepository.FindAdministratorWithLoginname(Globals.LoginName).Fullname;
+                            var filename = model.WriteStocksCSV(
+                                sfd.FileName,
+                                SalesList,
+                                _list,
+                                dtpFrom.Value,
+                                dtpTo.Value,
+                                fullname);
+                            System.Diagnostics.Process.Start(filename);
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)

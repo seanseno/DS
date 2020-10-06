@@ -80,90 +80,97 @@ namespace IS.Admin.Setup
 
             else
             {
-                if (MessageBox.Show("Are you sure do want to continue?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                try
                 {
-                    ProductsModel request = new ProductsModel();
-
-                    progressBar1.Maximum = dt.Rows.Count;
-                    progressBar1.Minimum = 0;
-
-                    progressBar1.Value = 0;
-                    int progressCount = 0;
-
-                    IList<Products> list = new List<Products>();
-
-
-                    int rowIndex = 0;
-                    foreach (DataRow row in dt.Rows)
+                    if (MessageBox.Show("Are you sure do want to continue?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
-                        var Products = new Products
+                        ProductsModel request = new ProductsModel();
+
+                        progressBar1.Maximum = dt.Rows.Count;
+                        progressBar1.Minimum = 0;
+
+                        progressBar1.Value = 0;
+                        int progressCount = 0;
+
+                        IList<Products> list = new List<Products>();
+
+
+                        int rowIndex = 0;
+                        foreach (DataRow row in dt.Rows)
                         {
-                            ProductId = row[0].ToString().ToUpper(),
-                            ProductName = row[1].ToString().ToUpper(),
-                            Price = Convert.ToDecimal(row[2].ToString().ToUpper()),
-                            BarCode = row[3].ToString().ToUpper()
-                        };
+                            var Products = new Products
+                            {
+                                ProductId = row[0].ToString().ToUpper(),
+                                ProductName = row[1].ToString().ToUpper(),
+                                Price = Convert.ToDecimal(row[2].ToString().ToUpper()),
+                                BarCode = row[3].ToString().ToUpper()
+                            };
 
-                        rowIndex++;
+                            rowIndex++;
 
-                        lblpbar.Text = "Checking...\\product id:" + Products.ProductId + "\\product name:" + Products.ProductName;
-                        lblpbar.Refresh();
+                            lblpbar.Text = "Checking...\\product id:" + Products.ProductId + "\\product name:" + Products.ProductName;
+                            lblpbar.Refresh();
 
-                        if (string.IsNullOrEmpty(row[0].ToString().ToUpper())  |
-                            string.IsNullOrEmpty(row[1].ToString().ToUpper()) ||
-                            string.IsNullOrEmpty(row[2].ToString().ToUpper()))
+                            if (string.IsNullOrEmpty(row[0].ToString().ToUpper()) |
+                                string.IsNullOrEmpty(row[1].ToString().ToUpper()) ||
+                                string.IsNullOrEmpty(row[2].ToString().ToUpper()))
+                            {
+                                MessageBox.Show(string.Format("Row {0} has null value or empty, please check the row columns information!", rowIndex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                dgvExcel.Rows[rowIndex - 1].Selected = true;
+                                lblpbar.Text = "";
+                                lblpbar.Refresh();
+                                return;
+                            }
+                            else if (factory.ProductsRepository.ProductsStrategy.CheckIfProductExist(row[0].ToString().ToUpper()))
+                            {
+                                MessageBox.Show(string.Format("Row {0}, Product Id :{1} already exist!", rowIndex, row[0].ToString().ToUpper()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                dgvExcel.Rows[rowIndex - 1].Selected = true;
+                                lblpbar.Text = "";
+                                lblpbar.Refresh();
+                                return;
+                            }
+                            else if (!decimal.TryParse(row[2].ToString().ToUpper(), out decimal price))
+                            {
+                                MessageBox.Show(string.Format("Row {0}, Price :{1} is not valid!", rowIndex, row[1].ToString().ToUpper()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                dgvExcel.Rows[rowIndex - 1].Selected = true;
+                                lblpbar.Text = "";
+                                lblpbar.Refresh();
+                                return;
+                            }
+                            list.Add(Products);
+                        }
+
+
+                        if (list.GroupBy(x => x.ProductId).Any(g => g.Count() > 1)
+                            ||
+                            list.GroupBy(x => x.ProductName).Any(g => g.Count() > 1))
                         {
-                            MessageBox.Show(string.Format("Row {0} has null value or empty, please check the row columns information!", rowIndex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            dgvExcel.Rows[rowIndex - 1].Selected = true;
+                            MessageBox.Show("Duplicate Product Id or Product Name found in your data excel!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             lblpbar.Text = "";
                             lblpbar.Refresh();
                             return;
                         }
-                        else if (factory.ProductsRepository.ProductsStrategy.CheckIfProductExist(row[0].ToString().ToUpper()))
-                        {
-                            MessageBox.Show(string.Format("Row {0}, Product Id :{1} already exist!", rowIndex, row[0].ToString().ToUpper()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            dgvExcel.Rows[rowIndex - 1].Selected = true;
-                            lblpbar.Text = "";
-                            lblpbar.Refresh();
-                            return;
-                        }
-                        else if (!decimal.TryParse(row[2].ToString().ToUpper(), out decimal price))
-                        {
-                            MessageBox.Show(string.Format("Row {0}, Price :{1} is not valid!", rowIndex, row[1].ToString().ToUpper()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            dgvExcel.Rows[rowIndex - 1].Selected = true;
-                            lblpbar.Text = "";
-                            lblpbar.Refresh();
-                            return;
-                        }
-                        list.Add(Products);
-                    }
 
 
-                    if (list.GroupBy(x => x.ProductId).Any(g => g.Count() > 1)
-                        ||
-                        list.GroupBy(x => x.ProductName).Any(g => g.Count() > 1))
-                    {
-                        MessageBox.Show("Duplicate Product Id or Product Name found in your data excel!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        foreach (var row in list)
+                        {
+                            lblpbar.Text = "Inserting...\\product id:" + row.ProductId + "\\product name:" + row.ProductName;
+                            lblpbar.Refresh();
+                            factory.ProductsRepository.Insert(row);
+
+                            progressCount++;
+                            progressBar1.Value = progressCount;
+                        }
+
                         lblpbar.Text = "";
                         lblpbar.Refresh();
-                        return;
+                        MessageBox.Show("Product Uploaded!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = DialogResult.OK;
                     }
-
-
-                    foreach (var row in list)
-                    {
-                        lblpbar.Text = "Inserting...\\product id:" + row.ProductId + "\\product name:" + row.ProductName;
-                        lblpbar.Refresh();
-                        factory.ProductsRepository.Insert(row);
-
-                        progressCount++;
-                        progressBar1.Value = progressCount;
-                    }
-
-                    lblpbar.Text = "";
-                    lblpbar.Refresh();
-                    MessageBox.Show("Product Uploaded!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = DialogResult.OK;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

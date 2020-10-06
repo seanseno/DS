@@ -34,9 +34,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmStockExpireReport));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnDownload = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.dgvSales = new System.Windows.Forms.DataGridView();
             this.PrincipalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,9 +49,6 @@
             this.DeliveryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExpirationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.btnDownload = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -67,6 +67,19 @@
             this.groupBox2.TabIndex = 24;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Search Box";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Image = global::IS.Admin.Properties.Resources.search;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.Location = new System.Drawing.Point(347, 14);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(76, 38);
+            this.btnSearch.TabIndex = 24;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtSearch
             // 
@@ -98,6 +111,32 @@
             this.groupBox1.TabIndex = 23;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Details";
+            // 
+            // btnDownload
+            // 
+            this.btnDownload.Image = global::IS.Admin.Properties.Resources.download;
+            this.btnDownload.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnDownload.Location = new System.Drawing.Point(869, 427);
+            this.btnDownload.Name = "btnDownload";
+            this.btnDownload.Size = new System.Drawing.Size(66, 55);
+            this.btnDownload.TabIndex = 27;
+            this.btnDownload.Text = "Dowload";
+            this.btnDownload.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDownload.UseVisualStyleBackColor = true;
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Image = global::IS.Admin.Properties.Resources.Cancel;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnClose.Location = new System.Drawing.Point(941, 428);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(66, 55);
+            this.btnClose.TabIndex = 28;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // dgvSales
             // 
@@ -192,44 +231,6 @@
             this.Remarks.HeaderText = "Additional Notes";
             this.Remarks.Name = "Remarks";
             this.Remarks.ReadOnly = true;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Image = global::IS.Admin.Properties.Resources.search;
-            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.Location = new System.Drawing.Point(347, 14);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(76, 38);
-            this.btnSearch.TabIndex = 24;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // btnDownload
-            // 
-            this.btnDownload.Image = global::IS.Admin.Properties.Resources.download;
-            this.btnDownload.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnDownload.Location = new System.Drawing.Point(869, 427);
-            this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(66, 55);
-            this.btnDownload.TabIndex = 27;
-            this.btnDownload.Text = "Dowload";
-            this.btnDownload.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDownload.UseVisualStyleBackColor = true;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Image = global::IS.Admin.Properties.Resources.Cancel;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnClose.Location = new System.Drawing.Point(941, 428);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(66, 55);
-            this.btnClose.TabIndex = 28;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // label2
             // 

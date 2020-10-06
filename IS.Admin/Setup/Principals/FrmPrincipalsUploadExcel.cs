@@ -74,74 +74,80 @@ namespace IS.Admin.Setup
                 MessageBox.Show("Please select sheet!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             {
-
-                if (MessageBox.Show("Are you sure do want to continue?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                try
                 {
-                    PrincipalsModel request = new PrincipalsModel();
-                    progressBar1.Maximum = dt.Rows.Count;
-                    progressBar1.Minimum = 0;
-
-                    progressBar1.Value = 0;
-                    int progressCount = 0;
-
-                    var ErrorList = new List<Principals>();
-
-                    IList<Principals> list = new List<Principals>();
-
-                    int rowIndex = 0;
-                    foreach (DataRow row in dt.Rows)
+                    if (MessageBox.Show("Are you sure do want to continue?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
-                        rowIndex++;
-                        var Principal = new Principals();
-                        Principal.PrincipalId = row[0].ToString().ToUpper();
-                        Principal.PrincipalName = row[1].ToString().ToUpper();
-                        lblpbar.Text = "Checking...\\principal id:" + Principal.PrincipalId + "\\principal name:" + Principal.PrincipalName;
-                        lblpbar.Refresh();
-                        if (string.IsNullOrEmpty(Principal.PrincipalId) ||
-                            string.IsNullOrEmpty(Principal.PrincipalName) )
-                        {
-                            MessageBox.Show(string.Format("Row {0} has null value or empty, please check the row columns information!", rowIndex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            dgvExcel.Rows[rowIndex - 1].Selected = true;
-                            progressBar1.Value = 0;
-                            lblpbar.Text = "";
-                            lblpbar.Refresh();
-                            return;
-                        }
-                        else if (request.CheckDup(Principal))
-                        {
-                            MessageBox.Show(string.Format("Row {0}, Principal Id :{1} or Principal Name :{2} already exist!", rowIndex, Principal.PrincipalId.ToUpper(), Principal.PrincipalName.ToUpper()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            dgvExcel.Rows[rowIndex - 1].Selected = true;
-                            progressBar1.Value = 0;
-                            lblpbar.Text = "";
-                            lblpbar.Refresh();
-                            return;
-                        }
-                        list.Add(Principal);
-                    }
+                        PrincipalsModel request = new PrincipalsModel();
+                        progressBar1.Maximum = dt.Rows.Count;
+                        progressBar1.Minimum = 0;
 
-
-                    if (list.GroupBy(x => x.PrincipalId).Any(g => g.Count() > 1)
-                        ||
-                        list.GroupBy(x => x.PrincipalId).Any(g => g.Count() > 1))
-                    {
-                        MessageBox.Show("Duplicate Principal Id or Principal Name found in your data excel!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         progressBar1.Value = 0;
-                        lblpbar.Text = "";
-                        return;
-                    }
+                        int progressCount = 0;
 
-                    foreach (var row in list)
-                    {
-                        lblpbar.Text = "Inserting...\\principal id:" + row.PrincipalName + "\\principal name:" + row.PrincipalName;
+                        var ErrorList = new List<Principals>();
+
+                        IList<Principals> list = new List<Principals>();
+
+                        int rowIndex = 0;
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            rowIndex++;
+                            var Principal = new Principals();
+                            Principal.PrincipalId = row[0].ToString().ToUpper();
+                            Principal.PrincipalName = row[1].ToString().ToUpper();
+                            lblpbar.Text = "Checking...\\principal id:" + Principal.PrincipalId + "\\principal name:" + Principal.PrincipalName;
+                            lblpbar.Refresh();
+                            if (string.IsNullOrEmpty(Principal.PrincipalId) ||
+                                string.IsNullOrEmpty(Principal.PrincipalName))
+                            {
+                                MessageBox.Show(string.Format("Row {0} has null value or empty, please check the row columns information!", rowIndex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                dgvExcel.Rows[rowIndex - 1].Selected = true;
+                                progressBar1.Value = 0;
+                                lblpbar.Text = "";
+                                lblpbar.Refresh();
+                                return;
+                            }
+                            else if (request.CheckDup(Principal))
+                            {
+                                MessageBox.Show(string.Format("Row {0}, Principal Id :{1} or Principal Name :{2} already exist!", rowIndex, Principal.PrincipalId.ToUpper(), Principal.PrincipalName.ToUpper()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                dgvExcel.Rows[rowIndex - 1].Selected = true;
+                                progressBar1.Value = 0;
+                                lblpbar.Text = "";
+                                lblpbar.Refresh();
+                                return;
+                            }
+                            list.Add(Principal);
+                        }
+
+
+                        if (list.GroupBy(x => x.PrincipalId).Any(g => g.Count() > 1)
+                            ||
+                            list.GroupBy(x => x.PrincipalId).Any(g => g.Count() > 1))
+                        {
+                            MessageBox.Show("Duplicate Principal Id or Principal Name found in your data excel!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            progressBar1.Value = 0;
+                            lblpbar.Text = "";
+                            return;
+                        }
+
+                        foreach (var row in list)
+                        {
+                            lblpbar.Text = "Inserting...\\principal id:" + row.PrincipalName + "\\principal name:" + row.PrincipalName;
+                            lblpbar.Refresh();
+                            request.InsertPrincipal(row);
+                            progressCount++;
+                            progressBar1.Value = progressCount;
+                        }
+                        lblpbar.Text = "";
                         lblpbar.Refresh();
-                        request.InsertPrincipal(row);
-                        progressCount++;
-                        progressBar1.Value = progressCount;
+                        MessageBox.Show("Principals Uploaded!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = DialogResult.OK;
                     }
-                    lblpbar.Text = "";
-                    lblpbar.Refresh();
-                    MessageBox.Show("Principals Uploaded!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = DialogResult.OK;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

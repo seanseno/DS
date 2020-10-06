@@ -165,12 +165,6 @@
     <Compile Include="Reports\FrmStocksReport.Designer.cs">
       <DependentUpon>FrmStocksReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\FrmStocksDataReport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reports\FrmStocksDataReport.Designer.cs">
-      <DependentUpon>FrmStocksDataReport.cs</DependentUpon>
-    </Compile>
     <Compile Include="Setup\Categories\FrmAddCategory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -463,9 +457,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\FrmStocksReport.resx">
       <DependentUpon>FrmStocksReport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\FrmStocksDataReport.resx">
-      <DependentUpon>FrmStocksDataReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Setup\Categories\FrmAddCategory.resx">
       <DependentUpon>FrmAddCategory.cs</DependentUpon>

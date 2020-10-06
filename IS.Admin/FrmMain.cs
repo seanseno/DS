@@ -241,13 +241,6 @@ namespace IS.Admin
         }
 
 
-
-        private void salesStocksDataProfitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmStocksDataReport frm = new FrmStocksDataReport();
-            frm.ShowDialog();
-        }
-
         private void totalSalesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmSalesReport frm = new FrmSalesReport();
