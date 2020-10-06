@@ -111,12 +111,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,17 +142,28 @@
     <Compile Include="Printer\DGVPrinter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports\FrmSalesProfit.cs">
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\FrmSalesReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\FrmSalesProfit.Designer.cs">
-      <DependentUpon>FrmSalesProfit.cs</DependentUpon>
+    <Compile Include="Reports\FrmSalesReport.Designer.cs">
+      <DependentUpon>FrmSalesReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\FrmSales.cs">
+    <Compile Include="Reports\FrmStockExpireReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\FrmSales.Designer.cs">
-      <DependentUpon>FrmSales.cs</DependentUpon>
+    <Compile Include="Reports\FrmStockExpireReport.Designer.cs">
+      <DependentUpon>FrmStockExpireReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\FrmStocksReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\FrmStocksReport.Designer.cs">
+      <DependentUpon>FrmStocksReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\FrmStocksDataReport.cs">
       <SubType>Form</SubType>
@@ -439,9 +444,6 @@
     <Compile Include="Utilities\MenuAccess\FrmMenuAccess.Designer.cs">
       <DependentUpon>FrmMenuAccess.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -450,19 +452,17 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <EmbeddedResource Include="Reports\FrmSalesProfit.resx">
-      <DependentUpon>FrmSalesProfit.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\FrmSalesReport.resx">
+      <DependentUpon>FrmSalesReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\FrmSales.resx">
-      <DependentUpon>FrmSales.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\FrmStockExpireReport.resx">
+      <DependentUpon>FrmStockExpireReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\FrmStocksReport.resx">
+      <DependentUpon>FrmStocksReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\FrmStocksDataReport.resx">
       <DependentUpon>FrmStocksDataReport.cs</DependentUpon>
@@ -681,6 +681,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Graphicloads-Medical-Health-Prescription.ico" />
+    <None Include="Resources\settings.png" />
+    <None Include="Resources\accounts.png" />
+    <None Include="Resources\Stocks.png" />
+    <None Include="Resources\boxes.png" />
+    <None Include="Resources\business-report.png" />
     <None Include="Resources\click.png" />
     <None Include="Resources\loading2.gif" />
     <None Include="Resources\loading1.gif" />

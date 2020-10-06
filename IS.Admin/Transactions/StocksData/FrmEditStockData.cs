@@ -201,26 +201,7 @@ namespace IS.Admin.Transactions
 
         private void txtSupplierPrice_TextChanged(object sender, EventArgs e)
         {
-            //GetTotalAmount();
-            //CategoriesModel model = new CategoriesModel();
-            //if (this._Product != null)
-            //{
-            //    var percent = model.GetPercentSuggestedPrice(_Product.CategoryId);
-            //    if (percent != "0")
-            //    {
-            //        if (string.IsNullOrEmpty(txtSupplierPrice.Text))
-            //        {
-            //            txtRealUnitPrice.Text = "0.00";
-            //        }
-            //        else
-            //        {
-            //            var supplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
-            //            //= (F6 * 0.2) + F6
-            //            var sellingPrice = ((supplierPrice * (Convert.ToDecimal(percent) / 100)) + supplierPrice);
-            //            txtRealUnitPrice.Text = Math.Round(sellingPrice, 2).ToString();
-            //        }
-            //    }
-            //}
+            GetSuggestedPrice();
         }
 
         private void txtRealUnitPrice_KeyPress(object sender, KeyPressEventArgs e)
@@ -254,5 +235,24 @@ namespace IS.Admin.Transactions
             ProductsModel modelProd = new ProductsModel();
             this._Product = modelProd.FindWithProductId(txtProductId.Text);
         }
+        private void GetSuggestedPrice()
+        {
+            CategoriesModel model = new CategoriesModel();
+            if (this._Product != null)
+            {
+                if (cboCategories.SelectedValue != null)
+                {
+                    var percent = model.GetPercentSuggestedPrice(cboCategories.SelectedValue.ToString());
+
+                    if (!string.IsNullOrEmpty(txtSupplierPrice.Text))
+                    {
+                        var supplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
+                        var sellingPrice = ((supplierPrice * (percent / 100)) + supplierPrice);
+                        txtRealUnitPrice.Text = sellingPrice.ToString("N2");
+                    }
+                }
+            }
+        }
+
     }
 }

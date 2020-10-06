@@ -235,7 +235,6 @@
             this.dtpExpirationDate.Name = "dtpExpirationDate";
             this.dtpExpirationDate.Size = new System.Drawing.Size(200, 20);
             this.dtpExpirationDate.TabIndex = 12;
-           
             // 
             // label10
             // 

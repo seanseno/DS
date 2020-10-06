@@ -89,7 +89,6 @@
             this.cboName.Name = "cboName";
             this.cboName.Size = new System.Drawing.Size(470, 24);
             this.cboName.TabIndex = 21;
-           
             this.cboName.TextChanged += new System.EventHandler(this.cboName_TextChanged);
             // 
             // label1
@@ -121,7 +120,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
             this.ClientSize = new System.Drawing.Size(551, 578);
-            this.ControlBox = false;
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.cboName);
             this.Controls.Add(this.label1);
@@ -129,8 +127,12 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmMenuAccess";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Access Menu Setup";
             this.Load += new System.EventHandler(this.FrmMenuAccess_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

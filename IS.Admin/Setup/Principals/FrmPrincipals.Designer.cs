@@ -127,7 +127,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::IS.Admin.Properties.Resources.timer;
+            this.pictureBox2.Image = global::IS.Admin.Properties.Resources.Spinner;
             this.pictureBox2.Location = new System.Drawing.Point(24, 31);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(123, 133);
@@ -137,7 +137,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Image = global::IS.Admin.Properties.Resources.Exit;
+            this.btnClose.Image = global::IS.Admin.Properties.Resources.Cancel;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnClose.Location = new System.Drawing.Point(685, 339);
             this.btnClose.Name = "btnClose";
@@ -244,12 +244,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
             this.ClientSize = new System.Drawing.Size(791, 478);
-            this.ControlBox = false;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmPrincipals";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Principals Menu";
             this.Shown += new System.EventHandler(this.FrmPrincipals_Shown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

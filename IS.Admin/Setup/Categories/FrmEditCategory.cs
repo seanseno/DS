@@ -38,17 +38,17 @@ namespace IS.Admin.Setup
         {
             CategoriesModel Categories = new CategoriesModel();
 
-            if (txtCategoryName.Text == _Category.CategoryName && _Category.PercentSuggestedPrice != txtPercent.Text)
+            if (txtCategoryName.Text == _Category.CategoryName && _Category.PercentSuggestedPrice != Convert.ToDecimal(txtPercent.Text))
             {
                 _Category.CategoryName = txtCategoryName.Text;
-                _Category.PercentSuggestedPrice = txtPercent.Text;
+                _Category.PercentSuggestedPrice = Convert.ToDecimal(txtPercent.Text);
                 Categories.UpdateCategory(_Category);
                 this.DialogResult = DialogResult.OK;
             }
             else if (txtCategoryName.Text != _Category.CategoryName)
             {
                 _Category.CategoryName = txtCategoryName.Text;
-                _Category.PercentSuggestedPrice = txtPercent.Text;
+                _Category.PercentSuggestedPrice = Convert.ToDecimal(txtPercent.Text);
                 if (Categories.CheckEditDup(_Category.CategoryName, _Category.Id))
                 {
                     MessageBox.Show(_Category.CategoryName + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

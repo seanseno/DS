@@ -2,6 +2,7 @@
 using IS.Database.Entities;
 using IS.Database.Enums;
 using IS.Database.Strategy;
+using IS.Database.Views;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -264,6 +265,40 @@ namespace IS.Database.Repositories
                             productIdList.Add(reader[0].ToString());
                         }
                         return productIdList;
+                    }
+                }
+            }
+        }
+
+        public List<StocksDataViewReport> GetListStocksDataReport()
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT * FROM vReportStocksData";
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        var List = new ReflectionPopulator<StocksDataViewReport>().CreateList(reader);
+                        return List;
+                    }
+                }
+            }
+        }
+
+        public List<StocksDataExpireViewReport> GetListStocksDataExpireReport()
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT * FROM vReportStocksDataExpire";
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        var List = new ReflectionPopulator<StocksDataExpireViewReport>().CreateList(reader);
+                        return List;
                     }
                 }
             }

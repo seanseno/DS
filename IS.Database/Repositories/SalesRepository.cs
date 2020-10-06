@@ -2,6 +2,7 @@
 using IS.Database.Entities;
 using IS.Database.Enums;
 using IS.Database.Strategy;
+using IS.Database.Views;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -171,5 +172,28 @@ namespace IS.Database.Repositories
                 }
             }
         }
+
+        public IList<SalesViewReport> GetSalesListReport()
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+
+                connection.Open();
+                var select = "SELECT * FROM vReportSales";
+
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            return new ReflectionPopulator<SalesViewReport>().CreateList(reader);
+                        }
+                        return null;
+                    }
+                }
+            }
+        }
+        
     }
 }

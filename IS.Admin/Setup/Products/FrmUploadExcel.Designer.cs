@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUploadExcel));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnUpload = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -43,8 +43,8 @@
             this.grpBox = new System.Windows.Forms.GroupBox();
             this.lblProgressbar = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label3 = new System.Windows.Forms.Label();
             this.lblpbar = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExcel)).BeginInit();
@@ -53,12 +53,11 @@
             // 
             // btnClose
             // 
-            this.btnClose.Image = global::IS.Admin.Properties.Resources.Exit;
+            this.btnClose.Image = global::IS.Admin.Properties.Resources.Cancel;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnClose.Location = new System.Drawing.Point(1189, 633);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClose.Location = new System.Drawing.Point(892, 514);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(88, 68);
+            this.btnClose.Size = new System.Drawing.Size(66, 55);
             this.btnClose.TabIndex = 9;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -69,10 +68,9 @@
             // 
             this.btnUpload.Image = global::IS.Admin.Properties.Resources.Upload;
             this.btnUpload.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnUpload.Location = new System.Drawing.Point(1064, 633);
-            this.btnUpload.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpload.Location = new System.Drawing.Point(798, 514);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(100, 68);
+            this.btnUpload.Size = new System.Drawing.Size(75, 55);
             this.btnUpload.TabIndex = 11;
             this.btnUpload.Text = "Upload";
             this.btnUpload.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -82,10 +80,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(24, 17);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(18, 14);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(99, 89);
+            this.pictureBox1.Size = new System.Drawing.Size(74, 72);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 21;
             this.pictureBox1.TabStop = false;
@@ -98,21 +95,18 @@
             this.groupBox2.Controls.Add(this.cboSheet);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.dgvExcel);
-            this.groupBox2.Location = new System.Drawing.Point(144, 17);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Location = new System.Drawing.Point(108, 14);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox2.Size = new System.Drawing.Size(1136, 608);
+            this.groupBox2.Size = new System.Drawing.Size(852, 494);
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Excel Details";
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(920, 30);
-            this.btnBrowse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBrowse.Location = new System.Drawing.Point(690, 24);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(55, 28);
+            this.btnBrowse.Size = new System.Drawing.Size(41, 23);
             this.btnBrowse.TabIndex = 22;
             this.btnBrowse.Text = "......";
             this.btnBrowse.UseVisualStyleBackColor = true;
@@ -120,20 +114,18 @@
             // 
             // txtFileName
             // 
-            this.txtFileName.Location = new System.Drawing.Point(117, 30);
-            this.txtFileName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFileName.Location = new System.Drawing.Point(88, 24);
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.ReadOnly = true;
-            this.txtFileName.Size = new System.Drawing.Size(780, 22);
+            this.txtFileName.Size = new System.Drawing.Size(586, 20);
             this.txtFileName.TabIndex = 21;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(33, 30);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(25, 24);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 17);
+            this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 20;
             this.label2.Text = "File Name:";
             // 
@@ -142,10 +134,9 @@
             this.cboSheet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboSheet.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboSheet.FormattingEnabled = true;
-            this.cboSheet.Location = new System.Drawing.Point(117, 62);
-            this.cboSheet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboSheet.Location = new System.Drawing.Point(88, 50);
             this.cboSheet.Name = "cboSheet";
-            this.cboSheet.Size = new System.Drawing.Size(216, 25);
+            this.cboSheet.Size = new System.Drawing.Size(163, 21);
             this.cboSheet.TabIndex = 19;
             this.cboSheet.SelectedIndexChanged += new System.EventHandler(this.cboSheet_SelectedIndexChanged);
             // 
@@ -153,10 +144,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(33, 59);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(25, 48);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 17);
+            this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 18;
             this.label1.Text = "Sheet :";
             // 
@@ -164,16 +154,15 @@
             // 
             this.dgvExcel.AllowUserToAddRows = false;
             this.dgvExcel.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
-            this.dgvExcel.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
+            this.dgvExcel.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvExcel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvExcel.Location = new System.Drawing.Point(23, 95);
-            this.dgvExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvExcel.Location = new System.Drawing.Point(17, 77);
             this.dgvExcel.Name = "dgvExcel";
             this.dgvExcel.ReadOnly = true;
             this.dgvExcel.RowHeadersWidth = 51;
             this.dgvExcel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvExcel.Size = new System.Drawing.Size(1087, 482);
+            this.dgvExcel.Size = new System.Drawing.Size(815, 392);
             this.dgvExcel.TabIndex = 12;
             // 
             // grpBox
@@ -186,61 +175,56 @@
             this.grpBox.Controls.Add(this.btnUpload);
             this.grpBox.Controls.Add(this.btnClose);
             this.grpBox.Controls.Add(this.lblpbar);
-            this.grpBox.Location = new System.Drawing.Point(16, 69);
-            this.grpBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpBox.Location = new System.Drawing.Point(12, 56);
             this.grpBox.Name = "grpBox";
-            this.grpBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.grpBox.Size = new System.Drawing.Size(1304, 711);
+            this.grpBox.Size = new System.Drawing.Size(978, 578);
             this.grpBox.TabIndex = 3;
             this.grpBox.TabStop = false;
             // 
             // lblProgressbar
             // 
             this.lblProgressbar.AutoSize = true;
-            this.lblProgressbar.Location = new System.Drawing.Point(140, 753);
-            this.lblProgressbar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblProgressbar.Location = new System.Drawing.Point(105, 612);
             this.lblProgressbar.Name = "lblProgressbar";
-            this.lblProgressbar.Size = new System.Drawing.Size(0, 17);
+            this.lblProgressbar.Size = new System.Drawing.Size(0, 13);
             this.lblProgressbar.TabIndex = 24;
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(144, 633);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBar1.Location = new System.Drawing.Point(108, 514);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(883, 28);
+            this.progressBar1.Size = new System.Drawing.Size(662, 23);
             this.progressBar1.TabIndex = 23;
+            // 
+            // lblpbar
+            // 
+            this.lblpbar.AutoSize = true;
+            this.lblpbar.Location = new System.Drawing.Point(106, 540);
+            this.lblpbar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblpbar.Name = "lblpbar";
+            this.lblpbar.Size = new System.Drawing.Size(0, 13);
+            this.lblpbar.TabIndex = 27;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(16, 23);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(12, 19);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(265, 42);
+            this.label3.Size = new System.Drawing.Size(212, 34);
             this.label3.TabIndex = 19;
             this.label3.Text = "Upload Products";
             // 
-            // lblpbar
-            // 
-            this.lblpbar.AutoSize = true;
-            this.lblpbar.Location = new System.Drawing.Point(141, 665);
-            this.lblpbar.Name = "lblpbar";
-            this.lblpbar.Size = new System.Drawing.Size(0, 17);
-            this.lblpbar.TabIndex = 27;
-            // 
             // FrmUploadExcel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
-            this.ClientSize = new System.Drawing.Size(1336, 799);
+            this.ClientSize = new System.Drawing.Size(1002, 649);
             this.ControlBox = false;
             this.Controls.Add(this.label3);
             this.Controls.Add(this.grpBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmUploadExcel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";

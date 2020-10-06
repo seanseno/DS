@@ -32,5 +32,6 @@ namespace IS.Database
         public ItemReceivedOrdersRepository ItemReceivedOrdersRepository = new ItemReceivedOrdersRepository();
         public MenuAccessRepository MenuAccessRepository = new MenuAccessRepository();
         public StocksDataHistoryRepository StocksDataHistoryRepository = new StocksDataHistoryRepository();
+        public SettingsRepository SettingsRepository = new SettingsRepository();
     }
 }

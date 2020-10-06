@@ -185,7 +185,7 @@ namespace IS.Database.Repositories
             }
         }
 
-        public string GetPercentSuggestedPrice(string CategoryId)
+        public decimal GetPercentSuggestedPrice(string CategoryId)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
@@ -200,10 +200,10 @@ namespace IS.Database.Repositories
                         {
                             while (reader.Read())
                             {
-                                return reader.GetString(0);
+                                return reader.GetDecimal(0);
                             }
                         }
-                        return "0";
+                        return 0;
                     }
                 }
             }

@@ -1,9 +1,8 @@
-﻿using IS.Admin.Model;
+﻿using IIS.Admin.Transactions;
+using IS.Admin.Model;
 using IS.Admin.Reports;
 using IS.Admin.Setup;
-using IS.Admin.Setup.Cashier;
 using IS.Admin.Transactions;
-using IS.Admin.Trasactions;
 using IS.Common.Utilities;
 using IS.Database;
 using IS.Database.Enums;
@@ -147,6 +146,7 @@ namespace IS.Admin
         {
             FrmValidateOngoingStocksData frm = new FrmValidateOngoingStocksData();
             frm.ShowDialog();
+
         }
 
         private void logOffToolStripMenuItem_Click(object sender, EventArgs e)
@@ -167,15 +167,25 @@ namespace IS.Admin
         {
             foreach (ToolStripMenuItem item in menuStrip1.Items)
             {
-                item.Visible = value;
-                foreach (ToolStripMenuItem sub in item.DropDownItems)
+                if (item != null)
                 {
-                    sub.Visible = value;
-                    foreach (ToolStripItem sub1 in sub.DropDownItems)
+                    item.Visible = value;
+                    try
                     {
-                        sub1.Visible = value;
-                    }
+                        foreach (ToolStripMenuItem sub in item.DropDownItems)
+                        {
+                            sub.Visible = value;
+                            foreach (ToolStripItem sub1 in sub.DropDownItems)
+                            {
+                                sub1.Visible = value;
+                            }
 
+                        }
+                    }
+                    catch
+                    {
+                        item.Visible = value;
+                    }
                 }
 
             }
@@ -220,8 +230,8 @@ namespace IS.Admin
 
         private void salesProfitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmSalesProfit frm = new FrmSalesProfit();
-            frm.ShowDialog();
+            //FrmSalesProfit frm = new FrmSalesProfit();
+            //frm.ShowDialog();
         }
 
         private void accessMenuToolStripMenuItem_Click(object sender, EventArgs e)
@@ -240,13 +250,31 @@ namespace IS.Admin
 
         private void totalSalesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmSales frm = new FrmSales();
+            FrmSalesReport frm = new FrmSalesReport();
             frm.ShowDialog();
         }
 
         private void changeProductPriceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmProductPriceHistory frm = new FrmProductPriceHistory();
+            frm.ShowDialog();
+        }
+
+        private void salesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmSalesReport frm = new FrmSalesReport();
+            frm.ShowDialog();
+        }
+
+        private void stockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmStocksReport frm = new FrmStocksReport();
+            frm.ShowDialog();
+        }
+
+        private void stockExpiredNearlyExpiredReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmStockExpireReport frm = new FrmStockExpireReport();
             frm.ShowDialog();
         }
     }

@@ -191,7 +191,7 @@
             // 
             // btnDownload
             // 
-            this.btnDownload.Image = global::IS.Admin.Properties.Resources.download;
+
             this.btnDownload.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDownload.Location = new System.Drawing.Point(1152, 531);
             this.btnDownload.Name = "btnDownload";
@@ -213,7 +213,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Image = global::IS.Admin.Properties.Resources.search;
+
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.Location = new System.Drawing.Point(707, 25);
             this.btnSearch.Name = "btnSearch";
@@ -247,7 +247,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::IS.Admin.Properties.Resources.timer;
+
             this.pictureBox2.Location = new System.Drawing.Point(24, 33);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(123, 133);
@@ -257,7 +257,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Image = global::IS.Admin.Properties.Resources.Exit;
+
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnClose.Location = new System.Drawing.Point(1224, 531);
             this.btnClose.Name = "btnClose";

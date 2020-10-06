@@ -2,6 +2,7 @@
 using IS.Common.Utilities;
 using IS.Database;
 using IS.Database.CSV;
+using IS.Database.Views;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,6 +14,38 @@ namespace IS.Library.CSV
 {
     public class CSV 
     {
+        public string WriteSalesCSV(string DownloadPath,
+        IList<SalesCSV> listCSV,
+        IList<SalesViewReport> listView,
+        DateTime dateFrom,
+        DateTime dateTo,
+        string PreparedBY)
+        {
+            using (var writer = new StreamWriter(DownloadPath))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+
+                writer.WriteLine("Sales Report");
+                writer.WriteLine("Date: " + dateFrom.ToShortDateString() + " - " + dateTo.ToShortDateString());
+                writer.WriteLine("Prepared by :" + PreparedBY);
+                writer.WriteLine("");
+                csv.WriteRecords(listCSV);
+
+                writer.WriteLine("");
+                var total = new SalesCSV();
+                total.Date = "TOTAL";
+                    
+                total.SoldQuantity = listView.Sum(x => x.SoldQuantity).ToString("N0");
+                total.SellingPrice = listView.Sum(x => x.SoldQuantity).ToString("N2");
+                total.TotalAmount = listView.Sum(x => x.TotalAmount).ToString("N2");
+                total.SupplierPrice = listView.Sum(x => x.Profit).ToString("N2");
+                total.Profit = listView.Sum(x => x.Profit).ToString("N2");
+                csv.WriteRecord(total);
+
+                return DownloadPath;
+            }
+        }
+
         public string WriteSalesCSV(string DownloadPath, 
             IList<TotalSalesCSV> list,
             DateTime dateFrom, 

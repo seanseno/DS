@@ -34,7 +34,7 @@ namespace IS.Admin.Setup
                 var CategoriesModel = new CategoriesModel();
                 _Categories.CategoryId = txtCategoryId.Text.ToUpper();
                 _Categories.CategoryName = txtCategoryName.Text.ToUpper();
-                _Categories.PercentSuggestedPrice = txtPercent.Text;
+                _Categories.PercentSuggestedPrice = Convert.ToDecimal(txtPercent.Text);
                 if (CategoriesModel.CheckDup(this))
                 {
                     MessageBox.Show(_Categories.CategoryName + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

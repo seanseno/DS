@@ -93,7 +93,15 @@ namespace IS.Admin.Setup
                         var category = new Categories();
                         category.CategoryId = row[0].ToString().ToUpper();
                         category.CategoryName = row[1].ToString().ToUpper();
-                        category.PercentSuggestedPrice = row[2].ToString().ToUpper();
+
+                        if (string.IsNullOrEmpty(row[2].ToString().ToUpper()))
+                        {
+                            category.PercentSuggestedPrice = 0;
+                        }
+                        else
+                        {
+                            category.PercentSuggestedPrice = Convert.ToDecimal(row[2].ToString().ToUpper());
+                        }
                         lblpbar.Text = "Checking...\\category id:" + category.CategoryId + "\\category name:" + category.CategoryName;
                         lblpbar.Refresh();
                         if (string.IsNullOrEmpty(category.CategoryId) ||

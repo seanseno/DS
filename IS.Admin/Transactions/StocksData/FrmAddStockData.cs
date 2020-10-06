@@ -173,19 +173,12 @@ namespace IS.Admin.Transactions
             if (this._Product != null)
             {
                 var percent = model.GetPercentSuggestedPrice(cboCategories.SelectedValue.ToString());
-                if (!string.IsNullOrEmpty(percent))
+
+                if (!string.IsNullOrEmpty(txtSupplierPrice.Text))
                 {
-                    if (string.IsNullOrEmpty(txtSupplierPrice.Text))
-                    {
-                        txtRealUnitPrice.Text = "0.00";
-                    }
-                    else
-                    {
-                        var supplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
-                        //= (F6 * 0.2) + F6
-                        var sellingPrice = ((supplierPrice * (Convert.ToDecimal(percent) / 100)) + supplierPrice);
-                        txtRealUnitPrice.Text = sellingPrice.ToString("N2");
-                    }
+                    var supplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
+                    var sellingPrice = ((supplierPrice * (percent / 100)) + supplierPrice);
+                    txtRealUnitPrice.Text = sellingPrice.ToString("N2");
                 }
             }
         }
