@@ -27,7 +27,7 @@ namespace IS.Database.Repositories
                 }
             }
         }
-        public void Insert(string ProductId, int Qty, int TempLedgerId)
+        public void Insert(string ProductId, int Qty, int TempLedgerId, int IsSenior, int IsPwd)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
@@ -38,6 +38,8 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@ProductId", ProductId));
                     cmd.Parameters.Add(new SqlParameter("@Qty", Qty));
                     cmd.Parameters.Add(new SqlParameter("@TempLedgerId", TempLedgerId));
+                    cmd.Parameters.Add(new SqlParameter("@IsSenior", IsSenior));
+                    cmd.Parameters.Add(new SqlParameter("@IsPwd", IsPwd));
 
                     int rowAffected = cmd.ExecuteNonQuery();
 
@@ -66,7 +68,7 @@ namespace IS.Database.Repositories
 
                             //item.Description = reader.GetString(0);
                             item.Qty = reader.GetInt32(1);
-                            item.Amount = Math.Round(reader.GetDecimal(2), 2);
+                            item.TotalPrice = reader.GetDecimal(2);
                             Items.Add(item);
                         }
                         return Items;

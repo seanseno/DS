@@ -26,7 +26,7 @@ namespace IS.KIOSK.Model
                 var tempOders = factory.TempSalesRepository.FindWithLedger(frm._Cashier.CashierId, tempLedger.Id, EnumActive.Active);
                 if (tempOders != null)
                 {
-                    return (tempOders, tempOders.Sum(x => x.Amount));
+                    return (tempOders, tempOders.Sum(x => x.TotalPrice));
                 }
             }
             return (null,0);

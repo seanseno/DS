@@ -273,6 +273,26 @@ namespace IS.KIOSK.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap return_box {
+            get {
+                object obj = ResourceManager.GetObject("return-box", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap return_box__1_ {
+            get {
+                object obj = ResourceManager.GetObject("return-box (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap SeanLogo {
             get {
                 object obj = ResourceManager.GetObject("SeanLogo", resourceCulture);

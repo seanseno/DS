@@ -2,6 +2,7 @@
 using IS.Database.Entities;
 using IS.Database.Enums;
 using IS.Database.Strategy;
+using IS.Database.Views;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

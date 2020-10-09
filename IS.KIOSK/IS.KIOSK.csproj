@@ -314,5 +314,11 @@
   <ItemGroup>
     <None Include="Resources\click1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\return-box.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\return-box %281%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

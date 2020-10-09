@@ -121,6 +121,9 @@
   <data name="light-blue-wallpaper-22" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\light-blue-wallpaper-22.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="click1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\click1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Cashier" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cashier.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -178,6 +181,9 @@
   <data name="checkout" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\checkout.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="return-box" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\return-box.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -205,7 +211,7 @@
   <data name="multimedia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\multimedia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="click1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\click1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="return-box (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\return-box (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

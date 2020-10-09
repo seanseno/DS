@@ -31,16 +31,20 @@
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlDiscount = new System.Windows.Forms.Panel();
+            this.rbPwd = new System.Windows.Forms.RadioButton();
+            this.rbSenior = new System.Windows.Forms.RadioButton();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.lblError = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
             this.txtQty = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblError = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
+            this.pnlDiscount.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
@@ -51,6 +55,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
+            this.panel1.Controls.Add(this.pnlDiscount);
             this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Controls.Add(this.lblError);
             this.panel1.Controls.Add(this.lblTotal);
@@ -59,8 +64,72 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(403, 134);
+            this.panel1.Size = new System.Drawing.Size(403, 153);
             this.panel1.TabIndex = 9;
+            // 
+            // pnlDiscount
+            // 
+            this.pnlDiscount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.pnlDiscount.Controls.Add(this.rbPwd);
+            this.pnlDiscount.Controls.Add(this.rbSenior);
+            this.pnlDiscount.Location = new System.Drawing.Point(185, 70);
+            this.pnlDiscount.Name = "pnlDiscount";
+            this.pnlDiscount.Size = new System.Drawing.Size(200, 27);
+            this.pnlDiscount.TabIndex = 12;
+            this.pnlDiscount.Visible = false;
+            // 
+            // rbPwd
+            // 
+            this.rbPwd.AutoSize = true;
+            this.rbPwd.Location = new System.Drawing.Point(110, 6);
+            this.rbPwd.Name = "rbPwd";
+            this.rbPwd.Size = new System.Drawing.Size(51, 17);
+            this.rbPwd.TabIndex = 2;
+            this.rbPwd.TabStop = true;
+            this.rbPwd.Text = "PWD";
+            this.rbPwd.UseVisualStyleBackColor = true;
+            this.rbPwd.Visible = false;
+            this.rbPwd.CheckedChanged += new System.EventHandler(this.rbPwd_CheckedChanged);
+            this.rbPwd.KeyUp += new System.Windows.Forms.KeyEventHandler(this.rbPwd_KeyUp);
+            // 
+            // rbSenior
+            // 
+            this.rbSenior.AutoSize = true;
+            this.rbSenior.Location = new System.Drawing.Point(15, 6);
+            this.rbSenior.Name = "rbSenior";
+            this.rbSenior.Size = new System.Drawing.Size(89, 17);
+            this.rbSenior.TabIndex = 1;
+            this.rbSenior.TabStop = true;
+            this.rbSenior.Text = "Senior Citizen";
+            this.rbSenior.UseVisualStyleBackColor = true;
+            this.rbSenior.Visible = false;
+            this.rbSenior.CheckedChanged += new System.EventHandler(this.rbSenior_CheckedChanged);
+            this.rbSenior.KeyUp += new System.Windows.Forms.KeyEventHandler(this.rbSenior_KeyUp);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.Color.Black;
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.richTextBox1.Location = new System.Drawing.Point(19, 10);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(366, 54);
+            this.richTextBox1.TabIndex = 11;
+            this.richTextBox1.Text = "asdasdasd";
+            // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.Location = new System.Drawing.Point(19, 132);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(47, 16);
+            this.lblError.TabIndex = 10;
+            this.lblError.Text = "lblEror";
+            this.lblError.Visible = false;
             // 
             // lblTotal
             // 
@@ -68,10 +137,10 @@
             this.lblTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.Color.White;
-            this.lblTotal.Location = new System.Drawing.Point(118, 100);
+            this.lblTotal.Location = new System.Drawing.Point(121, 108);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(49, 24);
-            this.lblTotal.TabIndex = 4;
+            this.lblTotal.TabIndex = 3;
             this.lblTotal.Text = "0.00";
             // 
             // txtQty
@@ -91,7 +160,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(15, 104);
+            this.label2.Location = new System.Drawing.Point(18, 112);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(109, 20);
             this.label2.TabIndex = 3;
@@ -107,22 +176,10 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Quantity :";
             // 
-            // lblError
-            // 
-            this.lblError.AutoSize = true;
-            this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(176, 76);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(47, 16);
-            this.lblError.TabIndex = 10;
-            this.lblError.Text = "lblEror";
-            this.lblError.Visible = false;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(34, 190);
+            this.label3.Location = new System.Drawing.Point(44, 203);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(124, 13);
             this.label3.TabIndex = 16;
@@ -131,7 +188,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(34, 176);
+            this.label4.Location = new System.Drawing.Point(44, 189);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(121, 13);
             this.label4.TabIndex = 15;
@@ -140,24 +197,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 163);
+            this.label5.Location = new System.Drawing.Point(22, 176);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 13);
             this.label5.TabIndex = 14;
             this.label5.Text = "Shorcut Key";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.BackColor = System.Drawing.Color.Black;
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.richTextBox1.Location = new System.Drawing.Point(19, 10);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(366, 54);
-            this.richTextBox1.TabIndex = 11;
-            this.richTextBox1.Text = "asdasdasd";
             // 
             // frmMultiplier
             // 
@@ -165,7 +209,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(429, 219);
+            this.ClientSize = new System.Drawing.Size(432, 234);
             this.ControlBox = false;
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
@@ -179,6 +223,8 @@
             this.Load += new System.EventHandler(this.frmMultiplier_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.pnlDiscount.ResumeLayout(false);
+            this.pnlDiscount.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,5 +242,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RadioButton rbPwd;
+        private System.Windows.Forms.RadioButton rbSenior;
+        private System.Windows.Forms.Panel pnlDiscount;
     }
 }

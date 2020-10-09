@@ -3,6 +3,7 @@ using IS.Admin.Model;
 using IS.Admin.Reports;
 using IS.Admin.Setup;
 using IS.Admin.Transactions;
+using IS.Admin.Utilities;
 using IS.Common.Utilities;
 using IS.Database;
 using IS.Database.Enums;
@@ -268,6 +269,18 @@ namespace IS.Admin
         private void stockExpiredNearlyExpiredReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmStockExpireReport frm = new FrmStockExpireReport();
+            frm.ShowDialog();
+        }
+
+        private void discountedProductsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmProductsDiscounted frm = new FrmProductsDiscounted();
+            frm.ShowDialog();
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmReturnItemSettings frm = new FrmReturnItemSettings();
             frm.ShowDialog();
         }
     }

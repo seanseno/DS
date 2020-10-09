@@ -192,6 +192,36 @@
     <Compile Include="CustomDataGridView\CustomDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Utilities\Settings\FrmEditSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\Settings\FrmEditSettings.Designer.cs">
+      <DependentUpon>FrmEditSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Settings\FrmSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\Settings\FrmSetting.Designer.cs">
+      <DependentUpon>FrmSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setup\ProductsDiscounted\EditProductDiscounted.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\ProductsDiscounted\EditProductDiscounted.Designer.cs">
+      <DependentUpon>EditProductDiscounted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setup\ProductsDiscounted\AddProductDiscounted.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\ProductsDiscounted\AddProductDiscounted.Designer.cs">
+      <DependentUpon>AddProductDiscounted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setup\ProductsDiscounted\FrmProductsDiscounted.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\ProductsDiscounted\FrmProductsDiscounted.Designer.cs">
+      <DependentUpon>FrmProductsDiscounted.cs</DependentUpon>
+    </Compile>
     <Compile Include="Setup\Products\FrmEditProduct.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -470,6 +500,15 @@
     <EmbeddedResource Include="Setup\Categories\FrmCategoriesUploadExcel.resx">
       <DependentUpon>FrmCategoriesUploadExcel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Setup\ProductsDiscounted\EditProductDiscounted.resx">
+      <DependentUpon>EditProductDiscounted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\ProductsDiscounted\AddProductDiscounted.resx">
+      <DependentUpon>AddProductDiscounted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\ProductsDiscounted\FrmProductsDiscounted.resx">
+      <DependentUpon>FrmProductsDiscounted.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Setup\Products\FrmEditProduct.resx">
       <DependentUpon>FrmEditProduct.cs</DependentUpon>
     </EmbeddedResource>
@@ -487,6 +526,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Setup\Products\FrmModalSearchProducts.resx">
       <DependentUpon>FrmModalSearchProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Settings\FrmEditSettings.resx">
+      <DependentUpon>FrmEditSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Settings\FrmSetting.resx">
+      <DependentUpon>FrmSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\OngoingStocksData\FrmOngoingAddStockData.resx">
       <DependentUpon>FrmOngoingAddStockData.cs</DependentUpon>

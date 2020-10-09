@@ -23,7 +23,7 @@ namespace IS.KIOSK
         public Cashiers _Cashier { get; set; }
         ISFactory factory = new ISFactory();
         MainModel mainModel = new MainModel();
-        public decimal TotalPrice { get; set; }
+        public decimal _TotalPrice { get; set; }
         public bool isKeyPressEnter { get; set; }
 
         int CountErrorlabel = 0;
@@ -51,14 +51,14 @@ namespace IS.KIOSK
         {
             _TempLedgerSales = factory.TempLedgerSalesRepository.FindDefault(this._Cashier.CashierId,txtCustomerName.Text.ToUpper());
             _TempOrderList = mainModel.LoadTempOders(this,txtCustomerName.Text).Item1;
-            TotalPrice = mainModel.LoadTempOders(this, txtCustomerName.Text).Item2;
+            _TotalPrice = mainModel.LoadTempOders(this, txtCustomerName.Text).Item2;
 
 
             dgvOrders.AutoGenerateColumns = false;
             dgvOrders.DataSource = _TempOrderList;
             dgvOrders.StandardTab = true;
 
-            txtTotal.Text = String.Format("{0:n}", TotalPrice);
+            txtTotal.Text = String.Format("{0:n}", _TotalPrice);
 
         }
 

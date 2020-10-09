@@ -2,6 +2,7 @@
 using IS.Database;
 using IS.Database.Entities;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,6 +32,7 @@ namespace IS.KIOSK
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+             
             var (cashierId,response, message) = factory.CashiersRepository.CashiersStrategy.CheckCashierLogin(txtLoginame.Text, txtPassword.Text);
             if (response)
             {

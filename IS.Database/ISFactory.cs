@@ -33,5 +33,6 @@ namespace IS.Database
         public MenuAccessRepository MenuAccessRepository = new MenuAccessRepository();
         public StocksDataHistoryRepository StocksDataHistoryRepository = new StocksDataHistoryRepository();
         public SettingsRepository SettingsRepository = new SettingsRepository();
+        public ProductsDiscountedRepository ProductsDiscountedRepository = new ProductsDiscountedRepository();
     }
 }

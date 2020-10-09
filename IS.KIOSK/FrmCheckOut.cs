@@ -21,7 +21,7 @@ namespace IS.KIOSK
         {
             InitializeComponent();
             _FrmMain = frm;
-            lblTotalPrice.Text = "Total Price : " + Math.Round(_FrmMain.TotalPrice,2).ToString("N2");
+            lblTotalPrice.Text = "Total Price : " + Math.Round(_FrmMain._TotalPrice, 2).ToString("N2");
         }
 
 
@@ -32,7 +32,7 @@ namespace IS.KIOSK
                 if (decimal.TryParse(txtAmount.Text, out decimal amount))
                 {
                     this.payAmount = amount;
-                    this.changeAmount = amount - _FrmMain.TotalPrice;
+                    this.changeAmount = amount - _FrmMain._TotalPrice;
                     lblChange.Text = "Change :  " + String.Format("{0:n}", this.changeAmount);
                 }
                 else
@@ -126,7 +126,7 @@ namespace IS.KIOSK
 
         private void LoadOrders(int? OrNumber)
         {
-            decimal total = _FrmMain._TempOrderList.Sum(x => x.Amount);
+            decimal total = _FrmMain._TempOrderList.Sum(x => x.TotalPrice);
             rtxtOrders.Clear();
             rtxtOrders.Text += "*******************************************************************\n";
             rtxtOrders.Text += "                         Fees Receipt System\n";
@@ -137,7 +137,7 @@ namespace IS.KIOSK
             rtxtOrders.Text += "\n";
             foreach (var itm in _FrmMain._TempOrderList)
             {
-                 var descList = WordWrap.Wrap(itm.ProductName + " " + itm.Qty + " " + itm.Amount, 50);
+                 var descList = WordWrap.Wrap(itm.ProductName + " " + itm.Qty + " " + itm.TotalPrice, 50);
                 int Count = 0;
                 foreach(var desc in descList)
                 {

@@ -28,66 +28,28 @@ namespace IS.Database.Repositories
                 }
             }
         }
-        public void Insert(Settings Categories)
+
+        public void Update(Settings settings)
         {
-            //using (SqlConnection connection = new SqlConnection(ConStr))
-            //{
-            //    connection.Open();
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
 
-            //    using (SqlCommand cmd = new SqlCommand("spCategoriesInsert", connection))
-            //    {
-            //        cmd.CommandType = CommandType.StoredProcedure;
-            //        cmd.Parameters.Add(new SqlParameter("@CategoryId", Categories.CategoryId.ToUpper()));
-            //        cmd.Parameters.Add(new SqlParameter("@CategoryName", Categories.CategoryName.ToUpper()));
-            //        cmd.Parameters.Add(new SqlParameter("@PercentSuggestedPrice", Categories.PercentSuggestedPrice));
-            //        int rowAffected = cmd.ExecuteNonQuery();
+                using (SqlCommand cmd = new SqlCommand("spSettingsUpdate", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Id", settings.Id));
+                    cmd.Parameters.Add(new SqlParameter("@ExpirationAlert", settings.ExpirationAlert));
+                    cmd.Parameters.Add(new SqlParameter("@SeniorDiscount", settings.SeniorDiscount));
+                    cmd.Parameters.Add(new SqlParameter("@PWDDiscount", settings.PWDDiscount));
+                    cmd.Parameters.Add(new SqlParameter("@ReturnItem", settings.ReturnItem));
+                    int rowAffected = cmd.ExecuteNonQuery();
 
-            //        if (connection.State == System.Data.ConnectionState.Open)
-            //            connection.Close();
-            //    }
-            //}
+                    if (connection.State == System.Data.ConnectionState.Open)
+                        connection.Close();
+                }
+
+            }
         }
-
-        public void Update(Categories Categories)
-        {
-            //using (SqlConnection connection = new SqlConnection(ConStr))
-            //{
-            //    connection.Open();
-
-            //    using (SqlCommand cmd = new SqlCommand("spCategoriesUpdate", connection))
-            //    {
-            //        cmd.CommandType = CommandType.StoredProcedure;
-            //        cmd.Parameters.Add(new SqlParameter("@CategoryId", Categories.CategoryId.ToUpper()));
-            //        cmd.Parameters.Add(new SqlParameter("@CategoryName", Categories.CategoryName.ToUpper()));
-            //        cmd.Parameters.Add(new SqlParameter("@PercentSuggestedPrice", Categories.PercentSuggestedPrice));
-            //        int rowAffected = cmd.ExecuteNonQuery();
-
-            //        if (connection.State == System.Data.ConnectionState.Open)
-            //            connection.Close();
-            //    }
-
-            //}
-        }
-
-        public void Delete(Categories Categories)
-        {
-            //using (SqlConnection connection = new SqlConnection(ConStr))
-            //{
-            //    connection.Open();
-
-            //    using (SqlCommand cmd = new SqlCommand("spCategoriesDelete", connection))
-            //    {
-            //        cmd.CommandType = CommandType.StoredProcedure;
-            //        cmd.Parameters.Add(new SqlParameter("@CategoryId", Categories.CategoryId.ToUpper()));
-
-            //        int rowAffected = cmd.ExecuteNonQuery();
-
-            //        if (connection.State == System.Data.ConnectionState.Open)
-            //            connection.Close();
-            //    }
-
-            //}
-        }
-
     }
 }

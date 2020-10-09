@@ -1,5 +1,6 @@
 ﻿using IS.Database;
 using IS.Database.Entities;
+using IS.Database.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,8 @@ namespace IS.KIOSK
         public int? Qty { get; set; }
         private string _ProductId { get; set; }
         int CountErrorlabel = 0;
+        decimal SeniroDiscount { get; set; }
+        decimal PwdDiscount { get; set; }
         public frmMultiplier(FrmMain model, string ProductId)
         {
             InitializeComponent();
@@ -30,7 +33,7 @@ namespace IS.KIOSK
         private void txtQty_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Verify that the pressed key isn't CTRL or any non-numeric digit
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -44,13 +47,64 @@ namespace IS.KIOSK
             richTextBox1.Text = product.ProductName;
 
             lblTotal.Text = Math.Round((this.product.Price * Convert.ToDecimal(txtQty.Text)), 2).ToString();
+            var discount = factory.ProductsDiscountedRepository.GetList().Where(x => x.ProductId == _ProductId).FirstOrDefault();
+
+            if (discount != null)
+            {
+                var percentDiscount = factory.SettingsRepository.GetList().FirstOrDefault();
+                if (percentDiscount == null)
+                {
+                    MessageBox.Show("Discount price not yet in setup!, please call administrator!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.DialogResult = DialogResult.Cancel;
+                }
+                else
+                {
+                    this.SeniroDiscount = percentDiscount.SeniorDiscount;
+                    this.PwdDiscount = percentDiscount.PWDDiscount;
+                }
+
+                pnlDiscount.Visible = true;
+                if (discount.IsPWD == (int)EnumActive.Active && discount.IsSenior == (int)EnumActive.Active)
+                {
+                    rbPwd.Visible = true;
+                    rbSenior.Visible = true;
+                }
+                else if (discount.IsPWD != (int)EnumActive.Active && discount.IsSenior == (int)EnumActive.Active)
+                {
+                    rbPwd.Visible = false;
+                    rbSenior.Visible = true;
+                }
+                else if (discount.IsPWD == (int)EnumActive.Active && discount.IsSenior != (int)EnumActive.Active)
+                {
+                    rbPwd.Visible = true;
+                    rbSenior.Visible = false;
+                    rbPwd.Location = rbSenior.Location;
+                }
+            }
         }
 
         private void txtQty_TextChanged(object sender, EventArgs e)
         {
+
             if (!string.IsNullOrEmpty((txtQty.Text)))
             {
-                lblTotal.Text = String.Format("{0:N}", Math.Round((this.product.Price * Convert.ToDecimal(txtQty.Text)), 2));
+                if (rbSenior.Checked)
+                {
+                    decimal discount = (this.product.Price * Convert.ToDecimal(txtQty.Text)) * (this.SeniroDiscount/100);
+                    decimal total = (this.product.Price * Convert.ToDecimal(txtQty.Text)) - discount;
+                    lblTotal.Text = total.ToString("N2");
+                }
+                else if (rbPwd.Checked)
+                {
+                    decimal discount = (this.product.Price * Convert.ToDecimal(txtQty.Text)) * (this.PwdDiscount / 100);
+                    decimal total = (this.product.Price * Convert.ToDecimal(txtQty.Text)) - discount;
+                    lblTotal.Text = total.ToString("N2");
+                }
+                else
+                {
+                    lblTotal.Text = String.Format("{0:N}", Math.Round((this.product.Price * Convert.ToDecimal(txtQty.Text)), 2));
+                }
+              
             }
             else
             {
@@ -84,7 +138,7 @@ namespace IS.KIOSK
                             }
                             else
                             {
-                                factory.TempSalesRepository.Insert(product.ProductId, Qty, (int)_FrmMain._TempLedgerSales.Id);
+                                factory.TempSalesRepository.Insert(product.ProductId, Qty, (int)_FrmMain._TempLedgerSales.Id, rbSenior.Checked== true ? 1 : 0, rbPwd.Checked == true ? 1 : 0);
                                 // _frmKiosk.AddTempOrder();
                                 this.Qty = Qty;
                                 this.DialogResult = DialogResult.OK;
@@ -124,6 +178,26 @@ namespace IS.KIOSK
                 lblError.Visible = true;
                 CountErrorlabel = 0;
             }
+        }
+
+        private void rbSenior_KeyUp(object sender, KeyEventArgs e)
+        {
+            txtQty_KeyUp(sender, e);
+        }
+
+        private void rbPwd_KeyUp(object sender, KeyEventArgs e)
+        {
+            txtQty_KeyUp(sender, e);
+        }
+
+        private void rbSenior_CheckedChanged(object sender, EventArgs e)
+        {
+            txtQty_TextChanged(sender, e);
+        }
+
+        private void rbPwd_CheckedChanged(object sender, EventArgs e)
+        {
+            txtQty_TextChanged(sender, e);
         }
     }
 }
