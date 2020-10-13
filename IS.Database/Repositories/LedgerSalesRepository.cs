@@ -26,7 +26,7 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@CashierId", cashier.CashierId));
                     cmd.Parameters.Add(new SqlParameter("@PayAmount", PayAmount));
                     cmd.Parameters.Add(new SqlParameter("@Change", Change));
-                    cmd.Parameters.Add(new SqlParameter("@CustomerName", customerName));
+                    cmd.Parameters.Add(new SqlParameter("@CustomerName", string.IsNullOrEmpty(customerName)? "" : customerName));
                     cmd.Parameters.Add(new SqlParameter("@TempLedgerSaleId", tempLedgerSaleId));
    
 
@@ -155,6 +155,31 @@ namespace IS.Database.Repositories
             }
         }
 
-         //public LedgerSalesStrategy LedgerSalesStrategy => new LedgerSalesStrategy();
+        public int ReturnItem(int StockDataId, int SalesId, int Quantity, int QuantityReturn, string Remarks, string LoginName)
+        {
+            int LedgerId = 0;
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand("spReturnItem", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@StockDataId", StockDataId));
+                    cmd.Parameters.Add(new SqlParameter("@SalesId", SalesId));
+                    cmd.Parameters.Add(new SqlParameter("@Quantity", Quantity));
+                    cmd.Parameters.Add(new SqlParameter("@QuantityReturn", QuantityReturn));
+                    cmd.Parameters.Add(new SqlParameter("@Remarks", Remarks));
+                    cmd.Parameters.Add(new SqlParameter("@LoginName", LoginName));
+                    
+                    cmd.ExecuteNonQuery();
+
+                    if (connection.State == System.Data.ConnectionState.Open)
+                        connection.Close();
+                }
+                return LedgerId;
+            }
+        }
+
+        //public LedgerSalesStrategy LedgerSalesStrategy => new LedgerSalesStrategy();
     }
 }

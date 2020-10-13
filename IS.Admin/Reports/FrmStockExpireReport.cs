@@ -26,18 +26,19 @@ namespace IS.Admin.Reports
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            var response = factory.StocksDataRepository.GetListStocksDataExpireReport();
+            LoadData();
+        }
+        private void LoadData()
+        {
+            _list = factory.StocksDataRepository.GetListStocksDataExpireReport().OrderByDescending(x => x.ExpirationDate).ToList();
             var days = factory.SettingsRepository.GetList()[0].ExpirationAlert;
             DateTime date = DateTimeConvertion.ConvertDateTo(DateTime.Now.AddDays(days));
-            response = response.Where(x => x.ExpirationDate <= date).ToList();
-            response = response.Where(x => x.CategoryName.Contains(txtSearch.Text.Trim().ToUpper()) ||
+            _list = _list.Where(x => x.ExpirationDate <= date).ToList();
+            _list = _list.Where(x => x.CategoryName.Contains(txtSearch.Text.Trim().ToUpper()) ||
                         x.PrincipalName.Contains(txtSearch.Text.Trim().ToUpper()) ||
                         x.ProductName.Contains(txtSearch.Text.Trim().ToUpper())).ToList();
-            _list = response;
-            dgvSales.AutoGenerateColumns = false;
-            dgvSales.DataSource = _list;
+            AddedFoorter(_list.ToList(), dgvSales);
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -91,6 +92,48 @@ namespace IS.Admin.Reports
             {
                 MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void FrmStockExpireReport_Load(object sender, EventArgs e)
+        {
+            var response = factory.StocksDataRepository.GetListStocksDataExpireReport().OrderByDescending(x => x.ExpirationDate).ToList() ;
+            _list = response;
+            AddedFoorter(_list.ToList(), dgvSales);
+        }
+
+        private void AddedFoorter(List<StocksDataExpireViewReport> _list, DataGridView dgv)
+        {
+            List<StocksDataExpireViewReport> response = new List<StocksDataExpireViewReport>();
+            response = _list;
+            if (response.Count == 0)
+            {
+                dgv.AutoGenerateColumns = false;
+                dgv.DataSource = response;
+                return;
+            }
+            response.Add(new StocksDataExpireViewReport
+            {
+                ProductName = ""
+            });
+
+            dgv.AutoGenerateColumns = false;
+            dgv.DataSource = response;
+
+            dgv[2, dgvSales.Rows.Count - 1].Value = "TOTAL";
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[2].Style.Font = new Font("Arial", 16, FontStyle.Bold);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[2].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[3].Style.Font = new Font("Arial", 12, FontStyle.Bold);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[3].Style.BackColor = Color.Green;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[3].Style.ForeColor = Color.White;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[3].Value = response.Sum(x => x.RemainingQuantity);
+
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[4].Style.Font = new Font("Arial", 12, FontStyle.Bold);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[4].Style.BackColor = Color.Green;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[4].Style.ForeColor = Color.White;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[4].Value = response.Sum(x => x.RemainingAmount);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[4].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
     }
 }

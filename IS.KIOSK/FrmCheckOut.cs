@@ -132,12 +132,12 @@ namespace IS.KIOSK
             rtxtOrders.Text += "                         Fees Receipt System\n";
             rtxtOrders.Text += "*******************************************************************\n";
             rtxtOrders.Text += "Date : " + DateTime.Now + " \n";
-            rtxtOrders.Text += "OR NO : " + string.Format("{0:00000000}", OrNumber) + "\n";
+            rtxtOrders.Text += "Transaction No. : " + string.Format("{0:000000000000}", OrNumber) + "\n";
             rtxtOrders.Text += "\n";
             rtxtOrders.Text += "\n";
             foreach (var itm in _FrmMain._TempOrderList)
             {
-                 var descList = WordWrap.Wrap(itm.ProductName + " " + itm.Qty + " " + itm.TotalPrice, 50);
+                 var descList = WordWrap.Wrap(itm.ProductName + " " + itm.Qty + " " + itm.TotalPrice.ToString("N2"), 50);
                 int Count = 0;
                 foreach(var desc in descList)
                 {
@@ -156,7 +156,7 @@ namespace IS.KIOSK
             }
             rtxtOrders.Text += "\n";
             rtxtOrders.Text += "\n";
-            rtxtOrders.Text += "Total Amount: " + total;
+            rtxtOrders.Text += "Total Amount: " + total.ToString("N2"); 
         }
         //private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
         //{

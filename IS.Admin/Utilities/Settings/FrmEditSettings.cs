@@ -30,7 +30,7 @@ namespace IS.Admin.Utilities
             var response = factory.SettingsRepository.GetList().FirstOrDefault();
             if (response != null)
             {
-                txtEpiration.Text = response.ExpirationAlert.ToString("N0");
+                txtExpiration.Text = response.ExpirationAlert.ToString("N0");
                 txtReturnItem.Text = response.ReturnItem.ToString("N0");
                 txtSenior.Text = response.ExpirationAlert.ToString("N2");
                 txtPwd.Text = response.ExpirationAlert.ToString("N2");
@@ -71,14 +71,49 @@ namespace IS.Admin.Utilities
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var setting = factory.SettingsRepository.GetList().FirstOrDefault(); 
-            setting.ExpirationAlert = Convert.ToInt32(txtEpiration.Text);
-            setting.ExpirationAlert = Convert.ToInt32(txtEpiration.Text);
-            setting.ExpirationAlert = Convert.ToInt32(txtEpiration.Text);
-            setting.ExpirationAlert = Convert.ToInt32(txtEpiration.Text);
+            if (checkInput())
+            {
+                if (MessageBox.Show("Are you sure do want to update this setting?", "information.", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    var setting = factory.SettingsRepository.GetList().FirstOrDefault();
+                    setting.ExpirationAlert = Convert.ToInt32(txtExpiration.Text);
+                    setting.ReturnItem = Convert.ToInt32(txtReturnItem.Text);
+                    setting.SeniorDiscount = Convert.ToDecimal(txtSenior.Text);
+                    setting.PWDDiscount = Convert.ToDecimal(txtPwd.Text);
+                    factory.SettingsRepository.Update(setting);
+                    this.DialogResult = DialogResult.OK;
+                }
+            }
+        }
 
-            factory.SettingsRepository.Update(setting);
-            this.DialogResult = DialogResult.OK;
+        private bool checkInput()
+        {
+            bool IsOk = true;
+            if (string.IsNullOrEmpty(txtExpiration.Text))
+            {
+                MessageBox.Show("Expiration alert is required.", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtExpiration.Focus();
+                IsOk = false;
+            }
+            else if (string.IsNullOrEmpty(txtReturnItem.Text))
+            {
+                MessageBox.Show("Return item is required.", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtReturnItem.Focus();
+                IsOk = false;
+            }
+            else if (string.IsNullOrEmpty(txtSenior.Text))
+            {
+                MessageBox.Show("Senior discount is required.", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtSenior.Focus();
+                IsOk = false;
+            }
+            else if (string.IsNullOrEmpty(txtPwd.Text))
+            {
+                MessageBox.Show("PWD discount is required.", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPwd.Focus();
+                IsOk = false;
+            }
+            return IsOk;
         }
     }
 }

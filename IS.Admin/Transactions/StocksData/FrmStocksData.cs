@@ -186,7 +186,5 @@ namespace IS.Admin.Transactions
                 }
             }
         }
-
-
     }
 }

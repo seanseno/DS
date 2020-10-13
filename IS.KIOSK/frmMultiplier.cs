@@ -44,7 +44,7 @@ namespace IS.KIOSK
         {
             this.product = factory.ProductsRepository.FindWithProductId(_ProductId);
 
-            richTextBox1.Text = product.ProductName;
+            lblProductName.Text = product.ProductName;
 
             lblTotal.Text = Math.Round((this.product.Price * Convert.ToDecimal(txtQty.Text)), 2).ToString();
             var discount = factory.ProductsDiscountedRepository.GetList().Where(x => x.ProductId == _ProductId).FirstOrDefault();

@@ -36,11 +36,11 @@ namespace IS.Library.CSV
                 var total = new SalesCSV();
                 total.Date = "TOTAL";
                     
-                total.SoldQuantity = listView.Sum(x => x.SoldQuantity).ToString("N0");
-                total.SellingPrice = listView.Sum(x => x.SellingPrice).ToString("N2");
-                total.TotalAmount = listView.Sum(x => x.TotalAmount).ToString("N2");
-                total.SupplierPrice = listView.Sum(x => x.SupplierPrice).ToString("N2");
-                total.Profit = listView.Sum(x => x.Profit).ToString("N2");
+                total.SoldQuantity = listView.Sum(x => x.SoldQuantity)?.ToString("N0");
+                total.SellingPrice = listView.Sum(x => x.SellingPrice)?.ToString("N2");
+                total.TotalAmount = listView.Sum(x => x.TotalAmount)?.ToString("N2");
+                total.SupplierPrice = listView.Sum(x => x.SupplierPrice)?.ToString("N2");
+                total.Profit = listView.Sum(x => x.Profit)?.ToString("N2");
                 csv.WriteRecord(total);
 
                 return DownloadPath;
@@ -59,7 +59,7 @@ namespace IS.Library.CSV
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
 
-                writer.WriteLine("Sales Report");
+                writer.WriteLine("Stocks Report");
                 writer.WriteLine("Date: " + dateFrom.ToShortDateString() + " - " + dateTo.ToShortDateString());
                 writer.WriteLine("Prepared By: " + PreparedBY);
                 writer.WriteLine("Prepared Date: " + DateTime.Now);
@@ -92,7 +92,7 @@ namespace IS.Library.CSV
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
 
-                writer.WriteLine("Sales Report");
+                writer.WriteLine("Expired/Nearly Expired Items");
                 writer.WriteLine("Prepared By: " + PreparedBY);
                 writer.WriteLine("Prepared Date: " + DateTime.Now);
                 writer.WriteLine("");
@@ -104,6 +104,36 @@ namespace IS.Library.CSV
 
                 total.RemainingQuantity = listView.Sum(x => x.RemainingQuantity).ToString("N0");
                 total.RemainingAmount = listView.Sum(x => x.RemainingAmount).ToString("N2");
+                csv.WriteRecord(total);
+
+                return DownloadPath;
+            }
+        }
+
+        public string WriteReturnItemsCSV(string DownloadPath,
+            IList<ReturnItemsCSV> listCSV,
+            IList<ReturnIemsView> listView,
+            DateTime dateFrom,
+            DateTime dateTo,
+            string PreparedBY)
+        {
+            using (var writer = new StreamWriter(DownloadPath))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+
+                writer.WriteLine("Returned Items Report");
+                writer.WriteLine("Date: " + dateFrom.ToShortDateString() + " - " + dateTo.ToShortDateString());
+                writer.WriteLine("Prepared By: " + PreparedBY);
+                writer.WriteLine("Prepared Date: " + DateTime.Now);
+                writer.WriteLine("");
+                csv.WriteRecords(listCSV);
+
+                writer.WriteLine("");
+                var total = new ReturnItemsCSV();
+                total.Fullname = "TOTAL";
+
+                total.Qty = listView.Sum(x => x.Qty).ToString("N0");
+                total.Price = listView.Sum(x => x.Price).ToString("N2");
                 csv.WriteRecord(total);
 
                 return DownloadPath;

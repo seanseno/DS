@@ -28,6 +28,7 @@ namespace IS.KIOSK
         public FrmModalSearchProducts(List<string> fixedquery = null)
         {
             InitializeComponent();
+            this.KeyPreview = true;
             _Query = fixedquery;
             ActiveControl = txtSearch;
             //this.Shown += new System.EventHandler(this.FrmModalSearchProducts_Shown);
@@ -156,6 +157,14 @@ namespace IS.KIOSK
             if (e.KeyValue == 13)
             {
                 btnSelect_Click(sender, e);
+            }
+        }
+
+        private void FrmModalSearchProducts_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue ==27)
+            {
+                btnClose_Click(sender, e);
             }
         }
     }

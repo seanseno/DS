@@ -13,13 +13,13 @@ namespace IS.Database.Repositories
 {
     public class TempLedgerSalesRepository : Helper
     {
-        public TempLedgerSales Insert(string cashierId, string customerName)
+        public TempLedgerSales Insert(string cashierId)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "INSERT INTO TempLedgerSales (CashierId,Active,CustomerName) Values " +
-                    "('"+ cashierId + "',"+ (int)EnumActive.Active + ",'" + customerName + "'); SELECT SCOPE_IDENTITY();";
+                var select = "INSERT INTO TempLedgerSales (CashierId,Active) Values " +
+                    "('"+ cashierId + "',"+ (int)EnumActive.Active + "); SELECT SCOPE_IDENTITY();";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
 
@@ -27,7 +27,6 @@ namespace IS.Database.Repositories
                     {
                         Id = Convert.ToInt32(cmd.ExecuteScalar()),
                         CashierId = cashierId,
-                        CustomerName = customerName,
                         InsertTime = DateTime.Now
                     };
 
@@ -82,7 +81,7 @@ namespace IS.Database.Repositories
                         else
                         {
                             var factory = new ISFactory();
-                            return  factory.TempLedgerSalesRepository.Insert(cashierId, CustomerName);
+                            return  factory.TempLedgerSalesRepository.Insert(cashierId);
                         }
                     }
                 }

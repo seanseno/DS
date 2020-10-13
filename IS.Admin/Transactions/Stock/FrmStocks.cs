@@ -46,31 +46,6 @@ namespace IS.Admin.Transactions
             
         }
 
-
-        private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            var ProductId = dgvSearch.CurrentRow.Cells[0].Value?.ToString();
-            if (e.ColumnIndex == 4) //add
-            {
-                FrmEditStock frm = new FrmEditStock(ProductId, EnumStock.Credit);
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    this.LoadStocks();
-                    MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                };
-            }
-            if (e.ColumnIndex == 5) //Subract
-            {
-                FrmEditStock frm = new FrmEditStock(ProductId, EnumStock.Debit);
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.LoadStocks();
-                };
-            }
-
-        }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();

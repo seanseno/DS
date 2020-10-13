@@ -241,6 +241,29 @@ namespace IS.Database.Repositories
                 }
             }
         }
+
+        /// <summary>
+        /// For Kiosk return item
+        /// </summary>
+        /// <returns></returns>
+        public List<SearchProductReturnItemView> GetListSoldProduct()
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT * FROM vSearchProductReturnItem";
+
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        List<SearchProductReturnItemView> Products = new List<SearchProductReturnItemView>();
+                        var List = new ReflectionPopulator<SearchProductReturnItemView>().CreateList(reader);
+                        return List;
+                    }
+                }
+            }
+        }
         public ProductsStrategy ProductsStrategy => new ProductsStrategy();
 
     }

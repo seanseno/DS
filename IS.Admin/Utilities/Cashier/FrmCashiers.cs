@@ -1,4 +1,5 @@
 ﻿using IS.Admin.Model;
+using IS.Database;
 using IS.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace IS.Admin.Setup.Cashier
+namespace IS.Admin.Setup
 {
-    public partial class FrmCashierOnhand : Form
+    public partial class FrmCashiers : Form
     {
-        public FrmCashierOnhand()
+        ISFactory factory = new ISFactory();
+        public FrmCashiers()
         {
             InitializeComponent();
         }
@@ -30,11 +32,17 @@ namespace IS.Admin.Setup.Cashier
 
         private void LoadCashier()
         {
-            CashierCashOnHandModel Cashiers = new CashierCashOnHandModel();
-            var response = Cashiers.CashierList(txtSearch.Text);
+            grpLoading.Visible = true;
+            grpLoading.Refresh();
+
+            CashiersModel Cashiers = new CashiersModel();
+            var response = Cashiers.CashierList(this, txtSearch.Text);
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = response;
             txtSearch.Focus();
+
+            grpLoading.Visible = false;
+            grpLoading.Refresh();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -46,19 +54,28 @@ namespace IS.Admin.Setup.Cashier
         {
             var Cashier = new Cashiers();
 
-            Cashier.Id = (int)dgvSearch.CurrentRow.Cells[0].Value;
+            Cashier.CashierId = dgvSearch.CurrentRow.Cells[0].Value.ToString();
             Cashier.Loginname = dgvSearch.CurrentRow.Cells[1].Value.ToString();
             Cashier.Fullname = dgvSearch.CurrentRow.Cells[2].Value.ToString();
 
-            if (e.ColumnIndex == 4) //edit
+            if (e.ColumnIndex == 6) //edit
             {
-                FrmUpdateCashierDenomination frm = new FrmUpdateCashierDenomination(Cashier);
+                FrmEditCashier frm = new FrmEditCashier(Cashier);
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.LoadCashier();
+                    MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 };
                
+            }
+            if (e.ColumnIndex == 7)
+            {
+                if (MessageBox.Show("Are you sure do you want to delete this record?", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    factory.CashiersRepository.Delete(Cashier);
+                    this.LoadCashier();
+                    MessageBox.Show("Row deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
@@ -67,9 +84,14 @@ namespace IS.Admin.Setup.Cashier
             this.Close();
         }
 
-        private void FrmCashierOnhand_Load(object sender, EventArgs e)
+        private void FrmCashiers_Shown(object sender, EventArgs e)
         {
             this.LoadCashier();
+        }
+
+        private void FrmCashiers_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

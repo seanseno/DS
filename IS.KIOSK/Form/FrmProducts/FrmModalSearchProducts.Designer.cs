@@ -244,6 +244,7 @@
             this.Name = "FrmModalSearchProducts";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FrmModalSearchProducts_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmModalSearchProducts_KeyDown);
             this.grpProduct.ResumeLayout(false);
             this.grpProduct.PerformLayout();
             this.grpLoading.ResumeLayout(false);

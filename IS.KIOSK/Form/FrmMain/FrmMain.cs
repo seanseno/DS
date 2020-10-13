@@ -1,6 +1,7 @@
 ﻿using IS.Common.Utilities;
 using IS.Database;
 using IS.Database.Entities;
+using IS.Database.Enums;
 using IS.KIOSK.Model;
 using System;
 using System.Collections.Generic;
@@ -24,9 +25,8 @@ namespace IS.KIOSK
         ISFactory factory = new ISFactory();
         MainModel mainModel = new MainModel();
         public decimal _TotalPrice { get; set; }
-        public bool isKeyPressEnter { get; set; }
-
         int CountErrorlabel = 0;
+        public string _CustomerName { get; set; }
         public FrmMain()
         {
             InitializeComponent();
@@ -58,7 +58,7 @@ namespace IS.KIOSK
             dgvOrders.DataSource = _TempOrderList;
             dgvOrders.StandardTab = true;
 
-            txtTotal.Text = String.Format("{0:n}", _TotalPrice);
+            lblTotal.Text = String.Format("{0:n}", _TotalPrice);
 
         }
 
@@ -93,6 +93,10 @@ namespace IS.KIOSK
             if (e.KeyValue == 123) // Exit
             {
                 this.btnExit_Click(sender, e);
+            }
+            if (e.KeyValue == 118) // Exit
+            {
+                this.btnReturnItem_Click(sender, e);
             }
         }
 
@@ -300,6 +304,17 @@ namespace IS.KIOSK
         {
             lblTime.Text = DateTime.Now.ToLongTimeString();
             lblDate.Text = DateTime.Now.ToString("MMMM ddd yyyy - dddd");
+        }
+
+        private void txtCustomerName_KeyUp(object sender, KeyEventArgs e)
+        {
+            _CustomerName = txtCustomerName.Text.ToUpper().Trim();
+        }
+
+        private void btnReturnItem_Click(object sender, EventArgs e)
+        {
+            FrmReturnItem frm = new FrmReturnItem();
+            frm.ShowDialog();
         }
     }
 }

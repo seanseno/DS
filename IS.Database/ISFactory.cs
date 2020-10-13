@@ -34,5 +34,6 @@ namespace IS.Database
         public StocksDataHistoryRepository StocksDataHistoryRepository = new StocksDataHistoryRepository();
         public SettingsRepository SettingsRepository = new SettingsRepository();
         public ProductsDiscountedRepository ProductsDiscountedRepository = new ProductsDiscountedRepository();
+        public ReturnItemsRepository ReturnItemsRepository = new ReturnItemsRepository();
     }
 }

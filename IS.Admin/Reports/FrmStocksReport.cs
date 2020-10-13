@@ -26,18 +26,19 @@ namespace IS.Admin.Reports
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            var response = factory.StocksDataRepository.GetListStocksDataReport();
+            LoadData();
+        }
+        private void LoadData()
+        {
+            _list = factory.StocksDataRepository.GetListStocksDataReport().OrderBy(x => x.DeliveryDate).ToList();
 
-            response = response.Where(x => DateTimeConvertion.ConvertDateFrom(dtpFrom.Value) <= x.DeliveryDate && x.DeliveryDate <= DateTimeConvertion.ConvertDateTo(dtpTo.Value)).ToList();
+            _list = _list.Where(x => DateTimeConvertion.ConvertDateFrom(dtpFrom.Value) <= x.DeliveryDate && x.DeliveryDate <= DateTimeConvertion.ConvertDateTo(dtpTo.Value)).ToList();
 
-            response = response.Where(x => x.CategoryName.Contains(txtSearch.Text.Trim().ToUpper()) ||
+            _list = _list.Where(x => x.CategoryName.Contains(txtSearch.Text.Trim().ToUpper()) ||
                 x.ProductName.Contains(txtSearch.Text.Trim().ToUpper())).ToList();
 
-            _list = response;
-            dgvSales.AutoGenerateColumns = false;
-            dgvSales.DataSource = _list;
+            AddedFoorter(_list.ToList(), dgvSales);
         }
-
         private void btnDownload_Click(object sender, EventArgs e)
         {
             try
@@ -96,6 +97,83 @@ namespace IS.Admin.Reports
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FrmStocksReport_Load(object sender, EventArgs e)
+        {
+            dtpFrom.Value = DateTime.Now;
+            dtpTo.Value = DateTime.Now;
+            _list = factory.StocksDataRepository.GetListStocksDataReport().OrderBy(x=>x.DeliveryDate).ToList();
+            AddedFoorter(_list.ToList(), dgvSales);
+        }
+        private void AddedFoorter(List<StocksDataViewReport> _list, DataGridView dgv)
+        {
+            List<StocksDataViewReport> response = new List<StocksDataViewReport>();
+            response = _list;
+            if (response.Count == 0)
+            {
+                dgv.AutoGenerateColumns = false;
+                dgv.DataSource = response;
+                return;
+            }
+            response.Add(new StocksDataViewReport
+            {
+                ProductName = ""
+            });
+
+            dgv.AutoGenerateColumns = false;
+            dgv.DataSource = response;
+
+            dgv[2, dgvSales.Rows.Count - 1].Value = "TOTAL";
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[2].Style.Font = new Font("Arial", 16, FontStyle.Bold);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[2].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[3].Style.Font = new Font("Arial", 12, FontStyle.Bold);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[3].Style.BackColor = Color.Green;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[3].Style.ForeColor = Color.White;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[3].Value = response.Sum(x => x.Quantity);
+
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[4].Style.Font = new Font("Arial", 12, FontStyle.Bold);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[4].Style.BackColor = Color.Green;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[4].Style.ForeColor = Color.White;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[4].Value = response.Sum(x => x.SupplierPrice);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[4].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            ;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[5].Style.Font = new Font("Arial", 12, FontStyle.Bold);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[5].Style.BackColor = Color.Green;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[5].Style.ForeColor = Color.White;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[5].Value = response.Sum(x => x.TotalAmount);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[5].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[6].Style.Font = new Font("Arial", 12, FontStyle.Bold);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[6].Style.BackColor = Color.Green;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[6].Style.ForeColor = Color.White;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[6].Value = response.Sum(x => x.UnitPriceWithAddedFormula);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[6].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[7].Style.Font = new Font("Arial", 12, FontStyle.Bold);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[7].Style.BackColor = Color.Green;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[7].Style.ForeColor = Color.White;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[7].Value = response.Sum(x => x.SellingPrice);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[7].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[8].Style.Font = new Font("Arial", 12, FontStyle.Bold);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[8].Style.BackColor = Color.Green;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[8].Style.ForeColor = Color.White;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[8].Value = response.Sum(x => x.UnitSold);
+
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[9].Style.Font = new Font("Arial", 12, FontStyle.Bold);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[9].Style.BackColor = Color.Green;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[9].Style.ForeColor = Color.White;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[9].Value = response.Sum(x => x.RemainingQuantity);
+
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[10].Style.Font = new Font("Arial", 12, FontStyle.Bold);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[10].Style.BackColor = Color.Green;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[10].Style.ForeColor = Color.White;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[10].Value = response.Sum(x => x.RemainingAmount);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[10].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+
         }
     }
 }

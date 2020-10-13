@@ -34,7 +34,6 @@
             this.pnlDiscount = new System.Windows.Forms.Panel();
             this.rbPwd = new System.Windows.Forms.RadioButton();
             this.rbSenior = new System.Windows.Forms.RadioButton();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.lblError = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
             this.txtQty = new System.Windows.Forms.TextBox();
@@ -43,6 +42,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.lblProductName = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.pnlDiscount.SuspendLayout();
             this.SuspendLayout();
@@ -55,8 +55,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
+            this.panel1.Controls.Add(this.lblProductName);
             this.panel1.Controls.Add(this.pnlDiscount);
-            this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Controls.Add(this.lblError);
             this.panel1.Controls.Add(this.lblTotal);
             this.panel1.Controls.Add(this.txtQty);
@@ -105,19 +105,6 @@
             this.rbSenior.Visible = false;
             this.rbSenior.CheckedChanged += new System.EventHandler(this.rbSenior_CheckedChanged);
             this.rbSenior.KeyUp += new System.Windows.Forms.KeyEventHandler(this.rbSenior_KeyUp);
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.BackColor = System.Drawing.Color.Black;
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.richTextBox1.Location = new System.Drawing.Point(19, 10);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(366, 54);
-            this.richTextBox1.TabIndex = 11;
-            this.richTextBox1.Text = "asdasdasd";
             // 
             // lblError
             // 
@@ -203,6 +190,16 @@
             this.label5.TabIndex = 14;
             this.label5.Text = "Shorcut Key";
             // 
+            // lblProductName
+            // 
+            this.lblProductName.BackColor = System.Drawing.Color.White;
+            this.lblProductName.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.lblProductName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductName.Location = new System.Drawing.Point(16, 8);
+            this.lblProductName.Name = "lblProductName";
+            this.lblProductName.Size = new System.Drawing.Size(369, 59);
+            this.lblProductName.TabIndex = 13;
+            // 
             // frmMultiplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -241,9 +238,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.RadioButton rbPwd;
         private System.Windows.Forms.RadioButton rbSenior;
         private System.Windows.Forms.Panel pnlDiscount;
+        private System.Windows.Forms.Label lblProductName;
     }
 }
