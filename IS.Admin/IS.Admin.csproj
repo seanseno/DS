@@ -198,6 +198,24 @@
     <Compile Include="CustomDataGridView\CustomDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Utilities\Questions\FrmEditQuestions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\Questions\FrmEditQuestions.Designer.cs">
+      <DependentUpon>FrmEditQuestions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Questions\FrmAddQuestions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\Questions\FrmAddQuestions.Designer.cs">
+      <DependentUpon>FrmAddQuestions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Questions\FrmQuestions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\Questions\FrmQuestions.Designer.cs">
+      <DependentUpon>FrmQuestions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\Settings\FrmEditSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -475,6 +493,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Setup\Products\FrmModalSearchProducts.resx">
       <DependentUpon>FrmModalSearchProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Questions\FrmEditQuestions.resx">
+      <DependentUpon>FrmEditQuestions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Questions\FrmAddQuestions.resx">
+      <DependentUpon>FrmAddQuestions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Questions\FrmQuestions.resx">
+      <DependentUpon>FrmQuestions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Settings\FrmEditSettings.resx">
       <DependentUpon>FrmEditSettings.cs</DependentUpon>

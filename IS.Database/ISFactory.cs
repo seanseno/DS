@@ -35,5 +35,7 @@ namespace IS.Database
         public SettingsRepository SettingsRepository = new SettingsRepository();
         public ProductsDiscountedRepository ProductsDiscountedRepository = new ProductsDiscountedRepository();
         public ReturnItemsRepository ReturnItemsRepository = new ReturnItemsRepository();
+
+        public QuestionsRepository QuestionsRepository = new QuestionsRepository();
     }
 }

@@ -289,5 +289,11 @@ namespace IS.Admin
             FrmReturnItems frm = new FrmReturnItems();
             frm.Show();
         }
+
+        private void questionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmQuestions frm = new FrmQuestions();
+            frm.ShowDialog();
+        }
     }
 }

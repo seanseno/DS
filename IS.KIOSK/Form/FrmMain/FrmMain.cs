@@ -67,7 +67,7 @@ namespace IS.KIOSK
         {
             if (e.KeyValue == 112) //help
             {
-               // this.btnHelp_Click(sender, e);
+               this.btnHelp_Click(sender, e);
             }
             if (e.KeyValue == 113) //load
             {
@@ -314,6 +314,12 @@ namespace IS.KIOSK
         private void btnReturnItem_Click(object sender, EventArgs e)
         {
             FrmReturnItem frm = new FrmReturnItem();
+            frm.ShowDialog();
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            FrmHelp frm = new FrmHelp();
             frm.ShowDialog();
         }
     }
