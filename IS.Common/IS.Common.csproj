@@ -64,7 +64,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader\ReadExcel.cs" />
     <Compile Include="Utilities\DateTimeConvertion.cs" />
-    <Compile Include="Utilities\Encrypt.cs" />
+    <Compile Include="Utilities\Encryption.cs" />
     <Compile Include="Utilities\Globals.cs" />
     <Compile Include="Utilities\SingleQuoteCorrection.cs" />
     <Compile Include="Utilities\WordWrap.cs" />

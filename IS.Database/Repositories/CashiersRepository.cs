@@ -23,7 +23,7 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@CashierId", Cashier.CashierId.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@Loginname", Cashier.Loginname.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@Fullname", Cashier.Fullname.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@Password", Encrypt.CreateMD5(Cashier.Password, this.IsEncrypt)));
+                    cmd.Parameters.Add(new SqlParameter("@Password", Encryption.CreateMD5(Cashier.Password, this.IsEncrypt)));
 
                     int rowAffected = cmd.ExecuteNonQuery();
 
@@ -143,7 +143,7 @@ namespace IS.Database.Repositories
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@CashierId", Cashier.CashierId.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@Fullname", Cashier.Fullname.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@Password", Cashier.Password == "" ? "" : Encrypt.CreateMD5(Cashier.Password, this.IsEncrypt)));
+                    cmd.Parameters.Add(new SqlParameter("@Password", Cashier.Password == "" ? "" : Encryption.CreateMD5(Cashier.Password, this.IsEncrypt)));
                     cmd.Parameters.Add(new SqlParameter("@Active", Cashier.Active));
 
                     int rowAffected = cmd.ExecuteNonQuery();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IS.Common.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -10,10 +11,32 @@ namespace IS.Database
     public class Helper
     {
       
-        public string ConStr =  ConfigurationManager.AppSettings["ConnectionString"];
+        private bool WindowsAuthentication = Convert.ToBoolean(ConfigurationManager.AppSettings["WindowsAuthentication"]);
+        private string ConnectionString =  ConfigurationManager.AppSettings["ConnectionString"];
+        private string ServerName = ConfigurationManager.AppSettings["ServerName"];
+        private string Database = ConfigurationManager.AppSettings["Database"];
+        private string UserId = ConfigurationManager.AppSettings["UserId"];
+        private string Password = ConfigurationManager.AppSettings["Password"];
+
         public string DownloadPath = ConfigurationManager.AppSettings["DownLoadPath"];
         public bool IsEncrypt = Convert.ToBoolean(ConfigurationManager.AppSettings["Encrypt"]);
-       
+
+        public string ConStr
+        {
+            get
+            {
+                if (!WindowsAuthentication)
+                {
+                    string Cstring = String.Format("Server={0};Database={1};User Id={2};Password={3};MultipleActiveResultSets=true", ServerName, Database, Encryption.Decrypt(UserId), Encryption.Decrypt(Password));
+                    return Cstring;
+                }
+                else
+                {
+                    return ConnectionString;
+                }
+            }
+        }
+
         public int ExpirationAlert
         {
             get

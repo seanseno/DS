@@ -55,12 +55,12 @@
             this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockExpiredNearlyExpiredReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.returnedItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblLogin = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.returnedItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -288,6 +288,13 @@
             this.stockExpiredNearlyExpiredReportToolStripMenuItem.Text = "Stock Expired/Nearly Expired Report";
             this.stockExpiredNearlyExpiredReportToolStripMenuItem.Click += new System.EventHandler(this.stockExpiredNearlyExpiredReportToolStripMenuItem_Click);
             // 
+            // returnedItemsToolStripMenuItem
+            // 
+            this.returnedItemsToolStripMenuItem.Name = "returnedItemsToolStripMenuItem";
+            this.returnedItemsToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
+            this.returnedItemsToolStripMenuItem.Text = "Returned Items";
+            this.returnedItemsToolStripMenuItem.Click += new System.EventHandler(this.returnedItemsToolStripMenuItem_Click);
+            // 
             // lblLogin
             // 
             this.lblLogin.AutoSize = true;
@@ -338,13 +345,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // returnedItemsToolStripMenuItem
-            // 
-            this.returnedItemsToolStripMenuItem.Name = "returnedItemsToolStripMenuItem";
-            this.returnedItemsToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
-            this.returnedItemsToolStripMenuItem.Text = "Returned Items";
-            this.returnedItemsToolStripMenuItem.Click += new System.EventHandler(this.returnedItemsToolStripMenuItem_Click);
             // 
             // FrmMain
             // 

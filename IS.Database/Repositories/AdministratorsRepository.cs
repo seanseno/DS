@@ -23,7 +23,7 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@AdminId", Administrator.AdminId.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@Loginname", Administrator.Loginname.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@Fullname", Administrator.Fullname.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@Password", Encrypt.CreateMD5(Administrator.Password, this.IsEncrypt)));
+                    cmd.Parameters.Add(new SqlParameter("@Password", Encryption.CreateMD5(Administrator.Password, this.IsEncrypt)));
                    
                     int rowAffected = cmd.ExecuteNonQuery();
 
@@ -142,7 +142,7 @@ namespace IS.Database.Repositories
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@AdminId", Administrator.AdminId.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@Fullname", Administrator.Fullname.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@Password", Administrator.Password == "" ? "" : Encrypt.CreateMD5(Administrator.Password, this.IsEncrypt)));
+                    cmd.Parameters.Add(new SqlParameter("@Password", Administrator.Password == "" ? "" : Encryption.CreateMD5(Administrator.Password, this.IsEncrypt)));
                     cmd.Parameters.Add(new SqlParameter("@Active", Administrator.Active));
 
                     int rowAffected = cmd.ExecuteNonQuery();

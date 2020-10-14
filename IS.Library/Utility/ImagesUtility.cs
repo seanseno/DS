@@ -10,7 +10,7 @@ namespace IS.Library.Utility
 {
     public static class ImagesUtility
     {
-        public static void SaveCashierPhoto(int? CashierId,string CopyPath)
+        public static void SaveCashierPhoto(string CashierId,string CopyPath)
         {
             if(!string.IsNullOrEmpty(CopyPath))
             {
@@ -25,14 +25,14 @@ namespace IS.Library.Utility
                 File.Copy(CopyPath, FilePath, true);
             }
         }
-        public static string LoadCashierPhoto(int? CashierId)
+        public static string LoadCashierPhoto(string CashierId)
         {
             var Path = System.IO.Directory.GetCurrentDirectory();
             string TruePhoto = Path + "\\Images\\CashierPhoto\\" + CashierId + ".jpg";
             return TruePhoto;
         }
 
-        public static bool PhotoIsExist(int? CashierId)
+        public static bool PhotoIsExist(string CashierId)
         {
             var Path = System.IO.Directory.GetCurrentDirectory();
             string TruePhoto = Path + "\\Images\\CashierPhoto\\" + CashierId + ".jpg";

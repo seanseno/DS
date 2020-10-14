@@ -50,7 +50,7 @@ namespace IS.Admin.Setup
                     var response = CashiersModel.AddCashier(this);
                     if (!string.IsNullOrEmpty(CopyPath) || response != null)
                     {
-                        ImagesUtility.SaveCashierPhoto(response.Id, CopyPath);
+                        ImagesUtility.SaveCashierPhoto(response.CashierId, CopyPath);
                     }
                     MessageBox.Show(txtLogiName.Text + " Added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;

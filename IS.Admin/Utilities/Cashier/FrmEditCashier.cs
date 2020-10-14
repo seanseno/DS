@@ -31,9 +31,9 @@ namespace IS.Admin.Setup
             txtLogiName.Text = response.Loginname;
             txtFullName.Text = response.Fullname;
             chkActive.Checked = Convert.ToBoolean(response.Active);
-            if (ImagesUtility.PhotoIsExist(response.Id))
+            if (ImagesUtility.PhotoIsExist(response.CashierId))
             {
-                PictureBox.Image = PictureBox.Image = Image.FromStream(new MemoryStream(File.ReadAllBytes(ImagesUtility.LoadCashierPhoto(response.Id))));
+                PictureBox.Image = PictureBox.Image = Image.FromStream(new MemoryStream(File.ReadAllBytes(ImagesUtility.LoadCashierPhoto(response.CashierId))));
             }
 
             PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -59,7 +59,7 @@ namespace IS.Admin.Setup
                 if (!string.IsNullOrEmpty(CopyPath))
                 {
                     PictureBox.InitialImage = null;
-                    ImagesUtility.SaveCashierPhoto(_Cashier.Id, CopyPath);
+                    ImagesUtility.SaveCashierPhoto(_Cashier.CashierId, CopyPath);
                 }
             }
 

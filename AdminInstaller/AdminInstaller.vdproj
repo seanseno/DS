@@ -286,13 +286,13 @@
         "Entry"
         {
         "MsmKey" = "8:_5BB0F4FDE507740469204B6B4A394451"
-        "OwnerKey" = "8:_606D0AD91540C1A336625DB071D4CF0A"
+        "OwnerKey" = "8:_0C5F22D3393342718F50E8FE6FCF6077"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_5BB0F4FDE507740469204B6B4A394451"
-        "OwnerKey" = "8:_0C5F22D3393342718F50E8FE6FCF6077"
+        "OwnerKey" = "8:_606D0AD91540C1A336625DB071D4CF0A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -658,13 +658,19 @@
         "Entry"
         {
         "MsmKey" = "8:_BFE8B7083F9B366715004E691B907D17"
-        "OwnerKey" = "8:_0C5F22D3393342718F50E8FE6FCF6077"
+        "OwnerKey" = "8:_E7FE9F1525D03DF63D3E3F10170818D7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_BFE8B7083F9B366715004E691B907D17"
         "OwnerKey" = "8:_897837E56DCE4A438A64F8BCFEF04D71"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BFE8B7083F9B366715004E691B907D17"
+        "OwnerKey" = "8:_0C5F22D3393342718F50E8FE6FCF6077"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -916,12 +922,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_896985D87AAE80A8A006D4C5E72BCA30"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_897837E56DCE4A438A64F8BCFEF04D71"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -958,6 +958,18 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D3F2CCB8EE3598D6B0E954C1DA7C8C63"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_BC4597701A358CE330B1BB2F179D800A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_BFE8B7083F9B366715004E691B907D17"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -971,18 +983,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_31BE7641D901CD36361E7FE4A84E6C42"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D3F2CCB8EE3598D6B0E954C1DA7C8C63"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BC4597701A358CE330B1BB2F179D800A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1663,6 +1663,12 @@
         "OwnerKey" = "8:_7AEE6A764350F8D62A636ED814A1116B"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_896985D87AAE80A8A006D4C5E72BCA30"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -1681,6 +1687,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -1697,6 +1719,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -5771,22 +5801,22 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:AdminInstaller"
         "ProductCode" = "8:{DE6BCC65-41D2-4782-8C21-6C4A9217FC68}"
-        "PackageCode" = "8:{D567A1FF-6D1A-4E04-AE2F-344A08E70C8E}"
+        "PackageCode" = "8:{8926B203-F8E3-4F99-9850-98653A3D103D}"
         "UpgradeCode" = "8:{B52CD265-809C-45BE-BA80-59B2D8D291F0}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
-        "InstallAllUsers" = "11:FALSE"
+        "InstallAllUsers" = "11:TRUE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:DrugsStore"
+        "Manufacturer" = "8:SeanPogz"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:AdminInstaller"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:DrugsStore"
+        "ARPCONTACT" = "8:SeanPogz"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:DrugsStore"
+        "ARPCOMMENTS" = "8:Pharmachic Drugstore"
         "ARPURLINFOABOUT" = "8:"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
@@ -5893,7 +5923,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_056A7BFD8E0D4AECB65B1CF7FBCE836A"
             {
-            "Name" = "8:Admin"
+            "Name" = "8:Pharmachic Admin"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
