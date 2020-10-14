@@ -184,9 +184,9 @@
             this.label4.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(11, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(174, 34);
+            this.label4.Size = new System.Drawing.Size(191, 34);
             this.label4.TabIndex = 27;
-            this.label4.Text = "Sales Report";
+            this.label4.Text = "Stocks Report";
             // 
             // btnSearch
             // 

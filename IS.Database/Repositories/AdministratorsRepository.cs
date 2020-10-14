@@ -63,11 +63,7 @@ namespace IS.Database.Repositories
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.HasRows)
-                        {
-                            return new ReflectionPopulator<Administrators>().CreateList(reader)[0];
-                        }
-                        return null;
+                        return new ReflectionPopulator<Administrators>().CreateList(reader)[0];
                     }
                 }
             }
@@ -83,11 +79,7 @@ namespace IS.Database.Repositories
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.HasRows)
-                        {
-                            return new ReflectionPopulator<Administrators>().CreateList(reader)[0];
-                        }
-                        return null;
+                        return new ReflectionPopulator<Administrators>().CreateList(reader)[0];
                     }
                 }
             }

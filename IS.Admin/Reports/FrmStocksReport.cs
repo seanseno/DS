@@ -63,6 +63,7 @@ namespace IS.Admin.Reports
                                 item.Quantity = sale.Quantity.ToString("N0");
                                 item.SupplierPrice = sale.SupplierPrice.ToString("N2");
                                 item.TotalAmount = sale.TotalAmount.ToString("N2");
+                                item.SellingPrice = sale.SellingPrice.ToString("N2");
                                 item.UnitPriceWithAddedFormula = sale.UnitPriceWithAddedFormula.ToString("N2");
                                 item.UnitSold = sale.UnitSold.ToString("N0");
                                 item.RemainingQuantity = sale.RemainingQuantity.ToString("N0");

@@ -45,11 +45,7 @@ namespace IS.Database.Repositories
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.HasRows)
-                        {
-                            return new ReflectionPopulator<Sales>().CreateList(reader);
-                        }
-                        return null;
+                        return new ReflectionPopulator<Sales>().CreateList(reader);
                     }
                 }
             }
@@ -207,11 +203,7 @@ namespace IS.Database.Repositories
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.HasRows)
-                        {
-                            return new ReflectionPopulator<SalesViewReport>().CreateList(reader);
-                        }
-                        return null;
+                        return new ReflectionPopulator<SalesViewReport>().CreateList(reader);
                     }
                 }
             }

@@ -31,16 +31,15 @@ namespace IS.Admin.Reports
         private void LoadData()
         {
             _list = factory.SalesRepository.GetSalesListReport().OrderByDescending(x => x.InsertTime).ToList();
-            if (_list != null)
-            {
-                _list = _list.Where(x =>
-                     DateTimeConvertion.ConvertDateFrom(dtpFrom.Value) <= x.InsertTime && x.InsertTime <= DateTimeConvertion.ConvertDateTo(dtpTo.Value) &&
-                    (x.CategoryName.Contains(txtSearch.Text.Trim().ToUpper()) ||
-                    x.ProductName.Contains(txtSearch.Text.Trim().ToUpper()) ||
-                    x.Fullname.Contains(txtSearch.Text.Trim().ToUpper()))).ToList();
 
-                AddedFoorter(_list.ToList(), dgvSales);
-            }
+            _list = _list.Where(x =>
+                    DateTimeConvertion.ConvertDateFrom(dtpFrom.Value) <= x.InsertTime && x.InsertTime <= DateTimeConvertion.ConvertDateTo(dtpTo.Value) &&
+                (x.CategoryName.Contains(txtSearch.Text.Trim().ToUpper()) ||
+                x.ProductName.Contains(txtSearch.Text.Trim().ToUpper()) ||
+                x.Fullname.Contains(txtSearch.Text.Trim().ToUpper()))).ToList();
+
+            AddedFoorter(_list.ToList(), dgvSales);
+            
         }
         private void btnDownload_Click(object sender, EventArgs e)
         {
@@ -109,11 +108,11 @@ namespace IS.Admin.Reports
         {
             dtpFrom.Value = DateTime.Now;
             dtpTo.Value = DateTime.Now;
-            _list = factory.SalesRepository.GetSalesListReport().OrderByDescending(x => x.InsertTime).ToList();
-            if (_list != null)
-            {
-                AddedFoorter(_list.ToList(), dgvSales);
-            }
+            _list = factory.SalesRepository.GetSalesListReport();
+  
+            _list = _list.OrderByDescending(x => x.InsertTime).ToList();
+            AddedFoorter(_list.ToList(), dgvSales);
+            
         }
         private void AddedFoorter(List<SalesViewReport> _list, DataGridView dgv)
         {
