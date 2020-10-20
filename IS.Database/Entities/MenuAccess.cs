@@ -9,6 +9,7 @@ namespace IS.Database.Entities
     {
         public int? Id { get; set; }
         public string AdminId { get; set; }
+        public string MenuName { get; set; }
         public string MenuText { get; set; }
         public DateTime? InsertTime { get; set; }
     }

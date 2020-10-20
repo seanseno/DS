@@ -58,24 +58,16 @@ namespace IS.Admin
 
                 foreach (ToolStripMenuItem item in menuStrip1.Items)
                 {
-                    if (MenuAccess.Where(x => x.MenuText == item.Text).Count() > 0)
+                    if (MenuAccess.Where(x => x.MenuName == item.Name).Count() > 0)
                     {
                         item.Visible = true;
                     }
-                    foreach (ToolStripMenuItem sub in item.DropDownItems)
+                    foreach (ToolStripItem sub in item.DropDownItems)
                     {
-                        if (MenuAccess.Where(x => x.MenuText == sub.Text).Count() > 0)
+                        if (MenuAccess.Where(x => x.MenuName == sub.Name).Count() > 0)
                         {
                             sub.Visible = true;
                         }
-                        foreach (ToolStripItem sub1 in sub.DropDownItems)
-                        {
-                            if (MenuAccess.Where(x => x.MenuText == sub1.Text).Count() > 0)
-                            {
-                                sub1.Visible = true;
-                            }
-                        }
-
                     }
 
                 }
@@ -125,30 +117,6 @@ namespace IS.Admin
             lblDate.Text = DateTime.Now.ToString("MMMM dd, yyyy - dddd");
         }
 
-        private void ongoingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void allStocksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmStocks frm = new FrmStocks();
-            frm.ShowDialog();
-        }
-
-        private void ongoingStocksDataToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmOngoingStocksData frm = new FrmOngoingStocksData();
-            frm.ShowDialog();
-        }
-
-        private void verifyingStocksDataToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmValidateOngoingStocksData frm = new FrmValidateOngoingStocksData();
-            frm.ShowDialog();
-
-        }
 
         private void logOffToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -173,13 +141,13 @@ namespace IS.Admin
                     item.Visible = value;
                     try
                     {
-                        foreach (ToolStripMenuItem sub in item.DropDownItems)
+                        foreach (ToolStripItem sub in item.DropDownItems)
                         {
                             sub.Visible = value;
-                            foreach (ToolStripItem sub1 in sub.DropDownItems)
-                            {
-                                sub1.Visible = value;
-                            }
+                            //foreach (ToolStripItem sub1 in sub.DropDownItems)
+                            //{
+                            //    sub1.Visible = value;
+                            //}
 
                         }
                     }
@@ -190,44 +158,8 @@ namespace IS.Admin
                 }
 
             }
-
-            ////MENU
-            //menuToolStripMenuItem.Visible = value;
-            //logOffToolStripMenuItem.Visible = value;
-            //exitToolStripMenuItem.Visible = value;
-
-            ////Transactions
-            //transactionsToolStripMenuItem.Visible = value;
-            //stocksToolStripMenuItem.Visible = value;
-            //stocksDataToolStripMenuItem.Visible = value;
-            //ongoingStocksDataToolStripMenuItem.Visible = value;
-            //verifyingStocksDataToolStripMenuItem.Visible = value;
-            //allStocksToolStripMenuItem.Visible = value;
-
-            //productPriceHistoryToolStripMenuItem.Visible = value;
-
-            ////setup
-            //setupToolStripMenuItem.Visible = value;
-            //categoriesToolStripMenuItem.Visible = value;
-            //principalsToolStripMenuItem.Visible = value;
-            //productsToolStripMenuItem.Visible = value;
-
-            ////Utilities
-            //utilitiesToolStripMenuItem.Visible = value;
-            //administratorToolStripMenuItem.Visible = value;
-            //cashiersToolStripMenuItem.Visible = value;
-
-            ////reports
-            //reportToolStripMenuItem.Visible = value;
-            //salesToolStripMenuItem.Visible = value;
-
-            //sockDataProfitToolStripMenuItem.Visible = value;
         }
-        private void stocksDataToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmStocksData frm = new FrmStocksData();
-            frm.ShowDialog();
-        }
+ 
 
         private void salesProfitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -295,5 +227,12 @@ namespace IS.Admin
             FrmQuestions frm = new FrmQuestions();
             frm.ShowDialog();
         }
+
+        private void returnedStocksToSupplierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmReturnItemsToSupplier frm = new FrmReturnItemsToSupplier();
+            frm.ShowDialog();
+        }
+
     }
 }

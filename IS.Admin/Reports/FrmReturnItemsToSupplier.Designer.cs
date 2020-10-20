@@ -1,6 +1,6 @@
 ﻿namespace IS.Admin.Reports
 {
-    partial class FrmReturnItems
+    partial class FrmReturnItemsToSupplier
     {
         /// <summary>
         /// Required designer variable.
@@ -28,18 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label4 = new System.Windows.Forms.Label();
             this.btnDownload = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvReturnItems = new System.Windows.Forms.DataGridView();
-            this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InsertTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -49,6 +43,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dtpFrom = new System.Windows.Forms.DateTimePicker();
+            this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrincipalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReturnQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InsertTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReturnItems)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -60,9 +62,9 @@
             this.label4.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(6, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(429, 34);
+            this.label4.Size = new System.Drawing.Size(362, 34);
             this.label4.TabIndex = 29;
-            this.label4.Text = "Returned Items From Customers";
+            this.label4.Text = "Returned Items to Supplier";
             // 
             // btnDownload
             // 
@@ -94,15 +96,18 @@
             // 
             this.dgvReturnItems.AllowUserToAddRows = false;
             this.dgvReturnItems.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
-            this.dgvReturnItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
+            this.dgvReturnItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvReturnItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvReturnItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Fullname,
+            this.PrincipalName,
+            this.CategoryName,
+            this.ProductId,
             this.ProductName,
-            this.Qty,
-            this.Price,
-            this.InsertTime});
+            this.ReturnQty,
+            this.InsertTime,
+            this.Remarks});
             this.dgvReturnItems.Location = new System.Drawing.Point(6, 19);
             this.dgvReturnItems.Name = "dgvReturnItems";
             this.dgvReturnItems.ReadOnly = true;
@@ -110,51 +115,6 @@
             this.dgvReturnItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvReturnItems.Size = new System.Drawing.Size(1001, 361);
             this.dgvReturnItems.TabIndex = 25;
-            // 
-            // Fullname
-            // 
-            this.Fullname.DataPropertyName = "Fullname";
-            this.Fullname.HeaderText = "Cashier Name";
-            this.Fullname.Name = "Fullname";
-            this.Fullname.ReadOnly = true;
-            // 
-            // ProductName
-            // 
-            this.ProductName.DataPropertyName = "ProductName";
-            this.ProductName.HeaderText = "Product Name";
-            this.ProductName.Name = "ProductName";
-            this.ProductName.ReadOnly = true;
-            this.ProductName.Width = 400;
-            // 
-            // Qty
-            // 
-            this.Qty.DataPropertyName = "Qty";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.Qty.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Qty.HeaderText = "Quantity";
-            this.Qty.Name = "Qty";
-            this.Qty.ReadOnly = true;
-            // 
-            // Price
-            // 
-            this.Price.DataPropertyName = "Price";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = "0.00";
-            this.Price.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Price.HeaderText = "Price";
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            // 
-            // InsertTime
-            // 
-            this.InsertTime.DataPropertyName = "InsertTime";
-            this.InsertTime.HeaderText = "Date and Time";
-            this.InsertTime.Name = "InsertTime";
-            this.InsertTime.ReadOnly = true;
-            this.InsertTime.Width = 150;
             // 
             // groupBox1
             // 
@@ -253,7 +213,69 @@
             this.dtpFrom.Size = new System.Drawing.Size(255, 22);
             this.dtpFrom.TabIndex = 1;
             // 
-            // FrmReturnItems
+            // Fullname
+            // 
+            this.Fullname.DataPropertyName = "Fullname";
+            this.Fullname.HeaderText = "Transaction By";
+            this.Fullname.Name = "Fullname";
+            this.Fullname.ReadOnly = true;
+            // 
+            // PrincipalName
+            // 
+            this.PrincipalName.DataPropertyName = "PrincipalName";
+            this.PrincipalName.HeaderText = "Principal";
+            this.PrincipalName.Name = "PrincipalName";
+            this.PrincipalName.ReadOnly = true;
+            // 
+            // CategoryName
+            // 
+            this.CategoryName.DataPropertyName = "CategoryName";
+            this.CategoryName.HeaderText = "Category";
+            this.CategoryName.Name = "CategoryName";
+            this.CategoryName.ReadOnly = true;
+            // 
+            // ProductId
+            // 
+            this.ProductId.DataPropertyName = "ProductId";
+            this.ProductId.HeaderText = "Product ID";
+            this.ProductId.Name = "ProductId";
+            this.ProductId.ReadOnly = true;
+            // 
+            // ProductName
+            // 
+            this.ProductName.DataPropertyName = "ProductName";
+            this.ProductName.HeaderText = "Product Name";
+            this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
+            this.ProductName.Width = 400;
+            // 
+            // ReturnQty
+            // 
+            this.ReturnQty.DataPropertyName = "ReturnQty";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = "0";
+            this.ReturnQty.DefaultCellStyle = dataGridViewCellStyle4;
+            this.ReturnQty.HeaderText = "Return Quantity";
+            this.ReturnQty.Name = "ReturnQty";
+            this.ReturnQty.ReadOnly = true;
+            // 
+            // InsertTime
+            // 
+            this.InsertTime.DataPropertyName = "InsertTime";
+            this.InsertTime.HeaderText = "Date and Time";
+            this.InsertTime.Name = "InsertTime";
+            this.InsertTime.ReadOnly = true;
+            this.InsertTime.Width = 150;
+            // 
+            // Remarks
+            // 
+            this.Remarks.DataPropertyName = "Remarks";
+            this.Remarks.HeaderText = "Remarks";
+            this.Remarks.Name = "Remarks";
+            this.Remarks.ReadOnly = true;
+            // 
+            // FrmReturnItemsToSupplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -262,7 +284,9 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Name = "FrmReturnItems";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmReturnItemsToSupplier";
             this.Text = "Returned Items";
             this.Load += new System.EventHandler(this.FrmReturnItems_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReturnItems)).EndInit();
@@ -288,11 +312,14 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fullname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
-        private System.Windows.Forms.DataGridViewTextBoxColumn InsertTime;
         private System.Windows.Forms.DateTimePicker dtpFrom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fullname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrincipalName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReturnQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InsertTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
     }
 }

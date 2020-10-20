@@ -21,6 +21,7 @@ namespace IS.Database.Repositories
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@AdminId", menuAccess.AdminId.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@MenuName", menuAccess.MenuName));
                     cmd.Parameters.Add(new SqlParameter("@MenuText", menuAccess.MenuText));
                   
                     int rowAffected = cmd.ExecuteNonQuery();

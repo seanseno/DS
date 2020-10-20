@@ -73,6 +73,7 @@ namespace IS.Admin.Setup
             {
                 MessageBox.Show("Please select sheet!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else
             {
                 try
                 {

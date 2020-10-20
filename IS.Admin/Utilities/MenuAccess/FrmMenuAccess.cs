@@ -52,40 +52,35 @@ namespace IS.Admin.Setup
                 int index2 = 0;
                 foreach (ToolStripMenuItem item in _MenuStrip.Items)
                 {
-                    if (MenuAccess.Where(x => x.MenuText == item.Text).Count() > 0)
+                    if (MenuAccess.Where(x => x.MenuName == item.Name).Count() > 0)
                     {
-                        treeView1.Nodes.Add(item.Text).Checked = true;
+                        //treeView1.Nodes.Add(item.Text).Checked = true;
+                        treeView1.Nodes.Add(item.Text).Name = item.Name;
+                        treeView1.Nodes[item.Name].Text = item.Text;
+                        treeView1.Nodes[item.Name].Checked = true;
                     }
                     else
                     {
-                        treeView1.Nodes.Add(item.Text);
+                        treeView1.Nodes.Add(item.Text).Name = item.Name;
+                        treeView1.Nodes[item.Name].Text = item.Text;
                     }
 
-                    foreach (ToolStripMenuItem sub in item.DropDownItems)
+                    foreach (ToolStripItem sub in item.DropDownItems)
                     {
-
-                        if (MenuAccess.Where(x => x.MenuText == sub.Text).Count() > 0)
+                        if (MenuAccess.Where(x => x.MenuName == sub.Name).Count() > 0)
                         {
-                            treeView1.Nodes[index1].Nodes.Add(sub.Text).Checked = true;
+                            //treeView1.Nodes[index1].Nodes.Add(sub.Text).Checked = true;
+                            treeView1.Nodes[index1].Nodes.Add(sub.Text).Name = sub.Name;
+                            treeView1.Nodes[index1].Nodes[sub.Name].Text = sub.Text;
+                            treeView1.Nodes[index1].Nodes[sub.Name].Checked = true;
                         }
                         else
                         {
-                            treeView1.Nodes[index1].Nodes.Add(sub.Text);
+                            //treeView1.Nodes[index1].Nodes.Add(sub.Text);
+                            treeView1.Nodes[index1].Nodes.Add(sub.Name).Name = sub.Name;
+                            treeView1.Nodes[index1].Nodes[sub.Name].Text = sub.Text;
                         }
 
-                        foreach (ToolStripItem sub1 in sub.DropDownItems)
-                        {
-
-                            if (MenuAccess.Where(x => x.MenuText == sub1.Text).Count() > 0)
-                            {
-                                treeView1.Nodes[index1].Nodes[index2].Nodes.Add(sub1.Text).Checked = true;
-                            }
-                            else
-                            {
-                                treeView1.Nodes[index1].Nodes[index2].Nodes.Add(sub1.Text);
-                            }
-
-                        }
                         index2++;
                     }
                   
@@ -110,11 +105,12 @@ namespace IS.Admin.Setup
                     model.AdminId = cboName.SelectedValue.ToString();
                     factory.MenuAccessRepository.Delete(model);
 
-                    foreach (string menu in menuChecked)
+                    foreach (Dictionary<string, string> menu in menuChecked)
                     {
                         model = new MenuAccess();
                         model.AdminId = cboName.SelectedValue.ToString();
-                        model.MenuText = menu;
+                        model.MenuName = menu.FirstOrDefault().Key;
+                        model.MenuText = menu.FirstOrDefault().Value;
                         factory.MenuAccessRepository.Insert(model);
                     }
                     MessageBox.Show("Access menu save!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Question);
@@ -123,9 +119,9 @@ namespace IS.Admin.Setup
             }
         }
 
-        public List<string> GetCheckedNodes(TreeNodeCollection nodes)
+        public List<Dictionary<string,string>> GetCheckedNodes(TreeNodeCollection nodes)
         {
-            List<string> nodeList = new List<string>();
+            List<Dictionary<string, string>> nodeList = new List<Dictionary<string, string>>();
             if (nodes == null)
             {
                 return nodeList;
@@ -135,7 +131,11 @@ namespace IS.Admin.Setup
             {
                 if (childNode.Checked)
                 {
-                    nodeList.Add(childNode.Text);
+                    var dic = new Dictionary<string, string>
+                    {
+                        { childNode.Name, childNode.Text }
+                    };
+                    nodeList.Add(dic);
                 }
                 nodeList.AddRange(GetCheckedNodes(childNode.Nodes));
             }
@@ -144,7 +144,7 @@ namespace IS.Admin.Setup
 
         private void cboName_TextChanged(object sender, EventArgs e)
         {
-            loadTreeView();
+            //loadTreeView();
         }
     }
 }

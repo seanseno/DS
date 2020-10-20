@@ -40,6 +40,18 @@ namespace IS.Admin.Transactions
                 btnSearchProduct.Focus();
                 return true;
             }
+            else if (cboPrincipals.SelectedValue == null)
+            {
+                MessageBox.Show("Principal is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cboPrincipals.Focus();
+                return true;
+            }
+            else if (cboCategories.SelectedValue == null)
+            {
+                MessageBox.Show("Categories is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cboCategories.Focus();
+                return true;
+            }
             else if (string.IsNullOrEmpty(txtQuantity.Text))
             {
                 MessageBox.Show("Quantity is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

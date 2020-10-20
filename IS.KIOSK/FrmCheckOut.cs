@@ -77,20 +77,27 @@ namespace IS.KIOSK
                         }
                         else
                         {
-                            var frmCheckOutModel = new FrmCheckOutModel();
-                            var orNumber = frmCheckOutModel.ExecutePayment(this, this._FrmMain);
-                            LoadOrders(orNumber);
-                            PrintReceipt();
+                            try
+                            {
+                                var frmCheckOutModel = new FrmCheckOutModel();
+                                var orNumber = frmCheckOutModel.ExecutePayment(this, this._FrmMain);
+                                LoadOrders(orNumber);
+                                PrintReceipt();
 
-                            MessageBox.Show("Orders complete!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Orders complete!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            FrmChange frmchAnge = new FrmChange(changeAmount.ToString("N2"));
-                            frmchAnge.ShowDialog();
-                            //if (frmchAnge.ShowDialog() == DialogResult.OK)
-                            //{
-                            //    return;
-                            //}
-                            this.DialogResult = DialogResult.OK;
+                                FrmChange frmchAnge = new FrmChange(changeAmount.ToString("N2"));
+                                frmchAnge.ShowDialog();
+                                //if (frmchAnge.ShowDialog() == DialogResult.OK)
+                                //{
+                                //    return;
+                                //}
+                                this.DialogResult = DialogResult.OK;
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                     }
                     else

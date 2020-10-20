@@ -28,17 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stocksDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ongoingStocksDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verifyingStocksDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.allStocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.changeProductPriceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,17 +47,27 @@
             this.administratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cashiersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accessMenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.questionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockExpiredNearlyExpiredReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.returnedItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.returnedStocksToSupplierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblLogin = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.timer1 = new System.Windows.Forms.Timer();
-            this.questionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.stocksDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ongoingStocksDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allStocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
+            this.validateOngoingStocksDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -84,6 +91,7 @@
             // 
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.logOffToolStripMenuItem,
+            this.toolStripMenuItem3,
             this.exitToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
@@ -93,7 +101,7 @@
             // logOffToolStripMenuItem
             // 
             this.logOffToolStripMenuItem.Name = "logOffToolStripMenuItem";
-            this.logOffToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.logOffToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logOffToolStripMenuItem.Text = "Log off";
             this.logOffToolStripMenuItem.Visible = false;
             this.logOffToolStripMenuItem.Click += new System.EventHandler(this.logOffToolStripMenuItem_Click);
@@ -101,7 +109,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Visible = false;
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
@@ -109,62 +117,29 @@
             // transactionsToolStripMenuItem
             // 
             this.transactionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.stocksToolStripMenuItem,
+            this.stocksDataToolStripMenuItem,
+            this.ongoingStocksDataToolStripMenuItem,
+            this.validateOngoingStocksDataToolStripMenuItem,
+            this.allStocksToolStripMenuItem,
+            this.toolStripMenuItem2,
             this.changeProductPriceToolStripMenuItem});
             this.transactionsToolStripMenuItem.Name = "transactionsToolStripMenuItem";
             this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
             this.transactionsToolStripMenuItem.Text = "Transactions";
             this.transactionsToolStripMenuItem.Visible = false;
             // 
-            // stocksToolStripMenuItem
+            // toolStripMenuItem2
             // 
-            this.stocksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.stocksDataToolStripMenuItem,
-            this.ongoingStocksDataToolStripMenuItem,
-            this.verifyingStocksDataToolStripMenuItem,
-            this.allStocksToolStripMenuItem});
-            this.stocksToolStripMenuItem.Name = "stocksToolStripMenuItem";
-            this.stocksToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.stocksToolStripMenuItem.Text = "Stocks";
-            this.stocksToolStripMenuItem.Visible = false;
-            // 
-            // stocksDataToolStripMenuItem
-            // 
-            this.stocksDataToolStripMenuItem.Name = "stocksDataToolStripMenuItem";
-            this.stocksDataToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.stocksDataToolStripMenuItem.Text = "Stocks Data";
-            this.stocksDataToolStripMenuItem.Visible = false;
-            this.stocksDataToolStripMenuItem.Click += new System.EventHandler(this.stocksDataToolStripMenuItem_Click);
-            // 
-            // ongoingStocksDataToolStripMenuItem
-            // 
-            this.ongoingStocksDataToolStripMenuItem.Name = "ongoingStocksDataToolStripMenuItem";
-            this.ongoingStocksDataToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.ongoingStocksDataToolStripMenuItem.Text = "Ongoing Stocks Data";
-            this.ongoingStocksDataToolStripMenuItem.Visible = false;
-            this.ongoingStocksDataToolStripMenuItem.Click += new System.EventHandler(this.ongoingStocksDataToolStripMenuItem_Click);
-            // 
-            // verifyingStocksDataToolStripMenuItem
-            // 
-            this.verifyingStocksDataToolStripMenuItem.Name = "verifyingStocksDataToolStripMenuItem";
-            this.verifyingStocksDataToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.verifyingStocksDataToolStripMenuItem.Text = "Validate Ongoing Stocks Data";
-            this.verifyingStocksDataToolStripMenuItem.Visible = false;
-            this.verifyingStocksDataToolStripMenuItem.Click += new System.EventHandler(this.verifyingStocksDataToolStripMenuItem_Click);
-            // 
-            // allStocksToolStripMenuItem
-            // 
-            this.allStocksToolStripMenuItem.Name = "allStocksToolStripMenuItem";
-            this.allStocksToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.allStocksToolStripMenuItem.Text = "All Stocks";
-            this.allStocksToolStripMenuItem.Visible = false;
-            this.allStocksToolStripMenuItem.Click += new System.EventHandler(this.allStocksToolStripMenuItem_Click);
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(226, 6);
+            this.toolStripMenuItem2.Visible = false;
             // 
             // changeProductPriceToolStripMenuItem
             // 
             this.changeProductPriceToolStripMenuItem.Name = "changeProductPriceToolStripMenuItem";
-            this.changeProductPriceToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.changeProductPriceToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.changeProductPriceToolStripMenuItem.Text = "Change Product Price";
+            this.changeProductPriceToolStripMenuItem.Visible = false;
             this.changeProductPriceToolStripMenuItem.Click += new System.EventHandler(this.changeProductPriceToolStripMenuItem_Click);
             // 
             // setupToolStripMenuItem
@@ -175,6 +150,7 @@
             this.categoriesToolStripMenuItem,
             this.principalsToolStripMenuItem,
             this.productsToolStripMenuItem,
+            this.toolStripMenuItem4,
             this.discountedProductsToolStripMenuItem});
             this.setupToolStripMenuItem.Name = "setupToolStripMenuItem";
             this.setupToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
@@ -210,15 +186,18 @@
             this.discountedProductsToolStripMenuItem.Name = "discountedProductsToolStripMenuItem";
             this.discountedProductsToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.discountedProductsToolStripMenuItem.Text = "Discounted Products";
+            this.discountedProductsToolStripMenuItem.Visible = false;
             this.discountedProductsToolStripMenuItem.Click += new System.EventHandler(this.discountedProductsToolStripMenuItem_Click);
             // 
             // utilitiesToolStripMenuItem
             // 
             this.utilitiesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem,
+            this.accessMenuToolStripMenuItem,
+            this.toolStripMenuItem5,
             this.administratorToolStripMenuItem,
             this.cashiersToolStripMenuItem,
-            this.accessMenuToolStripMenuItem,
+            this.toolStripMenuItem6,
             this.questionsToolStripMenuItem});
             this.utilitiesToolStripMenuItem.Name = "utilitiesToolStripMenuItem";
             this.utilitiesToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
@@ -230,6 +209,7 @@
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Visible = false;
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // administratorToolStripMenuItem
@@ -256,13 +236,23 @@
             this.accessMenuToolStripMenuItem.Visible = false;
             this.accessMenuToolStripMenuItem.Click += new System.EventHandler(this.accessMenuToolStripMenuItem_Click);
             // 
+            // questionsToolStripMenuItem
+            // 
+            this.questionsToolStripMenuItem.Name = "questionsToolStripMenuItem";
+            this.questionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.questionsToolStripMenuItem.Text = "Questions";
+            this.questionsToolStripMenuItem.Visible = false;
+            this.questionsToolStripMenuItem.Click += new System.EventHandler(this.questionsToolStripMenuItem_Click);
+            // 
             // reportToolStripMenuItem
             // 
             this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.salesToolStripMenuItem,
             this.stockToolStripMenuItem,
             this.stockExpiredNearlyExpiredReportToolStripMenuItem,
-            this.returnedItemsToolStripMenuItem});
+            this.toolStripMenuItem1,
+            this.returnedItemsToolStripMenuItem,
+            this.returnedStocksToSupplierToolStripMenuItem});
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.reportToolStripMenuItem.Text = "Reports";
@@ -273,6 +263,7 @@
             this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
             this.salesToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
             this.salesToolStripMenuItem.Text = "Sales Report";
+            this.salesToolStripMenuItem.Visible = false;
             this.salesToolStripMenuItem.Click += new System.EventHandler(this.salesToolStripMenuItem_Click);
             // 
             // stockToolStripMenuItem
@@ -280,6 +271,7 @@
             this.stockToolStripMenuItem.Name = "stockToolStripMenuItem";
             this.stockToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
             this.stockToolStripMenuItem.Text = "Stock Report";
+            this.stockToolStripMenuItem.Visible = false;
             this.stockToolStripMenuItem.Click += new System.EventHandler(this.stockToolStripMenuItem_Click);
             // 
             // stockExpiredNearlyExpiredReportToolStripMenuItem
@@ -287,14 +279,30 @@
             this.stockExpiredNearlyExpiredReportToolStripMenuItem.Name = "stockExpiredNearlyExpiredReportToolStripMenuItem";
             this.stockExpiredNearlyExpiredReportToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
             this.stockExpiredNearlyExpiredReportToolStripMenuItem.Text = "Stock Expired/Nearly Expired Report";
+            this.stockExpiredNearlyExpiredReportToolStripMenuItem.Visible = false;
             this.stockExpiredNearlyExpiredReportToolStripMenuItem.Click += new System.EventHandler(this.stockExpiredNearlyExpiredReportToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(261, 6);
+            this.toolStripMenuItem1.Visible = false;
             // 
             // returnedItemsToolStripMenuItem
             // 
             this.returnedItemsToolStripMenuItem.Name = "returnedItemsToolStripMenuItem";
             this.returnedItemsToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
             this.returnedItemsToolStripMenuItem.Text = "Returned Items";
+            this.returnedItemsToolStripMenuItem.Visible = false;
             this.returnedItemsToolStripMenuItem.Click += new System.EventHandler(this.returnedItemsToolStripMenuItem_Click);
+            // 
+            // returnedStocksToSupplierToolStripMenuItem
+            // 
+            this.returnedStocksToSupplierToolStripMenuItem.Name = "returnedStocksToSupplierToolStripMenuItem";
+            this.returnedStocksToSupplierToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
+            this.returnedStocksToSupplierToolStripMenuItem.Text = "Returned Stocks to Supplier";
+            this.returnedStocksToSupplierToolStripMenuItem.Visible = false;
+            this.returnedStocksToSupplierToolStripMenuItem.Click += new System.EventHandler(this.returnedStocksToSupplierToolStripMenuItem_Click);
             // 
             // lblLogin
             // 
@@ -347,12 +355,57 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // questionsToolStripMenuItem
+            // stocksDataToolStripMenuItem
             // 
-            this.questionsToolStripMenuItem.Name = "questionsToolStripMenuItem";
-            this.questionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.questionsToolStripMenuItem.Text = "Questions";
-            this.questionsToolStripMenuItem.Click += new System.EventHandler(this.questionsToolStripMenuItem_Click);
+            this.stocksDataToolStripMenuItem.Name = "stocksDataToolStripMenuItem";
+            this.stocksDataToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.stocksDataToolStripMenuItem.Text = "Stocks Data";
+            this.stocksDataToolStripMenuItem.Visible = false;
+            // 
+            // ongoingStocksDataToolStripMenuItem
+            // 
+            this.ongoingStocksDataToolStripMenuItem.Name = "ongoingStocksDataToolStripMenuItem";
+            this.ongoingStocksDataToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.ongoingStocksDataToolStripMenuItem.Text = "Ongoing Stocks Data";
+            this.ongoingStocksDataToolStripMenuItem.Visible = false;
+            // 
+            // allStocksToolStripMenuItem
+            // 
+            this.allStocksToolStripMenuItem.Name = "allStocksToolStripMenuItem";
+            this.allStocksToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.allStocksToolStripMenuItem.Text = "All Stocks";
+            this.allStocksToolStripMenuItem.Visible = false;
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem3.Visible = false;
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(181, 6);
+            this.toolStripMenuItem4.Visible = false;
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem5.Visible = false;
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem6.Visible = false;
+            // 
+            // validateOngoingStocksDataToolStripMenuItem
+            // 
+            this.validateOngoingStocksDataToolStripMenuItem.Name = "validateOngoingStocksDataToolStripMenuItem";
+            this.validateOngoingStocksDataToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.validateOngoingStocksDataToolStripMenuItem.Text = "Validate Ongoing Stocks Data";
+            this.validateOngoingStocksDataToolStripMenuItem.Visible = false;
             // 
             // FrmMain
             // 
@@ -392,17 +445,12 @@
         private System.Windows.Forms.ToolStripMenuItem transactionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem principalsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem stocksToolStripMenuItem;
         private System.Windows.Forms.Label lblLogin;
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.ToolStripMenuItem ongoingStocksDataToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem allStocksToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem verifyingStocksDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOffToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem stocksDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem accessMenuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeProductPriceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem;
@@ -412,6 +460,17 @@
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem returnedItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem questionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem returnedStocksToSupplierToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem stocksDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ongoingStocksDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem allStocksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem validateOngoingStocksDataToolStripMenuItem;
     }
 }
 

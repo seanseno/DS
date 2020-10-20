@@ -12,6 +12,22 @@ namespace IS.Database.Repositories
 {
     public class StocksRepository : Helper
     {
+        public IList<Stocks> GetList()
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT * FROM vStocks";
+
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        return new ReflectionPopulator<Stocks>().CreateList(reader);
+                    }
+                }
+            }
+        }
         public void Insert(Stocks stock)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))

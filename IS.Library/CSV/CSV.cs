@@ -139,6 +139,33 @@ namespace IS.Library.CSV
                 return DownloadPath;
             }
         }
+        public string WriteReturnStocksToSupplierCSV(string DownloadPath,
+        IList<ReturnItemsToSupplierCSV> listCSV,
+        IList<ReturnItemsToSupplierView> listView,
+        DateTime dateFrom,
+        DateTime dateTo,
+        string PreparedBY)
+        {
+            using (var writer = new StreamWriter(DownloadPath))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
 
+                writer.WriteLine("Returned Stocks to Supplier Report");
+                writer.WriteLine("Date: " + dateFrom.ToShortDateString() + " - " + dateTo.ToShortDateString());
+                writer.WriteLine("Prepared By: " + PreparedBY);
+                writer.WriteLine("Prepared Date: " + DateTime.Now);
+                writer.WriteLine("");
+                csv.WriteRecords(listCSV);
+
+                writer.WriteLine("");
+                var total = new ReturnItemsToSupplierCSV();
+                total.Fullname = "TOTAL";
+
+                total.ReturnQty = listView.Sum(x => x.ReturnQty).ToString("N0");
+                csv.WriteRecord(total);
+
+                return DownloadPath;
+            }
+        }
     }
 }

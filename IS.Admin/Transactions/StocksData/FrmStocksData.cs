@@ -1,6 +1,7 @@
 ﻿using IS.Admin.Model;
 using IS.Database;
 using IS.Database.Entities;
+using IS.Database.Enums;
 using IS.Library.Utility;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace IS.Admin.Transactions
     public partial class FrmStocksData : FormSettings
     {
         IList<StocksData> _list = new List<StocksData>();
+        ISFactory factory = new ISFactory();
         public FrmStocksData()
         {
             InitializeComponent();
@@ -39,7 +41,16 @@ namespace IS.Admin.Transactions
             grpLoading.Refresh();
 
             StocksDataModel StocksData = new StocksDataModel();
-            var response = StocksData.FindWithRemainingQTY(txtSearch.Text);
+            var response = factory.StocksDataRepository.GetList();
+                        
+             response = response
+                        .Where(x => x.ProductName.ToUpper().Contains(txtSearch.Text.ToUpper()) ||
+                             x.ProductId.ToUpper().Contains(txtSearch.Text.ToUpper()) ||
+                             x.CategoryName.ToUpper().Contains(txtSearch.Text.ToUpper()) ||
+                             x.PrincipalName.ToUpper().Contains(txtSearch.Text.ToUpper()))
+                    .OrderBy(v => v.ProductName)
+                    .ToList();
+
             _list = response.Where(x => x.SupplierPrice > 0).ToList();
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = _list;
@@ -91,7 +102,15 @@ namespace IS.Admin.Transactions
 
                     }
                 }
-
+            }
+            if (e.ColumnIndex == 15)
+            {
+                FrmReturnStockData frm = new FrmReturnStockData(stockData);
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    this.LoadStockData();
+                    MessageBox.Show("Product Returned", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                };
             }
         }
 
@@ -148,6 +167,11 @@ namespace IS.Admin.Transactions
                     row.DefaultCellStyle.BackColor = Color.FromArgb(237, 114, 116);
                 }
             }
+        }
+
+        private void FrmStocksData_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
