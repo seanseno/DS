@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Transactions
 {
-    public partial class FrmValidateOngoingEditStockData : Form
+    public partial class FrmValidateOngoingEditStockData : BaseForm
     {
         private StocksData _StockData { get;set;}
         private Products _Product = new Products();

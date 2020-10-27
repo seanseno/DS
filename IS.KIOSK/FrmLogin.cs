@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace IS.KIOSK
 {
-    public partial class frmLogin : Form
+    public partial class frmLogin : BaseForm
     {
         private readonly ISFactory factory = new ISFactory();
         readonly FrmMain kiosk = new FrmMain();

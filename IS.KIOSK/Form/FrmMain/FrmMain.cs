@@ -3,6 +3,7 @@ using IS.Database;
 using IS.Database.Entities;
 using IS.Database.Enums;
 using IS.KIOSK.Model;
+using IS.Library.Utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,6 +28,7 @@ namespace IS.KIOSK
         public decimal _TotalPrice { get; set; }
         int CountErrorlabel = 0;
         public string _CustomerName { get; set; }
+        public bool _IsDicounted { get; set; }
         public FrmMain()
         {
             InitializeComponent();
@@ -35,8 +37,16 @@ namespace IS.KIOSK
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            _IsDicounted = false;
             panel1.Visible = true;
             timer2.Start();
+
+            if (!string.IsNullOrEmpty(ThemesUtility.Logo()))
+            {
+                pnlLogo.BackgroundImage = Image.FromFile(ThemesUtility.Logo());
+            }
+            lblCompanyName.Text = ThemesUtility.CompanyName();
+            BackColor = ThemesUtility.BackColor();
 
             frmLogin frm = new frmLogin(this);
             var response = frm.ShowDialog();
@@ -53,10 +63,17 @@ namespace IS.KIOSK
             _TempOrderList = mainModel.LoadTempOders(this,txtCustomerName.Text).Item1;
             _TotalPrice = mainModel.LoadTempOders(this, txtCustomerName.Text).Item2;
 
-
-            dgvOrders.AutoGenerateColumns = false;
-            dgvOrders.DataSource = _TempOrderList;
-            dgvOrders.StandardTab = true;
+            if (_TempOrderList.Where(x => x.Discount > 0).Count() > 0)
+            {
+                _IsDicounted = true;
+            }
+            else
+            {
+                _IsDicounted = false;
+            }
+            dgvList.AutoGenerateColumns = false;
+            dgvList.DataSource = _TempOrderList;
+            dgvList.StandardTab = true;
 
             lblTotal.Text = String.Format("{0:n}", _TotalPrice);
 
@@ -146,9 +163,9 @@ namespace IS.KIOSK
             if (e.KeyValue == 46)
             {
 
-                var GenericName = dgvOrders.CurrentRow.Cells[1].Value?.ToString();
-                var BranName = dgvOrders.CurrentRow.Cells[2].Value?.ToString();
-                var Description = dgvOrders.CurrentRow.Cells[3].Value?.ToString();
+                var GenericName = dgvList.CurrentRow.Cells[1].Value?.ToString();
+                var BranName = dgvList.CurrentRow.Cells[2].Value?.ToString();
+                var Description = dgvList.CurrentRow.Cells[3].Value?.ToString();
                 var Params = new List<string>();
                 if (this._TempOrderList != null)
                 {
@@ -168,7 +185,7 @@ namespace IS.KIOSK
                     if (MessageBox.Show("Removing " + string.Join(" ", Params) + ".", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
                         MainModel mainModel = new MainModel();
-                        mainModel.DeleteTempOrder(this, (int)dgvOrders.CurrentRow.Cells[0].Value);
+                        mainModel.DeleteTempOrder(this, (int)dgvList.CurrentRow.Cells[0].Value);
                         load();
                     }
                 }
@@ -190,16 +207,22 @@ namespace IS.KIOSK
             {
                 if (this._TempOrderList.Count() > 0)
                 {
-                    FrmCheckOut frm = new FrmCheckOut(this);
-                    if (frm.ShowDialog() == DialogResult.OK)
+                    if (_IsDicounted == true && string.IsNullOrEmpty(txtCustomerName.Text))
                     {
-                        load();
-                        //MessageBox.Show("Orders complete!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Product discounted Detected!, Additional Info is required!", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtCustomerName.Focus();
+                    }
+                    else
+                    {
+                        FrmCheckOut frm = new FrmCheckOut(this);
+                        if (frm.ShowDialog() == DialogResult.OK)
+                        {
+                            load();
+                            txtCustomerName.Text = "";
+                        }
                     }
                 }
             }
-            //MessageBox.Show("No orders detected", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //txtSearch.Focus();
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -214,7 +237,7 @@ namespace IS.KIOSK
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     load();
-                    //txtSearch.Focus();
+                    txtCustomerName.Text = "";
                 }
             }
         }
@@ -229,6 +252,7 @@ namespace IS.KIOSK
                     {
                         mainModel.SaveOrders(this);
                         load();
+                        txtCustomerName.Text = "";
                         return;
                     }
                 }
@@ -322,5 +346,7 @@ namespace IS.KIOSK
             FrmHelp frm = new FrmHelp();
             frm.ShowDialog();
         }
+
+ 
     }
 }

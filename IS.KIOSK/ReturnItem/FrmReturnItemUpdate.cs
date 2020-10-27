@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace IS.KIOSK
 {
-    public partial class FrmReturnItemUpdate : Form
+    public partial class FrmReturnItemUpdate : BaseForm
     {
         int _StockDataId { get; set; }
         int _SalesId { get; set; }

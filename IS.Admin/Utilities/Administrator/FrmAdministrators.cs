@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmAdministrators : Form
+    public partial class FrmAdministrators : BaseForm
     {
         ISFactory factory = new ISFactory();
         public FrmAdministrators()
@@ -88,7 +88,8 @@ namespace IS.Admin.Setup
             LoadAdministrator();
         }
 
-        private void FrmAdministrators_Shown(object sender, EventArgs e)
+
+        private void FrmAdministrators_Load(object sender, EventArgs e)
         {
             LoadAdministrator();
         }

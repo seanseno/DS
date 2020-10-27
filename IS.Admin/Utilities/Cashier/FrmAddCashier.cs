@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmAddCashier : Form
+    public partial class FrmAddCashier : BaseForm
     {
         public Cashiers _Cashiers = new Cashiers();
         public string CopyPath { get; set; }
@@ -50,7 +50,14 @@ namespace IS.Admin.Setup
                     var response = CashiersModel.AddCashier(this);
                     if (!string.IsNullOrEmpty(CopyPath) || response != null)
                     {
-                        ImagesUtility.SaveCashierPhoto(response.CashierId, CopyPath);
+                        try
+                        {
+                            ImagesUtility.SaveCashierPhoto(response.CashierId, CopyPath);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                     MessageBox.Show(txtLogiName.Text + " Added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;

@@ -14,7 +14,7 @@ using ZXing;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmEditProductPrice : Form
+    public partial class FrmEditProductPrice : BaseForm
     {
         public Products _Products = new Products();
         ISFactory factory = new ISFactory();

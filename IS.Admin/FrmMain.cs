@@ -7,6 +7,7 @@ using IS.Admin.Utilities;
 using IS.Common.Utilities;
 using IS.Database;
 using IS.Database.Enums;
+using IS.Library.Utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +26,8 @@ namespace IS.Admin
         public FrmMain()
         {
             InitializeComponent();
+            LoadWallPaper(ThemesUtility.WallPaper());
+    
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -234,5 +237,42 @@ namespace IS.Admin
             frm.ShowDialog();
         }
 
+        private void stocksDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmStocksData frm = new FrmStocksData();
+            frm.ShowDialog();
+        }
+
+        private void ongoingStocksDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmOngoingStocksData frm = new FrmOngoingStocksData();
+            frm.ShowDialog();
+        }
+
+        private void validateOngoingStocksDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmValidateOngoingStocksData frm = new FrmValidateOngoingStocksData();
+            frm.ShowDialog();
+        }
+
+        private void allStocksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmStocks frm = new FrmStocks();
+            frm.ShowDialog();
+        }
+
+        private void themesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmThemes frm = new FrmThemes(this);
+            frm.ShowDialog();
+        }
+
+        public void LoadWallPaper(string filePath)
+        {
+            if (!string.IsNullOrEmpty(filePath))
+            {
+                this.BackgroundImage = Image.FromFile(filePath);
+            }
+        }
     }
 }

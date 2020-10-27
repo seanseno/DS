@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmEditPrincipal : Form
+    public partial class FrmEditPrincipal : BaseForm
     {
         private Principals _Principal { get;set;}
         public FrmEditPrincipal(Principals Principal)

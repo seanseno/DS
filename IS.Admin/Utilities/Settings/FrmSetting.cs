@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Utilities
 {
-    public partial class FrmReturnItemSettings : Form
+    public partial class FrmReturnItemSettings : BaseForm
     {
         ISFactory factory = new ISFactory();
         public FrmReturnItemSettings()

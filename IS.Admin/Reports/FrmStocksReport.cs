@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Reports
 {
-    public partial class FrmStocksReport : Form
+    public partial class FrmStocksReport : BaseForm
     {
         ISFactory factory = new ISFactory();
         IList<StocksDataViewReport> _list = new List<StocksDataViewReport>();

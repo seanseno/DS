@@ -33,7 +33,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtReturnQty = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.lblProductId = new System.Windows.Forms.Label();
+            this.txtReason = new System.Windows.Forms.TextBox();
             this.lblRemarks = new System.Windows.Forms.Label();
             this.lblExpirationDate = new System.Windows.Forms.Label();
             this.lblDeliveryDate = new System.Windows.Forms.Label();
@@ -46,7 +49,6 @@
             this.lblProductName = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.txtReason = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -58,8 +60,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtReturnQty = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -134,6 +134,24 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Input Details";
             // 
+            // txtReturnQty
+            // 
+            this.txtReturnQty.Location = new System.Drawing.Point(129, 414);
+            this.txtReturnQty.Name = "txtReturnQty";
+            this.txtReturnQty.Size = new System.Drawing.Size(97, 20);
+            this.txtReturnQty.TabIndex = 0;
+            this.txtReturnQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtReturnQty_KeyPress);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(17, 418);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(70, 16);
+            this.label5.TabIndex = 58;
+            this.label5.Text = "Return Qty";
+            // 
             // lblProductId
             // 
             this.lblProductId.AutoSize = true;
@@ -143,6 +161,13 @@
             this.lblProductId.Size = new System.Drawing.Size(66, 16);
             this.lblProductId.TabIndex = 57;
             this.lblProductId.Text = "Principal :";
+            // 
+            // txtReason
+            // 
+            this.txtReason.Location = new System.Drawing.Point(129, 440);
+            this.txtReason.Name = "txtReason";
+            this.txtReason.Size = new System.Drawing.Size(487, 20);
+            this.txtReason.TabIndex = 1;
             // 
             // lblRemarks
             // 
@@ -264,13 +289,6 @@
             this.label11.TabIndex = 45;
             this.label11.Text = "Product ID :";
             // 
-            // txtReason
-            // 
-            this.txtReason.Location = new System.Drawing.Point(129, 440);
-            this.txtReason.Name = "txtReason";
-            this.txtReason.Size = new System.Drawing.Size(487, 20);
-            this.txtReason.TabIndex = 1;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -384,28 +402,11 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(17, 418);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 16);
-            this.label5.TabIndex = 58;
-            this.label5.Text = "Return Qty";
-            // 
-            // txtReturnQty
-            // 
-            this.txtReturnQty.Location = new System.Drawing.Point(129, 414);
-            this.txtReturnQty.Name = "txtReturnQty";
-            this.txtReturnQty.Size = new System.Drawing.Size(97, 20);
-            this.txtReturnQty.TabIndex = 0;
-            this.txtReturnQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtReturnQty_KeyPress);
-            // 
             // FrmReturnStockData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(686, 634);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);

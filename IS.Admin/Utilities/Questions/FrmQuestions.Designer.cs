@@ -52,9 +52,9 @@
             this.label2.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(12, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(142, 34);
+            this.label2.Size = new System.Drawing.Size(196, 34);
             this.label2.TabIndex = 18;
-            this.label2.Text = "Help Menu";
+            this.label2.Text = "Question Menu";
             // 
             // lblTotal
             // 
@@ -155,7 +155,7 @@
             this.groupBox1.Size = new System.Drawing.Size(769, 408);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Category List";
+            this.groupBox1.Text = "Questions List";
             // 
             // btnSearch
             // 
@@ -200,7 +200,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
             this.ClientSize = new System.Drawing.Size(797, 480);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
@@ -209,8 +209,8 @@
             this.MinimizeBox = false;
             this.Name = "FrmQuestions";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Help Menu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Question";
             this.Load += new System.EventHandler(this.FrmReturnItemSettings_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSearch)).EndInit();
             this.groupBox1.ResumeLayout(false);

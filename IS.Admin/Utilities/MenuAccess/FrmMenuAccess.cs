@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmMenuAccess : Form
+    public partial class FrmMenuAccess : BaseForm
     {
         ISFactory factory = new ISFactory();
         MenuStrip _MenuStrip { get; set; }
@@ -54,31 +54,28 @@ namespace IS.Admin.Setup
                 {
                     if (MenuAccess.Where(x => x.MenuName == item.Name).Count() > 0)
                     {
-                        //treeView1.Nodes.Add(item.Text).Checked = true;
                         treeView1.Nodes.Add(item.Text).Name = item.Name;
-                        treeView1.Nodes[item.Name].Text = item.Text;
+                        treeView1.Nodes[item.Name].Text = string.IsNullOrEmpty(item.Text) ? "-" : item.Text;
                         treeView1.Nodes[item.Name].Checked = true;
                     }
                     else
                     {
                         treeView1.Nodes.Add(item.Text).Name = item.Name;
-                        treeView1.Nodes[item.Name].Text = item.Text;
+                        treeView1.Nodes[item.Name].Text = string.IsNullOrEmpty(item.Text) ? "-" : item.Text;
                     }
 
                     foreach (ToolStripItem sub in item.DropDownItems)
                     {
                         if (MenuAccess.Where(x => x.MenuName == sub.Name).Count() > 0)
                         {
-                            //treeView1.Nodes[index1].Nodes.Add(sub.Text).Checked = true;
                             treeView1.Nodes[index1].Nodes.Add(sub.Text).Name = sub.Name;
-                            treeView1.Nodes[index1].Nodes[sub.Name].Text = sub.Text;
+                            treeView1.Nodes[index1].Nodes[sub.Name].Text = string.IsNullOrEmpty(sub.Text) ? "-" : sub.Text;
                             treeView1.Nodes[index1].Nodes[sub.Name].Checked = true;
                         }
                         else
                         {
-                            //treeView1.Nodes[index1].Nodes.Add(sub.Text);
                             treeView1.Nodes[index1].Nodes.Add(sub.Name).Name = sub.Name;
-                            treeView1.Nodes[index1].Nodes[sub.Name].Text = sub.Text;
+                            treeView1.Nodes[index1].Nodes[sub.Name].Text = string.IsNullOrEmpty(sub.Text) ? "-" : sub.Text;
                         }
 
                         index2++;

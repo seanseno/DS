@@ -38,5 +38,6 @@ namespace IS.Database
 
         public QuestionsRepository QuestionsRepository = new QuestionsRepository();
         public ReturnStocksDataRepository ReturnStocksDataRepository = new ReturnStocksDataRepository();
+        public ThemesRepository ThemesRepository = new ThemesRepository();
     }
 }

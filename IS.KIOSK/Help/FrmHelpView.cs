@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace IS.KIOSK
 {
-    public partial class FrmHelpView : Form
+    public partial class FrmHelpView : BaseForm
     {
 
         ISFactory factory = new ISFactory();

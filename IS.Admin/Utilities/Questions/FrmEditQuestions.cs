@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Utilities
 {
-    public partial class FrmEditQuestions : Form
+    public partial class FrmEditQuestions : BaseForm
     {
         ISFactory factory = new ISFactory();
         int _Id { get; set; }

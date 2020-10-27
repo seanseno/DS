@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Reports
 {
-    public partial class FrmSalesReport : Form
+    public partial class FrmSalesReport : BaseForm
     {
         ISFactory factory = new ISFactory();
         IList<SalesViewReport> _list = new List<SalesViewReport>();
@@ -62,6 +62,7 @@ namespace IS.Admin.Reports
                                 item.Date = sale.InsertTime?.ToString("MM/dd/yyyy");
                                 item.Time = sale.InsertTime?.ToString("hh:mm tt");
                                 item.Fullname = sale.Fullname;
+                                item.CustmerName = sale.CustomerName;
                                 item.Date = sale.InsertTime?.ToString("MM/dd/yyyy");
                                 item.Id = sale.Id?.ToString("N0");
                                 item.Month = sale.InsertTime?.ToString("MMMM");
@@ -132,41 +133,41 @@ namespace IS.Admin.Reports
             dgv.AutoGenerateColumns = false;
             dgv.DataSource = response;
 
-            dgv[6, dgvSales.Rows.Count - 1].Value = "TOTAL";
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[6].Style.Font = new Font("Arial", 16, FontStyle.Bold);
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[6].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv[7, dgvSales.Rows.Count - 1].Value = "TOTAL";
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[7].Style.Font = new Font("Arial", 16, FontStyle.Bold);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[7].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[7].Style.Font = new Font("Arial", 12, FontStyle.Bold);
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[7].Style.BackColor = Color.Green;
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[7].Style.ForeColor = Color.White;
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[7].Value = response.Sum(x => x.SoldQuantity);
 
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[8].Style.Font = new Font("Arial", 12, FontStyle.Bold);
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[8].Style.BackColor = Color.Green;
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[8].Style.ForeColor = Color.White;
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[8].Value = response.Sum(x => x.SellingPrice);
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[8].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-            //var xx = response.Sum(x => x.TotalAmount)?.ToString("N2");
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[8].Value = response.Sum(x => x.SoldQuantity);
 
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[9].Style.Font = new Font("Arial", 12, FontStyle.Bold);
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[9].Style.BackColor = Color.Green;
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[9].Style.ForeColor = Color.White;
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[9].Value = response.Sum(x => x.TotalAmount);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[9].Value = response.Sum(x => x.SellingPrice);
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[9].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            //var xx = response.Sum(x => x.TotalAmount)?.ToString("N2");
 
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[10].Style.Font = new Font("Arial", 12, FontStyle.Bold);
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[10].Style.BackColor = Color.Green;
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[10].Style.ForeColor = Color.White;
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[10].Value = response.Sum(x => x.SupplierPrice);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[10].Value = response.Sum(x => x.TotalAmount);
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[10].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[11].Style.Font = new Font("Arial", 12, FontStyle.Bold);
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[11].Style.BackColor = Color.Green;
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[11].Style.ForeColor = Color.White;
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[11].Value = response.Sum(x => x.Profit);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[11].Value = response.Sum(x => x.SupplierPrice);
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[11].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[12].Style.Font = new Font("Arial", 12, FontStyle.Bold);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[12].Style.BackColor = Color.Green;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[12].Style.ForeColor = Color.White;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[12].Value = response.Sum(x => x.Profit);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[12].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
     }
 }

@@ -18,7 +18,7 @@ using ZXing;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmPrincipalsUploadExcel : Form
+    public partial class FrmPrincipalsUploadExcel : BaseForm
     {
         DataTableCollection tableCollection;
         DataTable dt;

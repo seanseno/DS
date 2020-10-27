@@ -54,6 +54,7 @@
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InsertTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Month = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -203,6 +204,7 @@
             this.Date,
             this.InsertTime,
             this.Fullname,
+            this.CustomerName,
             this.Id,
             this.Month,
             this.CategoryName,
@@ -259,6 +261,13 @@
             this.Fullname.Name = "Fullname";
             this.Fullname.ReadOnly = true;
             this.Fullname.Width = 125;
+            // 
+            // CustomerName
+            // 
+            this.CustomerName.DataPropertyName = "CustomerName";
+            this.CustomerName.HeaderText = "Additional Info.";
+            this.CustomerName.Name = "CustomerName";
+            this.CustomerName.ReadOnly = true;
             // 
             // Id
             // 
@@ -360,7 +369,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
             this.ClientSize = new System.Drawing.Size(1047, 639);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox2);
@@ -371,7 +380,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmSalesReport";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Sales Report";
             this.Load += new System.EventHandler(this.FrmSalesReport_Load);
             this.groupBox2.ResumeLayout(false);
@@ -401,6 +410,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn InsertTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fullname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Month;
         private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;

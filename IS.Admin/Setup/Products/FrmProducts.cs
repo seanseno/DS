@@ -16,7 +16,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmProducts : Form
+    public partial class FrmProducts : BaseForm
     {
         IList<Products> _ProductList = new List<Products>();
         ISFactory factory = new ISFactory();

@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmEditCashier : Form
+    public partial class FrmEditCashier : BaseForm
     {
         private Cashiers _Cashier { get;set;}
         public string CopyPath { get; set; }
@@ -59,7 +59,14 @@ namespace IS.Admin.Setup
                 if (!string.IsNullOrEmpty(CopyPath))
                 {
                     PictureBox.InitialImage = null;
-                    ImagesUtility.SaveCashierPhoto(_Cashier.CashierId, CopyPath);
+                    try
+                    {
+                        ImagesUtility.SaveCashierPhoto(_Cashier.CashierId, CopyPath);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
 

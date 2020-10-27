@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Utilities
 {
-    public partial class FrmQuestions : Form
+    public partial class FrmQuestions : BaseForm
     {
         ISFactory factory = new ISFactory();
         public FrmQuestions()

@@ -63,6 +63,16 @@ namespace IS.KIOSK.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _480px_No_image_available_svg {
+            get {
+                object obj = ResourceManager.GetObject("480px-No_image_available.svg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap arrows {
             get {
                 object obj = ResourceManager.GetObject("arrows", resourceCulture);

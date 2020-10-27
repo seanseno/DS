@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace IS.KIOSK
 {
-    public partial class FrmCheckOut : Form
+    public partial class FrmCheckOut : BaseForm
     {
         FrmMain _FrmMain = new FrmMain();
         public decimal payAmount { get; set; }

@@ -32,8 +32,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblTotal = new System.Windows.Forms.Label();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.grpLoading = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.dgvSearch = new System.Windows.Forms.DataGridView();
             this.History = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,14 +54,10 @@
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.grpLoading.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSearch)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -86,6 +86,19 @@
             this.lblTotal.TabIndex = 15;
             this.lblTotal.Text = "Total Record(s) 0";
             // 
+            // btnSearch
+            // 
+            this.btnSearch.Image = global::IS.Admin.Properties.Resources.search;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.Location = new System.Drawing.Point(1080, 22);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(76, 39);
+            this.btnSearch.TabIndex = 1;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // grpLoading
             // 
             this.grpLoading.Controls.Add(this.label1);
@@ -106,6 +119,42 @@
             this.label1.Size = new System.Drawing.Size(102, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Loading...................";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::IS.Admin.Properties.Resources.Spinner;
+            this.pictureBox2.Location = new System.Drawing.Point(24, 30);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(123, 133);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Image = global::IS.Admin.Properties.Resources.Cancel;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnClose.Location = new System.Drawing.Point(1162, 531);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(66, 55);
+            this.btnClose.TabIndex = 4;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::IS.Admin.Properties.Resources.Add;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAdd.Location = new System.Drawing.Point(1162, 22);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(66, 39);
+            this.btnAdd.TabIndex = 2;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // dgvSearch
             // 
@@ -290,60 +339,11 @@
             this.label2.TabIndex = 16;
             this.label2.Text = "Ongoing Stocks Data Menu";
             // 
-            // btnSearch
-            // 
-            this.btnSearch.Image = global::IS.Admin.Properties.Resources.search;
-            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.Location = new System.Drawing.Point(1080, 22);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(76, 39);
-            this.btnSearch.TabIndex = 1;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::IS.Admin.Properties.Resources.Spinner;
-            this.pictureBox2.Location = new System.Drawing.Point(24, 30);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(123, 133);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Image = global::IS.Admin.Properties.Resources.Cancel;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnClose.Location = new System.Drawing.Point(1162, 531);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(66, 55);
-            this.btnClose.TabIndex = 4;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::IS.Admin.Properties.Resources.Add;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdd.Location = new System.Drawing.Point(1162, 22);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(66, 39);
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // FrmOngoingStocksData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(128)))), ((int)(((byte)(103)))));
             this.ClientSize = new System.Drawing.Size(1280, 665);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
@@ -352,15 +352,16 @@
             this.MinimizeBox = false;
             this.Name = "FrmOngoingStocksData";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Ongoing Stocks Data Menu";
-            this.Shown += new System.EventHandler(this.FrmStocksData_Shown);
+            this.Load += new System.EventHandler(this.FrmOngoingStocksData_Load);
+
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grpLoading.ResumeLayout(false);
             this.grpLoading.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSearch)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

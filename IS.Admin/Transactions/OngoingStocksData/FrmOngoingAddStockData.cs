@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Transactions
 {
-    public partial class FrmOngoingAddStockData : Form
+    public partial class FrmOngoingAddStockData : BaseForm
     {
         public Categories _Categories = new Categories();
         private Products _Product = new Products();

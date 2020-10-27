@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmAddCategory : Form
+    public partial class FrmAddCategory : BaseForm
     {
         public Categories _Categories = new Categories();
         public FrmAddCategory()

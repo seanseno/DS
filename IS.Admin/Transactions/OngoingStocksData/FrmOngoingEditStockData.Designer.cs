@@ -33,6 +33,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cboCategories = new System.Windows.Forms.ComboBox();
+            this.cboPrincipals = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.txtRemarks = new System.Windows.Forms.RichTextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -48,10 +52,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.cboCategories = new System.Windows.Forms.ComboBox();
-            this.cboPrincipals = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -114,6 +114,44 @@
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Input Details";
+            // 
+            // cboCategories
+            // 
+            this.cboCategories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCategories.FormattingEnabled = true;
+            this.cboCategories.Location = new System.Drawing.Point(131, 205);
+            this.cboCategories.Name = "cboCategories";
+            this.cboCategories.Size = new System.Drawing.Size(357, 21);
+            this.cboCategories.TabIndex = 1;
+            // 
+            // cboPrincipals
+            // 
+            this.cboPrincipals.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPrincipals.FormattingEnabled = true;
+            this.cboPrincipals.Location = new System.Drawing.Point(131, 176);
+            this.cboPrincipals.Name = "cboPrincipals";
+            this.cboPrincipals.Size = new System.Drawing.Size(357, 21);
+            this.cboPrincipals.TabIndex = 0;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(20, 205);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(63, 16);
+            this.label16.TabIndex = 45;
+            this.label16.Text = "Category";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(20, 176);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(60, 16);
+            this.label15.TabIndex = 44;
+            this.label15.Text = "Principal";
             // 
             // txtRemarks
             // 
@@ -264,48 +302,11 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // cboCategories
-            // 
-            this.cboCategories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCategories.FormattingEnabled = true;
-            this.cboCategories.Location = new System.Drawing.Point(131, 205);
-            this.cboCategories.Name = "cboCategories";
-            this.cboCategories.Size = new System.Drawing.Size(357, 21);
-            this.cboCategories.TabIndex = 1;
-            // 
-            // cboPrincipals
-            // 
-            this.cboPrincipals.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPrincipals.FormattingEnabled = true;
-            this.cboPrincipals.Location = new System.Drawing.Point(131, 176);
-            this.cboPrincipals.Name = "cboPrincipals";
-            this.cboPrincipals.Size = new System.Drawing.Size(357, 21);
-            this.cboPrincipals.TabIndex = 0;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(20, 205);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(63, 16);
-            this.label16.TabIndex = 45;
-            this.label16.Text = "Category";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(20, 176);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(60, 16);
-            this.label15.TabIndex = 44;
-            this.label15.Text = "Principal";
-            // 
             // FrmOingingEditStockData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(684, 575);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);

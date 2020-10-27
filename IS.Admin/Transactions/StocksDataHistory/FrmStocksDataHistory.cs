@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Transactions
 {
-    public partial class FrmStocksDataHistory : FormSettings
+    public partial class FrmStocksDataHistory : BaseForm
     {
         ISFactory factory = new ISFactory();
         int Id { get; set; }

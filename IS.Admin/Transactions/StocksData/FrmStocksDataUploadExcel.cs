@@ -20,7 +20,7 @@ using ZXing;
 
 namespace IS.Admin.Transactions
 {
-    public partial class FrmStocksDataUploadExcel : Form
+    public partial class FrmStocksDataUploadExcel : BaseForm
     {
         DataTableCollection tableCollection;
         DataTable dt;

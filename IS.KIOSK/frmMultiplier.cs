@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace IS.KIOSK
 {
-    public partial class frmMultiplier : Form
+    public partial class frmMultiplier : BaseForm
     {
         ISFactory factory = new ISFactory();
         Products product = new Products();
@@ -55,6 +55,7 @@ namespace IS.KIOSK
                 if (percentDiscount == null)
                 {
                     MessageBox.Show("Discount price not yet in setup!, please call administrator!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this._FrmMain._IsDicounted = false ;
                     this.DialogResult = DialogResult.Cancel;
                 }
                 else
@@ -142,6 +143,7 @@ namespace IS.KIOSK
                                 // _frmKiosk.AddTempOrder();
                                 this.Qty = Qty;
                                 this.DialogResult = DialogResult.OK;
+                                this._FrmMain._IsDicounted = true;
                             }
                         }
                     }
@@ -158,6 +160,7 @@ namespace IS.KIOSK
             {
                 this.DialogResult = DialogResult.Cancel;
                 this.Close();
+                this._FrmMain._IsDicounted = false;
             }
         }
 
@@ -193,11 +196,13 @@ namespace IS.KIOSK
         private void rbSenior_CheckedChanged(object sender, EventArgs e)
         {
             txtQty_TextChanged(sender, e);
+            this._FrmMain._IsDicounted = true;
         }
 
         private void rbPwd_CheckedChanged(object sender, EventArgs e)
         {
             txtQty_TextChanged(sender, e);
+            this._FrmMain._IsDicounted = true;
         }
     }
 }

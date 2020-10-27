@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Reports
 {
-    public partial class FrmReturnItemsToSupplier : Form
+    public partial class FrmReturnItemsToSupplier : BaseForm
     {
         ISFactory factory = new ISFactory();
         IList<ReturnItemsToSupplierView> _list = new List<ReturnItemsToSupplierView>();

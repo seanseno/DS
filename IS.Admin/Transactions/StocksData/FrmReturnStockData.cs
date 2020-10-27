@@ -16,7 +16,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Transactions
 {
-    public partial class FrmReturnStockData : Form
+    public partial class FrmReturnStockData : BaseForm
     {
         private StocksData _StockData { get;set;}
         private Products _Product = new Products();

@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace IS.KIOSK
 {
-    public partial class FrmLoadSaveOrders : Form
+    public partial class FrmLoadSaveOrders : BaseForm
     {
         LoadSaveOrdersModel loadSaveOrdersModel = new LoadSaveOrdersModel();
         FrmMain _FrmMain = new FrmMain();

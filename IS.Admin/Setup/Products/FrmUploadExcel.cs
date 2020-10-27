@@ -20,7 +20,7 @@ using ZXing;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmUploadExcel : Form
+    public partial class FrmUploadExcel : BaseForm
     {
         DataTableCollection tableCollection;
         DataTable dt;

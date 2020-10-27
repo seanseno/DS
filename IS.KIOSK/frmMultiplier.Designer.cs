@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblProductName = new System.Windows.Forms.Label();
             this.pnlDiscount = new System.Windows.Forms.Panel();
             this.rbPwd = new System.Windows.Forms.RadioButton();
             this.rbSenior = new System.Windows.Forms.RadioButton();
@@ -42,7 +43,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.lblProductName = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.pnlDiscount.SuspendLayout();
             this.SuspendLayout();
@@ -54,7 +54,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.lblProductName);
             this.panel1.Controls.Add(this.pnlDiscount);
             this.panel1.Controls.Add(this.lblError);
@@ -66,6 +66,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(403, 153);
             this.panel1.TabIndex = 9;
+            // 
+            // lblProductName
+            // 
+            this.lblProductName.BackColor = System.Drawing.Color.White;
+            this.lblProductName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblProductName.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.lblProductName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductName.Location = new System.Drawing.Point(16, 8);
+            this.lblProductName.Name = "lblProductName";
+            this.lblProductName.Size = new System.Drawing.Size(369, 59);
+            this.lblProductName.TabIndex = 13;
             // 
             // pnlDiscount
             // 
@@ -190,21 +201,11 @@
             this.label5.TabIndex = 14;
             this.label5.Text = "Shorcut Key";
             // 
-            // lblProductName
-            // 
-            this.lblProductName.BackColor = System.Drawing.Color.White;
-            this.lblProductName.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.lblProductName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductName.Location = new System.Drawing.Point(16, 8);
-            this.lblProductName.Name = "lblProductName";
-            this.lblProductName.Size = new System.Drawing.Size(369, 59);
-            this.lblProductName.TabIndex = 13;
-            // 
             // frmMultiplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(432, 234);
             this.ControlBox = false;
@@ -216,7 +217,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMultiplier";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.frmMultiplier_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

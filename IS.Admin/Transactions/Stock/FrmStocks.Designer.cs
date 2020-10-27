@@ -150,7 +150,6 @@
             this.dgvSearch.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSearch.Size = new System.Drawing.Size(810, 271);
             this.dgvSearch.TabIndex = 1;
-           
             // 
             // ProductId
             // 
@@ -211,7 +210,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(867, 488);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
@@ -223,7 +222,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Stocks Menu";
             this.Load += new System.EventHandler(this.FrmStocks_Load);
-            this.Shown += new System.EventHandler(this.FrmStocks_Shown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grpLoading.ResumeLayout(false);

@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Transactions
 {
-    public partial class FrmStocks : Form
+    public partial class FrmStocks : BaseForm
     {
         ISFactory factory = new ISFactory();
 
@@ -52,11 +52,6 @@ namespace IS.Admin.Transactions
             this.Close();
         }
 
-        private void FrmStocks_Shown(object sender, EventArgs e)
-        {
-            this.LoadStocks();
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             this.LoadStocks();
@@ -64,7 +59,7 @@ namespace IS.Admin.Transactions
 
         private void FrmStocks_Load(object sender, EventArgs e)
         {
-
+            this.LoadStocks();
         }
     }
 }

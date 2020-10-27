@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace IS.KIOSK
 {
-    public partial class FrmHelp : Form
+    public partial class FrmHelp : BaseForm
     {
         ISFactory factory = new ISFactory();
         public FrmHelp()

@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmCategories : Form
+    public partial class FrmCategories : BaseForm
     {
         IList<Categories> _list = new List<Categories>();
         public FrmCategories()
@@ -88,12 +88,6 @@ namespace IS.Admin.Setup
             this.Close();
         }
 
-        private void FrmCategories_Shown(object sender, EventArgs e)
-        {
-            this.LoadCategory();
-            DisplayTotal();
-        }
-
         private void DisplayTotal()
         {
             string TotalStr = "Total Record 0";
@@ -136,7 +130,8 @@ namespace IS.Admin.Setup
 
         private void FrmCategories_Load(object sender, EventArgs e)
         {
-
+            this.LoadCategory();
+            DisplayTotal();
         }
     }
 }

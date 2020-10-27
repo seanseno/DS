@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtCashierId = new System.Windows.Forms.TextBox();
+            this.lblId = new System.Windows.Forms.Label();
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -44,8 +46,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtCashierId = new System.Windows.Forms.TextBox();
-            this.lblId = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
@@ -70,6 +70,25 @@
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Input Details";
+            // 
+            // txtCashierId
+            // 
+            this.txtCashierId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCashierId.Location = new System.Drawing.Point(141, 31);
+            this.txtCashierId.MaxLength = 5;
+            this.txtCashierId.Name = "txtCashierId";
+            this.txtCashierId.Size = new System.Drawing.Size(160, 26);
+            this.txtCashierId.TabIndex = 0;
+            // 
+            // lblId
+            // 
+            this.lblId.AutoSize = true;
+            this.lblId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblId.Location = new System.Drawing.Point(19, 36);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(70, 16);
+            this.lblId.TabIndex = 9;
+            this.lblId.Text = "Cashier ID";
             // 
             // txtConfirmPassword
             // 
@@ -147,7 +166,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.btnUploadPhoto);
             this.panel1.Controls.Add(this.PictureBox);
             this.panel1.Controls.Add(this.btnCancel);
@@ -217,30 +236,11 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "Add Cashier Info.";
             // 
-            // txtCashierId
-            // 
-            this.txtCashierId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCashierId.Location = new System.Drawing.Point(141, 31);
-            this.txtCashierId.MaxLength = 5;
-            this.txtCashierId.Name = "txtCashierId";
-            this.txtCashierId.Size = new System.Drawing.Size(160, 26);
-            this.txtCashierId.TabIndex = 0;
-            // 
-            // lblId
-            // 
-            this.lblId.AutoSize = true;
-            this.lblId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblId.Location = new System.Drawing.Point(19, 36);
-            this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(70, 16);
-            this.lblId.TabIndex = 9;
-            this.lblId.Text = "Cashier ID";
-            // 
             // FrmAddCashier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(727, 368);
             this.ControlBox = false;
             this.Controls.Add(this.label7);

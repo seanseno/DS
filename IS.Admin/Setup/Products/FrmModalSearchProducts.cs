@@ -17,7 +17,7 @@ using System.Windows.Forms;
 namespace IS.Admin.Setup
 {
     public partial class
-        FrmModalSearchProducts : Form
+        FrmModalSearchProducts : BaseForm
     {
         IList<Products> _ProductList = new List<Products>();
         public string _ProductId {get;set;}

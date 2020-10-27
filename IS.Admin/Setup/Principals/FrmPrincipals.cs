@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmPrincipals : Form
+    public partial class FrmPrincipals : BaseForm
     {
         IList<Principals> _list = new List<Principals>();
         public FrmPrincipals()
@@ -89,11 +89,6 @@ namespace IS.Admin.Setup
             this.Close();
         }
 
-        private void FrmPrincipals_Shown(object sender, EventArgs e)
-        {
-            this.LoadPrincipal();
-            DisplayTotal();
-        }
 
         private void DisplayTotal()
         {
@@ -122,6 +117,12 @@ namespace IS.Admin.Setup
         private void btnSearch_Click(object sender, EventArgs e)
         {
             LoadPrincipal();
+        }
+
+        private void FrmPrincipals_Load(object sender, EventArgs e)
+        {
+            this.LoadPrincipal();
+            DisplayTotal();
         }
     }
 }

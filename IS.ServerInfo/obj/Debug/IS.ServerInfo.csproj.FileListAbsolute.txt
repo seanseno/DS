@@ -1,12 +1,6 @@
 D:\Work\DrugsStore\IS.ServerInfo\bin\Debug\IS.ServerInfo.exe.config
 D:\Work\DrugsStore\IS.ServerInfo\bin\Debug\IS.ServerInfo.exe
 D:\Work\DrugsStore\IS.ServerInfo\bin\Debug\IS.ServerInfo.pdb
-D:\Work\DrugsStore\IS.ServerInfo\obj\Debug\IS.ServerInfo.csprojAssemblyReference.cache
-D:\Work\DrugsStore\IS.ServerInfo\obj\Debug\IS.ServerInfo.Properties.Resources.resources
-D:\Work\DrugsStore\IS.ServerInfo\obj\Debug\IS.ServerInfo.csproj.GenerateResource.cache
-D:\Work\DrugsStore\IS.ServerInfo\obj\Debug\IS.ServerInfo.csproj.CoreCompileInputs.cache
-D:\Work\DrugsStore\IS.ServerInfo\obj\Debug\IS.ServerInfo.exe
-D:\Work\DrugsStore\IS.ServerInfo\obj\Debug\IS.ServerInfo.pdb
 D:\Work\DrugsStore\IS.ServerInfo\bin\Debug\IS.Common.dll
 D:\Work\DrugsStore\IS.ServerInfo\bin\Debug\ExcelDataReader.dll
 D:\Work\DrugsStore\IS.ServerInfo\bin\Debug\ExcelDataReader.DataSet.dll
@@ -15,5 +9,11 @@ D:\Work\DrugsStore\IS.ServerInfo\bin\Debug\ExcelDataReader.pdb
 D:\Work\DrugsStore\IS.ServerInfo\bin\Debug\ExcelDataReader.xml
 D:\Work\DrugsStore\IS.ServerInfo\bin\Debug\ExcelDataReader.DataSet.pdb
 D:\Work\DrugsStore\IS.ServerInfo\bin\Debug\ExcelDataReader.DataSet.xml
-D:\Work\DrugsStore\IS.ServerInfo\obj\Debug\IS.ServerInfo.csproj.CopyComplete
+D:\Work\DrugsStore\IS.ServerInfo\obj\Debug\IS.ServerInfo.csprojAssemblyReference.cache
 D:\Work\DrugsStore\IS.ServerInfo\obj\Debug\IS.ServerInfo.btnCopyPass.resources
+D:\Work\DrugsStore\IS.ServerInfo\obj\Debug\IS.ServerInfo.Properties.Resources.resources
+D:\Work\DrugsStore\IS.ServerInfo\obj\Debug\IS.ServerInfo.csproj.GenerateResource.cache
+D:\Work\DrugsStore\IS.ServerInfo\obj\Debug\IS.ServerInfo.csproj.CoreCompileInputs.cache
+D:\Work\DrugsStore\IS.ServerInfo\obj\Debug\IS.ServerInfo.csproj.CopyComplete
+D:\Work\DrugsStore\IS.ServerInfo\obj\Debug\IS.ServerInfo.exe
+D:\Work\DrugsStore\IS.ServerInfo\obj\Debug\IS.ServerInfo.pdb

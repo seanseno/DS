@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Transactions
 {
-    public partial class FrmStocksData : FormSettings
+    public partial class FrmStocksData : BaseForm
     {
         IList<StocksData> _list = new List<StocksData>();
         ISFactory factory = new ISFactory();
@@ -119,11 +119,6 @@ namespace IS.Admin.Transactions
             this.Close();
         }
 
-        private void FrmStocksData_Shown(object sender, EventArgs e)
-        {
-            this.LoadStockData();
-            DisplayTotal();
-        }
 
         private void DisplayTotal()
         {
@@ -171,7 +166,8 @@ namespace IS.Admin.Transactions
 
         private void FrmStocksData_Load(object sender, EventArgs e)
         {
-
+            this.LoadStockData();
+            DisplayTotal();
         }
     }
 }

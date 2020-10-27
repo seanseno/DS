@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace IS.KIOSK
 {
-    public partial class FrmChange : Form
+    public partial class FrmChange : BaseForm
     {
         public FrmChange(string Change)
         {

@@ -8,6 +8,7 @@ namespace IS.Database.Views
     {
         public DateTime? InsertTime { get; set; }
         public string Fullname { get; set; }
+        public string CustomerName { get; set; }
         public int? Id { get; set; }      
         public string CategoryName { get; set; }
         public string ProductName { get; set; }

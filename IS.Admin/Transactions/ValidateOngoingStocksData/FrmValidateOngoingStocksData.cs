@@ -1,4 +1,5 @@
-﻿using IS.Admin.Model;
+﻿using IS.Admin;
+using IS.Admin.Model;
 using IS.Admin.Transactions;
 using IS.Database.Entities;
 using System;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 
 namespace IIS.Admin.Transactions
 {
-    public partial class FrmValidateOngoingStocksData : Form
+    public partial class FrmValidateOngoingStocksData : BaseForm
     {
         IList<StocksData> _list = new List<StocksData>();
         public FrmValidateOngoingStocksData()
@@ -70,12 +71,6 @@ namespace IIS.Admin.Transactions
             this.Close();
         }
 
-        private void FrmValidateOngoingStocksData_Shown(object sender, EventArgs e)
-        {
-            this.LoadStockData();
-            DisplayTotal();
-        }
-
         private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var stockData = new StocksData
@@ -94,6 +89,12 @@ namespace IIS.Admin.Transactions
                 };
 
             }
+        }
+
+        private void FrmValidateOngoingStocksData_Load(object sender, EventArgs e)
+        {
+            this.LoadStockData();
+            DisplayTotal();
         }
     }
 }

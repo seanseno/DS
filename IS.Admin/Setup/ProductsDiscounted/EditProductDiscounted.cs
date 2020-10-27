@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Setup
 {
-    public partial class EditProductDiscounted : Form
+    public partial class EditProductDiscounted : BaseForm
     {
         ISFactory factgory = new ISFactory();
         String _ProductId { get; set; }

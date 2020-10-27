@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmEditAdministrator : Form
+    public partial class FrmEditAdministrator : BaseForm
     {
         private Administrators _Administrator { get;set;}
         public FrmEditAdministrator(Administrators Administrator)

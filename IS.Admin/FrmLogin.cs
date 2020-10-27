@@ -1,5 +1,6 @@
 ﻿using IS.Admin.Model;
 using IS.Common.Utilities;
+using IS.Library.Utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -99,6 +100,11 @@ namespace IS.Admin
                 return true;
             }
             return false;
+        }
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+            BackColor = ThemesUtility.BackColor();
         }
     }
 }

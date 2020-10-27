@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmProductsDiscounted : Form
+    public partial class FrmProductsDiscounted : BaseForm
     {
         ISFactory factory = new ISFactory();
         IList<ProductsDiscounted> _list = new List<ProductsDiscounted>();

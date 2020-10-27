@@ -17,7 +17,7 @@ using System.Windows.Forms;
 namespace IS.KIOSK
 {
     public partial class
-        FrmModalSearchProducts : Form
+        FrmModalSearchProducts : BaseForm
     {
         IList<ProductsKiosk> _ProductList = new List<ProductsKiosk>();
         public string _ProductId {get;set;}
@@ -41,24 +41,6 @@ namespace IS.KIOSK
 
             this._ProductList = factory.ProductsRepository.GetListFromKiosk();
 
-            //List<Products> listProduct = new List<Products>();
-
-            //if (_Query != null)
-            //{
-            //    foreach (var productId in _Query)
-            //    {
-            //        var prod = new Products();
-            //        prod =  response.Where(x => x.ProductId == productId).FirstOrDefault();
-            //        listProduct.Add(prod);
-            //    }
-            //    this._ProductList = listProduct;
-            //}
-            //else
-            //{
-            //    this._ProductList = response;
-            //}
-           
-
             Thread.Sleep(1);
             SetLoading(false);
         }
@@ -79,13 +61,6 @@ namespace IS.KIOSK
         {
             this.Close();
         }
-
-        //private void btnSearch_Click(object sender, EventArgs e)
-        //{
-
-        //    LoadMemoryProducts();
-
-        //}
 
         private void SetLoading(bool displayLoader)
         {

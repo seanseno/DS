@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmCashiers : Form
+    public partial class FrmCashiers : BaseForm
     {
         ISFactory factory = new ISFactory();
         public FrmCashiers()
@@ -84,13 +84,10 @@ namespace IS.Admin.Setup
             this.Close();
         }
 
-        private void FrmCashiers_Shown(object sender, EventArgs e)
-        {
-            this.LoadCashier();
-        }
 
         private void FrmCashiers_Load(object sender, EventArgs e)
         {
+            this.LoadCashier();
 
         }
     }

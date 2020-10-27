@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Utilities
 {
-    public partial class FrmEditSettings : Form
+    public partial class FrmEditSettings : BaseForm
     {
         ISFactory factory = new ISFactory();
         public FrmEditSettings()

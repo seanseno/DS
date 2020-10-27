@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Transactions
 {
-    public partial class FrmStocksDataNotUploaded : Form
+    public partial class FrmStocksDataNotUploaded : BaseForm
     {
         IList<StocksData> ErrorList = new List<StocksData>();
         public FrmStocksDataNotUploaded(IList<StocksData> errorList)

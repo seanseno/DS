@@ -63,6 +63,16 @@ namespace IS.Admin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _480px_No_image_available_svg {
+            get {
+                object obj = ResourceManager.GetObject("480px-No_image_available.svg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap accounts {
             get {
                 object obj = ResourceManager.GetObject("accounts", resourceCulture);
@@ -216,6 +226,16 @@ namespace IS.Admin.Properties {
         internal static System.Drawing.Bitmap NoPhoto {
             get {
                 object obj = ResourceManager.GetObject("NoPhoto", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pharmachic_Drugstore {
+            get {
+                object obj = ResourceManager.GetObject("Pharmachic Drugstore", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

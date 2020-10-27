@@ -242,7 +242,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(128)))), ((int)(((byte)(103)))));
             this.ClientSize = new System.Drawing.Size(791, 478);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
@@ -251,9 +251,9 @@
             this.MinimizeBox = false;
             this.Name = "FrmPrincipals";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Principals Menu";
-            this.Shown += new System.EventHandler(this.FrmPrincipals_Shown);
+            this.Load += new System.EventHandler(this.FrmPrincipals_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grpLoading.ResumeLayout(false);

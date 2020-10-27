@@ -18,7 +18,7 @@ using ZXing;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmCategoriesUploadExcel : Form
+    public partial class FrmCategoriesUploadExcel : BaseForm
     {
         DataTableCollection tableCollection;
         DataTable dt;
@@ -118,7 +118,7 @@ namespace IS.Admin.Setup
                             }
                             else if (request.CheckDup(category))
                             {
-                                MessageBox.Show(string.Format("Row {0}, Principal Id :{1} or Principal Name :{2} already exist!", rowIndex, category.CategoryId.ToUpper(), category.CategoryName.ToUpper()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show(string.Format("Row {0}, Category Id :{1} or Category Name :{2} already exist!", rowIndex, category.CategoryId.ToUpper(), category.CategoryName.ToUpper()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 dgvExcel.Rows[rowIndex - 1].Selected = true;
                                 progressBar1.Value = 0;
                                 lblpbar.Text = "";

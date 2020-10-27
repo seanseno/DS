@@ -57,7 +57,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
+            this.groupBox2.BackColor = System.Drawing.Color.White;
             this.groupBox2.Controls.Add(this.txtAnswer);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.txtQuestion);
@@ -71,7 +71,7 @@
             // 
             // txtAnswer
             // 
-            this.txtAnswer.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAnswer.Location = new System.Drawing.Point(93, 88);
             this.txtAnswer.Name = "txtAnswer";
@@ -92,7 +92,7 @@
             // 
             // txtQuestion
             // 
-            this.txtQuestion.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtQuestion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtQuestion.Location = new System.Drawing.Point(93, 32);
             this.txtQuestion.Name = "txtQuestion";
@@ -141,7 +141,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(870, 585);
             this.ControlBox = false;
             this.Controls.Add(this.btnSave);

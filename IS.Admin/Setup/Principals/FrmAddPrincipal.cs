@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmAddPrincipal : Form
+    public partial class FrmAddPrincipal : BaseForm
     {
         public Principals _Principals = new Principals();
         public FrmAddPrincipal()

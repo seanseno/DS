@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmProductPriceHistory : Form
+    public partial class FrmProductPriceHistory : BaseForm
     {
         ISFactory factory = new ISFactory();
         public FrmProductPriceHistory()

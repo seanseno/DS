@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace IS.KIOSK
 {
-    public partial class FrmReturnItem : Form
+    public partial class FrmReturnItem : BaseForm
     {
         ISFactory factory = new ISFactory();
         public FrmReturnItem()
@@ -114,7 +114,7 @@ namespace IS.KIOSK
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     LoadData();
-                    MessageBox.Show("Settings updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Item returned.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 };
             }
             else

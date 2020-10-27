@@ -13,7 +13,7 @@ using ZXing;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmEditProduct : Form
+    public partial class FrmEditProduct : BaseForm
     {
         public Products _Products = new Products();
         public FrmEditProduct(Products Products)
