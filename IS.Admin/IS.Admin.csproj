@@ -165,6 +165,12 @@
     <Compile Include="Reports\FrmReturnItems.Designer.cs">
       <DependentUpon>FrmReturnItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\FrmEndOfDayReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\FrmEndOfDayReport.Designer.cs">
+      <DependentUpon>FrmEndOfDayReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\FrmSalesReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -472,6 +478,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\FrmReturnItems.resx">
       <DependentUpon>FrmReturnItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\FrmEndOfDayReport.resx">
+      <DependentUpon>FrmEndOfDayReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\FrmSalesReport.resx">
       <DependentUpon>FrmSalesReport.cs</DependentUpon>

@@ -274,5 +274,11 @@ namespace IS.Admin
                 this.BackgroundImage = Image.FromFile(filePath);
             }
         }
+
+        private void endOfDayReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmEndOfDayReport frm = new FrmEndOfDayReport();
+            frm.ShowDialog();
+        }
     }
 }

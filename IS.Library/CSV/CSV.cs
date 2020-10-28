@@ -14,6 +14,38 @@ namespace IS.Library.CSV
 {
     public class CSV 
     {
+        public string WriteSalesDetailCSV(string DownloadPath,
+            IList<SalesDetailCSV> listCSV,
+            IList<EndOfDayReportView> listView,
+            DateTime dateFrom,
+            DateTime dateTo,
+            string PreparedBY)
+        {
+            using (var writer = new StreamWriter(DownloadPath))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+
+                writer.WriteLine("End of Day Report");
+                writer.WriteLine("Date: " + dateFrom.ToShortDateString() + " - " + dateTo.ToShortDateString());
+                writer.WriteLine("Prepared By: " + PreparedBY);
+                writer.WriteLine("Prepared Date: " + DateTime.Now);
+                writer.WriteLine("");
+                csv.WriteRecords(listCSV);
+
+                writer.WriteLine("");
+                var total = new SalesDetailCSV();
+                total.Id = "TOTAL";
+
+                total.Qty = listView.Sum(x => x.Qty)?.ToString("N0");
+                total.price = listView.Sum(x => x.price)?.ToString("N2");
+                csv.WriteRecord(total);
+
+                return DownloadPath;
+            }
+        }
+
+
+
         public string WriteSalesCSV(string DownloadPath,
         IList<SalesCSV> listCSV,
         IList<SalesViewReport> listView,

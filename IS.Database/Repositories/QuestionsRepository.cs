@@ -37,8 +37,8 @@ namespace IS.Database.Repositories
                 using (SqlCommand cmd = new SqlCommand("spQuestionsInsert", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@Question", question.Answer));
-                    cmd.Parameters.Add(new SqlParameter("@Answer", question.Question));
+                    cmd.Parameters.Add(new SqlParameter("@Question", question.Question));
+                    cmd.Parameters.Add(new SqlParameter("@Answer", question.Answer));
                   
                     int rowAffected = cmd.ExecuteNonQuery();
 

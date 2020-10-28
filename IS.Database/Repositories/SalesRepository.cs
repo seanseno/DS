@@ -14,6 +14,24 @@ namespace IS.Database.Repositories
 {
     public class SalesRepository : Helper
     {
+        public IList<EndOfDayReportView> GetSalesDetailListReport()
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+
+                connection.Open();
+                var select = "SELECT * FROM vSalesDetail";
+
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        return new ReflectionPopulator<EndOfDayReportView>().CreateList(reader);
+                    }
+                }
+            }
+        }
+
         //public void Insert(string customerName, int CashierId, string ProductId, int? Qty, int LedgerId)
         //{
         //    using (SqlConnection connection = new SqlConnection(ConStr))

@@ -69,6 +69,7 @@
             this.lblTime = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.endOfDayReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -318,6 +319,7 @@
             // reportToolStripMenuItem
             // 
             this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.endOfDayReportToolStripMenuItem,
             this.salesToolStripMenuItem,
             this.stockToolStripMenuItem,
             this.stockExpiredNearlyExpiredReportToolStripMenuItem,
@@ -426,6 +428,13 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // endOfDayReportToolStripMenuItem
+            // 
+            this.endOfDayReportToolStripMenuItem.Name = "endOfDayReportToolStripMenuItem";
+            this.endOfDayReportToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
+            this.endOfDayReportToolStripMenuItem.Text = "End of Day Report";
+            this.endOfDayReportToolStripMenuItem.Click += new System.EventHandler(this.endOfDayReportToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -491,6 +500,7 @@
         private System.Windows.Forms.ToolStripMenuItem validateOngoingStocksDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem themesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem7;
+        private System.Windows.Forms.ToolStripMenuItem endOfDayReportToolStripMenuItem;
     }
 }
 
