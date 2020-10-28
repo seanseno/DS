@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEndOfDayReport));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -45,13 +45,14 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvSales = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoldQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AdditionalInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cashier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cashier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AdditionalInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoldQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InsertTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSales)).BeginInit();
@@ -194,7 +195,8 @@
             this.ProductId,
             this.ProductName,
             this.SoldQuantity,
-            this.Price});
+            this.Price,
+            this.InsertTime});
             this.dgvSales.Location = new System.Drawing.Point(6, 19);
             this.dgvSales.Name = "dgvSales";
             this.dgvSales.ReadOnly = true;
@@ -213,15 +215,42 @@
             this.label4.TabIndex = 26;
             this.label4.Text = "End of day report";
             // 
-            // Price
+            // Id
             // 
-            this.Price.DataPropertyName = "Price";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N2";
-            this.Price.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Price.HeaderText = "Price";
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Trasaction No.";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            // 
+            // Cashier
+            // 
+            this.Cashier.DataPropertyName = "Fullname";
+            this.Cashier.HeaderText = "Cashier";
+            this.Cashier.Name = "Cashier";
+            this.Cashier.ReadOnly = true;
+            // 
+            // AdditionalInfo
+            // 
+            this.AdditionalInfo.DataPropertyName = "CustomerName";
+            this.AdditionalInfo.HeaderText = "Additional Info.";
+            this.AdditionalInfo.Name = "AdditionalInfo";
+            this.AdditionalInfo.ReadOnly = true;
+            this.AdditionalInfo.Width = 150;
+            // 
+            // ProductId
+            // 
+            this.ProductId.DataPropertyName = "ProductId";
+            this.ProductId.HeaderText = "ProductId";
+            this.ProductId.Name = "ProductId";
+            this.ProductId.ReadOnly = true;
+            // 
+            // ProductName
+            // 
+            this.ProductName.DataPropertyName = "ProductName";
+            this.ProductName.HeaderText = "Product Name";
+            this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
+            this.ProductName.Width = 300;
             // 
             // SoldQuantity
             // 
@@ -233,42 +262,23 @@
             this.SoldQuantity.Name = "SoldQuantity";
             this.SoldQuantity.ReadOnly = true;
             // 
-            // ProductName
+            // Price
             // 
-            this.ProductName.DataPropertyName = "ProductName";
-            this.ProductName.HeaderText = "Product Name";
-            this.ProductName.Name = "ProductName";
-            this.ProductName.ReadOnly = true;
-            this.ProductName.Width = 300;
+            this.Price.DataPropertyName = "Price";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N2";
+            this.Price.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
             // 
-            // ProductId
+            // InsertTime
             // 
-            this.ProductId.DataPropertyName = "ProductId";
-            this.ProductId.HeaderText = "ProductId";
-            this.ProductId.Name = "ProductId";
-            this.ProductId.ReadOnly = true;
-            // 
-            // AdditionalInfo
-            // 
-            this.AdditionalInfo.DataPropertyName = "CustomerName";
-            this.AdditionalInfo.HeaderText = "Additional Info.";
-            this.AdditionalInfo.Name = "AdditionalInfo";
-            this.AdditionalInfo.ReadOnly = true;
-            this.AdditionalInfo.Width = 150;
-            // 
-            // Cashier
-            // 
-            this.Cashier.DataPropertyName = "Fullname";
-            this.Cashier.HeaderText = "Cashier";
-            this.Cashier.Name = "Cashier";
-            this.Cashier.ReadOnly = true;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
+            this.InsertTime.DataPropertyName = "InsertTime";
+            this.InsertTime.HeaderText = "Transaction Date and Time";
+            this.InsertTime.Name = "InsertTime";
+            this.InsertTime.ReadOnly = true;
+            this.InsertTime.Width = 150;
             // 
             // FrmEndOfDayReport
             // 
@@ -319,5 +329,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn SoldQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InsertTime;
     }
 }

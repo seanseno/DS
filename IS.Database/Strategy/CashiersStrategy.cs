@@ -24,7 +24,7 @@ namespace IS.Database.Strategy
                     return (null, false, ex.Message);
                 }
 
-                var select = "SELECT * FROM vCashiers WHERE Loginname='" + Loginname + "' AND Password ='" + Encryption.CreateMD5(Password.ToUpper(), this.IsEncrypt) + "' AND Active = " + (int)EnumActive.Active;
+                var select = "SELECT * FROM vCashiers WHERE Loginname='" + Loginname + "' AND Password ='" + Encryption.EncryptString(Password.ToUpper(), this.IsEncrypt) + "' AND Active = " + (int)EnumActive.Active;
                 using (SqlCommand cmd = new SqlCommand(select,connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())

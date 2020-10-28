@@ -36,7 +36,8 @@ namespace IS.Admin.Reports
                     DateTimeConvertion.ConvertDateFrom(dtpFrom.Value) <= x.InsertTime && x.InsertTime <= DateTimeConvertion.ConvertDateTo(dtpTo.Value) &&
                 (x.CategoryName.Contains(txtSearch.Text.Trim().ToUpper()) ||
                 x.ProductName.Contains(txtSearch.Text.Trim().ToUpper()) ||
-                x.Fullname.Contains(txtSearch.Text.Trim().ToUpper()))).ToList();
+                x.Fullname.Contains(txtSearch.Text.Trim().ToUpper()) ||
+                x.CustomerName.Contains(txtSearch.Text.Trim().ToUpper()))).ToList();
 
             AddedFoorter(_list.ToList(), dgvSales);
             

@@ -7,7 +7,7 @@ namespace IS.Database.CSV
 {
     public class SalesDetailCSV
     {
-        [Name("ID")]
+        [Name("Trnasaction No.")]
         public string Id { get; set; }
         [Name("Cashier")]
         public string Fullname { get; set; }

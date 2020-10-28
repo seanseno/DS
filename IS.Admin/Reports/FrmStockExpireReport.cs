@@ -96,9 +96,10 @@ namespace IS.Admin.Reports
 
         private void FrmStockExpireReport_Load(object sender, EventArgs e)
         {
-            var response = factory.StocksDataRepository.GetListStocksDataExpireReport().OrderByDescending(x => x.ExpirationDate).ToList() ;
-            _list = response;
-            AddedFoorter(_list.ToList(), dgvSales);
+            LoadData();
+            //var response = factory.StocksDataRepository.GetListStocksDataExpireReport().OrderByDescending(x => x.ExpirationDate).ToList() ;
+            //_list = response;
+            //AddedFoorter(_list.ToList(), dgvSales);
         }
 
         private void AddedFoorter(List<StocksDataExpireViewReport> _list, DataGridView dgv)
