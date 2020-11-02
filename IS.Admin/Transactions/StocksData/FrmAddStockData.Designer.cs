@@ -216,6 +216,7 @@
             // txtRemarks
             // 
             this.txtRemarks.Location = new System.Drawing.Point(131, 458);
+            this.txtRemarks.MaxLength = 1000;
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.Size = new System.Drawing.Size(357, 61);
             this.txtRemarks.TabIndex = 13;
@@ -235,6 +236,7 @@
             // 
             this.txtRemainingQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRemainingQty.Location = new System.Drawing.Point(131, 359);
+            this.txtRemainingQty.MaxLength = 10;
             this.txtRemainingQty.Name = "txtRemainingQty";
             this.txtRemainingQty.Size = new System.Drawing.Size(82, 26);
             this.txtRemainingQty.TabIndex = 10;
@@ -263,6 +265,7 @@
             // 
             this.txtQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtQuantity.Location = new System.Drawing.Point(131, 230);
+            this.txtQuantity.MaxLength = 10;
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(82, 26);
             this.txtQuantity.TabIndex = 6;
@@ -307,6 +310,7 @@
             // 
             this.txtRealUnitPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRealUnitPrice.Location = new System.Drawing.Point(131, 326);
+            this.txtRealUnitPrice.MaxLength = 10;
             this.txtRealUnitPrice.Name = "txtRealUnitPrice";
             this.txtRealUnitPrice.Size = new System.Drawing.Size(357, 26);
             this.txtRealUnitPrice.TabIndex = 9;
@@ -356,6 +360,7 @@
             // 
             this.txtSupplierPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSupplierPrice.Location = new System.Drawing.Point(131, 262);
+            this.txtSupplierPrice.MaxLength = 10;
             this.txtSupplierPrice.Name = "txtSupplierPrice";
             this.txtSupplierPrice.Size = new System.Drawing.Size(357, 26);
             this.txtSupplierPrice.TabIndex = 7;
@@ -412,7 +417,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
             this.ClientSize = new System.Drawing.Size(698, 680);
             this.ControlBox = false;
             this.Controls.Add(this.label3);
@@ -421,7 +426,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmAddStockData";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.FrmAddStockData_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

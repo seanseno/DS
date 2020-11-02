@@ -12,7 +12,7 @@ namespace IS.KIOSK.Model
         ISFactory factory = new ISFactory();
         public int ExecutePayment(FrmCheckOut frmCheckout,FrmMain frmMain)
         {
-           return factory.LedgerSalesRepository.Insert(frmMain._Cashier, frmCheckout.payAmount, frmCheckout.changeAmount, frmMain._CustomerName, (int)frmMain._TempLedgerSales.Id);
+           return factory.LedgerSalesRepository.Insert(frmMain._Cashier, frmCheckout.payAmount, frmCheckout.changeAmount, frmMain._CustomerName, frmMain._AdditionalInfo,(int)frmMain._TempLedgerSales.Id);
         }
     }
 }

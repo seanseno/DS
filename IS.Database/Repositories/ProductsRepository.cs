@@ -65,7 +65,7 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@ProductName", item.ProductName.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@Price", item.Price));
                     cmd.Parameters.Add(new SqlParameter("@BarCode", item.BarCode));
-
+                    cmd.Parameters.Add(new SqlParameter("@LoginName", Globals.LoginName));
                     int rowAffected = cmd.ExecuteNonQuery();
 
                     if (connection.State == System.Data.ConnectionState.Open)
@@ -74,7 +74,7 @@ namespace IS.Database.Repositories
             }
         }
 
-        public void Update(Products item)
+        public void Update(Products item,string Remarks)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
@@ -90,7 +90,7 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@Active", item.Active));
                     cmd.Parameters.Add(new SqlParameter("@BarCode", item.BarCode));
                     cmd.Parameters.Add(new SqlParameter("@LoginName", Globals.LoginName));
-              
+                    cmd.Parameters.Add(new SqlParameter("@Remarks", Remarks));
                     int rowAffected = cmd.ExecuteNonQuery();
 
                     if (connection.State == System.Data.ConnectionState.Open)

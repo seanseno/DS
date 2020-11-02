@@ -137,6 +137,7 @@
             // txtReturnQty
             // 
             this.txtReturnQty.Location = new System.Drawing.Point(129, 414);
+            this.txtReturnQty.MaxLength = 10;
             this.txtReturnQty.Name = "txtReturnQty";
             this.txtReturnQty.Size = new System.Drawing.Size(97, 20);
             this.txtReturnQty.TabIndex = 0;
@@ -165,6 +166,7 @@
             // txtReason
             // 
             this.txtReason.Location = new System.Drawing.Point(129, 440);
+            this.txtReason.MaxLength = 1000;
             this.txtReason.Name = "txtReason";
             this.txtReason.Size = new System.Drawing.Size(487, 20);
             this.txtReason.TabIndex = 1;
@@ -406,14 +408,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
             this.ClientSize = new System.Drawing.Size(686, 634);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FrmReturnStockData";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.FrmEditStockData_Load);
             this.panel1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);

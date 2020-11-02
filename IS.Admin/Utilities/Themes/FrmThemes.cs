@@ -35,14 +35,22 @@ namespace IS.Admin.Utilities
 
         private void LoadLogo()
         {
-            if (!String.IsNullOrEmpty(ThemesUtility.Logo()))
+            string LogoPath = ThemesUtility.Logo();
+            if (!String.IsNullOrEmpty(LogoPath))
             {
-                pbLogo.BackgroundImage = Image.FromFile(ThemesUtility.Logo());
+                if (File.Exists(LogoPath))
+                {
+                    pbLogo.BackgroundImage = Image.FromFile(LogoPath);
+                }
             }
 
-            if (!String.IsNullOrEmpty(ThemesUtility.WallPaper()))
+            string WallpaperPath = ThemesUtility.WallPaper();
+            if (!String.IsNullOrEmpty(WallpaperPath))
             {
-                pbWallPaper.BackgroundImage = Image.FromFile(ThemesUtility.WallPaper());
+                if (File.Exists(WallpaperPath))
+                {
+                    pbWallPaper.BackgroundImage = Image.FromFile(WallpaperPath);
+                }
             }
             txtCompanyName.Text = ThemesUtility.CompanyName();
             btnColor.BackColor = ThemesUtility.BackColor();

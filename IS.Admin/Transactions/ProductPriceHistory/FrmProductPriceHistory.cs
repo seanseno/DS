@@ -22,20 +22,15 @@ namespace IS.Admin.Setup
             InitializeComponent();
         }
 
-
         private void LoadData()
         {
-            var response = factory.ProductPriceHistoryRepository.GetList(txtSearch.Text);
-            dgvSearch.AutoGenerateColumns = false;
-            dgvSearch.DataSource = response;
+            var response = factory.StocksDataRepository.GetOngoingStockDataProductId();
+            response = response.Where(x => x.LoginName == Globals.LoginName).OrderByDescending(y => y.ProductName).ToList();
+            response = response.Where(x => x.ProductId.Contains(txtSearch.Text) || x.ProductName.Contains(txtSearch.Text)).ToList();
+            dgvProducts.AutoGenerateColumns = false;
+            dgvProducts.DataSource = response;
             txtSearch.Focus();
         }
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            LoadData();
-        }
-
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -53,26 +48,18 @@ namespace IS.Admin.Setup
             LoadData();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            var productIdList = factory.StocksDataRepository.GetOngoingStockDataProductId(Globals.LoginName);
-            if (productIdList.Count <= 0)
+        private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
+        {        
+            string ProductId = dgvProducts.CurrentRow.Cells[0].Value?.ToString();
+            if (e.ColumnIndex == 3)
             {
-                MessageBox.Show("No reason for changing product price!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                FrmModalSearchProducts frm = new FrmModalSearchProducts(productIdList);
+                FrmEditProductPrice frm = new FrmEditProductPrice(ProductId);
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    var product = factory.ProductsRepository.FindWithProductId(frm._ProductId);
-                    FrmEditProductPrice frmEditProductPrice = new FrmEditProductPrice(product);
-                    if (frmEditProductPrice.ShowDialog() == DialogResult.OK)
-                    {
-                        MessageBox.Show("Product price updated!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadData();
-                    }
-                }
+                    //this.LoadProducts();
+                    MessageBox.Show("Price updated!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
+                };
             }
         }
     }

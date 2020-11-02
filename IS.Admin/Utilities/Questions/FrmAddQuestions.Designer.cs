@@ -72,6 +72,7 @@
             // 
             this.txtAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAnswer.Location = new System.Drawing.Point(93, 88);
+            this.txtAnswer.MaxLength = 1000;
             this.txtAnswer.Name = "txtAnswer";
             this.txtAnswer.Size = new System.Drawing.Size(723, 354);
             this.txtAnswer.TabIndex = 8;
@@ -92,6 +93,7 @@
             // 
             this.txtQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtQuestion.Location = new System.Drawing.Point(93, 32);
+            this.txtQuestion.MaxLength = 300;
             this.txtQuestion.Name = "txtQuestion";
             this.txtQuestion.Size = new System.Drawing.Size(723, 50);
             this.txtQuestion.TabIndex = 6;

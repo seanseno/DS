@@ -133,6 +133,7 @@
             // txtRemarks
             // 
             this.txtRemarks.Location = new System.Drawing.Point(131, 346);
+            this.txtRemarks.MaxLength = 1000;
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.Size = new System.Drawing.Size(357, 61);
             this.txtRemarks.TabIndex = 9;
@@ -162,6 +163,7 @@
             // 
             this.txtQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtQuantity.Location = new System.Drawing.Point(131, 241);
+            this.txtQuantity.MaxLength = 10;
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(82, 26);
             this.txtQuantity.TabIndex = 6;
@@ -317,7 +319,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
             this.ClientSize = new System.Drawing.Size(699, 593);
             this.ControlBox = false;
             this.Controls.Add(this.label3);
@@ -326,7 +328,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmOngoingAddStockData";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.FrmAddStockData_Load);
             this.panel1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);

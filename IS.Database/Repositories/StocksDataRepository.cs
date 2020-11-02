@@ -247,24 +247,19 @@ namespace IS.Database.Repositories
             }
         }
 
-        public List<string> GetOngoingStockDataProductId(string loginname)
+
+        public List<OnGoingStockDataProductView> GetOngoingStockDataProductId()
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT ProductId FROM StocksData " +
-                    "WHERE LoginName = '" + loginname +"' AND SupplierPrice = 0 " +
-                    "ORDER BY Id";
+                var select = "SELECT * FROM vOnGoingStockDataProduct";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        List<string> productIdList = new List<string>();
-                        while (reader.Read())
-                        {
-                            productIdList.Add(reader[0].ToString());
-                        }
-                        return productIdList;
+                        var List = new ReflectionPopulator<OnGoingStockDataProductView>().CreateList(reader);
+                        return List;
                     }
                 }
             }

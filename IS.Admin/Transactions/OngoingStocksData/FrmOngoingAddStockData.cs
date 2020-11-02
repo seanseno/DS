@@ -39,17 +39,28 @@ namespace IS.Admin.Transactions
                 btnSearchProduct.Focus();
                 return true;
             }
+            else if (string.IsNullOrEmpty(txtQuantity.Text))
+            {
+                MessageBox.Show("Quantity is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtQuantity.Focus();
+                return true;
+            }
             else if (Convert.ToInt32(txtQuantity.Text) <= 0)
             {
                 MessageBox.Show("Invalid Quantity, Can not accept 0.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtQuantity.Focus();
                 return true;
             }
-
             else if (Convert.ToDateTime(dtpExpirationDate.Value.ToShortDateString()) < Convert.ToDateTime(DateTime.Now.ToShortDateString()))
             {
                 MessageBox.Show("Invalid Expiration date, date now is greather than expiration date!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 dtpExpirationDate.Focus();
+                return true;
+            }
+            else if (string.IsNullOrEmpty(txtRemarks.Text))
+            {
+                MessageBox.Show("Remarks is reuired!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtRemarks.Focus();
                 return true;
             }
             return false;

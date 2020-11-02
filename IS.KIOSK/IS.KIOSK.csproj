@@ -365,5 +365,8 @@
   <ItemGroup>
     <None Include="Resources\480px-No_image_available.svg.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -76,6 +76,7 @@
             // 
             this.txtPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPercent.Location = new System.Drawing.Point(129, 108);
+            this.txtPercent.MaxLength = 10;
             this.txtPercent.Name = "txtPercent";
             this.txtPercent.Size = new System.Drawing.Size(70, 26);
             this.txtPercent.TabIndex = 2;
@@ -112,6 +113,7 @@
             // 
             this.txtCategoryName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCategoryName.Location = new System.Drawing.Point(129, 65);
+            this.txtCategoryName.MaxLength = 255;
             this.txtCategoryName.Name = "txtCategoryName";
             this.txtCategoryName.Size = new System.Drawing.Size(357, 26);
             this.txtCategoryName.TabIndex = 1;
@@ -177,7 +179,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
             this.ClientSize = new System.Drawing.Size(545, 319);
             this.ControlBox = false;
             this.Controls.Add(this.label3);
@@ -186,7 +188,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmAddCategory";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.FrmAddCategory_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

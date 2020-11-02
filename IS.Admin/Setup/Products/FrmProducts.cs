@@ -1,8 +1,13 @@
 ﻿using IS.Admin.Model;
+using IS.Admin.Transactions;
 using IS.Common.Reader;
+using IS.Common.Utilities;
 using IS.Database;
+using IS.Database.CSV;
 using IS.Database.Entities;
 using IS.Database.Entities.Criteria;
+using IS.Database.Enums;
+using IS.Library.CSV;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -75,10 +80,16 @@ namespace IS.Admin.Setup
         private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var Item = new Products();
-            Item.ProductId = dgvProducts.CurrentRow.Cells[0].Value?.ToString();
-            Item.ProductName = dgvProducts.CurrentRow.Cells[1].Value?.ToString();
-            
-            if (e.ColumnIndex == 5)
+            Item.ProductId = dgvProducts.CurrentRow.Cells[1].Value?.ToString();
+            Item.ProductName = dgvProducts.CurrentRow.Cells[2].Value?.ToString();
+
+            if (e.ColumnIndex == 0)
+            {
+                FrmProdutcsHistory frm = new FrmProdutcsHistory(Item.ProductId);
+                frm.ShowDialog();
+            }
+
+            if (e.ColumnIndex == 6)
             {
                 FrmEditProduct frm = new FrmEditProduct(Item);
                 if (frm.ShowDialog() == DialogResult.OK)
@@ -87,7 +98,7 @@ namespace IS.Admin.Setup
                     MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 };
             }
-            if (e.ColumnIndex == 6)
+            if (e.ColumnIndex == 7)
             {
                 var model = new ProductsModel();
                 if (model.CheckItemIfAlreadyInUse(Item.ProductId))
@@ -181,6 +192,54 @@ namespace IS.Admin.Setup
                 TotalStr = "Total Record " + TotalCount.ToString("N0");
             }
             lblTotal.Text = TotalStr;
+        }
+
+        private void btnDownload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_ProductList == null || _ProductList.Count == 0)
+                {
+                    MessageBox.Show("No record found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "CSV|*.csv", ValidateNames = true })
+                    {
+                        if (sfd.ShowDialog() == DialogResult.OK)
+                        {
+                            var list = new List<ProductsCSV>();
+                            foreach (var obj in this._ProductList)
+                            {
+                                var item = new ProductsCSV();
+                                item.ProductId = obj.ProductId;
+                                item.ProductName = obj.ProductName;
+                                item.Price = obj.Price.ToString("N2");
+                                item.InserTime = obj.InsertTime.ToString("hh:mm tt");
+                                item.UpdateTime = obj.UpdateTime.ToString("hh:mm tt");
+                                item.Active = ((EnumActive)obj.Active).ToString() ;
+                                item.Barcode = obj.BarCode;
+                                list.Add(item);
+                            }
+
+                            CSV model = new CSV();
+
+                            var factory = new ISFactory();
+                            var fullname = factory.AdministratorsRepository.FindAdministratorWithLoginname(Globals.LoginName).Fullname;
+                            var filename = model.WriteProductsCSV(
+                                sfd.FileName,
+                                list,
+                                fullname);
+                            System.Diagnostics.Process.Start(filename);
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

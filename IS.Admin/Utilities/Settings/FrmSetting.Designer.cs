@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvSearch = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -72,7 +74,6 @@
             this.dgvSearch.Size = new System.Drawing.Size(966, 271);
             this.dgvSearch.TabIndex = 1;
             this.dgvSearch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSearch_CellClick);
-           
             // 
             // groupBox1
             // 
@@ -108,6 +109,9 @@
             // SeniorDiscount
             // 
             this.SeniorDiscount.DataPropertyName = "SeniorDiscount";
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.SeniorDiscount.DefaultCellStyle = dataGridViewCellStyle2;
             this.SeniorDiscount.HeaderText = "Senior Discount";
             this.SeniorDiscount.Name = "SeniorDiscount";
             this.SeniorDiscount.ReadOnly = true;
@@ -115,6 +119,9 @@
             // PWDDiscount
             // 
             this.PWDDiscount.DataPropertyName = "PWDDiscount";
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = "0";
+            this.PWDDiscount.DefaultCellStyle = dataGridViewCellStyle3;
             this.PWDDiscount.HeaderText = "PWD Discount";
             this.PWDDiscount.Name = "PWDDiscount";
             this.PWDDiscount.ReadOnly = true;
@@ -140,7 +147,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(181)))), ((int)(((byte)(246)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
             this.ClientSize = new System.Drawing.Size(1030, 440);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
@@ -149,7 +156,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmReturnItemSettings";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.FrmReturnItemSettings_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSearch)).EndInit();

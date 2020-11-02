@@ -11,7 +11,21 @@ namespace IS.Database.Repositories
 {
     public class CashiersRepository : Helper
     {
-
+        public IList<Cashiers> GetList()
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT * FROM Cashiers";
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        return new ReflectionPopulator<Cashiers>().CreateList(reader);
+                    }
+                }
+            }
+        }
         public Cashiers Insert(Cashiers Cashier)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))

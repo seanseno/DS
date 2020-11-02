@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +30,7 @@ namespace IS.KIOSK
         public decimal _TotalPrice { get; set; }
         int CountErrorlabel = 0;
         public string _CustomerName { get; set; }
+        public string _AdditionalInfo { get; set; }
         public bool _IsDicounted { get; set; }
         public FrmMain()
         {
@@ -41,9 +44,13 @@ namespace IS.KIOSK
             panel1.Visible = true;
             timer2.Start();
 
-            if (!string.IsNullOrEmpty(ThemesUtility.Logo()))
+            string LogoPath = ThemesUtility.Logo();
+            if (!string.IsNullOrEmpty(LogoPath))
             {
-                pnlLogo.BackgroundImage = Image.FromFile(ThemesUtility.Logo());
+                if (File.Exists(LogoPath))
+                {
+                    pnlLogo.BackgroundImage = Image.FromFile(ThemesUtility.Logo());
+                }
             }
             lblCompanyName.Text = ThemesUtility.CompanyName();
             BackColor = ThemesUtility.BackColor();
@@ -107,14 +114,19 @@ namespace IS.KIOSK
             {
                 this.btnSave_Click(sender, e);;
             }
+            if (e.KeyValue == 118) // Return Item
+            {
+                this.btnReturnItem_Click(sender, e);
+            }
+            if (e.KeyValue == 119) // Reprint
+            {
+                this.btnReprint_Click(sender, e);
+            }
             if (e.KeyValue == 123) // Exit
             {
                 this.btnExit_Click(sender, e);
             }
-            if (e.KeyValue == 118) // Exit
-            {
-                this.btnReturnItem_Click(sender, e);
-            }
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -195,7 +207,7 @@ namespace IS.KIOSK
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure do want to exit.", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (MessageBox.Show("Are you sure do you want to exit.", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 Application.Exit();
             }
@@ -209,8 +221,13 @@ namespace IS.KIOSK
                 {
                     if (_IsDicounted == true && string.IsNullOrEmpty(txtCustomerName.Text))
                     {
-                        MessageBox.Show("Product discounted Detected!, Additional Info is required!", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Product discounted Detected!, Customer Name is required!", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txtCustomerName.Focus();
+                    }
+                    else if (_IsDicounted == true && string.IsNullOrEmpty(txtAdditionalInfo.Text))
+                    {
+                        MessageBox.Show("Product discounted Detected!, Additional Info is required!", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtAdditionalInfo.Focus();
                     }
                     else
                     {
@@ -219,6 +236,7 @@ namespace IS.KIOSK
                         {
                             load();
                             txtCustomerName.Text = "";
+                            txtAdditionalInfo.Text = "";
                         }
                     }
                 }
@@ -238,6 +256,7 @@ namespace IS.KIOSK
                 {
                     load();
                     txtCustomerName.Text = "";
+                    txtAdditionalInfo.Text = "";
                 }
             }
         }
@@ -248,11 +267,12 @@ namespace IS.KIOSK
             {
                 if (this._TempOrderList.Count() > 0)
                 {
-                    if (MessageBox.Show("Are you sure do want to save orders.", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    if (MessageBox.Show("Are you sure do you want to save orders.", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
                         mainModel.SaveOrders(this);
                         load();
                         txtCustomerName.Text = "";
+                        txtAdditionalInfo.Text = "";
                         return;
                     }
                 }
@@ -267,7 +287,7 @@ namespace IS.KIOSK
             {
                 if (this._TempOrderList.Count() > 0)
                 {
-                    if (MessageBox.Show("Are you sure do want to delete all order", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    if (MessageBox.Show("Are you sure do you want to delete all order", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
                         MainModel mainModel = new MainModel();
                         mainModel.DeleteAllTempOrder(this);
@@ -330,11 +350,6 @@ namespace IS.KIOSK
             lblDate.Text = DateTime.Now.ToString("MMMM ddd yyyy - dddd");
         }
 
-        private void txtCustomerName_KeyUp(object sender, KeyEventArgs e)
-        {
-            _CustomerName = txtCustomerName.Text.ToUpper().Trim();
-        }
-
         private void btnReturnItem_Click(object sender, EventArgs e)
         {
             FrmReturnItem frm = new FrmReturnItem();
@@ -347,6 +362,93 @@ namespace IS.KIOSK
             frm.ShowDialog();
         }
 
- 
+        private void txtAdditionalInfo_KeyUp(object sender, KeyEventArgs e)
+        {
+            _AdditionalInfo = txtAdditionalInfo.Text;
+        }
+
+        private void txtCustomerName_KeyUp(object sender, KeyEventArgs e)
+        {
+            _CustomerName = txtCustomerName.Text;
+        }
+
+        private void btnReprint_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure do you want to re-print your last transaction?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                var xx = factory.CashiersRepository.GetList();
+                var user = factory.CashiersRepository.GetList().Where(x => x.Loginname.ToUpper().Trim() == Globals.LoginName.ToUpper().Trim()).FirstOrDefault();
+                var response = factory.LedgerSalesRepository.GetList().Where(x => x.CashierId == user.CashierId).OrderByDescending(y => y.Id).FirstOrDefault();
+                PrintReceipt(response.Id);
+            }
+        }
+
+        public void PrintReceipt(int LedgerId)
+        {
+            PrintDocument p = new PrintDocument();
+            p.PrintPage += delegate (object sender1, PrintPageEventArgs e1)
+            {
+                var Items = factory.SalesRepository.GetSalesDetailListReport().Where(x => x.LedgerId == LedgerId).OrderBy(y => y.Id);
+
+                var Date = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "Date").FirstOrDefault();
+                e1.Graphics.DrawString(DateTime.Now.ToString("MMMM dd, yyyy"), new Font("Times New Roman", Date.Size), Brushes.Black, new RectangleF(Date.X, Date.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
+
+                var ReceiptNo = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "ReceiptNo").FirstOrDefault();
+                e1.Graphics.DrawString(string.Format("{0:000000000000}", LedgerId), new Font("Times New Roman", ReceiptNo.Size), Brushes.Black, new RectangleF(ReceiptNo.X, ReceiptNo.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
+
+                var SoldTo = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "SoldTo").FirstOrDefault();
+                e1.Graphics.DrawString(_CustomerName, new Font("Times New Roman", SoldTo.Size), Brushes.Black, new RectangleF(SoldTo.X, SoldTo.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
+
+
+                var Products = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "Products").FirstOrDefault();
+
+
+                decimal TotalAmountPrice = 0;
+                foreach (var itm in Items)
+                {
+                    string product = string.Empty;
+                    decimal TotalPrice = Convert.ToDecimal(Convert.ToDecimal(itm?.Qty) * itm?.price);
+                    TotalAmountPrice += TotalPrice;
+                    var descList = WordWrap.Wrap(itm.ProductName + " " + itm.Qty?.ToString("N0") + " " + TotalPrice.ToString("N2"), 50);
+                    int Count = 0;
+                    foreach (var desc in descList)
+                    {
+                        if (Count == 0)
+                        {
+                            product += desc + "\n";
+                        }
+                        else
+                        {
+                            product += "--" + desc + "\n";
+                        }
+
+                        Count++;
+                    }
+
+                    e1.Graphics.DrawString(product, new Font("Times New Roman", Products.Size), Brushes.Black, new RectangleF(Products.X, Products.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
+                    Products.Y += 12;
+                }
+
+                var Total = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "Total").FirstOrDefault();
+                e1.Graphics.DrawString(TotalAmountPrice.ToString("N2"), new Font("Times New Roman", Total.Size), Brushes.Black, new RectangleF(Total.X, Total.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
+
+            };
+            try
+            {
+                //p.Print();
+                PrintDialog printDialog1 = new PrintDialog();
+                printDialog1.Document = p;
+                DialogResult result = printDialog1.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    p.Print();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -271,13 +272,22 @@ namespace IS.Admin
         {
             if (!string.IsNullOrEmpty(filePath))
             {
-                this.BackgroundImage = Image.FromFile(filePath);
+                if (File.Exists(filePath))
+                {
+                    this.BackgroundImage = Image.FromFile(filePath);
+                }
             }
         }
 
         private void endOfDayReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmEndOfDayReport frm = new FrmEndOfDayReport();
+            frm.ShowDialog();
+        }
+
+        private void printerKioskCoordinatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmPrinterKioskCoordinates frm = new FrmPrinterKioskCoordinates();
             frm.ShowDialog();
         }
     }

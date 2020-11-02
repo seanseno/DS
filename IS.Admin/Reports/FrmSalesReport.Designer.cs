@@ -55,6 +55,7 @@
             this.InsertTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AdditionalInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Month = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -104,6 +105,7 @@
             // 
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearch.Location = new System.Drawing.Point(153, 15);
+            this.txtSearch.MaxLength = 100;
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(255, 26);
             this.txtSearch.TabIndex = 23;
@@ -205,6 +207,7 @@
             this.InsertTime,
             this.Fullname,
             this.CustomerName,
+            this.AdditionalInfo,
             this.Id,
             this.Month,
             this.CategoryName,
@@ -265,9 +268,16 @@
             // CustomerName
             // 
             this.CustomerName.DataPropertyName = "CustomerName";
-            this.CustomerName.HeaderText = "Additional Info.";
+            this.CustomerName.HeaderText = "Customer Name";
             this.CustomerName.Name = "CustomerName";
             this.CustomerName.ReadOnly = true;
+            // 
+            // AdditionalInfo
+            // 
+            this.AdditionalInfo.DataPropertyName = "AdditionalInfo";
+            this.AdditionalInfo.HeaderText = "Additional Info.";
+            this.AdditionalInfo.Name = "AdditionalInfo";
+            this.AdditionalInfo.ReadOnly = true;
             // 
             // Id
             // 
@@ -411,6 +421,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn InsertTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fullname;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AdditionalInfo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Month;
         private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;

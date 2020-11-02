@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IS.Database.Entities
 {
-    public class Cashiers : GlobalExtender
+    public class Cashiers 
     {
         public virtual int Id { get; set; }
         public string CashierId { get; set; }

@@ -120,6 +120,7 @@
             // 
             this.txtPwd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPwd.Location = new System.Drawing.Point(130, 119);
+            this.txtPwd.MaxLength = 5;
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.Size = new System.Drawing.Size(70, 26);
             this.txtPwd.TabIndex = 3;
@@ -148,6 +149,7 @@
             // 
             this.txtReturnItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReturnItem.Location = new System.Drawing.Point(128, 54);
+            this.txtReturnItem.MaxLength = 10;
             this.txtReturnItem.Name = "txtReturnItem";
             this.txtReturnItem.Size = new System.Drawing.Size(72, 26);
             this.txtReturnItem.TabIndex = 1;
@@ -188,6 +190,7 @@
             // 
             this.txtSenior.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSenior.Location = new System.Drawing.Point(130, 86);
+            this.txtSenior.MaxLength = 5;
             this.txtSenior.Name = "txtSenior";
             this.txtSenior.Size = new System.Drawing.Size(70, 26);
             this.txtSenior.TabIndex = 2;
@@ -206,6 +209,7 @@
             // 
             this.txtExpiration.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtExpiration.Location = new System.Drawing.Point(128, 21);
+            this.txtExpiration.MaxLength = 10;
             this.txtExpiration.Name = "txtExpiration";
             this.txtExpiration.Size = new System.Drawing.Size(72, 26);
             this.txtExpiration.TabIndex = 0;
@@ -238,7 +242,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
             this.ClientSize = new System.Drawing.Size(554, 316);
             this.ControlBox = false;
             this.Controls.Add(this.label3);
@@ -248,7 +252,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmEditSettings";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.FrmEditSettings_Load);
             this.panel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

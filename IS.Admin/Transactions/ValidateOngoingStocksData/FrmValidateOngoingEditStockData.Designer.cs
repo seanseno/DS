@@ -174,6 +174,7 @@
             // txtRemarks
             // 
             this.txtRemarks.Location = new System.Drawing.Point(131, 474);
+            this.txtRemarks.MaxLength = 1000;
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.Size = new System.Drawing.Size(357, 61);
             this.txtRemarks.TabIndex = 14;
@@ -267,6 +268,7 @@
             // 
             this.txtRealUnitPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRealUnitPrice.Location = new System.Drawing.Point(131, 333);
+            this.txtRealUnitPrice.MaxLength = 10;
             this.txtRealUnitPrice.Name = "txtRealUnitPrice";
             this.txtRealUnitPrice.Size = new System.Drawing.Size(357, 26);
             this.txtRealUnitPrice.TabIndex = 9;
@@ -315,6 +317,7 @@
             // 
             this.txtSupplierPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSupplierPrice.Location = new System.Drawing.Point(131, 269);
+            this.txtSupplierPrice.MaxLength = 10;
             this.txtSupplierPrice.Name = "txtSupplierPrice";
             this.txtSupplierPrice.Size = new System.Drawing.Size(357, 26);
             this.txtSupplierPrice.TabIndex = 7;
@@ -425,7 +428,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
             this.ClientSize = new System.Drawing.Size(686, 715);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);

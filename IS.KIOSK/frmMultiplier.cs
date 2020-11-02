@@ -84,36 +84,6 @@ namespace IS.KIOSK
             }
         }
 
-        private void txtQty_TextChanged(object sender, EventArgs e)
-        {
-
-            if (!string.IsNullOrEmpty((txtQty.Text)))
-            {
-                if (rbSenior.Checked)
-                {
-                    decimal discount = (this.product.Price * Convert.ToDecimal(txtQty.Text)) * (this.SeniroDiscount/100);
-                    decimal total = (this.product.Price * Convert.ToDecimal(txtQty.Text)) - discount;
-                    lblTotal.Text = total.ToString("N2");
-                }
-                else if (rbPwd.Checked)
-                {
-                    decimal discount = (this.product.Price * Convert.ToDecimal(txtQty.Text)) * (this.PwdDiscount / 100);
-                    decimal total = (this.product.Price * Convert.ToDecimal(txtQty.Text)) - discount;
-                    lblTotal.Text = total.ToString("N2");
-                }
-                else
-                {
-                    lblTotal.Text = String.Format("{0:N}", Math.Round((this.product.Price * Convert.ToDecimal(txtQty.Text)), 2));
-                }
-              
-            }
-            else
-            {
-                lblTotal.Text = "0.00";
-            }
-            lblError.Visible = false;
-        }
-
         private void txtQty_KeyUp(object sender, KeyEventArgs e)
         {
             if(e.KeyValue == 13) // Enter
@@ -203,6 +173,11 @@ namespace IS.KIOSK
         {
             txtQty_TextChanged(sender, e);
             this._FrmMain._IsDicounted = true;
+        }
+
+        private void txtQty_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -80,6 +80,7 @@
             // 
             this.txtPrincipalName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrincipalName.Location = new System.Drawing.Point(128, 21);
+            this.txtPrincipalName.MaxLength = 255;
             this.txtPrincipalName.Name = "txtPrincipalName";
             this.txtPrincipalName.Size = new System.Drawing.Size(362, 26);
             this.txtPrincipalName.TabIndex = 0;
@@ -121,14 +122,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
             this.ClientSize = new System.Drawing.Size(549, 208);
             this.ControlBox = false;
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FrmEditPrincipal";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.FrmEditPrincipal_Load);
             this.panel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

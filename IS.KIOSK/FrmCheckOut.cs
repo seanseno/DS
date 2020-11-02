@@ -1,5 +1,6 @@
 ﻿using IS.Common.Utilities;
 using IS.Database;
+using IS.Database.Enums;
 using IS.KIOSK.Model;
 using System;
 using System.Drawing;
@@ -81,17 +82,14 @@ namespace IS.KIOSK
                             {
                                 var frmCheckOutModel = new FrmCheckOutModel();
                                 var orNumber = frmCheckOutModel.ExecutePayment(this, this._FrmMain);
-                                LoadOrders(orNumber);
-                                PrintReceipt();
+
+                                _FrmMain.PrintReceipt(orNumber);
 
                                 MessageBox.Show("Orders complete!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 FrmChange frmchAnge = new FrmChange(changeAmount.ToString("N2"));
                                 frmchAnge.ShowDialog();
-                                //if (frmchAnge.ShowDialog() == DialogResult.OK)
-                                //{
-                                //    return;
-                                //}
+
                                 this.DialogResult = DialogResult.OK;
                             }
                             catch (Exception ex)
@@ -131,51 +129,6 @@ namespace IS.KIOSK
             return true;
         }
 
-        private void LoadOrders(int? OrNumber)
-        {
-            decimal total = _FrmMain._TempOrderList.Sum(x => x.TotalPrice);
-            rtxtOrders.Clear();
-            rtxtOrders.Text += "*******************************************************************\n";
-            rtxtOrders.Text += "                         Fees Receipt System\n";
-            rtxtOrders.Text += "*******************************************************************\n";
-            rtxtOrders.Text += "Date : " + DateTime.Now + " \n";
-            rtxtOrders.Text += "Transaction No. : " + string.Format("{0:000000000000}", OrNumber) + "\n";
-            rtxtOrders.Text += "\n";
-            rtxtOrders.Text += "\n";
-            foreach (var itm in _FrmMain._TempOrderList)
-            {
-                 var descList = WordWrap.Wrap(itm.ProductName + " " + itm.Qty + " " + itm.TotalPrice.ToString("N2"), 50);
-                int Count = 0;
-                foreach(var desc in descList)
-                {
-                    if(Count == 0)
-                    {
-                        rtxtOrders.Text += desc + "\n";
-                    }
-                    else
-                    {
-                        rtxtOrders.Text += "--" + desc + "\n";
-                    }
-                    
-                    Count++;
-                }
-
-            }
-            rtxtOrders.Text += "\n";
-            rtxtOrders.Text += "\n";
-            rtxtOrders.Text += "Total Amount: " + total.ToString("N2"); 
-        }
-        //private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
-        //{
-        //    int H = 50;
-        //    e.Graphics.DrawString("Print from my list", new System.Drawing.Font("Times New Roman", 10), Brushes.Black, 50, H);
-        //    H += 50;
-        //    foreach (var itm in _FrmMain._TempOrderList)
-        //    {
-        //        e.Graphics.DrawString(itm.Name, new System.Drawing.Font("Times New Roman", 10), Brushes.Black, 50, H);
-        //    }
-        //}
-
         private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
             e.Graphics.DrawString(rtxtOrders.Text, new Font("Microsoft San Serif", 8, FontStyle.Regular), Brushes.Black, new Point(10, 10));
@@ -186,38 +139,61 @@ namespace IS.KIOSK
             this.ActiveControl = txtAmount;
         }
 
-        public void PrintReceipt()
-        {
-            PrintDialog pd = new PrintDialog();
-            PaperSize psize = new PaperSize();
-            printDocument1.DefaultPageSettings.Landscape = false;
-            
-            pd.Document = printDocument1;
-            pd.Document.DefaultPageSettings.PaperSize = psize;
+        //public void PrintReceipt(int LedgerId)
+        //{
+        //    PrintDocument p = new PrintDocument();
+        //    p.PrintPage += delegate (object sender1, PrintPageEventArgs e1)
+        //    {
+        //        var Date = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "Date").FirstOrDefault();
+        //        e1.Graphics.DrawString(DateTime.Now.ToString("MMMM dd, yyyy"), new Font("Times New Roman", Date.Size), Brushes.Black, new RectangleF(Date.X, Date.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
 
-            printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
+        //        var ReceiptNo = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "ReceiptNo").FirstOrDefault();
+        //        e1.Graphics.DrawString(string.Format("{0:000000000000}", LedgerId), new Font("Times New Roman", ReceiptNo.Size), Brushes.Black, new RectangleF(ReceiptNo.X, ReceiptNo.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
 
-            DialogResult result = pd.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                printDocument1.Print();
-            }
-            else
-            {
-                
-            }
-            //show print priview
-            //PrintPreviewDialog ppd = new PrintPreviewDialog();
-            //ppd.Document = printDocument1;
-            ///*This dialog result is the important one :)*/
-            //DialogResult ppdResult = ppd.ShowDialog();
+        //        var SoldTo = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "SoldTo").FirstOrDefault();
+        //        e1.Graphics.DrawString(_FrmMain._CustomerName, new Font("Times New Roman", SoldTo.Size), Brushes.Black, new RectangleF(SoldTo.X, SoldTo.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
 
-            //if (ppdResult == DialogResult.OK)
-            //{
-            //    printDocument1.Print();
-            //}
+        //        var Total = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "Total").FirstOrDefault();
+        //        e1.Graphics.DrawString(_FrmMain._TempOrderList.Sum(x => x.TotalPrice).ToString("N2"), new Font("Times New Roman", Total.Size), Brushes.Black, new RectangleF(Total.X, Total.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
 
-        }
+        //        var Products = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "Products").FirstOrDefault();
+
+        //        var Items = factory.SalesRepository.GetSalesDetailListReport().Where(x=>x.LedgerId == LedgerId).OrderBy(y=>y.Id);
+
+        //        foreach (var itm in Items)
+        //        {
+        //            string product = string.Empty;
+        //            decimal TotalPrice = Convert.ToDecimal(Convert.ToDecimal(itm?.Qty) * itm?.price);
+
+        //            var descList = WordWrap.Wrap(itm.ProductName + " " + itm.Qty?.ToString("N0") + " " + TotalPrice.ToString("N2"), 50);
+        //            int Count = 0;
+        //            foreach (var desc in descList)
+        //            {
+        //                if (Count == 0)
+        //                {
+        //                    product += desc + "\n";
+        //                }
+        //                else
+        //                {
+        //                    product += "--" + desc + "\n";
+        //                }
+
+        //                Count++;
+        //            }
+
+        //            e1.Graphics.DrawString(product, new Font("Times New Roman", Products.Size), Brushes.Black, new RectangleF(Products.X, Products.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
+        //            Products.Y += 12;
+        //        }
+        //    };
+        //    try
+        //    {
+        //        p.Print();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
 
         private void txtAmount_KeyUp(object sender, KeyEventArgs e)
         {
@@ -248,5 +224,7 @@ namespace IS.KIOSK
                 CountErrorlabel = 0;
             }
         }
+
+
     }
 }

@@ -77,6 +77,7 @@
             // txtCompanyName
             // 
             this.txtCompanyName.Location = new System.Drawing.Point(99, 16);
+            this.txtCompanyName.MaxLength = 100;
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.Size = new System.Drawing.Size(384, 20);
             this.txtCompanyName.TabIndex = 0;

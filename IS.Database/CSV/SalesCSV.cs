@@ -16,8 +16,11 @@ namespace IS.Database.CSV
         [Name("Clerk")]
         public string Fullname { get; set; }
 
+        [Name("Customer Name")]
+        public string CustomerName { get; set; }
+
         [Name("Additional Info.")]
-        public string CustmerName { get; set; }
+        public string AdditionalInfo { get; set; }
 
         [Name("Transactio No")]
         public string Id { get; set; }

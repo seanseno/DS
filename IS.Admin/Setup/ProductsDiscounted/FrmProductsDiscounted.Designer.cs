@@ -30,8 +30,9 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.grpProduct = new System.Windows.Forms.GroupBox();
             this.lblTotal = new System.Windows.Forms.Label();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
             this.ProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,12 +40,11 @@
             this.IsPwd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.grpProduct = new System.Windows.Forms.GroupBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.grpProduct.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -57,13 +57,21 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Products Discounted Setup";
             // 
-            // txtSearch
+            // grpProduct
             // 
-            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(15, 24);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(247, 26);
-            this.txtSearch.TabIndex = 0;
+            this.grpProduct.BackColor = System.Drawing.Color.White;
+            this.grpProduct.Controls.Add(this.lblTotal);
+            this.grpProduct.Controls.Add(this.btnSearch);
+            this.grpProduct.Controls.Add(this.dgvProducts);
+            this.grpProduct.Controls.Add(this.btnClose);
+            this.grpProduct.Controls.Add(this.btnAdd);
+            this.grpProduct.Controls.Add(this.txtSearch);
+            this.grpProduct.Location = new System.Drawing.Point(18, 55);
+            this.grpProduct.Name = "grpProduct";
+            this.grpProduct.Size = new System.Drawing.Size(1096, 470);
+            this.grpProduct.TabIndex = 7;
+            this.grpProduct.TabStop = false;
+            this.grpProduct.Text = "Item List";
             // 
             // lblTotal
             // 
@@ -73,6 +81,19 @@
             this.lblTotal.Size = new System.Drawing.Size(89, 13);
             this.lblTotal.TabIndex = 17;
             this.lblTotal.Text = "Total Record(s) 0";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Image = global::IS.Admin.Properties.Resources.search;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.Location = new System.Drawing.Point(268, 19);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(76, 39);
+            this.btnSearch.TabIndex = 12;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // dgvProducts
             // 
@@ -154,35 +175,6 @@
             this.Delete.UseColumnTextForButtonValue = true;
             this.Delete.Width = 50;
             // 
-            // grpProduct
-            // 
-            this.grpProduct.BackColor = System.Drawing.Color.White;
-            this.grpProduct.Controls.Add(this.lblTotal);
-            this.grpProduct.Controls.Add(this.btnSearch);
-            this.grpProduct.Controls.Add(this.dgvProducts);
-            this.grpProduct.Controls.Add(this.btnClose);
-            this.grpProduct.Controls.Add(this.btnAdd);
-            this.grpProduct.Controls.Add(this.txtSearch);
-            this.grpProduct.Location = new System.Drawing.Point(18, 55);
-            this.grpProduct.Name = "grpProduct";
-            this.grpProduct.Size = new System.Drawing.Size(1096, 470);
-            this.grpProduct.TabIndex = 7;
-            this.grpProduct.TabStop = false;
-            this.grpProduct.Text = "Item List";
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Image = global::IS.Admin.Properties.Resources.search;
-            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.Location = new System.Drawing.Point(268, 19);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(76, 39);
-            this.btnSearch.TabIndex = 12;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
             // btnClose
             // 
             this.btnClose.Image = global::IS.Admin.Properties.Resources.Cancel;
@@ -209,11 +201,19 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // txtSearch
+            // 
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(15, 24);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(247, 26);
+            this.txtSearch.TabIndex = 0;
+            // 
             // FrmProductsDiscounted
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
             this.ClientSize = new System.Drawing.Size(1128, 548);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.grpProduct);
@@ -221,12 +221,12 @@
             this.MinimizeBox = false;
             this.Name = "FrmProductsDiscounted";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Products Discounted";
             this.Load += new System.EventHandler(this.FrmProductsDiscounted_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
             this.grpProduct.ResumeLayout(false);
             this.grpProduct.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

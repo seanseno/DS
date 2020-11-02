@@ -74,6 +74,7 @@
             this.txtAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAnswer.Location = new System.Drawing.Point(93, 88);
+            this.txtAnswer.MaxLength = 1000;
             this.txtAnswer.Name = "txtAnswer";
             this.txtAnswer.Size = new System.Drawing.Size(723, 354);
             this.txtAnswer.TabIndex = 8;
@@ -95,6 +96,7 @@
             this.txtQuestion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtQuestion.Location = new System.Drawing.Point(93, 32);
+            this.txtQuestion.MaxLength = 300;
             this.txtQuestion.Name = "txtQuestion";
             this.txtQuestion.Size = new System.Drawing.Size(723, 50);
             this.txtQuestion.TabIndex = 6;
@@ -141,7 +143,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
             this.ClientSize = new System.Drawing.Size(870, 585);
             this.ControlBox = false;
             this.Controls.Add(this.btnSave);
@@ -152,7 +154,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmEditQuestions";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);

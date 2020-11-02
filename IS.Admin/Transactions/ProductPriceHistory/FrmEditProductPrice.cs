@@ -16,13 +16,14 @@ namespace IS.Admin.Setup
 {
     public partial class FrmEditProductPrice : BaseForm
     {
-        public Products _Products = new Products();
+        public string _ProductId { get; set; }
+        public Products _Products { get; set; }
         ISFactory factory = new ISFactory();
-        public FrmEditProductPrice(Products Products)
+        public FrmEditProductPrice(string ProductId)
         {
             InitializeComponent();
             this.ActiveControl = txtPrice;
-            this._Products = Products;
+            this._ProductId = ProductId;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -35,11 +36,11 @@ namespace IS.Admin.Setup
         {
 
             ProductsModel ProductsModel = new ProductsModel();
-            var response = ProductsModel.LoadEdit(_Products.ProductId);
-            lblItemId.Text = response.ProductId;
+            _Products = ProductsModel.LoadEdit(_ProductId);
+            lblItemId.Text = _Products.ProductId;
 
-            txtProductName.Text = response.ProductName;
-            txtPrice.Text = response.Price.ToString("N2");
+            lblProductName.Text = _Products.ProductName;
+            txtPrice.Text = _Products.Price.ToString("N2");
         }
 
         private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
@@ -51,13 +52,6 @@ namespace IS.Admin.Setup
         }
         private bool CheckRequiredInput()
         {
-            if (string.IsNullOrEmpty(txtProductName.Text))
-            {
-                MessageBox.Show("Product Name is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtProductName.Focus();
-                return true;
-            }
-
             if (string.IsNullOrEmpty(txtPrice.Text))
             {
                 MessageBox.Show("Price is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -80,6 +74,13 @@ namespace IS.Admin.Setup
                 return true;
             }
 
+            if (string.IsNullOrEmpty(txtRemarks.Text))
+            {
+                MessageBox.Show("Remarks is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtRemarks.Focus();
+                return true;
+            }
+
             return false;
         }
 
@@ -87,10 +88,10 @@ namespace IS.Admin.Setup
         {
             if (!CheckRequiredInput())
             {
-                if (MessageBox.Show("Are you sure do want to update " + txtProductName.Text + "?", "Information!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                if (MessageBox.Show("Are you sure do want to update " + lblProductName.Text + "?", "Information!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
                     _Products.Price = Convert.ToDecimal(txtPrice.Text);
-                    factory.ProductPriceHistoryRepository.Insert(_Products);
+                    factory.ProductsRepository.Update(_Products,txtRemarks.Text);
 
                     this.DialogResult = DialogResult.OK;
                 }

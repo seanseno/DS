@@ -216,11 +216,23 @@
     <Compile Include="CustomDataGridView\CustomDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Setup\Products\FrmProdutcsHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\Products\FrmProdutcsHistory.Designer.cs">
+      <DependentUpon>FrmProdutcsHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transactions\StocksData\FrmReturnStockData.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\StocksData\FrmReturnStockData.Designer.cs">
       <DependentUpon>FrmReturnStockData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\PrinterCoordinates\FrmPrinterKioskCoordinates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\PrinterCoordinates\FrmPrinterKioskCoordinates.Designer.cs">
+      <DependentUpon>FrmPrinterKioskCoordinates.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Questions\FrmEditQuestions.cs">
       <SubType>Form</SubType>
@@ -530,8 +542,14 @@
     <EmbeddedResource Include="Setup\Products\FrmModalSearchProducts.resx">
       <DependentUpon>FrmModalSearchProducts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Setup\Products\FrmProdutcsHistory.resx">
+      <DependentUpon>FrmProdutcsHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\StocksData\FrmReturnStockData.resx">
       <DependentUpon>FrmReturnStockData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\PrinterCoordinates\FrmPrinterKioskCoordinates.resx">
+      <DependentUpon>FrmPrinterKioskCoordinates.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Questions\FrmEditQuestions.resx">
       <DependentUpon>FrmEditQuestions.cs</DependentUpon>

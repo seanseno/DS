@@ -199,5 +199,22 @@ namespace IS.Library.CSV
                 return DownloadPath;
             }
         }
+
+        public string WriteProductsCSV(string DownloadPath,
+            IList<ProductsCSV> listCSV,
+            string PreparedBY)
+        {
+            using (var writer = new StreamWriter(DownloadPath))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                writer.WriteLine("Product List");
+                writer.WriteLine("Prepared By: " + PreparedBY);
+                writer.WriteLine("Prepared Date: " + DateTime.Now);
+                writer.WriteLine("");
+                csv.WriteRecords(listCSV);
+
+                return DownloadPath;
+            }
+        }
     }
 }

@@ -58,6 +58,7 @@
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.questionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.endOfDayReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockExpiredNearlyExpiredReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,7 +70,8 @@
             this.lblTime = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.endOfDayReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printerKioskCoordinatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -246,7 +248,9 @@
             this.administratorToolStripMenuItem,
             this.cashiersToolStripMenuItem,
             this.toolStripMenuItem6,
-            this.questionsToolStripMenuItem});
+            this.questionsToolStripMenuItem,
+            this.toolStripMenuItem8,
+            this.printerKioskCoordinatesToolStripMenuItem});
             this.utilitiesToolStripMenuItem.Name = "utilitiesToolStripMenuItem";
             this.utilitiesToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.utilitiesToolStripMenuItem.Text = "Utilities";
@@ -255,19 +259,19 @@
             // themesToolStripMenuItem
             // 
             this.themesToolStripMenuItem.Name = "themesToolStripMenuItem";
-            this.themesToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.themesToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.themesToolStripMenuItem.Text = "Themes";
             this.themesToolStripMenuItem.Click += new System.EventHandler(this.themesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(144, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(204, 6);
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Visible = false;
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
@@ -275,7 +279,7 @@
             // accessMenuToolStripMenuItem
             // 
             this.accessMenuToolStripMenuItem.Name = "accessMenuToolStripMenuItem";
-            this.accessMenuToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.accessMenuToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.accessMenuToolStripMenuItem.Text = "Access Menu";
             this.accessMenuToolStripMenuItem.Visible = false;
             this.accessMenuToolStripMenuItem.Click += new System.EventHandler(this.accessMenuToolStripMenuItem_Click);
@@ -283,13 +287,13 @@
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(144, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(204, 6);
             this.toolStripMenuItem5.Visible = false;
             // 
             // administratorToolStripMenuItem
             // 
             this.administratorToolStripMenuItem.Name = "administratorToolStripMenuItem";
-            this.administratorToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.administratorToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.administratorToolStripMenuItem.Text = "Administrator";
             this.administratorToolStripMenuItem.Visible = false;
             this.administratorToolStripMenuItem.Click += new System.EventHandler(this.administratorToolStripMenuItem_Click);
@@ -297,7 +301,7 @@
             // cashiersToolStripMenuItem
             // 
             this.cashiersToolStripMenuItem.Name = "cashiersToolStripMenuItem";
-            this.cashiersToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.cashiersToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.cashiersToolStripMenuItem.Text = "Cashiers";
             this.cashiersToolStripMenuItem.Visible = false;
             this.cashiersToolStripMenuItem.Click += new System.EventHandler(this.cashiersToolStripMenuItem_Click);
@@ -305,13 +309,13 @@
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(144, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(204, 6);
             this.toolStripMenuItem6.Visible = false;
             // 
             // questionsToolStripMenuItem
             // 
             this.questionsToolStripMenuItem.Name = "questionsToolStripMenuItem";
-            this.questionsToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.questionsToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.questionsToolStripMenuItem.Text = "Questions";
             this.questionsToolStripMenuItem.Visible = false;
             this.questionsToolStripMenuItem.Click += new System.EventHandler(this.questionsToolStripMenuItem_Click);
@@ -330,6 +334,13 @@
             this.reportToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.reportToolStripMenuItem.Text = "Reports";
             this.reportToolStripMenuItem.Visible = false;
+            // 
+            // endOfDayReportToolStripMenuItem
+            // 
+            this.endOfDayReportToolStripMenuItem.Name = "endOfDayReportToolStripMenuItem";
+            this.endOfDayReportToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
+            this.endOfDayReportToolStripMenuItem.Text = "End of Day Report";
+            this.endOfDayReportToolStripMenuItem.Click += new System.EventHandler(this.endOfDayReportToolStripMenuItem_Click);
             // 
             // salesToolStripMenuItem
             // 
@@ -428,12 +439,17 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // endOfDayReportToolStripMenuItem
+            // printerKioskCoordinatesToolStripMenuItem
             // 
-            this.endOfDayReportToolStripMenuItem.Name = "endOfDayReportToolStripMenuItem";
-            this.endOfDayReportToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
-            this.endOfDayReportToolStripMenuItem.Text = "End of Day Report";
-            this.endOfDayReportToolStripMenuItem.Click += new System.EventHandler(this.endOfDayReportToolStripMenuItem_Click);
+            this.printerKioskCoordinatesToolStripMenuItem.Name = "printerKioskCoordinatesToolStripMenuItem";
+            this.printerKioskCoordinatesToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.printerKioskCoordinatesToolStripMenuItem.Text = "Printer Kiosk Coordinates";
+            this.printerKioskCoordinatesToolStripMenuItem.Click += new System.EventHandler(this.printerKioskCoordinatesToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem8
+            // 
+            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(204, 6);
             // 
             // FrmMain
             // 
@@ -501,6 +517,8 @@
         private System.Windows.Forms.ToolStripMenuItem themesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem7;
         private System.Windows.Forms.ToolStripMenuItem endOfDayReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem8;
+        private System.Windows.Forms.ToolStripMenuItem printerKioskCoordinatesToolStripMenuItem;
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using IS.Admin.Model;
+using IS.Database;
 using IS.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ namespace IS.Admin.Setup
     public partial class FrmEditProduct : BaseForm
     {
         public Products _Products = new Products();
+
+        ISFactory factory = new ISFactory();
         public FrmEditProduct(Products Products)
         {
             InitializeComponent();
@@ -53,6 +56,12 @@ namespace IS.Admin.Setup
             {
                 MessageBox.Show("Product Name is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtProductName.Focus();
+                return true;
+            }
+            if (string.IsNullOrEmpty(txtRemarks.Text))
+            {
+                MessageBox.Show("Remarks is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtRemarks.Focus();
                 return true;
             }
 
@@ -103,10 +112,11 @@ namespace IS.Admin.Setup
                     _Products.Price = Convert.ToDecimal(txtPrice.Text);
                     _Products.BarCode = txtBarcode.Text;
                     _Products.Active = chkActive.Checked == true ? 1 : 0;
-
+                  
                     var model = new ProductsModel();
 
-                    model.UpdateItem(_Products);
+                    factory.ProductsRepository.Update(_Products, txtRemarks.Text);
+
                     this.DialogResult = DialogResult.OK;
                 }
             }
