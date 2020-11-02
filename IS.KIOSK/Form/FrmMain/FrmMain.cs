@@ -401,7 +401,8 @@ namespace IS.KIOSK
 
 
                 var Products = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "Products").FirstOrDefault();
-
+                var ProductsQty = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "ProductsQty").FirstOrDefault();
+                var ProductsPrice = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "ProductsPrice").FirstOrDefault();
 
                 decimal TotalAmountPrice = 0;
                 foreach (var itm in Items)
@@ -409,7 +410,7 @@ namespace IS.KIOSK
                     string product = string.Empty;
                     decimal TotalPrice = Convert.ToDecimal(Convert.ToDecimal(itm?.Qty) * itm?.price);
                     TotalAmountPrice += TotalPrice;
-                    var descList = WordWrap.Wrap(itm.ProductName + " " + itm.Qty?.ToString("N0") + " " + TotalPrice.ToString("N2"), 50);
+                    var descList = WordWrap.Wrap(itm.ProductName, 50);
                     int Count = 0;
                     foreach (var desc in descList)
                     {
@@ -425,7 +426,9 @@ namespace IS.KIOSK
                         Count++;
                     }
 
+                    e1.Graphics.DrawString(itm.Qty?.ToString("N0"), new Font("Times New Roman", ProductsQty.Size), Brushes.Black, new RectangleF(ProductsQty.X, Products.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
                     e1.Graphics.DrawString(product, new Font("Times New Roman", Products.Size), Brushes.Black, new RectangleF(Products.X, Products.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
+                    e1.Graphics.DrawString(TotalPrice.ToString("N0"), new Font("Times New Roman", ProductsPrice.Size), Brushes.Black, new RectangleF(ProductsPrice.X, Products.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
                     Products.Y += 12;
                 }
 

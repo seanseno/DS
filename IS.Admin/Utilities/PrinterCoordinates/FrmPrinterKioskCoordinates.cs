@@ -70,6 +70,23 @@ namespace IS.Admin.Setup
             txtProductsY.Text = Coor.Y.ToString("N0");
             txtProductsS.Text = Coor.Size.ToString("N0");
 
+
+            Coor = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "ProductsQty").FirstOrDefault();
+            if (Coor == null)
+            {
+                return;
+            }
+            txtProductsQtyX.Text = Coor.X.ToString("N0");
+            txtProductsQtyS.Text = Coor.Size.ToString("N0");
+
+            Coor = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "ProductsPrice").FirstOrDefault();
+            if (Coor == null)
+            {
+                return;
+            }
+            txtProductsPriceX.Text = Coor.X.ToString("N0");
+            txtProductsPriceS.Text = Coor.Size.ToString("N0");
+
             Coor = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "Total").FirstOrDefault();
             if (Coor == null)
             {
@@ -123,6 +140,20 @@ namespace IS.Admin.Setup
                     coor.X = Convert.ToInt32(txtProductsX.Text);
                     coor.Y = Convert.ToInt32(txtProductsY.Text);
                     coor.Size = Convert.ToInt32(txtProductsS.Text);
+                    factory.PrinterCoordinatesRepository.Insert(coor);
+
+                    coor = new PrinterCoordinates();
+                    coor.PrintingType = (int)PrinterType.Kiosk;
+                    coor.PrintingLabel = "ProductsQty";
+                    coor.X = Convert.ToInt32(txtProductsQtyX.Text);
+                    coor.Size = Convert.ToInt32(txtProductsQtyS.Text);
+                    factory.PrinterCoordinatesRepository.Insert(coor);
+
+                    coor = new PrinterCoordinates();
+                    coor.PrintingType = (int)PrinterType.Kiosk;
+                    coor.PrintingLabel = "ProductsPrice";
+                    coor.X = Convert.ToInt32(txtProductsPriceX.Text);
+                    coor.Size = Convert.ToInt32(txtProductsPriceS.Text);
                     factory.PrinterCoordinatesRepository.Insert(coor);
 
                     coor = new PrinterCoordinates();
