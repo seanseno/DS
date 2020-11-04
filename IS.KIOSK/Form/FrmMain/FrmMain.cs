@@ -397,7 +397,7 @@ namespace IS.KIOSK
                 e1.Graphics.DrawString(string.Format("{0:000000000000}", LedgerId), new Font("Times New Roman", ReceiptNo.Size), Brushes.Black, new RectangleF(ReceiptNo.X, ReceiptNo.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
 
                 var SoldTo = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "SoldTo").FirstOrDefault();
-                e1.Graphics.DrawString(_CustomerName, new Font("Times New Roman", SoldTo.Size), Brushes.Black, new RectangleF(SoldTo.X, SoldTo.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
+                e1.Graphics.DrawString(Items.ToList().FirstOrDefault().CustomerName, new Font("Times New Roman", SoldTo.Size), Brushes.Black, new RectangleF(SoldTo.X, SoldTo.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
 
 
                 var Products = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "Products").FirstOrDefault();
@@ -411,25 +411,29 @@ namespace IS.KIOSK
                     decimal TotalPrice = Convert.ToDecimal(Convert.ToDecimal(itm?.Qty) * itm?.price);
                     TotalAmountPrice += TotalPrice;
                     var descList = WordWrap.Wrap(itm.ProductName, 50);
-                    int Count = 0;
-                    foreach (var desc in descList)
-                    {
-                        if (Count == 0)
-                        {
-                            product += desc + "\n";
-                        }
-                        else
-                        {
-                            product += "--" + desc + "\n";
-                        }
+                    //int Count = 0;
+                    //foreach (var desc in descList)
+                    //{
+                    //    if (Count == 0)
+                    //    {
+                    //        product += desc + "\n";
+                    //    }
+                    //    else
+                    //    {
+                    //        product += "--" + desc + "\n";
+                    //    }
 
-                        Count++;
-                    }
+                    //    Count++;
+                    //}
 
                     e1.Graphics.DrawString(itm.Qty?.ToString("N0"), new Font("Times New Roman", ProductsQty.Size), Brushes.Black, new RectangleF(ProductsQty.X, Products.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
-                    e1.Graphics.DrawString(product, new Font("Times New Roman", Products.Size), Brushes.Black, new RectangleF(Products.X, Products.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
-                    e1.Graphics.DrawString(TotalPrice.ToString("N0"), new Font("Times New Roman", ProductsPrice.Size), Brushes.Black, new RectangleF(ProductsPrice.X, Products.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
-                    Products.Y += 12;
+                    e1.Graphics.DrawString(TotalPrice.ToString("N2"), new Font("Times New Roman", ProductsPrice.Size), Brushes.Black, new RectangleF(ProductsPrice.X, Products.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
+                    foreach (string desc in descList)
+                    {
+                        e1.Graphics.DrawString(desc, new Font("Times New Roman", Products.Size), Brushes.Black, new RectangleF(Products.X, Products.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
+                        Products.Y += 12;
+                    }
+                   
                 }
 
                 var Total = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "Total").FirstOrDefault();
