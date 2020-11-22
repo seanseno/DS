@@ -20,6 +20,7 @@ namespace IS.KIOSK
         FrmModalSearchProducts : BaseForm
     {
         IList<ProductsKiosk> _ProductList = new List<ProductsKiosk>();
+        public string _CategoryId { get; set; }
         public string _ProductId {get;set;}
         public string _ProductName { get; set; }
         public IList<string> _Query { get; set; }
@@ -49,11 +50,15 @@ namespace IS.KIOSK
         {
             dgvProducts.DataSource = null;
             dgvProducts.AutoGenerateColumns = false;
-            dgvProducts.DataSource = criteria.ProductKioskCriteria.MeetCriteria(this._ProductList.ToList(), txtSearch.Text.ToUpper()).OrderBy(x=> x.ProductName).ToList();
+            dgvProducts.DataSource = this._ProductList
+                                    .Where(x => x.CategoryName.Contains(txtSearch.Text.ToUpper()) ||
+                                        x.ProductId.Contains(txtSearch.Text.ToUpper()) ||
+                                        x.ProductName.Contains(txtSearch.Text.ToUpper()) ||
+                                        x.BarCode.Contains(txtSearch.Text))
+                                    .OrderBy(y => y.ProductName).ToList();
+                                    
             dgvProducts.StandardTab = true;
-            dgvProducts.Refresh();
-       
-            
+            dgvProducts.Refresh(); 
         }
 
   
@@ -116,8 +121,9 @@ namespace IS.KIOSK
         {
             if (dgvProducts.Rows.Count > 0)
             {
-                this._ProductId = dgvProducts.CurrentRow.Cells[0].Value?.ToString();
-                this._ProductName = dgvProducts.CurrentRow.Cells[1].Value?.ToString();
+                this._CategoryId = dgvProducts.CurrentRow.Cells[0].Value?.ToString();
+                this._ProductId = dgvProducts.CurrentRow.Cells[2].Value?.ToString();
+                this._ProductName = dgvProducts.CurrentRow.Cells[3].Value?.ToString();
                 this.DialogResult = DialogResult.OK;
             }
         }

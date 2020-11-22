@@ -1,5 +1,6 @@
 ﻿using IS.Database;
 using IS.Database.Entities;
+using IS.Database.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,6 +35,7 @@ namespace IS.Admin.Utilities
                 txtReturnItem.Text = response.ReturnItem.ToString("N0");
                 txtSenior.Text = response.ExpirationAlert.ToString("N2");
                 txtPwd.Text = response.ExpirationAlert.ToString("N2");
+                chkPrinter.Checked = response.WithPrinter == (int)EnumActive.Active ;
             }
         }
 
@@ -80,6 +82,7 @@ namespace IS.Admin.Utilities
                     setting.ReturnItem = Convert.ToInt32(txtReturnItem.Text);
                     setting.SeniorDiscount = Convert.ToDecimal(txtSenior.Text);
                     setting.PWDDiscount = Convert.ToDecimal(txtPwd.Text);
+                    setting.WithPrinter = Convert.ToInt32(chkPrinter.Checked);
                     factory.SettingsRepository.Update(setting);
                     this.DialogResult = DialogResult.OK;
                 }

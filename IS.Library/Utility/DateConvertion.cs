@@ -21,5 +21,14 @@ namespace IS.Library.Utility
         {
             return (d1 - DateTotay).TotalDays;
         }
+        public static DateTime GetFistDay(DateTime date)
+        {
+            return new DateTime(date.Year, date.Month, 1);
+        }
+        public static DateTime GetLastDay(DateTime date)
+        {
+            var fistday = GetFistDay(date);
+            return fistday.AddMonths(1).AddDays(-1);
+        }
     }
 }

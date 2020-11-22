@@ -1,6 +1,7 @@
 ﻿using IS.Admin;
 using IS.Admin.Model;
 using IS.Admin.Transactions;
+using IS.Database;
 using IS.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace IIS.Admin.Transactions
     public partial class FrmValidateOngoingStocksData : BaseForm
     {
         IList<StocksData> _list = new List<StocksData>();
+        ISFactory factory = new ISFactory();
         public FrmValidateOngoingStocksData()
         {
             InitializeComponent();
@@ -31,9 +33,15 @@ namespace IIS.Admin.Transactions
             grpLoading.Visible = true;
             grpLoading.Refresh();
 
-            StocksDataModel StocksData = new StocksDataModel();
-            var response = StocksData.FindWithRemainingQTY(txtSearch.Text);
-            _list = response.Where(x => x.SupplierPrice <= 0).ToList();
+            var response = factory.StocksDataRepository.GetList()
+                        .Where(x => x.RemainingQuantity > 0).ToList();
+            response = response
+                        .Where(x => x.ProductName.Contains(txtSearch.Text) ||
+                            x.ProductId.Contains(txtSearch.Text) ||
+                            x.CategoryName.Contains(txtSearch.Text) ||
+                            x.ProductName.Contains(txtSearch.Text)).ToList();
+
+             _list = response.Where(x => x.SupplierPrice <= 0).ToList();
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = _list;
             txtSearch.Focus();

@@ -27,7 +27,7 @@ namespace IS.Database.Repositories
                 }
             }
         }
-        public void Insert(string ProductId, int Qty, int TempLedgerId, int IsSenior, int IsPwd)
+        public void Insert(TempSales model)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
@@ -35,11 +35,15 @@ namespace IS.Database.Repositories
                 using (SqlCommand cmd = new SqlCommand("spTempSalesInsert", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@ProductId", ProductId));
-                    cmd.Parameters.Add(new SqlParameter("@Qty", Qty));
-                    cmd.Parameters.Add(new SqlParameter("@TempLedgerId", TempLedgerId));
-                    cmd.Parameters.Add(new SqlParameter("@IsSenior", IsSenior));
-                    cmd.Parameters.Add(new SqlParameter("@IsPwd", IsPwd));
+                    cmd.Parameters.Add(new SqlParameter("@ProductId", model.ProductId));
+                    cmd.Parameters.Add(new SqlParameter("@Qty", model.Qty));
+                    cmd.Parameters.Add(new SqlParameter("@Price", model.Price));
+                    cmd.Parameters.Add(new SqlParameter("@PriceDiscounted", model.PriceDiscounted));
+                    cmd.Parameters.Add(new SqlParameter("@Discounted", model.Discounted));
+                    cmd.Parameters.Add(new SqlParameter("@TotalPrice", model.TotalPrice));
+                    cmd.Parameters.Add(new SqlParameter("@TempLedgerId", model.TempLedgerId));
+                    cmd.Parameters.Add(new SqlParameter("@IsSenior", model.IsSenior));
+                    cmd.Parameters.Add(new SqlParameter("@IsPwd", model.IsPWD));
 
                     int rowAffected = cmd.ExecuteNonQuery();
 

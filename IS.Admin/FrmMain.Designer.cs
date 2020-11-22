@@ -46,6 +46,7 @@
             this.principalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
+            this.discountedCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.discountedProductsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.utilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.themesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,10 +58,11 @@
             this.cashiersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.questionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
+            this.printerKioskCoordinatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.endOfDayReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockExpiredNearlyExpiredReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.returnedItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,8 +72,7 @@
             this.lblTime = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.printerKioskCoordinatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
+            this.stocksDataReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -193,6 +194,7 @@
             this.principalsToolStripMenuItem,
             this.productsToolStripMenuItem,
             this.toolStripMenuItem4,
+            this.discountedCategoryToolStripMenuItem,
             this.discountedProductsToolStripMenuItem});
             this.setupToolStripMenuItem.Name = "setupToolStripMenuItem";
             this.setupToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
@@ -202,7 +204,7 @@
             // categoriesToolStripMenuItem
             // 
             this.categoriesToolStripMenuItem.Name = "categoriesToolStripMenuItem";
-            this.categoriesToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.categoriesToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.categoriesToolStripMenuItem.Text = "Categories";
             this.categoriesToolStripMenuItem.Visible = false;
             this.categoriesToolStripMenuItem.Click += new System.EventHandler(this.categoriesToolStripMenuItem_Click);
@@ -210,7 +212,7 @@
             // principalsToolStripMenuItem
             // 
             this.principalsToolStripMenuItem.Name = "principalsToolStripMenuItem";
-            this.principalsToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.principalsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.principalsToolStripMenuItem.Text = "Principals";
             this.principalsToolStripMenuItem.Visible = false;
             this.principalsToolStripMenuItem.Click += new System.EventHandler(this.principalsToolStripMenuItem_Click);
@@ -218,7 +220,7 @@
             // productsToolStripMenuItem
             // 
             this.productsToolStripMenuItem.Name = "productsToolStripMenuItem";
-            this.productsToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.productsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.productsToolStripMenuItem.Text = "Products";
             this.productsToolStripMenuItem.Visible = false;
             this.productsToolStripMenuItem.Click += new System.EventHandler(this.productsToolStripMenuItem_Click);
@@ -226,13 +228,20 @@
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(181, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(190, 6);
             this.toolStripMenuItem4.Visible = false;
+            // 
+            // discountedCategoryToolStripMenuItem
+            // 
+            this.discountedCategoryToolStripMenuItem.Name = "discountedCategoryToolStripMenuItem";
+            this.discountedCategoryToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.discountedCategoryToolStripMenuItem.Text = "Discounted Categories";
+            this.discountedCategoryToolStripMenuItem.Click += new System.EventHandler(this.discountedCategoryToolStripMenuItem_Click);
             // 
             // discountedProductsToolStripMenuItem
             // 
             this.discountedProductsToolStripMenuItem.Name = "discountedProductsToolStripMenuItem";
-            this.discountedProductsToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.discountedProductsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.discountedProductsToolStripMenuItem.Text = "Discounted Products";
             this.discountedProductsToolStripMenuItem.Visible = false;
             this.discountedProductsToolStripMenuItem.Click += new System.EventHandler(this.discountedProductsToolStripMenuItem_Click);
@@ -320,12 +329,24 @@
             this.questionsToolStripMenuItem.Visible = false;
             this.questionsToolStripMenuItem.Click += new System.EventHandler(this.questionsToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem8
+            // 
+            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(204, 6);
+            // 
+            // printerKioskCoordinatesToolStripMenuItem
+            // 
+            this.printerKioskCoordinatesToolStripMenuItem.Name = "printerKioskCoordinatesToolStripMenuItem";
+            this.printerKioskCoordinatesToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.printerKioskCoordinatesToolStripMenuItem.Text = "Printer Kiosk Coordinates";
+            this.printerKioskCoordinatesToolStripMenuItem.Click += new System.EventHandler(this.printerKioskCoordinatesToolStripMenuItem_Click);
+            // 
             // reportToolStripMenuItem
             // 
             this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.endOfDayReportToolStripMenuItem,
             this.salesToolStripMenuItem,
-            this.stockToolStripMenuItem,
+            this.stocksDataReportToolStripMenuItem,
             this.stockExpiredNearlyExpiredReportToolStripMenuItem,
             this.toolStripMenuItem1,
             this.returnedItemsToolStripMenuItem,
@@ -349,14 +370,6 @@
             this.salesToolStripMenuItem.Text = "Sales Report";
             this.salesToolStripMenuItem.Visible = false;
             this.salesToolStripMenuItem.Click += new System.EventHandler(this.salesToolStripMenuItem_Click);
-            // 
-            // stockToolStripMenuItem
-            // 
-            this.stockToolStripMenuItem.Name = "stockToolStripMenuItem";
-            this.stockToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
-            this.stockToolStripMenuItem.Text = "Stock Report";
-            this.stockToolStripMenuItem.Visible = false;
-            this.stockToolStripMenuItem.Click += new System.EventHandler(this.stockToolStripMenuItem_Click);
             // 
             // stockExpiredNearlyExpiredReportToolStripMenuItem
             // 
@@ -439,17 +452,12 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // printerKioskCoordinatesToolStripMenuItem
+            // stocksDataReportToolStripMenuItem
             // 
-            this.printerKioskCoordinatesToolStripMenuItem.Name = "printerKioskCoordinatesToolStripMenuItem";
-            this.printerKioskCoordinatesToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.printerKioskCoordinatesToolStripMenuItem.Text = "Printer Kiosk Coordinates";
-            this.printerKioskCoordinatesToolStripMenuItem.Click += new System.EventHandler(this.printerKioskCoordinatesToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem8
-            // 
-            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(204, 6);
+            this.stocksDataReportToolStripMenuItem.Name = "stocksDataReportToolStripMenuItem";
+            this.stocksDataReportToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
+            this.stocksDataReportToolStripMenuItem.Text = "Stocks Data Report";
+            this.stocksDataReportToolStripMenuItem.Click += new System.EventHandler(this.stocksDataReportToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -497,7 +505,6 @@
         private System.Windows.Forms.ToolStripMenuItem accessMenuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeProductPriceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem stockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stockExpiredNearlyExpiredReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem discountedProductsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
@@ -519,6 +526,8 @@
         private System.Windows.Forms.ToolStripMenuItem endOfDayReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem8;
         private System.Windows.Forms.ToolStripMenuItem printerKioskCoordinatesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem discountedCategoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stocksDataReportToolStripMenuItem;
     }
 }
 

@@ -59,7 +59,7 @@ namespace IS.Admin.Transactions
             }
             else if (string.IsNullOrEmpty(txtRemarks.Text))
             {
-                MessageBox.Show("Remarks is reuired!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Remarks is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtRemarks.Focus();
                 return true;
             }
@@ -120,7 +120,6 @@ namespace IS.Admin.Transactions
                     stocksData.Quantity = Convert.ToInt32(txtQuantity.Text);
                     stocksData.SupplierPrice = 0;
                     stocksData.TotalAmount = 0;
-                    stocksData.SuggestedPrice = 0;
                     stocksData.RemainingQuantity = Convert.ToInt32(txtQuantity.Text);
                     stocksData.DeliveryDate = dtpDeliveryDate.Value;
                     stocksData.ExpirationDate = dtpExpirationDate.Value;

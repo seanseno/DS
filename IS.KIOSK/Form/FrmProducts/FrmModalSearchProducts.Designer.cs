@@ -28,23 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grpProduct = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.grpLoading = new System.Windows.Forms.GroupBox();
             this.pbLoading = new System.Windows.Forms.PictureBox();
             this.lblTotal = new System.Windows.Forms.Label();
             this.dgvProducts = new IS.KIOSK.CustomDataGridView();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSelect = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.CategoryId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Stocks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BarCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSelect = new System.Windows.Forms.Button();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.grpProduct.SuspendLayout();
             this.grpLoading.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLoading)).BeginInit();
@@ -64,7 +66,7 @@
             this.grpProduct.Enabled = false;
             this.grpProduct.Location = new System.Drawing.Point(12, 55);
             this.grpProduct.Name = "grpProduct";
-            this.grpProduct.Size = new System.Drawing.Size(860, 470);
+            this.grpProduct.Size = new System.Drawing.Size(1005, 470);
             this.grpProduct.TabIndex = 3;
             this.grpProduct.TabStop = false;
             this.grpProduct.Text = "Item List";
@@ -84,7 +86,7 @@
             // 
             this.grpLoading.BackColor = System.Drawing.Color.White;
             this.grpLoading.Controls.Add(this.pbLoading);
-            this.grpLoading.Location = new System.Drawing.Point(350, 145);
+            this.grpLoading.Location = new System.Drawing.Point(479, 139);
             this.grpLoading.Name = "grpLoading";
             this.grpLoading.Size = new System.Drawing.Size(151, 140);
             this.grpLoading.TabIndex = 6;
@@ -116,10 +118,12 @@
             // 
             this.dgvProducts.AllowUserToAddRows = false;
             this.dgvProducts.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
-            this.dgvProducts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
+            this.dgvProducts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CategoryId,
+            this.CategoryName,
             this.ProductId,
             this.ProductName,
             this.Price,
@@ -130,67 +134,15 @@
             this.dgvProducts.ReadOnly = true;
             this.dgvProducts.RowHeadersWidth = 51;
             this.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProducts.Size = new System.Drawing.Size(839, 333);
+            this.dgvProducts.Size = new System.Drawing.Size(984, 333);
             this.dgvProducts.TabIndex = 2;
             this.dgvProducts.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvProducts_KeyUp);
-            // 
-            // ProductId
-            // 
-            this.ProductId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ProductId.DataPropertyName = "ProductId";
-            this.ProductId.HeaderText = "Product ID";
-            this.ProductId.Name = "ProductId";
-            this.ProductId.ReadOnly = true;
-            // 
-            // ProductName
-            // 
-            this.ProductName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ProductName.DataPropertyName = "ProductName";
-            this.ProductName.HeaderText = "Products";
-            this.ProductName.MinimumWidth = 6;
-            this.ProductName.Name = "ProductName";
-            this.ProductName.ReadOnly = true;
-            this.ProductName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ProductName.Width = 400;
-            // 
-            // Price
-            // 
-            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Price.DataPropertyName = "Price";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Price.FillWeight = 106.5126F;
-            this.Price.HeaderText = "Price";
-            this.Price.MinimumWidth = 6;
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            this.Price.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Price.Width = 125;
-            // 
-            // Stocks
-            // 
-            this.Stocks.DataPropertyName = "Stock";
-            this.Stocks.HeaderText = "Stocks";
-            this.Stocks.Name = "Stocks";
-            this.Stocks.ReadOnly = true;
-            // 
-            // BarCode
-            // 
-            this.BarCode.DataPropertyName = "BarCode";
-            this.BarCode.HeaderText = "Bar Code";
-            this.BarCode.MinimumWidth = 6;
-            this.BarCode.Name = "BarCode";
-            this.BarCode.ReadOnly = true;
-            this.BarCode.Width = 80;
             // 
             // btnClose
             // 
             this.btnClose.Image = global::IS.KIOSK.Properties.Resources.Close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnClose.Location = new System.Drawing.Point(775, 403);
+            this.btnClose.Location = new System.Drawing.Point(933, 407);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(66, 55);
             this.btnClose.TabIndex = 4;
@@ -203,7 +155,7 @@
             // 
             this.btnSelect.Image = global::IS.KIOSK.Properties.Resources.click1;
             this.btnSelect.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSelect.Location = new System.Drawing.Point(703, 403);
+            this.btnSelect.Location = new System.Drawing.Point(861, 407);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(66, 55);
             this.btnSelect.TabIndex = 3;
@@ -232,12 +184,80 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Products Menu";
             // 
+            // CategoryId
+            // 
+            this.CategoryId.DataPropertyName = "CategoryId";
+            this.CategoryId.HeaderText = "CategoryId";
+            this.CategoryId.Name = "CategoryId";
+            this.CategoryId.ReadOnly = true;
+            this.CategoryId.Visible = false;
+            // 
+            // CategoryName
+            // 
+            this.CategoryName.DataPropertyName = "CategoryName";
+            this.CategoryName.HeaderText = "Category";
+            this.CategoryName.Name = "CategoryName";
+            this.CategoryName.ReadOnly = true;
+            this.CategoryName.Width = 150;
+            // 
+            // ProductId
+            // 
+            this.ProductId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ProductId.DataPropertyName = "ProductId";
+            this.ProductId.HeaderText = "Product ID";
+            this.ProductId.Name = "ProductId";
+            this.ProductId.ReadOnly = true;
+            // 
+            // ProductName
+            // 
+            this.ProductName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ProductName.DataPropertyName = "ProductName";
+            this.ProductName.HeaderText = "Products";
+            this.ProductName.MinimumWidth = 6;
+            this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
+            this.ProductName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ProductName.Width = 400;
+            // 
+            // Price
+            // 
+            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Price.DataPropertyName = "Price";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Price.FillWeight = 106.5126F;
+            this.Price.HeaderText = "Price";
+            this.Price.MinimumWidth = 6;
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            this.Price.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Price.Width = 95;
+            // 
+            // Stocks
+            // 
+            this.Stocks.DataPropertyName = "Stock";
+            this.Stocks.HeaderText = "Stocks";
+            this.Stocks.Name = "Stocks";
+            this.Stocks.ReadOnly = true;
+            // 
+            // BarCode
+            // 
+            this.BarCode.DataPropertyName = "BarCode";
+            this.BarCode.HeaderText = "Bar Code";
+            this.BarCode.MinimumWidth = 6;
+            this.BarCode.Name = "BarCode";
+            this.BarCode.ReadOnly = true;
+            this.BarCode.Width = 80;
+            // 
             // FrmModalSearchProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
-            this.ClientSize = new System.Drawing.Size(884, 542);
+            this.ClientSize = new System.Drawing.Size(1029, 542);
             this.ControlBox = false;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.grpProduct);
@@ -267,11 +287,13 @@
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.Label label1;
+        private CustomDataGridView dgvProducts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CategoryId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn Stocks;
         private System.Windows.Forms.DataGridViewTextBoxColumn BarCode;
-        private CustomDataGridView dgvProducts;
     }
 }

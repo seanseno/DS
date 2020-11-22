@@ -64,11 +64,13 @@ namespace IS.Admin.Reports
                                 item.Id = sale.Id?.ToString("N0");
                                 item.Fullname = sale.Fullname;
                                 item.CustomerName = sale.CustomerName;
+                                item.CategoryName = sale.CategoryName;
                                 item.AdditionalInfo = sale.AdditionalInfo;
                                 item.ProductId = sale.ProductId;
                                 item.ProductName = sale.ProductName;
                                 item.Qty = sale.Qty?.ToString("N0");
-                                item.price = sale.price?.ToString("N2");
+                                item.Price = sale.Price?.ToString("N2");
+                                item.TotalPrice = sale.TotalPrice?.ToString("N2");
                                 item.InsertTime = sale.InsertTime?.ToString("MM/dd/yyyy hh:mm");
                                 SalesList.Add(item);
                             }
@@ -119,33 +121,39 @@ namespace IS.Admin.Reports
             dgv.AutoGenerateColumns = false;
             dgv.DataSource = response;
 
-            dgv[5, dgvSales.Rows.Count - 1].Value = "TOTAL";
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[5].Style.Font = new Font("Arial", 16, FontStyle.Bold);
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[5].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv[6, dgvSales.Rows.Count - 1].Value = "TOTAL";
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[6].Style.Font = new Font("Arial", 16, FontStyle.Bold);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[6].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[6].Style.Font = new Font("Arial", 12, FontStyle.Bold);
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[6].Style.BackColor = Color.Green;
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[6].Style.ForeColor = Color.White;
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[6].Value = response.Sum(x => x.Qty);
 
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[7].Style.Font = new Font("Arial", 12, FontStyle.Bold);
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[7].Style.BackColor = Color.Green;
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[7].Style.ForeColor = Color.White;
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[7].Value = response.Sum(x => x.price);
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[7].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[7].Value = response.Sum(x => x.Qty);
 
-           
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[8].Style.Font = new Font("Arial", 12, FontStyle.Bold);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[8].Style.BackColor = Color.Green;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[8].Style.ForeColor = Color.White;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[8].Value = response.Sum(x => x.Price);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[8].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[9].Style.Font = new Font("Arial", 12, FontStyle.Bold);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[9].Style.BackColor = Color.Green;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[9].Style.ForeColor = Color.White;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[9].Value = response.Sum(x => x.TotalPrice);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[9].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+
         }
 
         private void FrmEndOfDayReport_Load(object sender, EventArgs e)
         {
             dtpFrom.Value = DateTime.Now;
             dtpTo.Value = DateTime.Now;
-            _list = factory.SalesRepository.GetSalesDetailListReport();
+            //_list = factory.SalesRepository.GetSalesDetailListReport();
 
-            _list = _list.OrderByDescending(x => x.InsertTime).ToList();
-            AddedFoorter(_list.ToList(), dgvSales);
+            //_list = _list.OrderByDescending(x => x.InsertTime).ToList();
+            //AddedFoorter(_list.ToList(), dgvSales);
         }
     }
 }

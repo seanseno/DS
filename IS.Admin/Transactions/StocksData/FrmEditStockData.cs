@@ -1,5 +1,6 @@
 ﻿using IS.Admin.Model;
 using IS.Common.Helper.Extensions;
+using IS.Database;
 using IS.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace IS.Admin.Transactions
     {
         private StocksData _StockData { get;set;}
         private Products _Product = new Products();
+        ISFactory factory = new ISFactory();
         public FrmEditStockData(StocksData StockData)
         {
             InitializeComponent();
@@ -36,7 +38,7 @@ namespace IS.Admin.Transactions
             dtpDeliveryDate.Value = _StockData.DeliveryDate;
             dtpExpirationDate.Value = _StockData.ExpirationDate;
             txtRemarks.Text = _StockData.Remarks;
-            txtRealUnitPrice.Text = _StockData.SuggestedPrice.ToString("N2");
+            txtSellingPrice.Text = _StockData.SellingPrice.ToString("N2");
 
             CategoriesModel categoriesModel = new CategoriesModel();
             var categoryList = categoriesModel.CategoryListWithSelect();
@@ -86,7 +88,6 @@ namespace IS.Admin.Transactions
                     StocksData.Quantity = Convert.ToInt32(txtQuantity.Text);
                     StocksData.SupplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
                     StocksData.TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
-                    StocksData.SuggestedPrice = Convert.ToDecimal(txtRealUnitPrice.Text);
                     StocksData.RemainingQuantity= Convert.ToInt32(txtRemainingQty.Text);
                     StocksData.DeliveryDate = dtpDeliveryDate.Value;
                     StocksData.ExpirationDate = dtpExpirationDate.Value;
@@ -111,12 +112,6 @@ namespace IS.Admin.Transactions
             {
                 MessageBox.Show("Supplier Price is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtSupplierPrice.Focus();
-                return true;
-            }
-            else if (string.IsNullOrEmpty(txtRealUnitPrice.Text))
-            {
-                MessageBox.Show("Suggested Price is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtRealUnitPrice.Focus();
                 return true;
             }
             else if (string.IsNullOrEmpty(txtRemainingQty.Text))
@@ -199,11 +194,6 @@ namespace IS.Admin.Transactions
             }
         }
 
-        private void txtSupplierPrice_TextChanged(object sender, EventArgs e)
-        {
-            GetSuggestedPrice();
-        }
-
         private void txtRealUnitPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
@@ -228,31 +218,34 @@ namespace IS.Admin.Transactions
             }
         }
 
-
-
         private void txtProductId_TextChanged(object sender, EventArgs e)
         {
             ProductsModel modelProd = new ProductsModel();
             this._Product = modelProd.FindWithProductId(txtProductId.Text);
         }
+
         private void GetSuggestedPrice()
         {
-            CategoriesModel model = new CategoriesModel();
             if (this._Product != null)
             {
-                if (cboCategories.SelectedValue != null)
+                if (!string.IsNullOrEmpty(txtSupplierPrice.Text) )
                 {
-                    var percent = model.GetPercentSuggestedPrice(cboCategories.SelectedValue.ToString());
-
-                    if (!string.IsNullOrEmpty(txtSupplierPrice.Text))
+                    if (cboCategories.SelectedValue != null)
                     {
-                        var supplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
-                        var sellingPrice = ((supplierPrice * (percent / 100)) + supplierPrice);
-                        txtRealUnitPrice.Text = sellingPrice.ToString("N2");
+                        txtSuggestedPrice.Text = factory.CategoriesRepository.CategoriesStrategy.GetPercentSuggestedPrice(cboCategories.SelectedValue.ToString(), Convert.ToDecimal(txtSupplierPrice.Text))?.ToString("N2");
                     }
                 }
             }
         }
 
+        private void cboCategories_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetSuggestedPrice();
+        }
+
+        private void txtSupplierPrice_TextChanged(object sender, EventArgs e)
+        {
+            GetSuggestedPrice();
+        }
     }
 }

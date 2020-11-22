@@ -32,14 +32,29 @@ namespace IS.KIOSK
         public string _CustomerName { get; set; }
         public string _AdditionalInfo { get; set; }
         public bool _IsDicounted { get; set; }
+        public bool _WithPrinter { get; set; }
         public FrmMain()
         {
             InitializeComponent();
             this.KeyPreview = true;
+            if (factory.SettingsRepository.GetList().FirstOrDefault().WithPrinter == (int)EnumActive.Active)
+            {
+                this._WithPrinter = true;
+            }
+            else
+            {
+                this._WithPrinter = false;
+            }
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            if (!_WithPrinter)
+            {
+                btnReprint.Visible = false;
+                btnExit.Location = new Point(861, 652);
+            }
+
             _IsDicounted = false;
             panel1.Visible = true;
             timer2.Start();
@@ -70,7 +85,7 @@ namespace IS.KIOSK
             _TempOrderList = mainModel.LoadTempOders(this,txtCustomerName.Text).Item1;
             _TotalPrice = mainModel.LoadTempOders(this, txtCustomerName.Text).Item2;
 
-            if (_TempOrderList.Where(x => x.Discount > 0).Count() > 0)
+            if (_TempOrderList.Where(x => x.Discounted > 0).Count() > 0)
             {
                 _IsDicounted = true;
             }
@@ -332,7 +347,7 @@ namespace IS.KIOSK
                 }
                 else
                 {
-                    frmMultiplier frmMultiplier = new frmMultiplier(this, frm._ProductId);
+                    frmMultiplier frmMultiplier = new frmMultiplier(this, frm._ProductId,frm._CategoryId);
                     if (frmMultiplier.ShowDialog() == DialogResult.OK)
                     {
                         load();
@@ -374,12 +389,15 @@ namespace IS.KIOSK
 
         private void btnReprint_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure do you want to re-print your last transaction?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (btnReprint.Visible)
             {
-                var xx = factory.CashiersRepository.GetList();
-                var user = factory.CashiersRepository.GetList().Where(x => x.Loginname.ToUpper().Trim() == Globals.LoginName.ToUpper().Trim()).FirstOrDefault();
-                var response = factory.LedgerSalesRepository.GetList().Where(x => x.CashierId == user.CashierId).OrderByDescending(y => y.Id).FirstOrDefault();
-                PrintReceipt(response.Id);
+                if (MessageBox.Show("Are you sure do you want to re-print your last transaction?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    var xx = factory.CashiersRepository.GetList();
+                    var user = factory.CashiersRepository.GetList().Where(x => x.Loginname.ToUpper().Trim() == Globals.LoginName.ToUpper().Trim()).FirstOrDefault();
+                    var response = factory.LedgerSalesRepository.GetList().Where(x => x.CashierId == user.CashierId).OrderByDescending(y => y.Id).FirstOrDefault();
+                    PrintReceipt(response.Id);
+                }
             }
         }
 
@@ -408,24 +426,9 @@ namespace IS.KIOSK
                 foreach (var itm in Items)
                 {
                     string product = string.Empty;
-                    decimal TotalPrice = Convert.ToDecimal(Convert.ToDecimal(itm?.Qty) * itm?.price);
+                    decimal TotalPrice = Convert.ToDecimal(Convert.ToDecimal(itm?.Qty) * itm?.Price);
                     TotalAmountPrice += TotalPrice;
                     var descList = WordWrap.Wrap(itm.ProductName, 50);
-                    //int Count = 0;
-                    //foreach (var desc in descList)
-                    //{
-                    //    if (Count == 0)
-                    //    {
-                    //        product += desc + "\n";
-                    //    }
-                    //    else
-                    //    {
-                    //        product += "--" + desc + "\n";
-                    //    }
-
-                    //    Count++;
-                    //}
-
                     e1.Graphics.DrawString(itm.Qty?.ToString("N0"), new Font("Times New Roman", ProductsQty.Size), Brushes.Black, new RectangleF(ProductsQty.X, Products.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
                     e1.Graphics.DrawString(TotalPrice.ToString("N2"), new Font("Times New Roman", ProductsPrice.Size), Brushes.Black, new RectangleF(ProductsPrice.X, Products.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
                     foreach (string desc in descList)

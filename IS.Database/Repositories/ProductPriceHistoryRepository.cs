@@ -33,22 +33,5 @@ namespace IS.Database.Repositories
 
             }
         }
-        public IList<ProductPriceHistory> GetList(string keyword)
-        {
-            using (SqlConnection connection = new SqlConnection(ConStr))
-            {
-                connection.Open();
-                var select = "SELECT * FROM vProductHistory" +
-                             "  WHERE Loginname Like '%" + keyword + "%'" +
-                             " ORDER BY InsertTime DESC";
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        return new ReflectionPopulator<ProductPriceHistory>().CreateList(reader);
-                    }
-                }
-            }
-        }
     }
 }

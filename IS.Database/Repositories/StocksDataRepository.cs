@@ -49,7 +49,6 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@Quantity", StocksData.Quantity));
                     cmd.Parameters.Add(new SqlParameter("@SupplierPrice", StocksData.SupplierPrice));
                     cmd.Parameters.Add(new SqlParameter("@TotalAmount", StocksData.TotalAmount));
-                    cmd.Parameters.Add(new SqlParameter("@SuggestedPrice", StocksData.SuggestedPrice));
                     cmd.Parameters.Add(new SqlParameter("@RemainingQuantity", StocksData.RemainingQuantity));
                     cmd.Parameters.Add(new SqlParameter("@DeliveryDate", StocksData.DeliveryDate));
                     cmd.Parameters.Add(new SqlParameter("@ExpirationDate", StocksData.ExpirationDate));
@@ -76,7 +75,6 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@Quantity", StocksData.Quantity));
                     cmd.Parameters.Add(new SqlParameter("@SupplierPrice", StocksData.SupplierPrice));
                     cmd.Parameters.Add(new SqlParameter("@TotalAmount", StocksData.TotalAmount));
-                    cmd.Parameters.Add(new SqlParameter("@SuggestedPrice", StocksData.SuggestedPrice));
                     cmd.Parameters.Add(new SqlParameter("@RemainingQuantity", StocksData.RemainingQuantity));
                     cmd.Parameters.Add(new SqlParameter("@DeliveryDate", StocksData.DeliveryDate));
                     cmd.Parameters.Add(new SqlParameter("@ExpirationDate", StocksData.ExpirationDate));
@@ -155,98 +153,6 @@ namespace IS.Database.Repositories
             }
         }
 
-        
-        public IList<StocksData> Find(string keyword)
-        {
-            using (SqlConnection connection = new SqlConnection(ConStr))
-            {
-                connection.Open();
-                var select = "SELECT * FROM vStocksData WHERE " +
-                    "ProductName Like '%" + keyword + "%' " +
-                    "OR ProductId Like '%" + keyword + "%' " +
-                    "OR CategoryName Like '%" + keyword + "%' " +
-                    "OR PrincipalName Like '%" + keyword + "%' " +
-                    "ORDER BY ProductName";
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        var List = new ReflectionPopulator<StocksData>().CreateList(reader);
-                        return List;
-                    }
-                }
-            }
-        }
-
-        public IList<StocksData> FindWithRemainingQTY(string keyword)
-        {
-            using (SqlConnection connection = new SqlConnection(ConStr))
-            {
-                connection.Open();
-                var select = "SELECT * FROM vStocksData WHERE " +
-                    "(ProductName Like '%" + keyword + "%' " +
-                    "OR ProductId Like '%" + keyword + "%' " +
-                    "OR CategoryName Like '%" + keyword + "%' " +
-                    "OR PrincipalName Like '%" + keyword + "%') AND RemainingQuantity > 0" +
-                    "ORDER BY ProductName";
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        var List = new ReflectionPopulator<StocksData>().CreateList(reader);
-                        return List;
-                    }
-                }
-            }
-        }
-
-        public IList<StocksData> FindWithSelect()
-        {
-            using (SqlConnection connection = new SqlConnection(ConStr))
-            {
-                connection.Open();
-                var select = "SELECT * FROM vStocksData ORDER BY StockDataName";
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        var List = new ReflectionPopulator<StocksData>().CreateList(reader);
-                        return List;
-                    }
-                }
-            }
-        }
-
-        public string GetNextId()
-        {
-            using (SqlConnection connection = new SqlConnection(ConStr))
-            {
-                connection.Open();
-                var select = "SELECT Id + 1 as Id From StocksData ORDER BY id DESC";
-
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                int Id = reader.GetInt32(0);
-                                return "C" + Id.ToString("0000");
-                            }
-                        }
-                        else
-                        {
-                            return "C0001";
-                        }
-                        return null;
-
-                    }
-                }
-            }
-        }
-
 
         public List<OnGoingStockDataProductView> GetOngoingStockDataProductId()
         {
@@ -270,7 +176,7 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT * FROM vReportStocksData";
+                var select = "SELECT * FROM vStocksReport";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())

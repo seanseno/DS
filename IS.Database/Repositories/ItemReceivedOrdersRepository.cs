@@ -13,52 +13,6 @@ namespace IS.Database.Repositories
 {
     public class ItemReceivedOrdersRepository : Helper
     {
-        public void Insert(ItemReceivedOrders model)
-        {
-            using (SqlConnection connection = new SqlConnection(ConStr))
-            {
-                connection.Open();
-
-                ////STORE PROC INSERT ItemReceivedOrders and STOCKS
-                //using (SqlCommand cmd = new SqlCommand("spItemReceivedOrders", connection))
-                //{
-                //    cmd.CommandType = CommandType.StoredProcedure;
-                //    cmd.Parameters.Add(new SqlParameter("@RequestOrderId", model.RequestOrderId));
-                //    cmd.Parameters.Add(new SqlParameter("@ItemId", model.ProductId));
-                //    cmd.Parameters.Add(new SqlParameter("@DateReceived", model.DateReceived));
-                //    cmd.Parameters.Add(new SqlParameter("@DateManufactured", model.DateManufactured));
-                //    cmd.Parameters.Add(new SqlParameter("@ExpirationDate", model.ExpirationDate));
-                //    cmd.Parameters.Add(new SqlParameter("@SupplierPrice", model.SupplierPrice));
-                //    cmd.Parameters.Add(new SqlParameter("@SellingPricePerPiece", model.SellingPricePerPiece));
-                //    cmd.Parameters.Add(new SqlParameter("@InputQuantity", model.Quantity));
-
-                //    int rowAffected = cmd.ExecuteNonQuery();
-
-                //    if (connection.State == System.Data.ConnectionState.Open)
-                //        connection.Close();
-                //}
-            }
-        }
-
-        public void Delete(int? Id)
-        {
-            using (SqlConnection connection = new SqlConnection(ConStr))
-            {
-                connection.Open();
-
-                //STORE PROC DELETE ItemReceivedOrders and STOCKS
-                using (SqlCommand cmd = new SqlCommand("spDeleteItemReceivedOrders", connection))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@Id", Id));
-
-                    int rowAffected = cmd.ExecuteNonQuery();
-
-                    if (connection.State == System.Data.ConnectionState.Open)
-                        connection.Close();
-                }
-            }
-        }
 
         public IList<ItemReceivedOrders> FindList(string Keywords, int requestId)
         {
@@ -284,32 +238,6 @@ namespace IS.Database.Repositories
 
                         return Items;
                     }
-                }
-            }
-        }
-
-        public void Update(ItemReceivedOrders itm)
-        {
-            using (SqlConnection connection = new SqlConnection(ConStr))
-            {
-                connection.Open();
-
-                //STORE PROC DELETE ItemReceivedOrders and STOCKS
-                using (SqlCommand cmd = new SqlCommand("spUpdateItemReceivedOrders", connection))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@Id", itm.Id));
-                    cmd.Parameters.Add(new SqlParameter("@InputQuantity", itm.Quantity));
-                    cmd.Parameters.Add(new SqlParameter("@DateReceived", itm.DateReceived));
-                    cmd.Parameters.Add(new SqlParameter("@DateManufactured", itm.DateManufactured));
-                    cmd.Parameters.Add(new SqlParameter("@ExpirationDate", itm.ExpirationDate));
-                    cmd.Parameters.Add(new SqlParameter("@SupplierPrice", itm.SupplierPrice)); 
-                    cmd.Parameters.Add(new SqlParameter("@SellingPrice", itm.SellingPricePerPiece));
-
-                    int rowAffected = cmd.ExecuteNonQuery();
-
-                    if (connection.State == System.Data.ConnectionState.Open)
-                        connection.Close();
                 }
             }
         }

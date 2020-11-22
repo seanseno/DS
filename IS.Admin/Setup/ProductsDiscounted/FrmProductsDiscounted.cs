@@ -47,6 +47,7 @@ namespace IS.Admin.Setup
             _list = response;
             dgvProducts.AutoGenerateColumns = false;
             dgvProducts.DataSource = _list;
+            lblTotal.Text = "Total Record(s): " + _list.Count.ToString("N0");
         }
 
         private void btnClose_Click(object sender, EventArgs e)

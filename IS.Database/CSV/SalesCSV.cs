@@ -49,7 +49,7 @@ namespace IS.Database.CSV
         [Name("Profit")]
         public string Profit { get; set; }
 
-        [Name("Additional Note")]
-        public string Remarks { get; set; }
+        //[Name("Additional Note")]
+        //public string Remarks { get; set; }
     }
 }

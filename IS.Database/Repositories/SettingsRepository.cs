@@ -43,6 +43,7 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@SeniorDiscount", settings.SeniorDiscount));
                     cmd.Parameters.Add(new SqlParameter("@PWDDiscount", settings.PWDDiscount));
                     cmd.Parameters.Add(new SqlParameter("@ReturnItem", settings.ReturnItem));
+                    cmd.Parameters.Add(new SqlParameter("@WithPrinter", settings.WithPrinter));
                     int rowAffected = cmd.ExecuteNonQuery();
 
                     if (connection.State == System.Data.ConnectionState.Open)

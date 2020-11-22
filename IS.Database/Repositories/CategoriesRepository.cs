@@ -13,6 +13,24 @@ namespace IS.Database.Repositories
 {
     public class CategoriesRepository : Helper
     {
+        public IList<Categories> GetList()
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT * FROM vCategories";
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        var List = new ReflectionPopulator<Categories>().CreateList(reader);
+                        return List;
+                    }
+                }
+            }
+        }
+
+
         public void Insert(Categories Categories)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
@@ -54,7 +72,7 @@ namespace IS.Database.Repositories
             }
         }
 
-        public void Delete(Categories Categories)
+        public void Delete(string CategoryId)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
@@ -63,7 +81,7 @@ namespace IS.Database.Repositories
                 using (SqlCommand cmd = new SqlCommand("spCategoriesDelete", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@CategoryId", Categories.CategoryId.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@CategoryId", CategoryId.ToUpper()));
 
                     int rowAffected = cmd.ExecuteNonQuery();
 
@@ -185,29 +203,6 @@ namespace IS.Database.Repositories
             }
         }
 
-        public decimal GetPercentSuggestedPrice(string CategoryId)
-        {
-            using (SqlConnection connection = new SqlConnection(ConStr))
-            {
-                connection.Open();
-                var select = "SELECT PercentSuggestedPrice FROM Categories WHERE CategoryId ='" + CategoryId + "'";
-
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                return reader.GetDecimal(0);
-                            }
-                        }
-                        return 0;
-                    }
-                }
-            }
-        }
         public CategoriesStrategy CategoriesStrategy => new CategoriesStrategy();
     }
 }

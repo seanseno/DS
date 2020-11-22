@@ -18,7 +18,7 @@ namespace IS.Database.Views
         public decimal? TotalAmount { get; set; }
         public decimal? SupplierPrice { get; set; }
         public decimal? Profit { get; set; }
-        public decimal? Discounted { get; set; }
-        public string Remarks { get; set; }
+        //public decimal? Discounted { get; set; }
+        //public string Remarks { get; set; }
     }
 }

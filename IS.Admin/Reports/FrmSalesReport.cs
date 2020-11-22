@@ -3,6 +3,7 @@ using IS.Database;
 using IS.Database.CSV;
 using IS.Database.Views;
 using IS.Library.CSV;
+using IS.Library.Utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -75,7 +76,7 @@ namespace IS.Admin.Reports
                                 item.TotalAmount = sale.TotalAmount?.ToString("N2");
                                 item.SupplierPrice = sale.SupplierPrice?.ToString("N2");
                                 item.Profit = sale.Profit?.ToString("N2");
-                                item.Remarks = sale.Remarks;
+                                //item.Remarks = sale.Remarks;
                                 SalesList.Add(item);
                             }
 
@@ -109,13 +110,13 @@ namespace IS.Admin.Reports
 
         private void FrmSalesReport_Load(object sender, EventArgs e)
         {
-            dtpFrom.Value = DateTime.Now;
-            dtpTo.Value = DateTime.Now;
-            _list = factory.SalesRepository.GetSalesListReport();
-  
-            _list = _list.OrderByDescending(x => x.InsertTime).ToList();
-            AddedFoorter(_list.ToList(), dgvSales);
-            
+            dtpFrom.Value = DateConvertion.GetFistDay(DateTime.Now);
+            dtpTo.Value = DateConvertion.GetLastDay(DateTime.Now);
+            //_list = factory.SalesRepository.GetSalesListReport();
+
+            //_list = _list.OrderByDescending(x => x.InsertTime).ToList();
+            //AddedFoorter(_list.ToList(), dgvSales);
+
         }
         private void AddedFoorter(List<SalesViewReport> _list, DataGridView dgv)
         {

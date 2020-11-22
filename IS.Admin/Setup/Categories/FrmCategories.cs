@@ -1,4 +1,5 @@
 ﻿using IS.Admin.Model;
+using IS.Database;
 using IS.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace IS.Admin.Setup
     public partial class FrmCategories : BaseForm
     {
         IList<Categories> _list = new List<Categories>();
+        ISFactory factory = new ISFactory();
         public FrmCategories()
         {
             InitializeComponent();
@@ -32,9 +34,10 @@ namespace IS.Admin.Setup
         {
             grpLoading.Visible = true;
             grpLoading.Refresh();
+            _list = factory.CategoriesRepository.GetList()
+                    .Where(x => x.CategoryId.Contains(txtSearch.Text) || x.CategoryName.Contains(txtSearch.Text)).OrderBy(y => y.CategoryName)
+                    .ToList();
 
-            CategoriesModel Categories = new CategoriesModel();
-            _list = Categories.CategoryList(this, txtSearch.Text);
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = _list;
             txtSearch.Focus();
@@ -45,39 +48,32 @@ namespace IS.Admin.Setup
 
         private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var Category = new Categories
-            {
-                CategoryId = dgvSearch.CurrentRow.Cells[0].Value.ToString(),
-                CategoryName = dgvSearch.CurrentRow.Cells[1].Value.ToString(),
-            };
-
+            var CategoryId = dgvSearch.CurrentRow.Cells[0].Value.ToString();
+            var CategoryName = dgvSearch.CurrentRow.Cells[1].Value.ToString();
             if (e.ColumnIndex == 3)
             {
-                FrmEditCategory frm = new FrmEditCategory(Category);
+                FrmEditCategory frm = new FrmEditCategory(CategoryId);
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.LoadCategory();
                 };
-
-                //MessageBox.Show((e.RowIndex + 1) + "  Row  " + (e.ColumnIndex + 1) + "  Column button clicked ");
             }
             if (e.ColumnIndex == 4)
             {
-                var model = new CategoriesModel();
-                if (model.CheckCategoryIfAlreadyInUse(Category.CategoryId))
+               
+                if (factory.CategoriesRepository.CategoriesStrategy.CategoryAlreadyInUse(CategoryId))
                 {
-                    MessageBox.Show("You can not delete " + Category  + " because this Category already in use", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("You can not delete " + CategoryName + " because this Category already in use", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    if (MessageBox.Show("Are you sure do want to delete " + Category.CategoryName + ".", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    if (MessageBox.Show("Are you sure do want to delete " + CategoryName + ".", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
-
-                        model.DeleteCategory(Category);
+                        factory.CategoriesRepository.Delete(CategoryId);
                         this.LoadCategory();
                         DisplayTotal();
-                        MessageBox.Show(Category.CategoryName + " deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(CategoryName + " deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }

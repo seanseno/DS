@@ -51,7 +51,7 @@ namespace IS.Admin.Transactions
 
         private void dgvProducts_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == 5)
+            if (e.ColumnIndex == 6)
             {
                 if (e.Value.ToString() == "1")
                 {

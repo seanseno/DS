@@ -20,11 +20,11 @@ namespace IS.Database.Entities
     }
     public class ProductsKiosk
     {
-        public int Id { get; set; }
+        public string CategoryId { get; set; }
+        public string CategoryName { get; set; }
         public string ProductId { get; set; }
         public string ProductName { get; set; }
         public decimal Price { get; set; }
-        public int Active { get; set; }
         public int Stock { get; set; }
         public string BarCode { get; set; }
     }

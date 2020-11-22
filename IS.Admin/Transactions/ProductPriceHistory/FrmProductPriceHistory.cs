@@ -24,7 +24,7 @@ namespace IS.Admin.Setup
 
         private void LoadData()
         {
-            var response = factory.StocksDataRepository.GetOngoingStockDataProductId();
+            var response = factory.StocksDataRepository.GetOngoingStockDataProductId().Where(x=>x.SupplierPrice <= 0).ToList();
             response = response.Where(x => x.LoginName == Globals.LoginName).OrderByDescending(y => y.ProductName).ToList();
             response = response.Where(x => x.ProductId.Contains(txtSearch.Text) || x.ProductName.Contains(txtSearch.Text)).ToList();
             dgvProducts.AutoGenerateColumns = false;

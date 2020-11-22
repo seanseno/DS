@@ -1,4 +1,5 @@
 ﻿using IS.Admin.Model;
+using IS.Database;
 using IS.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace IS.Admin.Setup
     public partial class FrmAddCategory : BaseForm
     {
         public Categories _Categories = new Categories();
+        ISFactory factory = new ISFactory();
         public FrmAddCategory()
         {
             InitializeComponent();
@@ -31,11 +33,15 @@ namespace IS.Admin.Setup
         {
             if(!CheckInput())
             {
-                var CategoriesModel = new CategoriesModel();
                 _Categories.CategoryId = txtCategoryId.Text.ToUpper();
                 _Categories.CategoryName = txtCategoryName.Text.ToUpper();
-                _Categories.PercentSuggestedPrice = Convert.ToDecimal(txtPercent.Text);
-                if (CategoriesModel.CheckDup(this))
+
+                if (!string.IsNullOrEmpty(txtPercent.Text))
+                {
+                    _Categories.PercentSuggestedPrice = Convert.ToDecimal(txtPercent.Text);
+                }
+  
+                if (factory.CategoriesRepository.CategoriesStrategy.CheckDuplicate(txtCategoryId.Text.ToUpper(), txtCategoryName.Text.ToUpper()))
                 {
                     MessageBox.Show(_Categories.CategoryName + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtCategoryName.Focus();
@@ -43,7 +49,7 @@ namespace IS.Admin.Setup
                 }
                 if (MessageBox.Show("Continue saving " + txtCategoryName.Text + ".", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    CategoriesModel.AddCategory(this);
+                    factory.CategoriesRepository.Insert(_Categories);
                     MessageBox.Show(txtCategoryName.Text + " Added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
                 }
@@ -65,6 +71,14 @@ namespace IS.Admin.Setup
         {
             CategoriesModel categoriesModel = new CategoriesModel();
             txtCategoryId.Text = categoriesModel.GetNextId();
+        }
+
+        private void txtPercent_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

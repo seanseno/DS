@@ -34,38 +34,6 @@ namespace IS.Database.Entities.Criteria
         }
 
     }
-
-    public class ProductKioskCriteria
-    {
-
-        public  List<ProductsKiosk> MeetCriteria(List<ProductsKiosk> entities,
-            string keyword = null)
-        {
-            var predicates = new List<Func<ProductsKiosk, bool>>();
-
-            if (!string.IsNullOrEmpty(keyword))
-            {
-                predicates.Add(s => s.ProductId.Contains(keyword) 
-                    || s.ProductName.Contains(keyword)
-                    || s.BarCode.Contains(keyword));
-            }
-
-            return ApplyAndPredicates(predicates, entities).ToList();
-        }
-
-        private static IEnumerable<ProductsKiosk> ApplyAndPredicates(IEnumerable<Func<ProductsKiosk, bool>> predicates, IEnumerable<ProductsKiosk> _myModel)
-        {
-
-            var filteredStores = _myModel;
-            foreach (var predicate in predicates)
-            {
-                filteredStores = filteredStores.Where(predicate);
-            }
-            return filteredStores;
-        }
-
-    }
-
     public class StocksDataCriteria
     {
         public static List<StocksData> MeetCriteria(List<StocksData> entities,

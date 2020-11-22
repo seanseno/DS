@@ -73,7 +73,7 @@ namespace IS.Admin.Transactions
                 FrmStocksDataHistory frm = new FrmStocksDataHistory(stockData.Id);
                 frm.Show();
             }
-            if (e.ColumnIndex == 13)
+            if (e.ColumnIndex == 14)
             {
                 FrmEditStockData frm = new FrmEditStockData(stockData);
                 if (frm.ShowDialog() == DialogResult.OK)
@@ -84,7 +84,7 @@ namespace IS.Admin.Transactions
                 
 
             }
-            if (e.ColumnIndex == 14)
+            if (e.ColumnIndex == 15)
             {
                 StocksDataModel StocksData = new StocksDataModel();
                 if (StocksData.CheckStockDataIfAlreadyInUse(stockData.Id))
@@ -103,7 +103,7 @@ namespace IS.Admin.Transactions
                     }
                 }
             }
-            if (e.ColumnIndex == 15)
+            if (e.ColumnIndex == 16)
             {
                 FrmReturnStockData frm = new FrmReturnStockData(stockData);
                 if (frm.ShowDialog() == DialogResult.OK)
@@ -168,6 +168,17 @@ namespace IS.Admin.Transactions
         {
             this.LoadStockData();
             DisplayTotal();
+        }
+
+        private void dgvSearch_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 8)
+            {
+                if (e.Value.ToString() == "0")
+                {
+                    e.Value = null;
+                }
+            }
         }
     }
 }

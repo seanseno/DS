@@ -45,23 +45,5 @@ namespace IS.Admin.Model
             var response = factory.RequestOrderProductsRepository.GetOrderRequestInfoWithId(ItemId);
             return response;
         }
-
-        public void Delete(int? Id)
-        {
-            var factory = new ISFactory();
-            factory.ItemReceivedOrdersRepository.Delete(Id);
-        }
-
-        public void Insert(ItemReceivedOrders model)
-        {
-            var factory = new ISFactory();
-            factory.ItemReceivedOrdersRepository.Insert(model);
-        }
-
-        public void Update(ItemReceivedOrders itm)
-        {
-            var factory = new ISFactory();
-            factory.ItemReceivedOrdersRepository.Update(itm);
-        }
     }
 }

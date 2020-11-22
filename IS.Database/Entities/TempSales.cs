@@ -10,7 +10,15 @@ namespace IS.Database.Entities
         public int Id { get; set; }
         public string ProductId { get; set; }
         public int Qty { get; set; }
-        public DateTime InsertTime { get; set; } 
+        public decimal Price { get; set; }
+        public decimal PriceDiscounted { get; set; }
+        public decimal TotalPrice { get; set; }
+        public decimal Discounted { get; set; }
         public int TempLedgerId { get; set; }
+        public int IsSenior { get; set; }
+        public int IsPWD { get; set; }
+        public DateTime InsertTime { get; set; } 
+     
+
     }
 }

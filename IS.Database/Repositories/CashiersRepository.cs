@@ -16,7 +16,7 @@ namespace IS.Database.Repositories
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT * FROM Cashiers";
+                var select = "SELECT * FROM vCashiers";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -26,6 +26,22 @@ namespace IS.Database.Repositories
                 }
             }
         }
+
+        //public IList<Cashiers> GetList()
+        //{
+        //    using (SqlConnection connection = new SqlConnection(ConStr))
+        //    {
+        //        connection.Open();
+        //        var select = "SELECT * FROM Cashiers";
+        //        using (SqlCommand cmd = new SqlCommand(select, connection))
+        //        {
+        //            using (SqlDataReader reader = cmd.ExecuteReader())
+        //            {
+        //                return new ReflectionPopulator<Cashiers>().CreateList(reader);
+        //            }
+        //        }
+        //    }
+        //}
         public Cashiers Insert(Cashiers Cashier)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
@@ -34,9 +50,9 @@ namespace IS.Database.Repositories
                 using (SqlCommand cmd = new SqlCommand("spCashiersInsert", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@CashierId", Cashier.CashierId.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@Loginname", Cashier.Loginname.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@Fullname", Cashier.Fullname.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@CashierId", Cashier.CashierId));
+                    cmd.Parameters.Add(new SqlParameter("@Loginname", Cashier.Loginname));
+                    cmd.Parameters.Add(new SqlParameter("@Fullname", Cashier.Fullname));
                     cmd.Parameters.Add(new SqlParameter("@Password", Encryption.EncryptString(Cashier.Password, this.IsEncrypt)));
 
                     int rowAffected = cmd.ExecuteNonQuery();
@@ -155,8 +171,8 @@ namespace IS.Database.Repositories
                 using (SqlCommand cmd = new SqlCommand("spCashiersUpdate", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@CashierId", Cashier.CashierId.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@Fullname", Cashier.Fullname.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@CashierId", Cashier.CashierId));
+                    cmd.Parameters.Add(new SqlParameter("@Fullname", Cashier.Fullname));
                     cmd.Parameters.Add(new SqlParameter("@Password", Cashier.Password == "" ? "" : Encryption.EncryptString(Cashier.Password, this.IsEncrypt)));
                     cmd.Parameters.Add(new SqlParameter("@Active", Cashier.Active));
 

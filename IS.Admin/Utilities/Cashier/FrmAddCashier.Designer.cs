@@ -73,6 +73,7 @@
             // 
             // txtCashierId
             // 
+            this.txtCashierId.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCashierId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCashierId.Location = new System.Drawing.Point(141, 31);
             this.txtCashierId.MaxLength = 5;

@@ -5,61 +5,40 @@ using System.Text;
 using System.Configuration;
 using IS.Common.Utilities;
 using IS.Database.Enums;
+using System.Linq;
 
 namespace IS.Database.Strategy
 {
     public class AdministratorsStrategy : Helper
     {
+        ISFactory factory = new ISFactory();
         public  (int?,bool,string) CheckAdministratorLogin(string Loginname, string Password)
         {
-            using (SqlConnection connection = new SqlConnection(ConStr))
+            try
             {
-                try
-                {
-                    connection.Open();
-                }
-                catch (SqlException ex)
-                {
-                    return (null, false, ex.Message);
-                }
-                var select = "SELECT * FROM Administrators WHERE Loginname='" + Loginname + "' AND Password ='" + Encryption.EncryptString(Password.ToUpper(), this.IsEncrypt) + "' AND Active = " + (int)EnumActive.Active;
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                int Id = reader.GetInt32(0);
+                var response = factory.AdministratorsRepository.GetList()
+                    .Where(x => x.Loginname == Loginname 
+                        && x.Password == Encryption.EncryptString(Password, this.IsEncrypt)
+                        && x.Active == (int)EnumActive.Active).FirstOrDefault();
 
-                                return (Id, true,string.Empty);
-                            }
-                        }
-                        return (null, false, string.Empty);
-                    }
+                if (response != null)
+                {
+                    return (response.Id, true, null);
                 }
+                else
+                {
+                    return (null, false, null);
+                }
+            }
+            catch (SqlException ex)
+            {
+                return (null, false, ex.Message);
             }
         }
 
         public bool CheckDuplicate(string LoginName)
         {
-            using (SqlConnection connection = new SqlConnection(ConStr))
-            {
-                connection.Open();
-                var select = "SELECT Loginname FROM Administrators WHERE Loginname = '" + LoginName + "'";
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            return true;
-                        }
-                        return false;
-                    }
-                }
-            }
+            return factory.AdministratorsRepository.GetList().Where(x => x.Loginname.ToUpper() == LoginName.ToUpper()).Count() > 0;
         }
     }
 }

@@ -35,18 +35,19 @@
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnOk = new System.Windows.Forms.Button();
             this.lblError = new System.Windows.Forms.Label();
             this.txtAmount = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.lblChange = new System.Windows.Forms.Label();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.lblTotalPrice = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -76,6 +77,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnOk);
             this.panel1.Controls.Add(this.lblError);
             this.panel1.Controls.Add(this.txtAmount);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -88,6 +90,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(343, 199);
             this.panel1.TabIndex = 10;
+            // 
+            // btnOk
+            // 
+            this.btnOk.Image = global::IS.KIOSK.Properties.Resources.check__2_;
+            this.btnOk.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnOk.Location = new System.Drawing.Point(157, 138);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(53, 53);
+            this.btnOk.TabIndex = 12;
+            this.btnOk.Text = "Ok";
+            this.btnOk.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // lblError
             // 
@@ -115,6 +130,15 @@
             this.txtAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmount_KeyPress);
             this.txtAmount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtAmount_KeyUp);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::IS.KIOSK.Properties.Resources.checkout;
+            this.pictureBox1.Location = new System.Drawing.Point(18, 17);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(68, 73);
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -125,6 +149,19 @@
             this.label2.Size = new System.Drawing.Size(94, 24);
             this.label2.TabIndex = 9;
             this.label2.Text = "Amount :";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Image = global::IS.KIOSK.Properties.Resources.Cancel;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCancel.Location = new System.Drawing.Point(274, 138);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(56, 53);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // lblChange
             // 
@@ -137,6 +174,19 @@
             this.lblChange.Size = new System.Drawing.Size(140, 24);
             this.lblChange.TabIndex = 8;
             this.lblChange.Text = "Change : 0.00";
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Image = global::IS.KIOSK.Properties.Resources.print;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnPrint.Location = new System.Drawing.Point(215, 138);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(53, 53);
+            this.btnPrint.TabIndex = 1;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // lblTotalPrice
             // 
@@ -180,41 +230,6 @@
             this.label4.Size = new System.Drawing.Size(65, 13);
             this.label4.TabIndex = 11;
             this.label4.Text = "Shorcut Key";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::IS.KIOSK.Properties.Resources.checkout;
-            this.pictureBox1.Location = new System.Drawing.Point(18, 17);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(68, 73);
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Image = global::IS.KIOSK.Properties.Resources.Cancel;
-            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCancel.Location = new System.Drawing.Point(274, 138);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(56, 53);
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Image = global::IS.KIOSK.Properties.Resources.print;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnPrint.Location = new System.Drawing.Point(215, 138);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(53, 53);
-            this.btnPrint.TabIndex = 1;
-            this.btnPrint.Text = "Print";
-            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // FrmCheckOut
             // 
@@ -261,5 +276,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnOk;
     }
 }

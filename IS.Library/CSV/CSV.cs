@@ -24,9 +24,16 @@ namespace IS.Library.CSV
             using (var writer = new StreamWriter(DownloadPath))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
-
                 writer.WriteLine("End of Day Report");
-                writer.WriteLine("Date: " + dateFrom.ToShortDateString() + " - " + dateTo.ToShortDateString());
+                if (dateFrom.ToShortDateString() != dateTo.ToShortDateString())
+                {
+                    writer.WriteLine("Transaction date from  " + dateFrom.ToShortDateString() + " to " + dateTo.ToShortDateString());
+                }
+                else
+                {
+                    writer.WriteLine("Transaction Date: " + dateFrom.ToShortDateString());
+                }
+
                 writer.WriteLine("Prepared By: " + PreparedBY);
                 writer.WriteLine("Prepared Date: " + DateTime.Now);
                 writer.WriteLine("");
@@ -37,7 +44,8 @@ namespace IS.Library.CSV
                 total.Id = "TOTAL";
 
                 total.Qty = listView.Sum(x => x.Qty)?.ToString("N0");
-                total.price = listView.Sum(x => x.price)?.ToString("N2");
+                total.Price = listView.Sum(x => x.Price)?.ToString("N2");
+                total.TotalPrice = listView.Sum(x => x.TotalPrice)?.ToString("N2");
                 csv.WriteRecord(total);
 
                 return DownloadPath;
@@ -58,7 +66,14 @@ namespace IS.Library.CSV
             {
 
                 writer.WriteLine("Sales Report");
-                writer.WriteLine("Date: " + dateFrom.ToShortDateString() + " - " + dateTo.ToShortDateString());
+                if (dateFrom.ToShortDateString() != dateTo.ToShortDateString())
+                {
+                    writer.WriteLine("Posated date from " + dateFrom.ToShortDateString() + " to " + dateTo.ToShortDateString());
+                }
+                else
+                {
+                    writer.WriteLine("Posated Date: " + dateFrom.ToShortDateString());
+                }
                 writer.WriteLine("Prepared By: " + PreparedBY);
                 writer.WriteLine("Prepared Date: " + DateTime.Now);
                 writer.WriteLine("");
@@ -105,7 +120,7 @@ namespace IS.Library.CSV
                 total.Quantity = listView.Sum(x => x.Quantity).ToString("N0");
                 total.SupplierPrice = listView.Sum(x => x.SupplierPrice).ToString("N2");
                 total.TotalAmount = listView.Sum(x => x.TotalAmount).ToString("N2");
-                total.UnitPriceWithAddedFormula = listView.Sum(x => x.UnitPriceWithAddedFormula).ToString("N2");
+               // total.UnitPriceWithAddedFormula = listView.Sum(x => x.UnitPriceWithAddedFormula).ToString("N2");
                 total.SellingPrice = listView.Sum(x => x.SellingPrice).ToString("N2");
                 total.UnitSold = listView.Sum(x => x.UnitSold).ToString("N0");
                 total.RemainingQuantity = listView.Sum(x => x.RemainingQuantity).ToString("N0");

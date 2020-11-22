@@ -16,6 +16,10 @@ namespace IS.Database.CSV
         public string CustomerName { get; set; }
         [Name("Addtional Info.")]
         public string AdditionalInfo { get; set; }
+
+        [Name("Category")]
+        public string CategoryName { get; set; }
+
         [Name("Product Id")]
         public string ProductId { get; set; }
         [Name("Product Name")]
@@ -23,7 +27,9 @@ namespace IS.Database.CSV
         [Name("Quantity")]
         public string Qty { get; set; }
         [Name("Price")]
-        public string price { get; set; }
+        public string Price { get; set; }
+        [Name("Total Price")]
+        public string TotalPrice { get; set; }
         [Name("Transaction Date and Time")]
         public string InsertTime { get; set; }
     }

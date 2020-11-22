@@ -16,7 +16,6 @@ namespace IS.KIOSK
         public decimal payAmount { get; set; }
         public decimal changeAmount { get; set; }
         int CountErrorlabel = 0;
-
         ISFactory factory = new ISFactory();
         public FrmCheckOut(FrmMain frm)
         {
@@ -64,6 +63,11 @@ namespace IS.KIOSK
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
+           Proceed(_FrmMain._WithPrinter);
+        }
+
+        private void Proceed(bool withPrinter)
+        {
             if (CheckIsStock())
             {
 
@@ -83,7 +87,10 @@ namespace IS.KIOSK
                                 var frmCheckOutModel = new FrmCheckOutModel();
                                 var orNumber = frmCheckOutModel.ExecutePayment(this, this._FrmMain);
 
-                                _FrmMain.PrintReceipt(orNumber);
+                                if (withPrinter)
+                                {
+                                    _FrmMain.PrintReceipt(orNumber);
+                                }
 
                                 MessageBox.Show("Orders complete!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -113,7 +120,6 @@ namespace IS.KIOSK
                 }
             }
         }
-
         private bool CheckIsStock()
         {
             var response = factory.TempSalesRepository.GetList();
@@ -137,6 +143,15 @@ namespace IS.KIOSK
         private void FrmCheckOut_Load(object sender, EventArgs e)
         {
             this.ActiveControl = txtAmount;
+            if (!_FrmMain._WithPrinter)
+            {
+                btnPrint.Visible = false;
+                btnOk.Location = new Point(215, 138);
+            }
+            else
+            {
+                btnOk.Visible = false;
+            }
         }
 
         //public void PrintReceipt(int LedgerId)
@@ -199,7 +214,7 @@ namespace IS.KIOSK
         {
             if (e.KeyValue == 13)
             {
-                btnPrint_Click(sender, e);
+                Proceed(_FrmMain._WithPrinter);
             }
             if (e.KeyValue == 27)
             {
@@ -225,6 +240,9 @@ namespace IS.KIOSK
             }
         }
 
-
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            Proceed(_FrmMain._WithPrinter);
+        }
     }
 }

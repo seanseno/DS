@@ -11,21 +11,10 @@ namespace IS.Admin.Model
 {
     public class CategoriesModel
     {
-        public IList<Categories> CategoryList(FrmCategories frm, string Keywords)
-        {
-            var factory = new ISFactory();
-            return factory.CategoriesRepository.Find(Keywords);
-        }
         public IList<Categories> CategoryListWithSelect()
         {
             var factory = new ISFactory();
             return factory.CategoriesRepository.FindWithSelect();
-        }
-
-        public void AddCategory(FrmAddCategory frm)
-        {
-            var factory = new ISFactory();
-            factory.CategoriesRepository.Insert(frm._Categories);
         }
         public void InsertCategory(Categories model)
         {
@@ -48,34 +37,7 @@ namespace IS.Admin.Model
             var factory = new ISFactory();
             return factory.CategoriesRepository.CategoriesStrategy.CheckEditDuplicate(name, CategoryId);
         }
-        public void UpdateCategory(Categories Category)
-        {
-            var factory = new ISFactory();
-            factory.CategoriesRepository.Update(Category);
-        }
 
-        public void DeleteCategory(Categories Category)
-        {
-            var factory = new ISFactory();
-            factory.CategoriesRepository.Delete(Category);
-        }
-        public Categories LoadEdit(string CategoryId)
-        {
-            var factory = new ISFactory();
-            return factory.CategoriesRepository.FindWithCategoryId(CategoryId);
-        }
-
-        public bool CheckCategoryIfAlreadyInUse(string CategoryId)
-        {
-            var factory = new ISFactory();
-            return factory.CategoriesRepository.CategoriesStrategy.CategoryAlreadyInUse(CategoryId);
-        }
-
-        public decimal GetPercentSuggestedPrice(string CategoryId)
-        {
-            var factory = new ISFactory();
-            return factory.CategoriesRepository.GetPercentSuggestedPrice(CategoryId);
-        }
 
         public string GetNextId()
         {

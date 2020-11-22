@@ -1,6 +1,7 @@
 ﻿using IS.Admin.Model;
 using IS.Admin.Setup;
 using IS.Common.Utilities;
+using IS.Database;
 using IS.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace IS.Admin.Transactions
     {
         public Categories _Categories = new Categories();
         private Products _Product = new Products();
+        ISFactory factory = new ISFactory();
         public FrmAddStockData()
         {
             InitializeComponent();
@@ -64,10 +66,10 @@ namespace IS.Admin.Transactions
                 txtSupplierPrice.Focus();
                 return true;
             }
-            else if (string.IsNullOrEmpty(txtRealUnitPrice.Text))
+            else if (string.IsNullOrEmpty(txtSellingPrice.Text))
             {
                 MessageBox.Show("Suggested Price is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtRealUnitPrice.Focus();
+                txtSellingPrice.Focus();
                 return true;
             }
             else if (string.IsNullOrEmpty(txtRemainingQty.Text))
@@ -105,6 +107,7 @@ namespace IS.Admin.Transactions
             {
                 txtProductId.Text = frm._ProductId;
                 txtProductName.Text = frm._ProductName;
+                txtSellingPrice.Text  = frm._Price.ToString("N2");
                 cboPrincipals.Focus();
             }
         }
@@ -162,8 +165,8 @@ namespace IS.Admin.Transactions
 
         private void txtSupplierPrice_TextChanged(object sender, EventArgs e)
         {
-            GetTotalAmount();
             GetSuggestedPrice();
+            GetTotalAmount();
         }
 
         private void txtQuantity_TextChanged(object sender, EventArgs e)
@@ -176,22 +179,6 @@ namespace IS.Admin.Transactions
             if (!string.IsNullOrEmpty(txtSupplierPrice.Text) && !string.IsNullOrEmpty(txtQuantity.Text))
             {
                 txtTotalAmount.Text = Math.Round(Convert.ToInt32(txtQuantity.Text) * Convert.ToDecimal(txtSupplierPrice.Text), 2).ToString("N2");
-            }
-        }
-
-        private void GetSuggestedPrice()
-        {
-            CategoriesModel model = new CategoriesModel();
-            if (this._Product != null)
-            {
-                var percent = model.GetPercentSuggestedPrice(cboCategories.SelectedValue.ToString());
-
-                if (!string.IsNullOrEmpty(txtSupplierPrice.Text))
-                {
-                    var supplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
-                    var sellingPrice = ((supplierPrice * (percent / 100)) + supplierPrice);
-                    txtRealUnitPrice.Text = sellingPrice.ToString("N2");
-                }
             }
         }
 
@@ -216,7 +203,6 @@ namespace IS.Admin.Transactions
                         stocksData.Quantity = Convert.ToInt32(txtQuantity.Text);
                         stocksData.SupplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
                         stocksData.TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
-                        stocksData.SuggestedPrice = Convert.ToDecimal(txtRealUnitPrice.Text);
                         stocksData.RemainingQuantity = Convert.ToInt32(txtRemainingQty.Text);
                         stocksData.DeliveryDate = dtpDeliveryDate.Value;
                         stocksData.ExpirationDate = dtpExpirationDate.Value;
@@ -247,6 +233,17 @@ namespace IS.Admin.Transactions
         private void cboCategories_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetSuggestedPrice();
+        }
+
+        private void GetSuggestedPrice()
+        {
+            if (this._Product != null)
+            {
+                if (!string.IsNullOrEmpty(txtSupplierPrice.Text))
+                {
+                    txtSuggestedPrice.Text = factory.CategoriesRepository.CategoriesStrategy.GetPercentSuggestedPrice(cboCategories.SelectedValue.ToString(), Convert.ToDecimal(txtSupplierPrice.Text))?.ToString("N2");
+                }
+            }
         }
     }
 }

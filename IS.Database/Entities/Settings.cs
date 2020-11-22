@@ -12,5 +12,6 @@ namespace IS.Database.Entities
         public DateTime InsertTime { get; set; }
         public decimal SeniorDiscount { get; set; }
         public decimal PWDDiscount { get; set; }
+        public int WithPrinter { get; set; }
     }
 }

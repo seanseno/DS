@@ -12,7 +12,7 @@ namespace IS.Database.Views
         public int Quantity { get; set; }
         public decimal SupplierPrice { get; set; }
         public decimal TotalAmount { get; set; }
-        public decimal UnitPriceWithAddedFormula { get; set; }
+        //public decimal UnitPriceWithAddedFormula { get; set; }
         public decimal SellingPrice { get; set; }
         public int UnitSold { get; set; }
         public int RemainingQuantity { get; set; }

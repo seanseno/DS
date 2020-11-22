@@ -36,6 +36,7 @@
             this.lblTotal = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvSearch = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
             this.TransactionBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InsertTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,12 +45,11 @@
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SupplierPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SuggestedPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SellingPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RemainingQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DeliveryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExpirationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSearch)).BeginInit();
             this.SuspendLayout();
@@ -105,7 +105,7 @@
             this.ProductName,
             this.Quantity,
             this.SupplierPrice,
-            this.SuggestedPrice,
+            this.SellingPrice,
             this.RemainingQuantity,
             this.DeliveryDate,
             this.ExpirationDate,
@@ -117,6 +117,16 @@
             this.dgvSearch.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSearch.Size = new System.Drawing.Size(1292, 484);
             this.dgvSearch.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(267, 34);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Stocks Data History";
             // 
             // TransactionBy
             // 
@@ -202,19 +212,19 @@
             this.SupplierPrice.ReadOnly = true;
             this.SupplierPrice.Width = 80;
             // 
-            // SuggestedPrice
+            // SellingPrice
             // 
-            this.SuggestedPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.SuggestedPrice.DataPropertyName = "SuggestedPrice";
+            this.SellingPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.SellingPrice.DataPropertyName = "SellingPrice";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle4.Format = "N2";
             dataGridViewCellStyle4.NullValue = "0.00";
-            this.SuggestedPrice.DefaultCellStyle = dataGridViewCellStyle4;
-            this.SuggestedPrice.HeaderText = "Suggested Price";
-            this.SuggestedPrice.MinimumWidth = 6;
-            this.SuggestedPrice.Name = "SuggestedPrice";
-            this.SuggestedPrice.ReadOnly = true;
-            this.SuggestedPrice.Width = 80;
+            this.SellingPrice.DefaultCellStyle = dataGridViewCellStyle4;
+            this.SellingPrice.HeaderText = "Selling Price";
+            this.SellingPrice.MinimumWidth = 6;
+            this.SellingPrice.Name = "SellingPrice";
+            this.SellingPrice.ReadOnly = true;
+            this.SellingPrice.Width = 80;
             // 
             // RemainingQuantity
             // 
@@ -255,21 +265,11 @@
             this.Remarks.ReadOnly = true;
             this.Remarks.Width = 200;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(267, 34);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Stocks Data History";
-            // 
             // FrmStocksDataHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
             this.ClientSize = new System.Drawing.Size(1354, 665);
             this.ControlBox = false;
             this.Controls.Add(this.label2);
@@ -301,7 +301,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn SupplierPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SuggestedPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SellingPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn RemainingQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn DeliveryDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExpirationDate;

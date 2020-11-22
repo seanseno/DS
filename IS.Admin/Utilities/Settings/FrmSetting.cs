@@ -38,7 +38,7 @@ namespace IS.Admin.Utilities
         private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (e.ColumnIndex == 4) //edit
+            if (e.ColumnIndex == 5) //edit
             {
                 FrmEditSettings frm = new FrmEditSettings();
                 if (frm.ShowDialog() == DialogResult.OK)
@@ -46,6 +46,21 @@ namespace IS.Admin.Utilities
                     LoadData();
                     MessageBox.Show("Settings updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 };
+            }
+        }
+
+        private void dgvSearch_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 4)
+            {
+                if (e.Value.ToString() == "1")
+                {
+                    e.Value = "Yes";
+                }
+                else
+                {
+                    e.Value = "No";
+                }
             }
         }
     }

@@ -20,7 +20,7 @@ namespace IS.Database.Repositories
             {
 
                 connection.Open();
-                var select = "SELECT * FROM vSalesDetail";
+                var select = "SELECT * FROM vEndOfDayReport";
 
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
@@ -56,7 +56,7 @@ namespace IS.Database.Repositories
             {
 
                 connection.Open();
-                var select = "SELECT * FROM vReportSales";
+                var select = "SELECT * FROM vSalesReport";
 
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {

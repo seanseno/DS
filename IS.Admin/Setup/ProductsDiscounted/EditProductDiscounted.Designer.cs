@@ -53,9 +53,9 @@
             this.label2.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(12, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(305, 34);
+            this.label2.Size = new System.Drawing.Size(311, 34);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Add Discounted Product";
+            this.label2.Text = "Edit Discounted Product";
             // 
             // groupBox3
             // 
@@ -205,7 +205,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
             this.ClientSize = new System.Drawing.Size(673, 365);
             this.ControlBox = false;
             this.Controls.Add(this.btnSave);
@@ -216,7 +216,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EditProductDiscounted";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.EditProductDiscounted_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();

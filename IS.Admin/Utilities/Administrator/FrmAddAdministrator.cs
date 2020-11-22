@@ -1,4 +1,5 @@
 ﻿using IS.Admin.Model;
+using IS.Database;
 using IS.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,10 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Setup
 {
-    public partial class FrmAddAdministrator : Form
+    public partial class FrmAddAdministrator : BaseForm
     {
         public Administrators _Administrators = new Administrators();
+        ISFactory factory = new ISFactory();
         public FrmAddAdministrator()
         {
             InitializeComponent();
@@ -37,14 +39,14 @@ namespace IS.Admin.Setup
                 _Administrators.Fullname = txtFullName.Text;
                 _Administrators.Password = txtPassword.Text;
                 _Administrators.Active = chkActive.Checked == true ? 1 : 0;
-                if (AdministratorsModel.CheckDup(this))
+                if (factory.AdministratorsRepository.AdministratorsStrategy.CheckDuplicate(_Administrators.Loginname))
                 {
                     MessageBox.Show(_Administrators.Loginname + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtLogiName.Focus();
                 }
                 if (MessageBox.Show("Continue saving " + txtLogiName.Text + ".", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    AdministratorsModel.AddAdministrator(this);
+                    factory.AdministratorsRepository.Insert(_Administrators);
                     MessageBox.Show(txtLogiName.Text + " Added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
                 }

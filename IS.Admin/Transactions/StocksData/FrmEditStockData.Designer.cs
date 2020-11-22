@@ -47,7 +47,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.dtpDeliveryDate = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtRealUnitPrice = new System.Windows.Forms.TextBox();
+            this.txtSellingPrice = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtTotalAmount = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -60,6 +60,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.txtSuggestedPrice = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -83,17 +85,17 @@
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Location = new System.Drawing.Point(11, 52);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(663, 616);
+            this.panel1.Size = new System.Drawing.Size(663, 650);
             this.panel1.TabIndex = 11;
             // 
             // btnSave
             // 
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSave.Location = new System.Drawing.Point(535, 553);
+            this.btnSave.Location = new System.Drawing.Point(535, 583);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(53, 53);
-            this.btnSave.TabIndex = 10;
+            this.btnSave.TabIndex = 11;
             this.btnSave.Text = "Update";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -102,6 +104,8 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.White;
+            this.groupBox3.Controls.Add(this.txtSuggestedPrice);
+            this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.cboCategories);
             this.groupBox3.Controls.Add(this.cboPrincipals);
             this.groupBox3.Controls.Add(this.label16);
@@ -116,7 +120,7 @@
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.dtpDeliveryDate);
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.txtRealUnitPrice);
+            this.groupBox3.Controls.Add(this.txtSellingPrice);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.txtTotalAmount);
             this.groupBox3.Controls.Add(this.label7);
@@ -126,7 +130,7 @@
             this.groupBox3.Controls.Add(this.groupBox1);
             this.groupBox3.Location = new System.Drawing.Point(16, 15);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(634, 532);
+            this.groupBox3.Size = new System.Drawing.Size(634, 562);
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Input Details";
@@ -139,6 +143,7 @@
             this.cboCategories.Name = "cboCategories";
             this.cboCategories.Size = new System.Drawing.Size(357, 21);
             this.cboCategories.TabIndex = 1;
+            this.cboCategories.SelectedIndexChanged += new System.EventHandler(this.cboCategories_SelectedIndexChanged);
             // 
             // cboPrincipals
             // 
@@ -171,18 +176,18 @@
             // 
             // txtRemarks
             // 
-            this.txtRemarks.Location = new System.Drawing.Point(131, 454);
+            this.txtRemarks.Location = new System.Drawing.Point(131, 486);
             this.txtRemarks.MaxLength = 1000;
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.Size = new System.Drawing.Size(357, 61);
-            this.txtRemarks.TabIndex = 9;
+            this.txtRemarks.TabIndex = 10;
             this.txtRemarks.Text = "";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(16, 454);
+            this.label14.Location = new System.Drawing.Point(16, 486);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(69, 16);
             this.label14.TabIndex = 38;
@@ -191,17 +196,17 @@
             // txtRemainingQty
             // 
             this.txtRemainingQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemainingQty.Location = new System.Drawing.Point(129, 359);
+            this.txtRemainingQty.Location = new System.Drawing.Point(129, 391);
             this.txtRemainingQty.MaxLength = 10;
             this.txtRemainingQty.Name = "txtRemainingQty";
             this.txtRemainingQty.Size = new System.Drawing.Size(82, 26);
-            this.txtRemainingQty.TabIndex = 6;
+            this.txtRemainingQty.TabIndex = 7;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(16, 365);
+            this.label13.Location = new System.Drawing.Point(16, 397);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(102, 16);
             this.label13.TabIndex = 36;
@@ -230,16 +235,16 @@
             // 
             // dtpExpirationDate
             // 
-            this.dtpExpirationDate.Location = new System.Drawing.Point(129, 427);
+            this.dtpExpirationDate.Location = new System.Drawing.Point(129, 459);
             this.dtpExpirationDate.Name = "dtpExpirationDate";
             this.dtpExpirationDate.Size = new System.Drawing.Size(200, 20);
-            this.dtpExpirationDate.TabIndex = 8;
+            this.dtpExpirationDate.TabIndex = 9;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(16, 427);
+            this.label10.Location = new System.Drawing.Point(16, 459);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(102, 16);
             this.label10.TabIndex = 30;
@@ -247,40 +252,42 @@
             // 
             // dtpDeliveryDate
             // 
-            this.dtpDeliveryDate.Location = new System.Drawing.Point(129, 395);
+            this.dtpDeliveryDate.Location = new System.Drawing.Point(129, 427);
             this.dtpDeliveryDate.Name = "dtpDeliveryDate";
             this.dtpDeliveryDate.Size = new System.Drawing.Size(200, 20);
-            this.dtpDeliveryDate.TabIndex = 7;
+            this.dtpDeliveryDate.TabIndex = 8;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(16, 399);
+            this.label9.Location = new System.Drawing.Point(16, 431);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(93, 16);
             this.label9.TabIndex = 29;
             this.label9.Text = "Delivery Date:";
             // 
-            // txtRealUnitPrice
+            // txtSellingPrice
             // 
-            this.txtRealUnitPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRealUnitPrice.Location = new System.Drawing.Point(129, 324);
-            this.txtRealUnitPrice.MaxLength = 10;
-            this.txtRealUnitPrice.Name = "txtRealUnitPrice";
-            this.txtRealUnitPrice.Size = new System.Drawing.Size(357, 26);
-            this.txtRealUnitPrice.TabIndex = 5;
-            this.txtRealUnitPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRealUnitPrice_KeyPress);
+            this.txtSellingPrice.Enabled = false;
+            this.txtSellingPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSellingPrice.Location = new System.Drawing.Point(129, 359);
+            this.txtSellingPrice.MaxLength = 10;
+            this.txtSellingPrice.Name = "txtSellingPrice";
+            this.txtSellingPrice.ReadOnly = true;
+            this.txtSellingPrice.Size = new System.Drawing.Size(357, 26);
+            this.txtSellingPrice.TabIndex = 6;
+            this.txtSellingPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRealUnitPrice_KeyPress);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(16, 330);
+            this.label8.Location = new System.Drawing.Point(16, 365);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(111, 16);
+            this.label8.Size = new System.Drawing.Size(86, 16);
             this.label8.TabIndex = 27;
-            this.label8.Text = "Suggested Price:";
+            this.label8.Text = "Selling Price:";
             // 
             // txtTotalAmount
             // 
@@ -391,21 +398,42 @@
             // 
             this.btnCancel.Image = global::IS.Admin.Properties.Resources.Cancel;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCancel.Location = new System.Drawing.Point(594, 553);
+            this.btnCancel.Location = new System.Drawing.Point(594, 583);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(56, 53);
-            this.btnCancel.TabIndex = 11;
+            this.btnCancel.TabIndex = 12;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // txtSuggestedPrice
+            // 
+            this.txtSuggestedPrice.Enabled = false;
+            this.txtSuggestedPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSuggestedPrice.Location = new System.Drawing.Point(129, 327);
+            this.txtSuggestedPrice.MaxLength = 10;
+            this.txtSuggestedPrice.Name = "txtSuggestedPrice";
+            this.txtSuggestedPrice.ReadOnly = true;
+            this.txtSuggestedPrice.Size = new System.Drawing.Size(357, 26);
+            this.txtSuggestedPrice.TabIndex = 5;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(18, 333);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(111, 16);
+            this.label11.TabIndex = 44;
+            this.label11.Text = "Suggested Price:";
             // 
             // FrmEditStockData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
-            this.ClientSize = new System.Drawing.Size(684, 678);
+            this.ClientSize = new System.Drawing.Size(688, 728);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label3);
@@ -433,7 +461,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DateTimePicker dtpDeliveryDate;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtRealUnitPrice;
+        private System.Windows.Forms.TextBox txtSellingPrice;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtTotalAmount;
         private System.Windows.Forms.Label label7;
@@ -455,5 +483,7 @@
         private System.Windows.Forms.ComboBox cboPrincipals;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtSuggestedPrice;
+        private System.Windows.Forms.Label label11;
     }
 }

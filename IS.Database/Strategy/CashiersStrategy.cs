@@ -6,58 +6,40 @@ using System.Configuration;
 using IS.Database.Enums;
 using IS.Common.Utilities;
 using IS.Database.Entities;
+using System.Linq;
 
 namespace IS.Database.Strategy
 {
     public class CashiersStrategy : Helper
     {
+        ISFactory factory = new ISFactory();
         public (string,bool,string) CheckCashierLogin(string Loginname, string Password)
         {
-            using (SqlConnection connection = new SqlConnection(ConStr))
+            try
             {
-                try
+                var res = factory.CashiersRepository.GetList()
+                    .Where(x => x.Loginname == Loginname
+                        && x.Password == Encryption.EncryptString(Password, this.IsEncrypt)
+                        && x.Active == (int)EnumActive.Active).FirstOrDefault();
+                if (res != null)
                 {
-                    connection.Open();
+                    return (res.CashierId, true, string.Empty);
                 }
-                catch (SqlException ex)
+                else
                 {
-                    return (null, false, ex.Message);
+                    return (string.Empty, false, string.Empty);
                 }
-
-                var select = "SELECT * FROM vCashiers WHERE Loginname='" + Loginname + "' AND Password ='" + Encryption.EncryptString(Password.ToUpper(), this.IsEncrypt) + "' AND Active = " + (int)EnumActive.Active;
-                using (SqlCommand cmd = new SqlCommand(select,connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            var cashier = new ReflectionPopulator<Cashiers>().CreateList(reader)[0];
-                            return (cashier.CashierId, true, string.Empty);
-                        }
-                        return (string.Empty, false, string.Empty);
-                    }
-                }
+            }
+            catch (SqlException ex)
+            {
+                return (null, false, ex.Message);
             }
         }
 
         public bool CheckDuplicate(string LoginName)
         {
-            using (SqlConnection connection = new SqlConnection(ConStr))
-            {
-                connection.Open();
-                var select = "SELECT Loginname FROM Cashiers WHERE Loginname = '" + LoginName + "'";
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            return true;
-                        }
-                        return false;
-                    }
-                }
-            }
+            return factory.CashiersRepository.GetList()
+                    .Where(x => x.Loginname == LoginName).Count() > 0;
         }
     }
 }

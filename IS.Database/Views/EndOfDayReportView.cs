@@ -17,7 +17,8 @@ namespace IS.Database.Views
         public string ProductId { get; set; }
         public string ProductName { get; set; }
         public int? Qty { get; set; }
-        public decimal? price { get; set; }
+        public decimal? Price { get; set; }
+        public decimal? TotalPrice { get; set; }
         public DateTime? InsertTime { get; set; }
     }
 }

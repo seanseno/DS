@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace IS.Admin
 {
-    public class FormSettings : Form
+    public class FormSettings : BaseForm
     {
         public void MySettings()
         {

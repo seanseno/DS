@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.txtPercent = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtCategoryId = new System.Windows.Forms.TextBox();
@@ -48,7 +47,6 @@
             // 
             this.groupBox2.AutoSize = true;
             this.groupBox2.BackColor = System.Drawing.Color.White;
-            this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.txtPercent);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.txtCategoryId);
@@ -57,36 +55,27 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(8, 14);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(508, 185);
+            this.groupBox2.Size = new System.Drawing.Size(508, 159);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Input Details";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(205, 114);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(20, 16);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "%";
-            // 
             // txtPercent
             // 
             this.txtPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPercent.Location = new System.Drawing.Point(129, 108);
-            this.txtPercent.MaxLength = 10;
+            this.txtPercent.Location = new System.Drawing.Point(129, 111);
+            this.txtPercent.MaxLength = 5;
             this.txtPercent.Name = "txtPercent";
-            this.txtPercent.Size = new System.Drawing.Size(70, 26);
-            this.txtPercent.TabIndex = 2;
+            this.txtPercent.Size = new System.Drawing.Size(57, 26);
+            this.txtPercent.TabIndex = 4;
+            this.txtPercent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPercent_KeyPress);
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(21, 108);
+            this.label4.Location = new System.Drawing.Point(20, 98);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(109, 52);
+            this.label4.Size = new System.Drawing.Size(112, 45);
             this.label4.TabIndex = 5;
             this.label4.Text = "Percent Suggested Price:";
             // 
@@ -136,14 +125,14 @@
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Location = new System.Drawing.Point(12, 46);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(521, 261);
+            this.panel1.Size = new System.Drawing.Size(527, 244);
             this.panel1.TabIndex = 7;
             // 
             // btnAdd
             // 
             this.btnAdd.Image = global::IS.Admin.Properties.Resources.Save;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAdd.Location = new System.Drawing.Point(395, 205);
+            this.btnAdd.Location = new System.Drawing.Point(401, 178);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(53, 53);
             this.btnAdd.TabIndex = 3;
@@ -156,7 +145,7 @@
             // 
             this.btnCancel.Image = global::IS.Admin.Properties.Resources.Cancel;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCancel.Location = new System.Drawing.Point(454, 205);
+            this.btnCancel.Location = new System.Drawing.Point(460, 178);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(56, 53);
             this.btnCancel.TabIndex = 4;
@@ -180,7 +169,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
-            this.ClientSize = new System.Drawing.Size(545, 319);
+            this.ClientSize = new System.Drawing.Size(545, 303);
             this.ControlBox = false;
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
@@ -212,6 +201,5 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPercent;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
     }
 }

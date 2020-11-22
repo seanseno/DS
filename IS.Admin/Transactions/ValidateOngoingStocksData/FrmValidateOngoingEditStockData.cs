@@ -38,7 +38,7 @@ namespace IS.Admin.Transactions
             txtQuantity.Text = response.Quantity.ToString("N0");
             txtSupplierPrice.Text = response.SupplierPrice.ToString("N2");
             txtTotalAmount.Text = response.TotalAmount.ToString("N2");
-            txtRealUnitPrice.Text = response.SuggestedPrice.ToString("N2");
+            txtSellingPrice.Text = response.SellingPrice.ToString("N2");
             txtRemainingQty.Text = response.RemainingQuantity.ToString("N0");
             dtpDeliveryDate.Value = response.DeliveryDate;
             dtpExpirationDate.Value = response.ExpirationDate;
@@ -79,7 +79,6 @@ namespace IS.Admin.Transactions
                     StocksData.Quantity = Convert.ToInt32(txtQuantity.Text);
                     StocksData.SupplierPrice = Convert.ToDecimal(txtSupplierPrice.Text);
                     StocksData.TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
-                    StocksData.SuggestedPrice = Convert.ToDecimal(txtRealUnitPrice.Text);
                     StocksData.RemainingQuantity= Convert.ToInt32(txtRemainingQty.Text);
                     StocksData.DeliveryDate = dtpDeliveryDate.Value;
                     StocksData.ExpirationDate = dtpExpirationDate.Value;
@@ -106,10 +105,10 @@ namespace IS.Admin.Transactions
                 txtSupplierPrice.Focus();
                 return true;
             }
-            else if (string.IsNullOrEmpty(txtRealUnitPrice.Text))
+            else if (string.IsNullOrEmpty(txtSellingPrice.Text))
             {
                 MessageBox.Show("Suggested Price is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtRealUnitPrice.Focus();
+                txtSellingPrice.Focus();
                 return true;
             }
             else if (string.IsNullOrEmpty(txtRemainingQty.Text))
@@ -121,7 +120,7 @@ namespace IS.Admin.Transactions
             else if (Convert.ToDecimal(txtSupplierPrice.Text) <= 0)
             {
                 MessageBox.Show("Invalid SupplierPrice, Can not accept 0.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                dtpExpirationDate.Focus();
+                txtSupplierPrice.Focus();
                 return true;
             }
             else if (Convert.ToDateTime(dtpExpirationDate.Value.ToShortDateString()) < Convert.ToDateTime(DateTime.Now.ToShortDateString()))

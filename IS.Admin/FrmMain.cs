@@ -196,11 +196,6 @@ namespace IS.Admin
             frm.ShowDialog();
         }
 
-        private void stockToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmStocksReport frm = new FrmStocksReport();
-            frm.ShowDialog();
-        }
 
         private void stockExpiredNearlyExpiredReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -288,6 +283,18 @@ namespace IS.Admin
         private void printerKioskCoordinatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmPrinterKioskCoordinates frm = new FrmPrinterKioskCoordinates();
+            frm.ShowDialog();
+        }
+
+        private void discountedCategoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCategoryDiscounted frm = new FrmCategoryDiscounted();
+            frm.ShowDialog();
+        }
+
+        private void stocksDataReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmStocksDataReport frm = new FrmStocksDataReport();
             frm.ShowDialog();
         }
     }

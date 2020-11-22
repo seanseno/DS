@@ -12,6 +12,22 @@ namespace IS.Database.Repositories
     public class AdministratorsRepository : Helper
     {
 
+        public IList<Administrators> GetList()
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT * FROM vAdministrators";
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        var List = new ReflectionPopulator<Administrators>().CreateList(reader);
+                        return List;
+                    }
+                }
+            }
+        }
         public void Insert(Administrators Administrator)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
@@ -20,9 +36,9 @@ namespace IS.Database.Repositories
                 using (SqlCommand cmd = new SqlCommand("spAdministratorsInsert", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@AdminId", Administrator.AdminId.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@Loginname", Administrator.Loginname.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@Fullname", Administrator.Fullname.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@AdminId", Administrator.AdminId));
+                    cmd.Parameters.Add(new SqlParameter("@Loginname", Administrator.Loginname));
+                    cmd.Parameters.Add(new SqlParameter("@Fullname", Administrator.Fullname));
                     cmd.Parameters.Add(new SqlParameter("@Password", Encryption.EncryptString(Administrator.Password, this.IsEncrypt)));
                    
                     int rowAffected = cmd.ExecuteNonQuery();
@@ -140,8 +156,8 @@ namespace IS.Database.Repositories
                 using (SqlCommand cmd = new SqlCommand("spAdministratorsUpdate", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@AdminId", Administrator.AdminId.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@Fullname", Administrator.Fullname.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@AdminId", Administrator.AdminId));
+                    cmd.Parameters.Add(new SqlParameter("@Fullname", Administrator.Fullname));
                     cmd.Parameters.Add(new SqlParameter("@Password", Administrator.Password == "" ? "" : Encryption.EncryptString(Administrator.Password, this.IsEncrypt)));
                     cmd.Parameters.Add(new SqlParameter("@Active", Administrator.Active));
 

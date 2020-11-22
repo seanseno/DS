@@ -141,7 +141,7 @@ namespace IS.Admin.Setup
 
         private void cboName_TextChanged(object sender, EventArgs e)
         {
-            //loadTreeView();
+            loadTreeView();
         }
     }
 }

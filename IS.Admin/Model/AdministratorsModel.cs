@@ -21,11 +21,7 @@ namespace IS.Admin.Model
             var factory = new ISFactory();
             factory.AdministratorsRepository.Insert(frm._Administrators);
         }
-        public bool CheckDup(FrmAddAdministrator frm)
-        {
-           var factory = new ISFactory();
-            return factory.AdministratorsRepository.AdministratorsStrategy.CheckDuplicate(frm._Administrators.Loginname);
-        }
+
         //public bool CheckEditDup(string name, int? AdministratorId)
         //{
         //    var factory = new Factory();

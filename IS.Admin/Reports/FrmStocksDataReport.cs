@@ -3,6 +3,7 @@ using IS.Database;
 using IS.Database.CSV;
 using IS.Database.Views;
 using IS.Library.CSV;
+using IS.Library.Utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,11 +16,11 @@ using System.Windows.Forms;
 
 namespace IS.Admin.Reports
 {
-    public partial class FrmStocksReport : BaseForm
+    public partial class FrmStocksDataReport : BaseForm
     {
         ISFactory factory = new ISFactory();
         IList<StocksDataViewReport> _list = new List<StocksDataViewReport>();
-        public FrmStocksReport()
+        public FrmStocksDataReport()
         {
             InitializeComponent();
         }
@@ -64,7 +65,7 @@ namespace IS.Admin.Reports
                                 item.SupplierPrice = sale.SupplierPrice.ToString("N2");
                                 item.TotalAmount = sale.TotalAmount.ToString("N2");
                                 item.SellingPrice = sale.SellingPrice.ToString("N2");
-                                item.UnitPriceWithAddedFormula = sale.UnitPriceWithAddedFormula.ToString("N2");
+                                //item.UnitPriceWithAddedFormula = sale.UnitPriceWithAddedFormula.ToString("N2");
                                 item.UnitSold = sale.UnitSold.ToString("N0");
                                 item.RemainingQuantity = sale.RemainingQuantity.ToString("N0");
                                 item.RemainingAmount = sale.RemainingAmount.ToString("N2");
@@ -102,10 +103,10 @@ namespace IS.Admin.Reports
 
         private void FrmStocksReport_Load(object sender, EventArgs e)
         {
-            dtpFrom.Value = DateTime.Now;
-            dtpTo.Value = DateTime.Now;
-            _list = factory.StocksDataRepository.GetListStocksDataReport().OrderBy(x=>x.DeliveryDate).ToList();
-            AddedFoorter(_list.ToList(), dgvSales);
+            dtpFrom.Value = DateConvertion.GetFistDay(DateTime.Now);
+            dtpTo.Value = DateConvertion.GetLastDay(DateTime.Now);
+            //_list = factory.StocksDataRepository.GetListStocksDataReport().OrderBy(x=>x.DeliveryDate).ToList();
+            //AddedFoorter(_list.ToList(), dgvSales);
         }
         private void AddedFoorter(List<StocksDataViewReport> _list, DataGridView dgv)
         {
@@ -125,32 +126,26 @@ namespace IS.Admin.Reports
             dgv.AutoGenerateColumns = false;
             dgv.DataSource = response;
 
-            dgv[2, dgvSales.Rows.Count - 1].Value = "TOTAL";
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[2].Style.Font = new Font("Arial", 16, FontStyle.Bold);
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[2].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv[3, dgvSales.Rows.Count - 1].Value = "TOTAL";
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[3].Style.Font = new Font("Arial", 16, FontStyle.Bold);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[3].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[3].Style.Font = new Font("Arial", 12, FontStyle.Bold);
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[3].Style.BackColor = Color.Green;
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[3].Style.ForeColor = Color.White;
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[3].Value = response.Sum(x => x.Quantity);
 
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[4].Style.Font = new Font("Arial", 12, FontStyle.Bold);
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[4].Style.BackColor = Color.Green;
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[4].Style.ForeColor = Color.White;
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[4].Value = response.Sum(x => x.SupplierPrice);
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[4].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-            ;
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[4].Value = response.Sum(x => x.Quantity);
+
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[5].Style.Font = new Font("Arial", 12, FontStyle.Bold);
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[5].Style.BackColor = Color.Green;
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[5].Style.ForeColor = Color.White;
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[5].Value = response.Sum(x => x.TotalAmount);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[5].Value = response.Sum(x => x.SupplierPrice);
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[5].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[6].Style.Font = new Font("Arial", 12, FontStyle.Bold);
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[6].Style.BackColor = Color.Green;
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[6].Style.ForeColor = Color.White;
-            dgv.Rows[dgvSales.Rows.Count - 1].Cells[6].Value = response.Sum(x => x.UnitPriceWithAddedFormula);
+            dgv.Rows[dgvSales.Rows.Count - 1].Cells[6].Value = response.Sum(x => x.TotalAmount); ;
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[6].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[7].Style.Font = new Font("Arial", 12, FontStyle.Bold);

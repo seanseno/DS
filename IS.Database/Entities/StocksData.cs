@@ -13,10 +13,9 @@ namespace IS.Database.Entities
         public string CategoryId { get; set; }
         public int Quantity { get; set; }
         public decimal SupplierPrice { get; set; }
-        public decimal TotalAmount { get; set; }
         public decimal SuggestedPrice { get; set; }
-        public decimal ProductSellingPrice { get; set; }
-        
+        public decimal TotalAmount { get; set; }
+        public decimal SellingPrice { get; set; }
         public int RemainingQuantity { get; set; }
         public int UnitSold { get; set; }
         public DateTime DeliveryDate { get; set; }

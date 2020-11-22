@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Configuration;
 using IS.Common.Utilities;
+using System.Linq;
 
 namespace IS.Database.Strategy
 {
@@ -55,7 +56,7 @@ namespace IS.Database.Strategy
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT * FROM vProducts WHERE CategoryId  = '" + CategoryId + "'";
+                var select = "SELECT * FROM vStocksData WHERE CategoryId  = '" + CategoryId + "'";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -68,6 +69,18 @@ namespace IS.Database.Strategy
                     }
                 }
             }
+        }
+
+        public decimal? GetPercentSuggestedPrice(string CategoryId,decimal supplierPrice)
+        {
+            ISFactory factory = new ISFactory();
+            var repsone = factory.CategoriesRepository.GetList().Where(x=>x.CategoryId == CategoryId).ToList().FirstOrDefault();
+            if (repsone == null)
+            {
+                return null;
+            }
+            var sellingPrice = ((supplierPrice * (repsone.PercentSuggestedPrice / 100)) + supplierPrice);
+            return sellingPrice;
         }
     }
 }

@@ -3,6 +3,7 @@ using IS.Database;
 using IS.Database.CSV;
 using IS.Database.Views;
 using IS.Library.CSV;
+using IS.Library.Utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,15 +27,15 @@ namespace IS.Admin.Reports
 
         private void FrmReturnItems_Load(object sender, EventArgs e)
         {
-            dtpFrom.Value = DateTime.Now;
-            dtpTo.Value = DateTime.Now;
-            _list = factory.ReturnItemsRepository.GetList();
-            _list = _list.OrderByDescending(x => x.InsertTime).ToList();
+            dtpFrom.Value = DateConvertion.GetFistDay(DateTime.Now);
+            dtpTo.Value = DateConvertion.GetLastDay(DateTime.Now);
+            //_list = factory.ReturnItemsRepository.GetList();
+            //_list = _list.OrderByDescending(x => x.InsertTime).ToList();
 
-            var response =  new List<ReturnIemsView>();
-            response = _list.ToList();
+            //var response =  new List<ReturnIemsView>();
+            //response = _list.ToList();
 
-            AddedFoorter(response, dgvReturnItems);
+            //AddedFoorter(response, dgvReturnItems);
         }
 
         private void AddedFoorter(List<ReturnIemsView> response, DataGridView dgv)

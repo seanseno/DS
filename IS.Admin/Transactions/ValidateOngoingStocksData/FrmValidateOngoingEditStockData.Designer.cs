@@ -47,7 +47,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.dtpDeliveryDate = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtRealUnitPrice = new System.Windows.Forms.TextBox();
+            this.txtSellingPrice = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtTotalAmount = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -79,7 +79,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.btnCancel);
@@ -118,7 +118,7 @@
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.dtpDeliveryDate);
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.txtRealUnitPrice);
+            this.groupBox3.Controls.Add(this.txtSellingPrice);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.txtTotalAmount);
             this.groupBox3.Controls.Add(this.label7);
@@ -264,15 +264,17 @@
             this.label9.TabIndex = 29;
             this.label9.Text = "Delivery Date:";
             // 
-            // txtRealUnitPrice
+            // txtSellingPrice
             // 
-            this.txtRealUnitPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRealUnitPrice.Location = new System.Drawing.Point(131, 333);
-            this.txtRealUnitPrice.MaxLength = 10;
-            this.txtRealUnitPrice.Name = "txtRealUnitPrice";
-            this.txtRealUnitPrice.Size = new System.Drawing.Size(357, 26);
-            this.txtRealUnitPrice.TabIndex = 9;
-            this.txtRealUnitPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRealUnitPrice_KeyPress);
+            this.txtSellingPrice.Enabled = false;
+            this.txtSellingPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSellingPrice.Location = new System.Drawing.Point(131, 333);
+            this.txtSellingPrice.MaxLength = 10;
+            this.txtSellingPrice.Name = "txtSellingPrice";
+            this.txtSellingPrice.ReadOnly = true;
+            this.txtSellingPrice.Size = new System.Drawing.Size(357, 26);
+            this.txtSellingPrice.TabIndex = 9;
+            this.txtSellingPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRealUnitPrice_KeyPress);
             // 
             // label8
             // 
@@ -280,9 +282,9 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(20, 339);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(111, 16);
+            this.label8.Size = new System.Drawing.Size(86, 16);
             this.label8.TabIndex = 27;
-            this.label8.Text = "Suggested Price:";
+            this.label8.Text = "Selling Price:";
             // 
             // txtTotalAmount
             // 
@@ -457,7 +459,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DateTimePicker dtpDeliveryDate;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtRealUnitPrice;
+        private System.Windows.Forms.TextBox txtSellingPrice;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtTotalAmount;
         private System.Windows.Forms.Label label7;

@@ -8,8 +8,6 @@ namespace IS.Database.Entities.Criteria
     {
 
         public ProductCriteria ProductCriteria => new ProductCriteria();
-        public ProductKioskCriteria ProductKioskCriteria => new ProductKioskCriteria();
-        
         public StocksDataCriteria StocksDataCriteria => new StocksDataCriteria();
         public ReportTotalSalesCriteria ReportTotalSalesCriteria => new ReportTotalSalesCriteria();
     }

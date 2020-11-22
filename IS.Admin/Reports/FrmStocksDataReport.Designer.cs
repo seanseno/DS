@@ -1,6 +1,6 @@
 ﻿namespace IS.Admin.Reports
 {
-    partial class FrmStocksReport
+    partial class FrmStocksDataReport
     {
         /// <summary>
         /// Required designer variable.
@@ -35,7 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmStocksReport));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmStocksDataReport));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -48,13 +48,13 @@
             this.btnDownload = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvSales = new System.Windows.Forms.DataGridView();
+            this.DeliveryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrincipalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SupplierPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitPriceWithAddedFormula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SellingPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnitSold = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RemainingItems = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -198,13 +198,13 @@
             this.dgvSales.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvSales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSales.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DeliveryDate,
             this.PrincipalName,
             this.ProductName,
             this.CategoryName,
             this.Quantity,
             this.SupplierPrice,
             this.TotalAmount,
-            this.UnitPriceWithAddedFormula,
             this.SellingPrice,
             this.UnitSold,
             this.RemainingItems,
@@ -218,12 +218,21 @@
             this.dgvSales.Size = new System.Drawing.Size(1001, 361);
             this.dgvSales.TabIndex = 25;
             // 
+            // DeliveryDate
+            // 
+            this.DeliveryDate.DataPropertyName = "DeliveryDate";
+            this.DeliveryDate.HeaderText = "Delivery Date";
+            this.DeliveryDate.Name = "DeliveryDate";
+            this.DeliveryDate.ReadOnly = true;
+            this.DeliveryDate.Width = 150;
+            // 
             // PrincipalName
             // 
             this.PrincipalName.DataPropertyName = "PrincipalName";
             this.PrincipalName.HeaderText = "Principal Name";
             this.PrincipalName.Name = "PrincipalName";
             this.PrincipalName.ReadOnly = true;
+            this.PrincipalName.Width = 150;
             // 
             // ProductName
             // 
@@ -274,23 +283,12 @@
             this.TotalAmount.Name = "TotalAmount";
             this.TotalAmount.ReadOnly = true;
             // 
-            // UnitPriceWithAddedFormula
-            // 
-            this.UnitPriceWithAddedFormula.DataPropertyName = "UnitPriceWithAddedFormula";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = "0.00";
-            this.UnitPriceWithAddedFormula.DefaultCellStyle = dataGridViewCellStyle5;
-            this.UnitPriceWithAddedFormula.HeaderText = "Unit Price With Added Formula";
-            this.UnitPriceWithAddedFormula.Name = "UnitPriceWithAddedFormula";
-            this.UnitPriceWithAddedFormula.ReadOnly = true;
-            // 
             // SellingPrice
             // 
             this.SellingPrice.DataPropertyName = "SellingPrice";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N2";
-            this.SellingPrice.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N2";
+            this.SellingPrice.DefaultCellStyle = dataGridViewCellStyle5;
             this.SellingPrice.HeaderText = "Selling Price";
             this.SellingPrice.Name = "SellingPrice";
             this.SellingPrice.ReadOnly = true;
@@ -305,6 +303,9 @@
             // RemainingItems
             // 
             this.RemainingItems.DataPropertyName = "RemainingQuantity";
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = null;
+            this.RemainingItems.DefaultCellStyle = dataGridViewCellStyle6;
             this.RemainingItems.HeaderText = "Remaining Items";
             this.RemainingItems.Name = "RemainingItems";
             this.RemainingItems.ReadOnly = true;
@@ -332,11 +333,11 @@
             this.label4.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(11, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(191, 34);
+            this.label4.Size = new System.Drawing.Size(263, 34);
             this.label4.TabIndex = 27;
-            this.label4.Text = "Stocks Report";
+            this.label4.Text = "Stocks Data Report";
             // 
-            // FrmStocksReport
+            // FrmStocksDataReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -348,10 +349,10 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmStocksReport";
+            this.Name = "FrmStocksDataReport";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Stocks Report";
+            this.Text = "Stocks Data Report";
             this.Load += new System.EventHandler(this.FrmStocksReport_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -377,13 +378,13 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.DataGridView dgvSales;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DeliveryDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrincipalName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn SupplierPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnitPriceWithAddedFormula;
         private System.Windows.Forms.DataGridViewTextBoxColumn SellingPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitSold;
         private System.Windows.Forms.DataGridViewTextBoxColumn RemainingItems;

@@ -113,8 +113,7 @@ namespace IS.Admin.Transactions
                                 string.IsNullOrEmpty(row[9].ToString().ToUpper()) ||
                                 string.IsNullOrEmpty(row[10].ToString().ToUpper()) ||
                                 string.IsNullOrEmpty(row[11].ToString().ToUpper()) ||
-                                string.IsNullOrEmpty(row[12].ToString().ToUpper()) ||
-                                string.IsNullOrEmpty(row[13].ToString().ToUpper()))
+                                string.IsNullOrEmpty(row[12].ToString().ToUpper()))
                             {
                                 MessageBox.Show(string.Format("Row {0} is not valid, please check the row information!", rowIndex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 dgvExcel.Rows[rowIndex - 1].Selected = true;
@@ -145,11 +144,10 @@ namespace IS.Admin.Transactions
                             stocksData.Quantity = Convert.ToInt32(row[6].ToString());
                             stocksData.SupplierPrice = Convert.ToDecimal(row[7].ToString());
                             stocksData.TotalAmount = Convert.ToDecimal(row[8].ToString());
-                            stocksData.SuggestedPrice = Convert.ToDecimal(row[9].ToString());
-                            stocksData.RemainingQuantity = Convert.ToInt32(row[10].ToString());
-                            stocksData.DeliveryDate = Convert.ToDateTime(row[11].ToString());
-                            stocksData.ExpirationDate = Convert.ToDateTime(row[12].ToString());
-                            stocksData.Remarks = row[14].ToString().ToUpper();
+                            stocksData.RemainingQuantity = Convert.ToInt32(row[9].ToString());
+                            stocksData.DeliveryDate = Convert.ToDateTime(row[10].ToString());
+                            stocksData.ExpirationDate = Convert.ToDateTime(row[11].ToString());
+                            stocksData.Remarks = row[12].ToString().ToUpper();
                             request.InsertStockData(stocksData);
                             progressBar1.Value = progressCount;
                         }

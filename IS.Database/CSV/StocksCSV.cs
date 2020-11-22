@@ -25,8 +25,8 @@ namespace IS.Database.CSV
         [Name("Total Amount")]
         public string TotalAmount { get; set; }
 
-        [Name("Unit Price With Added Formula")]
-        public string UnitPriceWithAddedFormula { get; set; }
+        //[Name("Unit Price With Added Formula")]
+        //public string UnitPriceWithAddedFormula { get; set; }
 
         [Name("Selling Price")]
         public string SellingPrice { get; set; }

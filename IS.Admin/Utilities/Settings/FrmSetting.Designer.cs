@@ -39,6 +39,7 @@
             this.SeniorDiscount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PWDDiscount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReturnItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WithPrinter = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSearch)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -66,6 +67,7 @@
             this.SeniorDiscount,
             this.PWDDiscount,
             this.ReturnItem,
+            this.WithPrinter,
             this.Edit});
             this.dgvSearch.Location = new System.Drawing.Point(15, 19);
             this.dgvSearch.Name = "dgvSearch";
@@ -74,6 +76,7 @@
             this.dgvSearch.Size = new System.Drawing.Size(966, 271);
             this.dgvSearch.TabIndex = 1;
             this.dgvSearch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSearch_CellClick);
+            this.dgvSearch.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSearch_CellFormatting);
             // 
             // groupBox1
             // 
@@ -133,6 +136,13 @@
             this.ReturnItem.Name = "ReturnItem";
             this.ReturnItem.ReadOnly = true;
             // 
+            // WithPrinter
+            // 
+            this.WithPrinter.DataPropertyName = "WithPrinter";
+            this.WithPrinter.HeaderText = "With Printer";
+            this.WithPrinter.Name = "WithPrinter";
+            this.WithPrinter.ReadOnly = true;
+            // 
             // Edit
             // 
             this.Edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -176,6 +186,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SeniorDiscount;
         private System.Windows.Forms.DataGridViewTextBoxColumn PWDDiscount;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReturnItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WithPrinter;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
     }
 }

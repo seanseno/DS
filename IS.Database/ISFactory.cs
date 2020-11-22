@@ -41,5 +41,6 @@ namespace IS.Database
         public ThemesRepository ThemesRepository = new ThemesRepository();
         public ProductsHistoryRepository ProductsHistoryRepository = new ProductsHistoryRepository();
         public PrinterCoordinatesRepository PrinterCoordinatesRepository = new PrinterCoordinatesRepository();
+        public CategoryDiscountedRepository CategoryDiscountedRepository = new CategoryDiscountedRepository();
     }
 }

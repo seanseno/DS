@@ -245,6 +245,7 @@
             this.Date.HeaderText = "Date";
             this.Date.Name = "Date";
             this.Date.ReadOnly = true;
+            this.Date.Visible = false;
             // 
             // InsertTime
             // 
@@ -333,7 +334,7 @@
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle6.Format = "N2";
             this.SellingPrice.DefaultCellStyle = dataGridViewCellStyle6;
-            this.SellingPrice.HeaderText = "Unit Price";
+            this.SellingPrice.HeaderText = "Selling Price";
             this.SellingPrice.Name = "SellingPrice";
             this.SellingPrice.ReadOnly = true;
             // 
@@ -370,10 +371,10 @@
             // 
             // Remarks
             // 
-            this.Remarks.DataPropertyName = "Remarks";
             this.Remarks.HeaderText = "Additional Notes";
             this.Remarks.Name = "Remarks";
             this.Remarks.ReadOnly = true;
+            this.Remarks.Visible = false;
             // 
             // FrmSalesReport
             // 
