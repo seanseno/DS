@@ -63,6 +63,7 @@
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.endOfDayReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stocksDataReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockExpiredNearlyExpiredReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.returnedItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,7 +73,7 @@
             this.lblTime = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.stocksDataReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -256,6 +257,7 @@
             this.toolStripMenuItem5,
             this.administratorToolStripMenuItem,
             this.cashiersToolStripMenuItem,
+            this.changePasswordToolStripMenuItem,
             this.toolStripMenuItem6,
             this.questionsToolStripMenuItem,
             this.toolStripMenuItem8,
@@ -371,6 +373,13 @@
             this.salesToolStripMenuItem.Visible = false;
             this.salesToolStripMenuItem.Click += new System.EventHandler(this.salesToolStripMenuItem_Click);
             // 
+            // stocksDataReportToolStripMenuItem
+            // 
+            this.stocksDataReportToolStripMenuItem.Name = "stocksDataReportToolStripMenuItem";
+            this.stocksDataReportToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
+            this.stocksDataReportToolStripMenuItem.Text = "Stocks Data Report";
+            this.stocksDataReportToolStripMenuItem.Click += new System.EventHandler(this.stocksDataReportToolStripMenuItem_Click);
+            // 
             // stockExpiredNearlyExpiredReportToolStripMenuItem
             // 
             this.stockExpiredNearlyExpiredReportToolStripMenuItem.Name = "stockExpiredNearlyExpiredReportToolStripMenuItem";
@@ -452,12 +461,12 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // stocksDataReportToolStripMenuItem
+            // changePasswordToolStripMenuItem
             // 
-            this.stocksDataReportToolStripMenuItem.Name = "stocksDataReportToolStripMenuItem";
-            this.stocksDataReportToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
-            this.stocksDataReportToolStripMenuItem.Text = "Stocks Data Report";
-            this.stocksDataReportToolStripMenuItem.Click += new System.EventHandler(this.stocksDataReportToolStripMenuItem_Click);
+            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.changePasswordToolStripMenuItem.Text = "Change Password";
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -528,6 +537,7 @@
         private System.Windows.Forms.ToolStripMenuItem printerKioskCoordinatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem discountedCategoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stocksDataReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
     }
 }
 

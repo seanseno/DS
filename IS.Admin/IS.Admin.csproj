@@ -141,7 +141,6 @@
     <Compile Include="Model\ItemReceivedOrdersModel.cs" />
     <Compile Include="Model\ReceivedOrdersModel.cs" />
     <Compile Include="Model\RequestOrderItemsModel.cs" />
-    <Compile Include="Model\LoginModel.cs" />
     <Compile Include="Model\SalesModel.cs" />
     <Compile Include="Model\StocksModel.cs" />
     <Compile Include="Model\ProductsModel.cs" />
@@ -245,6 +244,12 @@
     </Compile>
     <Compile Include="Transactions\StocksData\FrmReturnStockData.Designer.cs">
       <DependentUpon>FrmReturnStockData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\ChangePassword\FrmChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\ChangePassword\FrmChangePassword.Designer.cs">
+      <DependentUpon>FrmChangePassword.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\PrinterCoordinates\FrmPrinterKioskCoordinates.cs">
       <SubType>Form</SubType>
@@ -574,6 +579,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\StocksData\FrmReturnStockData.resx">
       <DependentUpon>FrmReturnStockData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\ChangePassword\FrmChangePassword.resx">
+      <DependentUpon>FrmChangePassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\PrinterCoordinates\FrmPrinterKioskCoordinates.resx">
       <DependentUpon>FrmPrinterKioskCoordinates.cs</DependentUpon>

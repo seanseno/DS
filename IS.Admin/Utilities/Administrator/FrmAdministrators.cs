@@ -38,7 +38,7 @@ namespace IS.Admin.Setup
             AdministratorsModel Administrators = new AdministratorsModel();
             var response = Administrators.AdministratorList(this, txtSearch.Text);
 
-            if (Globals.LoginName != "ADMIN")
+            if (Globals.LoginName.ToUpper() != "ADMIN")
             {
                 response = response.Where(x => x.Loginname.ToUpper() != "ADMIN").ToList();
             }
@@ -92,6 +92,21 @@ namespace IS.Admin.Setup
         private void FrmAdministrators_Load(object sender, EventArgs e)
         {
             LoadAdministrator();
+        }
+
+        private void dgvSearch_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 3)
+            {
+                if (e.Value.ToString() == "1")
+                {
+                    e.Value = "Yes";
+                }
+                else
+                {
+                    e.Value = "No";
+                }
+            }
         }
     }
 }

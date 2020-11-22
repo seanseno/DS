@@ -28,7 +28,21 @@ namespace IS.Admin.Setup
         {
             _Category = factory.CategoriesRepository.GetList().Where(x => x.CategoryId == _CategoryId).FirstOrDefault();
             txtCategoryName.Text = _Category.CategoryName;
-            txtPercent.Text = _Category.PercentSuggestedPrice?.ToString("N2");
+
+            if (_Category.PercentSuggestedPrice != null)
+            {
+                var val = _Category.PercentSuggestedPrice?.ToString("N2");
+                var res = val.Substring(val.Length - 3, 3);
+
+                if (res == ".00")
+                {
+                    txtPercent.Text = val.Replace(".00", "");
+                }
+                else
+                {
+                    txtPercent.Text = val;
+                }
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -38,37 +52,47 @@ namespace IS.Admin.Setup
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            CategoriesModel Categories = new CategoriesModel();
-
-            if (txtCategoryName.Text != _Category.CategoryName)
+            if (string.IsNullOrEmpty(txtPercent.Text))
             {
-                if (Categories.CheckEditDup(txtCategoryName.Text, _Category.Id))
+                MessageBox.Show("Percent for Suggested Price is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPercent.Focus();
+            }
+            else
+
+            {
+                CategoriesModel Categories = new CategoriesModel();
+
+                if (txtCategoryName.Text != _Category.CategoryName)
                 {
-                    MessageBox.Show(txtCategoryName.Text + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtCategoryName.Focus();
+                    if (Categories.CheckEditDup(txtCategoryName.Text, _Category.Id))
+                    {
+                        MessageBox.Show(txtCategoryName.Text + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtCategoryName.Focus();
+                    }
+                    else
+                    {
+                        _Category.CategoryName = txtCategoryName.Text;
+                        _Category.PercentSuggestedPrice = Convert.ToDecimal(txtPercent.Text);
+                        factory.CategoriesRepository.Update(_Category);
+
+                        this.DialogResult = DialogResult.OK;
+                    }
                 }
-                else
+                else if (txtCategoryName.Text == _Category.CategoryName)
                 {
-                    _Category.CategoryName = txtCategoryName.Text;
                     _Category.PercentSuggestedPrice = Convert.ToDecimal(txtPercent.Text);
                     factory.CategoriesRepository.Update(_Category);
-
                     this.DialogResult = DialogResult.OK;
                 }
             }
-            else if (txtCategoryName.Text == _Category.CategoryName)
+        }
+
+        private void txtPercent_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
             {
-                _Category.PercentSuggestedPrice = Convert.ToDecimal(txtPercent.Text);
-                factory.CategoriesRepository.Update(_Category);
-                this.DialogResult = DialogResult.OK;
+                e.Handled = true;
             }
-            //else if (txtCategoryName.Text == _Category.CategoryName && _Category.PercentSuggestedPrice != Convert.ToDecimal(txtPercent.Text))
-            //{
-            //    _Category.CategoryName = txtCategoryName.Text;
-            //    _Category.PercentSuggestedPrice = Convert.ToDecimal(txtPercent.Text);
-            //    factory.CategoriesRepository.Update(_Category);
-            //    this.DialogResult = DialogResult.OK;
-            //}
         }
     }
 }

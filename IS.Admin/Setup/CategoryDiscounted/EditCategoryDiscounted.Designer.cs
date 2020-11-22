@@ -148,9 +148,9 @@
             this.label2.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(12, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(311, 34);
+            this.label2.Size = new System.Drawing.Size(329, 34);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Edit Discounted Product";
+            this.label2.Text = "Edit Discounted Category";
             // 
             // EditCategoryDiscounted
             // 

@@ -51,7 +51,7 @@ namespace IS.Admin
 
         private void MenuEnable()
         {
-            if (Globals.LoginName == "ADMIN")
+            if (Globals.LoginName.ToUpper() == "ADMIN")
             {
                 DisableAllMenu(true);
             }
@@ -124,17 +124,7 @@ namespace IS.Admin
 
         private void logOffToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DisableAllMenu(false);
-            panel1.Visible = false;
-            FrmLogin frm = new FrmLogin();
-            var response = frm.ShowDialog();
-            if (response == DialogResult.OK)
-            {
-                timer1.Start();
-                panel1.Visible = true;
-                lblLogin.Text = "Current Login: " + Globals.LoginName;
-                MenuEnable();
-            }
+            LogOff();
         }
         private void DisableAllMenu(bool value)
         {
@@ -274,6 +264,21 @@ namespace IS.Admin
             }
         }
 
+        public void LogOff()
+        {
+            DisableAllMenu(false);
+            panel1.Visible = false;
+            FrmLogin frm = new FrmLogin();
+            var response = frm.ShowDialog();
+            if (response == DialogResult.OK)
+            {
+                timer1.Start();
+                panel1.Visible = true;
+                lblLogin.Text = "Current Login: " + Globals.LoginName;
+                MenuEnable();
+            }
+        }
+
         private void endOfDayReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmEndOfDayReport frm = new FrmEndOfDayReport();
@@ -296,6 +301,15 @@ namespace IS.Admin
         {
             FrmStocksDataReport frm = new FrmStocksDataReport();
             frm.ShowDialog();
+        }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmChangePassword frm = new FrmChangePassword(this);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                LogOff();
+            }
         }
     }
 }

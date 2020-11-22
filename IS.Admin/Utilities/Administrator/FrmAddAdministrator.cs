@@ -39,6 +39,7 @@ namespace IS.Admin.Setup
                 _Administrators.Fullname = txtFullName.Text;
                 _Administrators.Password = txtPassword.Text;
                 _Administrators.Active = chkActive.Checked == true ? 1 : 0;
+           
                 if (factory.AdministratorsRepository.AdministratorsStrategy.CheckDuplicate(_Administrators.Loginname))
                 {
                     MessageBox.Show(_Administrators.Loginname + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -111,6 +112,7 @@ namespace IS.Admin.Setup
             AdministratorsModel administratorsModel = new AdministratorsModel();
             txtItemId.Text = administratorsModel.GetNextId();
         }
+
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using IS.Admin.Model;
 using IS.Common.Utilities;
+using IS.Database;
 using IS.Library.Utility;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace IS.Admin
 {
     public partial class FrmLogin : Form
     {
+        ISFactory factory = new ISFactory();
         int CountErrorlabel = 0;
         public string LoginName { get; set; }
         public FrmLogin()
@@ -26,22 +28,25 @@ namespace IS.Admin
         {
             if (!CheckInput())
             {
-                LoginModel model = new LoginModel();
-                var (Id, IsSuccess, message) = model.CheckAdminLogin(txtLoginame.Text, txtPassword.Text);
-                if (IsSuccess)
+                try
                 {
-                    Globals.SetLoginId((int)Id,txtLoginame.Text.ToUpper().Trim());
+                    var response = factory.AdministratorsRepository.AdministratorsStrategy.CheckAdministratorLogin(txtLoginame.Text, txtPassword.Text);
+                    if (response != null)
+                    {
+                        Globals.SetLoginId(response.Id, response.Loginname, response.AdminId);
 
-                    this.DialogResult = DialogResult.OK;
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        timer1.Start();
+                    }
                 }
-                if (!string.IsNullOrEmpty(message))
+                catch (Exception ex)
                 {
-                    MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else
-                {
-                    timer1.Start();
-                }
+
             }
         }
 

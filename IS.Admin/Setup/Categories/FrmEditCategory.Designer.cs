@@ -32,12 +32,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtPercent = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txtCategoryName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtPercent = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -80,6 +80,25 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Input Details";
             // 
+            // txtPercent
+            // 
+            this.txtPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPercent.Location = new System.Drawing.Point(128, 77);
+            this.txtPercent.MaxLength = 255;
+            this.txtPercent.Name = "txtPercent";
+            this.txtPercent.Size = new System.Drawing.Size(362, 26);
+            this.txtPercent.TabIndex = 1;
+            this.txtPercent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPercent_KeyPress);
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(19, 64);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(112, 45);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Percent Suggested Price:";
+            // 
             // txtCategoryName
             // 
             this.txtCategoryName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -121,24 +140,6 @@
             this.label3.Size = new System.Drawing.Size(188, 34);
             this.label3.TabIndex = 10;
             this.label3.Text = "Edit Category";
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(19, 64);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(112, 45);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Percent Suggested Price:";
-            // 
-            // txtPercent
-            // 
-            this.txtPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPercent.Location = new System.Drawing.Point(128, 77);
-            this.txtPercent.MaxLength = 255;
-            this.txtPercent.Name = "txtPercent";
-            this.txtPercent.Size = new System.Drawing.Size(362, 26);
-            this.txtPercent.TabIndex = 1;
             // 
             // FrmEditCategory
             // 

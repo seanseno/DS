@@ -160,7 +160,6 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@Fullname", Administrator.Fullname));
                     cmd.Parameters.Add(new SqlParameter("@Password", Administrator.Password == "" ? "" : Encryption.EncryptString(Administrator.Password, this.IsEncrypt)));
                     cmd.Parameters.Add(new SqlParameter("@Active", Administrator.Active));
-
                     int rowAffected = cmd.ExecuteNonQuery();
 
                     if (connection.State == System.Data.ConnectionState.Open)

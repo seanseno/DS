@@ -129,5 +129,26 @@ namespace IS.Admin.Setup
             this.LoadCategory();
             DisplayTotal();
         }
+
+        private void dgvSearch_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 2)
+            {
+                if (e.Value != null)
+                {
+                    var val = Convert.ToDecimal(e.Value).ToString("N2");
+                    var res = val.Substring(val.Length - 3, 3);
+
+                    if (res == ".00")
+                    {
+                        e.Value = val.Replace(".00", "") + " %";
+                    }
+                    else
+                    {
+                        e.Value = Convert.ToDecimal(e.Value).ToString("N2") + " %";
+                    }
+                }
+            }
+        }
     }
 }

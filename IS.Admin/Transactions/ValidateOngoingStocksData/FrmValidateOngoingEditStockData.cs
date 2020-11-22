@@ -34,7 +34,6 @@ namespace IS.Admin.Transactions
 
             txtProductId.Text = response.ProductId;
             txtProductName.Text = response.ProductName;
-            txtPrice.Text = factory.ProductsRepository.GetList().Where(x => x.ProductId == response.ProductId).FirstOrDefault().Price.ToString("N2");
             txtQuantity.Text = response.Quantity.ToString("N0");
             txtSupplierPrice.Text = response.SupplierPrice.ToString("N2");
             txtTotalAmount.Text = response.TotalAmount.ToString("N2");
