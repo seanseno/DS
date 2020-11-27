@@ -25,6 +25,17 @@ namespace IS.Library.Utility
                 File.Copy(CopyPath, FilePath, true);
             }
         }
+        public static void DeleteCashierPhoto(string CashierId)
+        {
+            var Path = System.IO.Directory.GetCurrentDirectory();
+            string Root = Path + "\\Images\\CashierPhoto\\";
+            string FilePath = Root + CashierId + ".jpg";
+            // If directory does not exist, create it. 
+            if (!Directory.Exists(FilePath))
+            {
+                File.Delete(FilePath);
+            }
+        }
         public static string LoadCashierPhoto(string CashierId)
         {
             var Path = System.IO.Directory.GetCurrentDirectory();

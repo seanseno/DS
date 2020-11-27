@@ -62,7 +62,7 @@ namespace IS.Database.Repositories
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@ProductId", item.ProductId.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@ProductName", item.ProductName.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@ProductName", item.ProductName));
                     cmd.Parameters.Add(new SqlParameter("@Price", item.Price));
                     cmd.Parameters.Add(new SqlParameter("@BarCode", item.BarCode));
                     cmd.Parameters.Add(new SqlParameter("@LoginName", Globals.LoginName));
@@ -85,7 +85,7 @@ namespace IS.Database.Repositories
                    
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@ProductId", item.ProductId.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@ProductName", item.ProductName.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@ProductName", item.ProductName));
                     cmd.Parameters.Add(new SqlParameter("@Price", item.Price));
                     cmd.Parameters.Add(new SqlParameter("@Active", item.Active));
                     cmd.Parameters.Add(new SqlParameter("@BarCode", item.BarCode));

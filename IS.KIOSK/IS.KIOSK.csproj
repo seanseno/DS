@@ -148,6 +148,18 @@
     <Compile Include="FrmChange.Designer.cs">
       <DependentUpon>FrmChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmPWD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPWD.Designer.cs">
+      <DependentUpon>FrmPWD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSeniorCitizen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSeniorCitizen.Designer.cs">
+      <DependentUpon>FrmSeniorCitizen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Help\FrmHelp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +210,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmChange.resx">
       <DependentUpon>FrmChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPWD.resx">
+      <DependentUpon>FrmPWD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSeniorCitizen.resx">
+      <DependentUpon>FrmSeniorCitizen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Help\FrmHelp.resx">
       <DependentUpon>FrmHelp.cs</DependentUpon>

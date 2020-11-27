@@ -13,6 +13,24 @@ namespace IS.Database.Repositories
 {
     public class PrincipalsRepository : Helper
     {
+        public IList<Principals> GetList()
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "SELECT * FROM vPrincipals";
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        var List = new ReflectionPopulator<Principals>().CreateList(reader);
+                        return List;
+                    }
+                }
+            }
+        }
+
+
         public void Insert(Principals Principals)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
@@ -23,7 +41,7 @@ namespace IS.Database.Repositories
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@PrincipalId", Principals.PrincipalId.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@PrincipalName", Principals.PrincipalName.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@PrincipalName", Principals.PrincipalName));
 
                     int rowAffected = cmd.ExecuteNonQuery();
 
@@ -43,7 +61,7 @@ namespace IS.Database.Repositories
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@PrincipalId", Principals.PrincipalId.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@PrincipalName", Principals.PrincipalName.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@PrincipalName", Principals.PrincipalName));
 
                     int rowAffected = cmd.ExecuteNonQuery();
 

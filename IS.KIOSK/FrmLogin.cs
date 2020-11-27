@@ -32,22 +32,40 @@ namespace IS.KIOSK
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-             
-            var (cashierId,response, message) = factory.CashiersRepository.CashiersStrategy.CheckCashierLogin(txtLoginame.Text, txtPassword.Text);
-            if (response)
+
+            try
             {
-                kiosk._Cashier = factory.CashiersRepository.FindCashierWithCashierId(cashierId);
-                Globals.SetLoginId(kiosk._Cashier.Id, txtLoginame.Text.Trim());
-                this.DialogResult = DialogResult.OK;
+                var response = factory.CashiersRepository.CashiersStrategy.CheckCashierLogin(txtLoginame.Text, txtPassword.Text);
+                if (response != null)
+                {
+                    Globals.SetLoginId(response.Loginname, response.CashierId);
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    timer1.Start();
+                }
             }
-            else if (!string.IsNullOrEmpty(message))
+            catch (Exception ex)
             {
-                MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
-            {
-                timer1.Start();
-            }
+
+            //var (cashierId,response, message) = factory.CashiersRepository.CashiersStrategy.CheckCashierLogin(txtLoginame.Text, txtPassword.Text);
+            //if (response)
+            //{
+            //    kiosk._Cashier = factory.CashiersRepository.FindCashierWithCashierId(cashierId);
+            //    Globals.SetLoginId(kiosk._Cashier.Id, txtLoginame.Text, kiosk._Cashier.CashierId);
+            //    this.DialogResult = DialogResult.OK;
+            //}
+            //else if (!string.IsNullOrEmpty(message))
+            //{
+            //    MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            //else
+            //{
+            //    timer1.Start();
+            //}
         }
 
         private void timer1_Tick(object sender, EventArgs e)

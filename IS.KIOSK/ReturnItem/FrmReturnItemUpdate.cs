@@ -50,7 +50,7 @@ namespace IS.KIOSK
                     try
                     {
                         int quantity = _Qty - Convert.ToInt32(txtQty.Text);
-                        factory.LedgerSalesRepository.ReturnItem(_StockDataId, _SalesId, quantity, Convert.ToInt32(txtQty.Text), "Returned Quantity:" + Convert.ToInt32(txtQty.Text),Globals.LoginName);
+                        factory.LedgerSalesRepository.ReturnItem(_StockDataId, _SalesId, quantity, Convert.ToInt32(txtQty.Text), txtRemarks.Text, Globals.LoginName);
                         this.DialogResult = DialogResult.OK;
                     }
                     catch (Exception ex)
@@ -71,6 +71,12 @@ namespace IS.KIOSK
                 txtQty.Focus();
                 isOk = false;
             }
+            else if (string.IsNullOrEmpty(txtRemarks.Text))
+            {
+                MessageBox.Show("Remarks is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtRemarks.Focus();
+                isOk = false;
+            }
             else if (Convert.ToInt32(txtQty.Text) <= 0)
             {
                 MessageBox.Show("Quantity is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -84,6 +90,7 @@ namespace IS.KIOSK
                 txtQty.Focus();
                 isOk = false;
             }
+
             return isOk;
         }
 

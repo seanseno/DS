@@ -35,11 +35,6 @@
             this.btnDownload = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvReturnItems = new System.Windows.Forms.DataGridView();
-            this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InsertTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -49,6 +44,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dtpFrom = new System.Windows.Forms.DateTimePicker();
+            this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InsertTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReturnItems)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -102,6 +103,7 @@
             this.ProductName,
             this.Qty,
             this.Price,
+            this.Remarks,
             this.InsertTime});
             this.dgvReturnItems.Location = new System.Drawing.Point(6, 19);
             this.dgvReturnItems.Name = "dgvReturnItems";
@@ -110,51 +112,6 @@
             this.dgvReturnItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvReturnItems.Size = new System.Drawing.Size(1001, 361);
             this.dgvReturnItems.TabIndex = 25;
-            // 
-            // Fullname
-            // 
-            this.Fullname.DataPropertyName = "Fullname";
-            this.Fullname.HeaderText = "Cashier Name";
-            this.Fullname.Name = "Fullname";
-            this.Fullname.ReadOnly = true;
-            // 
-            // ProductName
-            // 
-            this.ProductName.DataPropertyName = "ProductName";
-            this.ProductName.HeaderText = "Product Name";
-            this.ProductName.Name = "ProductName";
-            this.ProductName.ReadOnly = true;
-            this.ProductName.Width = 400;
-            // 
-            // Qty
-            // 
-            this.Qty.DataPropertyName = "Qty";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.Qty.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Qty.HeaderText = "Quantity";
-            this.Qty.Name = "Qty";
-            this.Qty.ReadOnly = true;
-            // 
-            // Price
-            // 
-            this.Price.DataPropertyName = "Price";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = "0.00";
-            this.Price.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Price.HeaderText = "Price";
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            // 
-            // InsertTime
-            // 
-            this.InsertTime.DataPropertyName = "InsertTime";
-            this.InsertTime.HeaderText = "Date and Time";
-            this.InsertTime.Name = "InsertTime";
-            this.InsertTime.ReadOnly = true;
-            this.InsertTime.Width = 150;
             // 
             // groupBox1
             // 
@@ -254,6 +211,58 @@
             this.dtpFrom.Size = new System.Drawing.Size(255, 22);
             this.dtpFrom.TabIndex = 1;
             // 
+            // Fullname
+            // 
+            this.Fullname.DataPropertyName = "Fullname";
+            this.Fullname.HeaderText = "Cashier Name";
+            this.Fullname.Name = "Fullname";
+            this.Fullname.ReadOnly = true;
+            // 
+            // ProductName
+            // 
+            this.ProductName.DataPropertyName = "ProductName";
+            this.ProductName.HeaderText = "Product Name";
+            this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
+            this.ProductName.Width = 400;
+            // 
+            // Qty
+            // 
+            this.Qty.DataPropertyName = "Qty";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.Qty.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Qty.HeaderText = "Quantity";
+            this.Qty.Name = "Qty";
+            this.Qty.ReadOnly = true;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = "0.00";
+            this.Price.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
+            // Remarks
+            // 
+            this.Remarks.DataPropertyName = "Remarks";
+            this.Remarks.HeaderText = "Remarks";
+            this.Remarks.Name = "Remarks";
+            this.Remarks.ReadOnly = true;
+            // 
+            // InsertTime
+            // 
+            this.InsertTime.DataPropertyName = "InsertTime";
+            this.InsertTime.HeaderText = "Date and Time";
+            this.InsertTime.Name = "InsertTime";
+            this.InsertTime.ReadOnly = true;
+            this.InsertTime.Width = 150;
+            // 
             // FrmReturnItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -290,11 +299,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DateTimePicker dtpFrom;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fullname;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
         private System.Windows.Forms.DataGridViewTextBoxColumn InsertTime;
-        private System.Windows.Forms.DateTimePicker dtpFrom;
     }
 }

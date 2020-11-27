@@ -96,7 +96,7 @@ namespace IS.Admin.Setup
                             rowIndex++;
                             var Principal = new Principals();
                             Principal.PrincipalId = row[0].ToString().ToUpper();
-                            Principal.PrincipalName = row[1].ToString().ToUpper();
+                            Principal.PrincipalName = row[1].ToString();
                             lblpbar.Text = "Checking...\\principal id:" + Principal.PrincipalId + "\\principal name:" + Principal.PrincipalName;
                             lblpbar.Refresh();
                             if (string.IsNullOrEmpty(Principal.PrincipalId) ||

@@ -1,4 +1,5 @@
 ﻿using IS.Admin.Model;
+using IS.Database;
 using IS.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace IS.Admin.Setup
     public partial class FrmAddPrincipal : BaseForm
     {
         public Principals _Principals = new Principals();
+        ISFactory factory = new ISFactory();
         public FrmAddPrincipal()
         {
             InitializeComponent();
@@ -31,11 +33,10 @@ namespace IS.Admin.Setup
         {
             if(!CheckInput())
             {
-                var PrincipalsModel = new PrincipalsModel();
                 _Principals.PrincipalId = txtPrincipalId.Text.ToUpper();
-                _Principals.PrincipalName = txtPrincipalName.Text.ToUpper();
+                _Principals.PrincipalName = txtPrincipalName.Text;
 
-                if (PrincipalsModel.CheckDup(this))
+                if (factory.PrincipalsRepository.PrincipalsStrategy.CheckDuplicate(_Principals.PrincipalId, _Principals.PrincipalName))
                 {
                     MessageBox.Show(_Principals.PrincipalName + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtPrincipalName.Focus();
@@ -43,7 +44,7 @@ namespace IS.Admin.Setup
                 }
                 if (MessageBox.Show("Continue saving " + txtPrincipalName.Text + ".", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    PrincipalsModel.AddPrincipal(this);
+                    factory.PrincipalsRepository.Insert(_Principals);
                     MessageBox.Show(txtPrincipalName.Text + " Added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
                 }

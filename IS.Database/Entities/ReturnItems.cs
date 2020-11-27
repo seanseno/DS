@@ -12,6 +12,7 @@ namespace IS.Database.Entities
         public int Qty { get; set; }
         public decimal Price { get; set; }
         public string LoginName  { get; set; }
+        public string Remarks { get; set; }
         public DateTime? InsertTime { get; set; }
     }
 }

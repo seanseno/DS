@@ -160,6 +160,10 @@ namespace IS.Admin.Setup
                 PictureBox.Image = Image.FromStream(new MemoryStream(File.ReadAllBytes(open.FileName)));
                 CopyPath = open.FileName;
             }
+            else
+            {
+                PictureBox.Image = Properties.Resources.NoPhoto;
+            }
             open.Dispose();
         }
     }

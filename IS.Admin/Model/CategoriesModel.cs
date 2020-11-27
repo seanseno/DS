@@ -21,12 +21,6 @@ namespace IS.Admin.Model
             var factory = new ISFactory();
             factory.CategoriesRepository.Insert(model);
         }
-        public bool CheckDup(Categories model)
-        {
-            var factory = new ISFactory();
-            return factory.CategoriesRepository.CategoriesStrategy.CheckDuplicate(model.CategoryId, model.CategoryName);
-        }
-
         public bool CheckDup(FrmAddCategory frm)
         {
            var factory = new ISFactory();

@@ -13,27 +13,13 @@ namespace IS.Database.Strategy
     public class CashiersStrategy : Helper
     {
         ISFactory factory = new ISFactory();
-        public (string,bool,string) CheckCashierLogin(string Loginname, string Password)
+        public Cashiers CheckCashierLogin(string Loginname, string Password)
         {
-            try
-            {
-                var res = factory.CashiersRepository.GetList()
+            var response = factory.CashiersRepository.GetList()
                     .Where(x => x.Loginname == Loginname
                         && x.Password == Encryption.EncryptString(Password, this.IsEncrypt)
                         && x.Active == (int)EnumActive.Active).FirstOrDefault();
-                if (res != null)
-                {
-                    return (res.CashierId, true, string.Empty);
-                }
-                else
-                {
-                    return (string.Empty, false, string.Empty);
-                }
-            }
-            catch (SqlException ex)
-            {
-                return (null, false, ex.Message);
-            }
+            return response;
         }
 
         public bool CheckDuplicate(string LoginName)

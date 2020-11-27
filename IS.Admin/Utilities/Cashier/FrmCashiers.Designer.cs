@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCashiers));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.grpLoading = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -46,30 +46,41 @@
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.grpLoading.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSearch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
+            this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Controls.Add(this.grpLoading);
             this.groupBox1.Controls.Add(this.btnClose);
             this.groupBox1.Controls.Add(this.btnAdd);
             this.groupBox1.Controls.Add(this.dgvSearch);
             this.groupBox1.Controls.Add(this.txtSearch);
-            this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Location = new System.Drawing.Point(15, 55);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(970, 408);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cashier List";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Image = global::IS.Admin.Properties.Resources.search;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.Location = new System.Drawing.Point(813, 17);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(76, 39);
+            this.btnSearch.TabIndex = 1;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // grpLoading
             // 
@@ -109,7 +120,7 @@
             this.btnClose.Location = new System.Drawing.Point(878, 339);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(66, 55);
-            this.btnClose.TabIndex = 9;
+            this.btnClose.TabIndex = 3;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -122,7 +133,7 @@
             this.btnAdd.Location = new System.Drawing.Point(895, 17);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(66, 39);
-            this.btnAdd.TabIndex = 4;
+            this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Add";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -150,8 +161,9 @@
             this.dgvSearch.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvSearch.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSearch.Size = new System.Drawing.Size(946, 271);
-            this.dgvSearch.TabIndex = 1;
+            this.dgvSearch.TabIndex = 3;
             this.dgvSearch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSearch_CellClick);
+            this.dgvSearch.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSearch_CellFormatting);
             // 
             // CashierId
             // 
@@ -186,7 +198,7 @@
             // 
             // Active
             // 
-            this.Active.DataPropertyName = "ActiveString";
+            this.Active.DataPropertyName = "Active";
             this.Active.HeaderText = "Active";
             this.Active.Name = "Active";
             this.Active.ReadOnly = true;
@@ -229,21 +241,11 @@
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(104, 19);
+            this.txtSearch.Location = new System.Drawing.Point(15, 22);
             this.txtSearch.MaxLength = 50;
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(785, 26);
+            this.txtSearch.Size = new System.Drawing.Size(792, 26);
             this.txtSearch.TabIndex = 0;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(15, 25);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(40, 23);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
             // 
             // label2
             // 
@@ -277,7 +279,6 @@
             this.grpLoading.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSearch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,7 +289,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvSearch;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label label2;
@@ -303,5 +303,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UpdateTime;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
+        private System.Windows.Forms.Button btnSearch;
     }
 }

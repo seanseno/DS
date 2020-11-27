@@ -41,7 +41,7 @@ namespace IS.Database.Repositories
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@CategoryId", Categories.CategoryId.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@CategoryName", Categories.CategoryName.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@CategoryName", Categories.CategoryName));
                     cmd.Parameters.Add(new SqlParameter("@PercentSuggestedPrice", Categories.PercentSuggestedPrice));
                     int rowAffected = cmd.ExecuteNonQuery();
 
@@ -61,7 +61,7 @@ namespace IS.Database.Repositories
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@CategoryId", Categories.CategoryId.ToUpper()));
-                    cmd.Parameters.Add(new SqlParameter("@CategoryName", Categories.CategoryName.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@CategoryName", Categories.CategoryName));
                     cmd.Parameters.Add(new SqlParameter("@PercentSuggestedPrice", Categories.PercentSuggestedPrice));
                     int rowAffected = cmd.ExecuteNonQuery();
 

@@ -108,6 +108,7 @@ namespace IS.Admin.Reports
                                 item.ProductName = sale.ProductName;
                                 item.Qty = sale.Qty.ToString("N0");
                                 item.Price = sale.Price.ToString("N2");
+                                item.Remarks = sale.Remarks;
                                 item.InsertTime = sale.InsertTime.ToString();
                                 SalesList.Add(item);
                             }

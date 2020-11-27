@@ -38,7 +38,6 @@ namespace IS.Admin.Setup
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 this.LoadProducts();
-                DisplayTotal();
             }
             
         }
@@ -61,8 +60,16 @@ namespace IS.Admin.Setup
         private void LoadMemoryProducts()
         {
             dgvProducts.AutoGenerateColumns = false;
-            dgvProducts.DataSource = cri.ProductCriteria.MeetCriteria(this._ProductList.ToList(), txtSearch.Text);  
+            dgvProducts.DataSource = this._ProductList.Where(x => x.ProductId.ToUpper().Contains(txtSearch.Text.ToUpper()) || 
+                                        x.ProductName.ToUpper().Contains(txtSearch.Text.ToUpper()) ||
+                                        x.BarCode.Contains(txtSearch.Text)).ToList();
+            var response = this._ProductList.Where(x => x.ProductId.ToUpper().Contains(txtSearch.Text.ToUpper()) ||
+                                        x.ProductName.ToUpper().Contains(txtSearch.Text.ToUpper()) ||
+                                        x.BarCode.Contains(txtSearch.Text)).ToList();
+            dgvProducts.DataSource = response;
             dgvProducts.StandardTab = true;
+            DisplayTotal(response.Count());
+
         }
 
         private void DeleteMemoryProducts(string ProductId)
@@ -71,10 +78,12 @@ namespace IS.Admin.Setup
             var prod = this._ProductList.FirstOrDefault(x=>x.ProductId == ProductId);
             _ProductList.Remove(prod);
             dgvProducts.AutoGenerateColumns = false;
-            dgvProducts.DataSource = cri.ProductCriteria.MeetCriteria(this._ProductList.ToList(), txtSearch.Text);
+            var response = cri.ProductCriteria.MeetCriteria(this._ProductList.ToList(), txtSearch.Text);
+            dgvProducts.DataSource = response;
             dgvProducts.StandardTab = true;
 
             SetLoading(false);
+            DisplayTotal(response.Count());
         }
 
         private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -111,7 +120,7 @@ namespace IS.Admin.Setup
                     {
                         model.DeleteItem(Item);
                         this.DeleteMemoryProducts(Item.ProductId);
-                        DisplayTotal();
+                        
                         MessageBox.Show(Item.ProductName + " deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
@@ -125,8 +134,8 @@ namespace IS.Admin.Setup
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
-            this.ProductSearch();
+            LoadMemoryProducts();
+            //this.ProductSearch();
 
         }
 
@@ -140,10 +149,6 @@ namespace IS.Admin.Setup
             });
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            LoadMemoryProducts();
-        }
 
         private void grpProduct_EnabledChanged(object sender, EventArgs e)
         {
@@ -163,8 +168,7 @@ namespace IS.Admin.Setup
 
 
             }
-            DisplayTotal();
-
+            DisplayTotal(this._ProductList.Count);
         }
 
         private void btnUpload_Click(object sender, EventArgs e)
@@ -173,15 +177,11 @@ namespace IS.Admin.Setup
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 this.FrmProducts_Load(sender,e);
-                DisplayTotal();
             }
         }
 
-        private void DisplayTotal()
+        private void DisplayTotal(int TotalCount)
         {
-            ProductsModel model = new ProductsModel();
-            int TotalCount = model.GetTotalCount();
-
             string TotalStr = "Total Record 0";
             if (TotalCount > 1)
             {

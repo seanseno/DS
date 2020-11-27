@@ -4,28 +4,20 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Configuration;
 using IS.Common.Utilities;
+using System.Linq;
 
 namespace IS.Database.Strategy
 {
     public class PrincipalsStrategy : Helper
     {
+        ISFactory factory = new ISFactory();
         public bool CheckDuplicate(string PrincipalId,string PrincipalName)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
-                connection.Open();
-                var select = "SELECT PrincipalName FROM vPrincipals WHERE PrincipalId = '" + PrincipalId + "' OR PrincipalName = '" + SingleQuoteCorrection.convert(PrincipalName) + "'";
-                using (SqlCommand cmd = new SqlCommand(select,connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                           return true;
-                        }
-                        return false;
-                    }
-                }
+                return factory.PrincipalsRepository.GetList()
+                     .Where(x => x.PrincipalId.ToUpper().Contains(PrincipalId.ToUpper()) ||
+                        x.PrincipalName == SingleQuoteCorrection.convert(PrincipalName).ToUpper()).Count() > 0;
             }
         }
 

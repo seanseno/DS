@@ -88,6 +88,12 @@ namespace IS.Admin.Setup
                 txtPassword.Focus();
                 return true;
             }
+            else if (txtOldPassword.Text == txtPassword.Text)
+            {
+                MessageBox.Show("New password is your current password!, please enter a new password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPassword.Focus();
+                return true;
+            }
             return false;
         }
     }

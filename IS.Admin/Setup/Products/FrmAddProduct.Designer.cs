@@ -175,7 +175,6 @@
             // 
             // txtProductName
             // 
-            this.txtProductName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtProductName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtProductName.Location = new System.Drawing.Point(139, 67);
             this.txtProductName.MaxLength = 1000;

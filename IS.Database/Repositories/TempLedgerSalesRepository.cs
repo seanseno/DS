@@ -64,7 +64,7 @@ namespace IS.Database.Repositories
             }
         }
 
-        public TempLedgerSales FindDefault(string cashierId,string CustomerName)
+        public TempLedgerSales FindDefault(string cashierId)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {

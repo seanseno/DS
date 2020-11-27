@@ -68,6 +68,10 @@ namespace IS.Admin.Setup
                         MessageBox.Show(ex.Message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
+                else
+                {
+                    ImagesUtility.DeleteCashierPhoto(_Cashier.CashierId);
+                }
             }
 
         }
@@ -131,6 +135,10 @@ namespace IS.Admin.Setup
                 txtLogiName.Focus();
                 // image file path  
                 CopyPath = open.FileName;
+            }
+            else
+            {
+                PictureBox.Image = Properties.Resources.NoPhoto;
             }
             open.Dispose();
         }

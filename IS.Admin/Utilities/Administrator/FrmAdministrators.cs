@@ -35,8 +35,10 @@ namespace IS.Admin.Setup
             grpLoading.Visible = true;
             grpLoading.Refresh();
 
-            AdministratorsModel Administrators = new AdministratorsModel();
-            var response = Administrators.AdministratorList(this, txtSearch.Text);
+            var response = factory.AdministratorsRepository.GetList()
+                .Where(x => x.AdminId.ToUpper().Contains(txtSearch.Text.ToUpper()) ||
+                    x.Loginname.ToUpper().Contains(txtSearch.Text.ToUpper()) ||
+                    x.Fullname.ToUpper().Contains(txtSearch.Text.ToUpper())).OrderBy(x => x.Fullname).ToList();
 
             if (Globals.LoginName.ToUpper() != "ADMIN")
             {

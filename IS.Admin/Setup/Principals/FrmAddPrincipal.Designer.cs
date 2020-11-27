@@ -57,6 +57,7 @@
             // 
             // txtPrincipalId
             // 
+            this.txtPrincipalId.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPrincipalId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrincipalId.Location = new System.Drawing.Point(129, 25);
             this.txtPrincipalId.MaxLength = 5;

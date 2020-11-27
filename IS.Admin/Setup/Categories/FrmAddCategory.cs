@@ -33,8 +33,8 @@ namespace IS.Admin.Setup
         {
             if(!CheckInput())
             {
-                _Categories.CategoryId = txtCategoryId.Text.ToUpper();
-                _Categories.CategoryName = txtCategoryName.Text.ToUpper();
+                _Categories.CategoryId = txtCategoryId.Text;
+                _Categories.CategoryName = txtCategoryName.Text;
 
                 if (!string.IsNullOrEmpty(txtPercent.Text))
                 {

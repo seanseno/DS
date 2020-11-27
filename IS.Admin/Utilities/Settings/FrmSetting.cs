@@ -1,4 +1,5 @@
-﻿using IS.Database;
+﻿using IS.Common.Utilities;
+using IS.Database;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -61,6 +62,10 @@ namespace IS.Admin.Utilities
                 {
                     e.Value = "No";
                 }
+            }
+            if (e.ColumnIndex == 1 || e.ColumnIndex == 2)
+            {
+                e.Value = PercentConvertion.PercentWithSymbol(Convert.ToDecimal(e.Value));
             }
         }
     }

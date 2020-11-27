@@ -101,7 +101,7 @@ namespace IS.Admin.Setup
                             var Products = new Products
                             {
                                 ProductId = row[0].ToString().ToUpper(),
-                                ProductName = row[1].ToString().ToUpper(),
+                                ProductName = row[1].ToString(),
                                 Price = Convert.ToDecimal(row[2].ToString().ToUpper()),
                                 BarCode = row[3].ToString().ToUpper()
                             };

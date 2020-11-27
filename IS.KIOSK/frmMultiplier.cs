@@ -49,21 +49,21 @@ namespace IS.KIOSK
             lblProductName.Text = product.ProductName;
 
             lblTotal.Text = Math.Round((this.product.Price * Convert.ToDecimal(txtQty.Text)), 2).ToString();
-            var ProductDiscount = factory.ProductsDiscountedRepository.GetList().Where(x => x.ProductId == _ProductId).FirstOrDefault();
-            var percentDiscount = factory.SettingsRepository.GetList().FirstOrDefault();
-            if (ProductDiscount == null)
-            {
-                //Category
-                var CategoryDiscount = factory.CategoryDiscountedRepository.GetList().Where(x => x.CategoryId == _CategoryId).FirstOrDefault();
-                if (CategoryDiscount != null)
-                {
-                    ComputeCategoryDiscount(percentDiscount, CategoryDiscount);
-                }
-            }
-            else
-            {
-                ComputeProductDiscount(percentDiscount,ProductDiscount);
-            }
+            //var ProductDiscount = factory.ProductsDiscountedRepository.GetList().Where(x => x.ProductId == _ProductId).FirstOrDefault();
+            //var percentDiscount = factory.SettingsRepository.GetList().FirstOrDefault();
+            //if (ProductDiscount == null)
+            //{
+            //    //Category
+            //    var CategoryDiscount = factory.CategoryDiscountedRepository.GetList().Where(x => x.CategoryId == _CategoryId).FirstOrDefault();
+            //    if (CategoryDiscount != null)
+            //    {
+            //        ComputeCategoryDiscount(percentDiscount, CategoryDiscount);
+            //    }
+            //}
+            //else
+            //{
+            //    ComputeProductDiscount(percentDiscount,ProductDiscount);
+            //}
         }
 
         private void ComputeCategoryDiscount(Settings percentDiscount, CategoryDiscounted CategoryDiscount)

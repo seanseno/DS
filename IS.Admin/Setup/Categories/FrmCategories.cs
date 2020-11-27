@@ -27,7 +27,6 @@ namespace IS.Admin.Setup
             FrmAddCategory frm = new FrmAddCategory();
             frm.ShowDialog();
             this.LoadCategory();
-            DisplayTotal();
         }
 
         private void LoadCategory()
@@ -35,7 +34,8 @@ namespace IS.Admin.Setup
             grpLoading.Visible = true;
             grpLoading.Refresh();
             _list = factory.CategoriesRepository.GetList()
-                    .Where(x => x.CategoryId.Contains(txtSearch.Text) || x.CategoryName.Contains(txtSearch.Text)).OrderBy(y => y.CategoryName)
+                    .Where(x => x.CategoryId.ToUpper().Contains(txtSearch.Text.ToUpper()) 
+                        || x.CategoryName.ToUpper().Contains(txtSearch.Text.ToUpper())).OrderBy(y => y.CategoryName)
                     .ToList();
 
             dgvSearch.AutoGenerateColumns = false;
@@ -44,6 +44,8 @@ namespace IS.Admin.Setup
 
             grpLoading.Visible = false;
             grpLoading.Refresh();
+
+            DisplayTotal();
         }
 
         private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -72,7 +74,6 @@ namespace IS.Admin.Setup
                     {
                         factory.CategoriesRepository.Delete(CategoryId);
                         this.LoadCategory();
-                        DisplayTotal();
                         MessageBox.Show(CategoryName + " deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
@@ -104,7 +105,6 @@ namespace IS.Admin.Setup
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 this.LoadCategory();
-                DisplayTotal();
             }
         }
 
@@ -127,7 +127,7 @@ namespace IS.Admin.Setup
         private void FrmCategories_Load(object sender, EventArgs e)
         {
             this.LoadCategory();
-            DisplayTotal();
+           
         }
 
         private void dgvSearch_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

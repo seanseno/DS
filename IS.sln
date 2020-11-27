@@ -15,11 +15,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IS.Common", "IS.Common\IS.C
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Front", "FrontInstaller\Front\Front.vdproj", "{33DE919F-0885-4B56-818F-450E4FCC3FAA}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "AdminInstaller", "AdminInstaller\AdminInstaller.vdproj", "{A44B1B7D-3A4C-438E-B538-2BC3BC4457F2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IS.ServerInfo", "IS.ServerInfo\IS.ServerInfo.csproj", "{8A8BF2E2-5C45-4322-8FD8-CF95CD93208E}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ServerInfoEncryption", "ServerInfoEncryption\ServerInfoEncryption.vdproj", "{2428F081-27FE-4A81-B519-E963C796AC1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IS.KIOSKBARCODE", "IS.KIOSKBARCODE\IS.KIOSKBARCODE.csproj", "{77475113-AE0A-4A42-82DC-512D86F16D5A}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "AdminInstaller", "AdminInstaller\AdminInstaller.vdproj", "{0760D524-BB12-4E47-A302-CB98AEA05B5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,14 +51,18 @@ Global
 		{00062812-DB72-4F89-A07B-B5AF256950E2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{33DE919F-0885-4B56-818F-450E4FCC3FAA}.Debug|Any CPU.ActiveCfg = Debug
 		{33DE919F-0885-4B56-818F-450E4FCC3FAA}.Release|Any CPU.ActiveCfg = Release
-		{A44B1B7D-3A4C-438E-B538-2BC3BC4457F2}.Debug|Any CPU.ActiveCfg = Debug
-		{A44B1B7D-3A4C-438E-B538-2BC3BC4457F2}.Release|Any CPU.ActiveCfg = Release
 		{8A8BF2E2-5C45-4322-8FD8-CF95CD93208E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8A8BF2E2-5C45-4322-8FD8-CF95CD93208E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A8BF2E2-5C45-4322-8FD8-CF95CD93208E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A8BF2E2-5C45-4322-8FD8-CF95CD93208E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2428F081-27FE-4A81-B519-E963C796AC1E}.Debug|Any CPU.ActiveCfg = Debug
 		{2428F081-27FE-4A81-B519-E963C796AC1E}.Release|Any CPU.ActiveCfg = Release
+		{77475113-AE0A-4A42-82DC-512D86F16D5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77475113-AE0A-4A42-82DC-512D86F16D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77475113-AE0A-4A42-82DC-512D86F16D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77475113-AE0A-4A42-82DC-512D86F16D5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0760D524-BB12-4E47-A302-CB98AEA05B5E}.Debug|Any CPU.ActiveCfg = Debug
+		{0760D524-BB12-4E47-A302-CB98AEA05B5E}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

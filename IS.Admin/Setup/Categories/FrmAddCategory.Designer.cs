@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtPercent = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -35,18 +38,51 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtCategoryName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.groupBox2.SuspendLayout();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(6, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(182, 34);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Add Category";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnAdd);
+            this.panel1.Controls.Add(this.groupBox2);
+            this.panel1.Controls.Add(this.btnCancel);
+            this.panel1.Location = new System.Drawing.Point(12, 46);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(527, 244);
+            this.panel1.TabIndex = 7;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::IS.Admin.Properties.Resources.Save;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAdd.Location = new System.Drawing.Point(401, 178);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(53, 53);
+            this.btnAdd.TabIndex = 3;
+            this.btnAdd.Text = "Save";
+            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // groupBox2
             // 
             this.groupBox2.AutoSize = true;
             this.groupBox2.BackColor = System.Drawing.Color.White;
+            this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.txtPercent);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.txtCategoryId);
@@ -81,6 +117,7 @@
             // 
             // txtCategoryId
             // 
+            this.txtCategoryId.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCategoryId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCategoryId.Location = new System.Drawing.Point(129, 25);
             this.txtCategoryId.MaxLength = 5;
@@ -117,30 +154,6 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Category Name :";
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Controls.Add(this.btnCancel);
-            this.panel1.Location = new System.Drawing.Point(12, 46);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(527, 244);
-            this.panel1.TabIndex = 7;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::IS.Admin.Properties.Resources.Save;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAdd.Location = new System.Drawing.Point(401, 178);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(53, 53);
-            this.btnAdd.TabIndex = 3;
-            this.btnAdd.Text = "Save";
-            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // btnCancel
             // 
             this.btnCancel.Image = global::IS.Admin.Properties.Resources.Cancel;
@@ -154,15 +167,15 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // label3
+            // label5
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(182, 34);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Add Category";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(192, 117);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(20, 16);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "%";
             // 
             // FrmAddCategory
             // 
@@ -179,10 +192,10 @@
             this.Name = "FrmAddCategory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.FrmAddCategory_Load);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,5 +214,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPercent;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

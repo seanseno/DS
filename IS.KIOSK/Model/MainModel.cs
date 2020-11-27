@@ -1,4 +1,5 @@
-﻿using IS.Database;
+﻿using IS.Common.Utilities;
+using IS.Database;
 using IS.Database.Entities;
 using IS.Database.Enums;
 using System;
@@ -18,12 +19,12 @@ namespace IS.KIOSK.Model
             return resultList;
         }
 
-        public (IList<TempSales>,decimal) LoadTempOders(FrmMain frm,string CustomerName)
+        public (IList<TempSales>,decimal) LoadTempOders()
         {
-            var tempLedger = factory.TempLedgerSalesRepository.FindDefault(frm._Cashier.CashierId, CustomerName);
+            var tempLedger = factory.TempLedgerSalesRepository.FindDefault(Globals.LoginId);
             if (tempLedger != null)
             {
-                var tempOders = factory.TempSalesRepository.FindWithLedger(frm._Cashier.CashierId, tempLedger.Id, EnumActive.Active);
+                var tempOders = factory.TempSalesRepository.FindWithLedger(Globals.LoginId, tempLedger.Id, EnumActive.Active);
                 if (tempOders != null)
                 {
                     return (tempOders, tempOders.Sum(x => x.TotalPrice));

@@ -13,22 +13,8 @@ namespace IS.Database.Strategy
         ISFactory factory = new ISFactory();
         public bool CheckDuplicate(string ProductId)
         {
-            using (SqlConnection connection = new SqlConnection(ConStr))
-            {
-                connection.Open();
-                var select = "SELECT ProductId FROM Products WHERE ProductId = '" + ProductId + "'";
-                using (SqlCommand cmd = new SqlCommand(select,connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                           return true;
-                        }
-                        return false;
-                    }
-                }
-            }
+            return factory.ProductsRepository.GetList()
+                .Where(x => x.ProductId.Contains(ProductId)).ToList().Count() > 0;
         }
 
 

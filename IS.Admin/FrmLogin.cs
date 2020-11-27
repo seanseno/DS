@@ -33,7 +33,7 @@ namespace IS.Admin
                     var response = factory.AdministratorsRepository.AdministratorsStrategy.CheckAdministratorLogin(txtLoginame.Text, txtPassword.Text);
                     if (response != null)
                     {
-                        Globals.SetLoginId(response.Id, response.Loginname, response.AdminId);
+                        Globals.SetLoginId(response.Loginname, response.AdminId);
 
                         this.DialogResult = DialogResult.OK;
                     }

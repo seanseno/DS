@@ -32,13 +32,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.grpLoading = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dgvSearch = new System.Windows.Forms.DataGridView();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.dgvSearch = new System.Windows.Forms.DataGridView();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.AdminId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Name1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descriptions = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,8 +49,8 @@
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
             this.grpLoading.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSearch)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -89,49 +89,6 @@
             this.label1.Size = new System.Drawing.Size(102, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Loading...................";
-            // 
-            // dgvSearch
-            // 
-            this.dgvSearch.AllowUserToAddRows = false;
-            this.dgvSearch.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
-            this.dgvSearch.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSearch.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.AdminId,
-            this.Name1,
-            this.Descriptions,
-            this.Active,
-            this.InsertTime,
-            this.UpdateTime,
-            this.Edit,
-            this.Delete});
-            this.dgvSearch.Location = new System.Drawing.Point(15, 62);
-            this.dgvSearch.Name = "dgvSearch";
-            this.dgvSearch.ReadOnly = true;
-            this.dgvSearch.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSearch.Size = new System.Drawing.Size(998, 271);
-            this.dgvSearch.TabIndex = 1;
-            this.dgvSearch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSearch_CellClick);
-            this.dgvSearch.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSearch_CellFormatting);
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(15, 22);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(844, 26);
-            this.txtSearch.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(274, 34);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Administrators Menu";
             // 
             // pictureBox2
             // 
@@ -182,6 +139,49 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // dgvSearch
+            // 
+            this.dgvSearch.AllowUserToAddRows = false;
+            this.dgvSearch.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
+            this.dgvSearch.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSearch.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.AdminId,
+            this.Name1,
+            this.Descriptions,
+            this.Active,
+            this.InsertTime,
+            this.UpdateTime,
+            this.Edit,
+            this.Delete});
+            this.dgvSearch.Location = new System.Drawing.Point(15, 62);
+            this.dgvSearch.Name = "dgvSearch";
+            this.dgvSearch.ReadOnly = true;
+            this.dgvSearch.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSearch.Size = new System.Drawing.Size(998, 271);
+            this.dgvSearch.TabIndex = 1;
+            this.dgvSearch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSearch_CellClick);
+            this.dgvSearch.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSearch_CellFormatting);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(15, 22);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(844, 26);
+            this.txtSearch.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(274, 34);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Administrators Menu";
+            // 
             // AdminId
             // 
             this.AdminId.DataPropertyName = "AdminId";
@@ -213,7 +213,7 @@
             // 
             // Active
             // 
-            this.Active.DataPropertyName = "ActiveString";
+            this.Active.DataPropertyName = "Active";
             this.Active.HeaderText = "Active";
             this.Active.Name = "Active";
             this.Active.ReadOnly = true;
@@ -276,8 +276,8 @@
             this.groupBox1.PerformLayout();
             this.grpLoading.ResumeLayout(false);
             this.grpLoading.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSearch)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

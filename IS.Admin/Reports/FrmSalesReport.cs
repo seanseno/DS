@@ -31,7 +31,7 @@ namespace IS.Admin.Reports
         }
         private void LoadData()
         {
-            _list = factory.SalesRepository.GetSalesListReport().OrderByDescending(x => x.InsertTime).ToList();
+            _list = factory.SalesRepository.GetSalesListReport().OrderBy(x => x.InsertTime).ToList();
 
             _list = _list.Where(x =>
                     DateTimeConvertion.ConvertDateFrom(dtpFrom.Value) <= x.InsertTime && x.InsertTime <= DateTimeConvertion.ConvertDateTo(dtpTo.Value) &&

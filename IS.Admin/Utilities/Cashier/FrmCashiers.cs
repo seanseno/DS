@@ -36,7 +36,11 @@ namespace IS.Admin.Setup
             grpLoading.Refresh();
 
             CashiersModel Cashiers = new CashiersModel();
-            var response = Cashiers.CashierList(this, txtSearch.Text);
+            var response = factory.CashiersRepository.GetList()
+                            .Where(x => x.CashierId.ToUpper().Contains(txtSearch.Text.ToUpper()) ||
+                                x.Fullname.ToUpper().Contains(txtSearch.Text.ToUpper()))
+                            .OrderBy(y => y.Fullname)
+                            .ToList();
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = response;
             txtSearch.Focus();
@@ -44,12 +48,6 @@ namespace IS.Admin.Setup
             grpLoading.Visible = false;
             grpLoading.Refresh();
         }
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            LoadCashier();
-        }
-
         private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var Cashier = new Cashiers();
@@ -89,6 +87,26 @@ namespace IS.Admin.Setup
         {
             this.LoadCashier();
 
+        }
+
+        private void dgvSearch_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 3)
+            {
+                if (e.Value.ToString() == "1")
+                {
+                    e.Value = "Yes";
+                }
+                else
+                {
+                    e.Value = "No";
+                }
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            LoadCashier();
         }
     }
 }

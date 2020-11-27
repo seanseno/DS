@@ -1,4 +1,5 @@
-﻿using IS.Database;
+﻿using IS.Common.Utilities;
+using IS.Database;
 using IS.Database.Entities;
 using IS.Database.Enums;
 using System;
@@ -33,8 +34,8 @@ namespace IS.Admin.Utilities
             {
                 txtExpiration.Text = response.ExpirationAlert.ToString("N0");
                 txtReturnItem.Text = response.ReturnItem.ToString("N0");
-                txtSenior.Text = response.ExpirationAlert.ToString("N2");
-                txtPwd.Text = response.ExpirationAlert.ToString("N2");
+                txtSenior.Text = PercentConvertion.Percent(response.SeniorDiscount);
+                txtPwd.Text = PercentConvertion.Percent(response.PWDDiscount);
                 chkPrinter.Checked = response.WithPrinter == (int)EnumActive.Active ;
             }
         }

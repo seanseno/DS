@@ -33,6 +33,7 @@ namespace IS.KIOSK
         public string _AdditionalInfo { get; set; }
         public bool _IsDicounted { get; set; }
         public bool _WithPrinter { get; set; }
+        bool IsPwd { get; set; }
         public FrmMain()
         {
             InitializeComponent();
@@ -45,6 +46,7 @@ namespace IS.KIOSK
             {
                 this._WithPrinter = false;
             }
+            this.ActiveControl = txtCustomerName;
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -52,7 +54,6 @@ namespace IS.KIOSK
             if (!_WithPrinter)
             {
                 btnReprint.Visible = false;
-                btnExit.Location = new Point(861, 652);
             }
 
             _IsDicounted = false;
@@ -75,15 +76,15 @@ namespace IS.KIOSK
             if (response == DialogResult.OK)
             {
                 lblLogin.Text = "Current Login: " + Globals.LoginName;
-                this.ActiveControl = txtCustomerName;
             }
             
         }
         private void load()
         {
-            _TempLedgerSales = factory.TempLedgerSalesRepository.FindDefault(this._Cashier.CashierId,txtCustomerName.Text.ToUpper());
-            _TempOrderList = mainModel.LoadTempOders(this,txtCustomerName.Text).Item1;
-            _TotalPrice = mainModel.LoadTempOders(this, txtCustomerName.Text).Item2;
+            _Cashier = factory.CashiersRepository.GetList().Where(x => x.CashierId == Globals.LoginId).FirstOrDefault();
+            _TempLedgerSales = factory.TempLedgerSalesRepository.FindDefault(Globals.LoginId);
+            _TempOrderList = mainModel.LoadTempOders().Item1;
+            _TotalPrice = mainModel.LoadTempOders().Item2;
 
             if (_TempOrderList.Where(x => x.Discounted > 0).Count() > 0)
             {
@@ -116,32 +117,41 @@ namespace IS.KIOSK
             {
                 this.btnLoad_Click(sender, e);
             }
-
-            if (e.KeyValue == 115) //check out
+            if (e.KeyValue == 115) //Checkout
             {
-                this.btnCheckOut_Click(sender, e);;
+                this.btnCheckOut_Click(sender, e); ;
             }
-            if (e.KeyValue == 116) // Remove all
+
+            if (e.KeyValue == 116) //Senior
+            {
+                 btnSenior_Click(sender, e); ;
+            }
+            if (e.KeyValue == 117) // PWD
+            {
+                btnPWD_Click(sender, e); 
+            }
+
+            if (e.KeyValue == 118) // Remove all
             {
                 this.btnRemoveAll_Click(sender, e);
             }
-            if (e.KeyValue == 117) // Save 
+
+            if (e.KeyValue == 119) // Save 
             {
-                this.btnSave_Click(sender, e);;
+                this.btnSave_Click(sender, e); ;
             }
-            if (e.KeyValue == 118) // Return Item
+            if (e.KeyValue == 120) // Return Item
             {
                 this.btnReturnItem_Click(sender, e);
             }
-            if (e.KeyValue == 119) // Reprint
-            {
-                this.btnReprint_Click(sender, e);
-            }
-            if (e.KeyValue == 123) // Exit
+            if (e.KeyValue == 121) // Exit
             {
                 this.btnExit_Click(sender, e);
             }
-
+            if (e.KeyValue == 122) // Re-print
+            {
+                this.btnReprint_Click(sender, e);
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -236,12 +246,12 @@ namespace IS.KIOSK
                 {
                     if (_IsDicounted == true && string.IsNullOrEmpty(txtCustomerName.Text))
                     {
-                        MessageBox.Show("Product discounted Detected!, Customer Name is required!", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Product discounted Detected!, Customer Information is required!", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txtCustomerName.Focus();
                     }
                     else if (_IsDicounted == true && string.IsNullOrEmpty(txtAdditionalInfo.Text))
                     {
-                        MessageBox.Show("Product discounted Detected!, Additional Info is required!", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Product discounted Detected!, Customer Information is required!", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txtAdditionalInfo.Focus();
                     }
                     else
@@ -459,6 +469,68 @@ namespace IS.KIOSK
                 MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void RecomputeDiscount()
+        {
+            foreach (var item in _TempOrderList)
+            {
+                var sd = factory.StocksDataRepository.GetList().Where(x => x.ProductId == item.ProductId).FirstOrDefault();
+                var ProdDis = factory.ProductsDiscountedRepository.GetList().Where(x => x.ProductId == sd.ProductId).FirstOrDefault();
+                if (ProdDis != null)
+                {
+                    var PD = factory.ProductsRepository.ProductsStrategy.GetDiscountInfo(item.ProductId, item.Qty, IsPwd);
+                    item.PriceDiscounted = PD.PriceDiscounted;
+                    item.TotalPrice = PD.TotalPrice;
+                    item.Discounted = PD.Discounted;
+                    item.IsPWD = IsPwd == true ? 1 : 0;
+                    item.IsSenior = IsPwd == true ? 0 : 1;
+                    factory.TempSalesRepository.Update(item);
+                    load();
+                }
+                else
+                {
+                    if (factory.CategoryDiscountedRepository.GetList().Where(x => x.CategoryId == sd.CategoryId).Count() > 0)
+                    {
+                        var PD = factory.ProductsRepository.ProductsStrategy.GetDiscountInfo(item.ProductId, item.Qty, IsPwd);
+                        item.PriceDiscounted = PD.PriceDiscounted;
+                        item.TotalPrice = PD.TotalPrice;
+                        item.Discounted = PD.Discounted;
+                        item.IsPWD = IsPwd == true ? 1 : 0;
+                        item.IsSenior = IsPwd == true ? 0 : 1;
+                        factory.TempSalesRepository.Update(item);
+                        load();
+                    }
+                }
+            }
+        }
 
+        private void btnSenior_Click(object sender, EventArgs e)
+        {
+            if (this._TempOrderList.Count() > 0)
+            {
+                FrmSeniorCitizen frm = new FrmSeniorCitizen();
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    txtCustomerName.Text = frm.CustomerName;
+                    txtAdditionalInfo.Text = frm.AdditionalInfo;
+                    IsPwd = false;
+                    RecomputeDiscount();
+                }
+            }
+        }
+
+        private void btnPWD_Click(object sender, EventArgs e)
+        {
+            if (this._TempOrderList.Count() > 0)
+            {
+                FrmPWD frm = new FrmPWD();
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    txtCustomerName.Text = frm.CustomerName;
+                    txtAdditionalInfo.Text = frm.AdditionalInfo;
+                    IsPwd = true;
+                    RecomputeDiscount();
+                }
+            }
+        }
     }
 }

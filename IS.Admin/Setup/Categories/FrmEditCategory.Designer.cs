@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEditCategory));
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -37,10 +38,20 @@
             this.txtCategoryName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(6, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(188, 34);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Edit Category";
             // 
             // panel1
             // 
@@ -69,6 +80,7 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.White;
+            this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.txtPercent);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.txtCategoryName);
@@ -86,7 +98,7 @@
             this.txtPercent.Location = new System.Drawing.Point(128, 77);
             this.txtPercent.MaxLength = 255;
             this.txtPercent.Name = "txtPercent";
-            this.txtPercent.Size = new System.Drawing.Size(362, 26);
+            this.txtPercent.Size = new System.Drawing.Size(72, 26);
             this.txtPercent.TabIndex = 1;
             this.txtPercent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPercent_KeyPress);
             // 
@@ -131,15 +143,15 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // label3
+            // label5
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(188, 34);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Edit Category";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(206, 83);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(20, 16);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "%";
             // 
             // FrmEditCategory
             // 
@@ -173,5 +185,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPercent;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label5;
     }
 }

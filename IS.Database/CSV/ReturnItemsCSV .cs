@@ -19,6 +19,9 @@ namespace IS.Database.CSV
         [Name("Price")]
         public string Price { get; set; }
 
+        [Name("Remarks")]
+        public string Remarks { get; set; }
+
         [Name("Date And Time")]
         public string InsertTime { get; set; }
     }

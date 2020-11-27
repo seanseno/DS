@@ -66,6 +66,7 @@
     <Compile Include="Utilities\DateTimeConvertion.cs" />
     <Compile Include="Utilities\Encryption.cs" />
     <Compile Include="Utilities\Globals.cs" />
+    <Compile Include="Utilities\PercentConvertion.cs" />
     <Compile Include="Utilities\SingleQuoteCorrection.cs" />
     <Compile Include="Utilities\WordWrap.cs" />
   </ItemGroup>

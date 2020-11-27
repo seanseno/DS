@@ -147,6 +147,22 @@ namespace IS.Database.Repositories
             }
         }
 
+        public void Update(TempSales tempSales)
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "UPDATE TempSales " +
+                    "SET PriceDiscounted = " + tempSales.PriceDiscounted + "," +
+                    "Discounted = " + tempSales.Discounted + "," +
+                    "TotalPrice = " + tempSales.TotalPrice + " " +
+                    "WHERE Id = " + tempSales.Id  ;
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
         public TempSalesStrategy TempSalesStrategy => new TempSalesStrategy();
     }
 }

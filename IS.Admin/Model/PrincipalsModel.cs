@@ -38,11 +38,6 @@ namespace IS.Admin.Model
             return factory.PrincipalsRepository.PrincipalsStrategy.CheckDuplicate(model.PrincipalId, model.PrincipalName);
         }
 
-        public bool CheckDup(FrmAddPrincipal frm)
-        {
-           var factory = new ISFactory();
-           return factory.PrincipalsRepository.PrincipalsStrategy.CheckDuplicate(frm._Principals.PrincipalId,frm._Principals.PrincipalName);
-        }
         public bool CheckEditDup(string name, int? PrincipalId)
         {
             var factory = new ISFactory();

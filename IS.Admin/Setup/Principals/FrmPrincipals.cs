@@ -1,4 +1,5 @@
 ﻿using IS.Admin.Model;
+using IS.Database;
 using IS.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace IS.Admin.Setup
     public partial class FrmPrincipals : BaseForm
     {
         IList<Principals> _list = new List<Principals>();
+        ISFactory factory = new ISFactory();
         public FrmPrincipals()
         {
             InitializeComponent();
@@ -34,14 +36,19 @@ namespace IS.Admin.Setup
             grpLoading.Visible = true;
             grpLoading.Refresh();
 
-            PrincipalsModel Principals = new PrincipalsModel();
-             _list = Principals.PrincipalList(this, txtSearch.Text);
+            _list = factory.PrincipalsRepository.GetList()
+                    .Where(x => x.PrincipalId.ToUpper().Contains(txtSearch.Text.ToUpper()) ||
+                            x.PrincipalName.ToUpper().Contains(txtSearch.Text.ToUpper()))
+                    .OrderBy(y=>y.PrincipalName)
+                    .ToList();
+
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = _list;
             txtSearch.Focus();
 
             grpLoading.Visible = false;
             grpLoading.Refresh();
+            DisplayTotal();
         }
 
         private void dgvSearch_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -110,7 +117,7 @@ namespace IS.Admin.Setup
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 this.LoadPrincipal();
-                DisplayTotal();
+                
             }
         }
 

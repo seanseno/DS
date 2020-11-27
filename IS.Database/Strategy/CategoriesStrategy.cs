@@ -10,24 +10,13 @@ namespace IS.Database.Strategy
 {
     public class CategoriesStrategy : Helper
     {
+        ISFactory factory = new ISFactory();
         public bool CheckDuplicate(string CategoryId,string CategoryName)
         {
-            using (SqlConnection connection = new SqlConnection(ConStr))
-            {
-                connection.Open();
-                var select = "SELECT CategoryName FROM vCategories WHERE CategoryId = '" + CategoryId + "' OR CategoryName = '" + SingleQuoteCorrection.convert(CategoryName)  + "'";
-                using (SqlCommand cmd = new SqlCommand(select,connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                           return true;
-                        }
-                        return false;
-                    }
-                }
-            }
+            return factory.CategoriesRepository.GetList()
+                          .Where(x => x.CategoryId.ToUpper().Contains(CategoryId.ToUpper()) ||
+                            x.CategoryName == SingleQuoteCorrection.convert(CategoryName).ToUpper()).Count() > 0;
+           
         }
 
 

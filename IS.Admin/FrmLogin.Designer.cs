@@ -93,7 +93,6 @@
             this.txtLoginame.Name = "txtLoginame";
             this.txtLoginame.Size = new System.Drawing.Size(231, 22);
             this.txtLoginame.TabIndex = 0;
-            this.txtLoginame.Text = "admin";
             this.txtLoginame.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLoginame_KeyDown);
             // 
             // lblPassword
@@ -115,7 +114,6 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(231, 22);
             this.txtPassword.TabIndex = 1;
-            this.txtPassword.Text = "123123";
             this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
             // lblLoginname

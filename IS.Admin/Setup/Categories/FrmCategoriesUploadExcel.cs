@@ -2,6 +2,7 @@
 using ExcelDataReader;
 using IS.Admin.Model;
 using IS.Common.Reader;
+using IS.Database;
 using IS.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace IS.Admin.Setup
     {
         DataTableCollection tableCollection;
         DataTable dt;
+        ISFactory factory = new ISFactory();
         public FrmCategoriesUploadExcel()
         {
             InitializeComponent();
@@ -94,7 +96,7 @@ namespace IS.Admin.Setup
                             rowIndex++;
                             var category = new Categories();
                             category.CategoryId = row[0].ToString().ToUpper();
-                            category.CategoryName = row[1].ToString().ToUpper();
+                            category.CategoryName = row[1].ToString();
                             if (!string.IsNullOrEmpty(row[2].ToString()))
                             {
                                 category.PercentSuggestedPrice = Convert.ToDecimal(row[2]);
@@ -111,7 +113,7 @@ namespace IS.Admin.Setup
                                 lblpbar.Refresh();
                                 return;
                             }
-                            else if (request.CheckDup(category))
+                            else if (factory.CategoriesRepository.CategoriesStrategy.CheckDuplicate(category.CategoryId, category.CategoryName))
                             {
                                 MessageBox.Show(string.Format("Row {0}, Category Id :{1} or Category Name :{2} already exist!", rowIndex, category.CategoryId.ToUpper(), category.CategoryName.ToUpper()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 dgvExcel.Rows[rowIndex - 1].Selected = true;

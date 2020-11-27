@@ -1,4 +1,5 @@
 ﻿using IS.Admin.Model;
+using IS.Database;
 using IS.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace IS.Admin.Setup
     public partial class FrmAddProduct : BaseForm
     {
         public Products _Products = new Products();
+        ISFactory factory = new ISFactory();
         public FrmAddProduct()
         {
             InitializeComponent();
@@ -34,7 +36,7 @@ namespace IS.Admin.Setup
             {
                 if (CheckAlreadyExist())
                 {
-                    MessageBox.Show("Product ID already exist!", "Information!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Product ID already exist!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtProductId.Focus();
                 }
                 else
@@ -72,8 +74,7 @@ namespace IS.Admin.Setup
 
         private bool CheckAlreadyExist()
         {
-            ProductsModel productsModel = new ProductsModel();
-            return productsModel.CheckDup(txtProductId.Text.ToUpper());
+            return factory.ProductsRepository.ProductsStrategy.CheckDuplicate(txtProductId.Text);
         }
 
         private bool CheckRequiredInput()

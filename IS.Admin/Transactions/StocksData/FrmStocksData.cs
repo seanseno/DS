@@ -155,7 +155,7 @@ namespace IS.Admin.Transactions
             Helper hp = new Helper();
             foreach (DataGridViewRow row in dgvSearch.Rows)
             {
-                var days = DateConvertion.DaysBetween(Convert.ToDateTime(row.Cells[11].Value), DateTime.Now);
+                var days = DateConvertion.DaysBetween(Convert.ToDateTime(row.Cells[12].Value), DateTime.Now);
 
                 if (days <= hp.ExpirationAlert)
                 {
