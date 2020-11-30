@@ -216,7 +216,11 @@ namespace IS.Admin.Setup
                                 item.ProductName = obj.ProductName;
                                 item.Price = obj.Price.ToString("N2");
                                 item.InserTime = obj.InsertTime.ToString("hh:mm tt");
-                                item.UpdateTime = obj.UpdateTime.ToString("hh:mm tt");
+                                if (obj.UpdateTime != null)
+                                {
+                                    item.UpdateTime = obj.UpdateTime?.ToString("hh:mm tt");
+                                }
+                               
                                 item.Active = ((EnumActive)obj.Active).ToString() ;
                                 item.Barcode = obj.BarCode;
                                 list.Add(item);

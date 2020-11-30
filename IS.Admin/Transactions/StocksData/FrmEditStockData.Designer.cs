@@ -33,6 +33,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtSuggestedPrice = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.cboCategories = new System.Windows.Forms.ComboBox();
             this.cboPrincipals = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -60,8 +62,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.txtSuggestedPrice = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -134,6 +134,27 @@
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Input Details";
+            // 
+            // txtSuggestedPrice
+            // 
+            this.txtSuggestedPrice.Enabled = false;
+            this.txtSuggestedPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSuggestedPrice.Location = new System.Drawing.Point(129, 327);
+            this.txtSuggestedPrice.MaxLength = 10;
+            this.txtSuggestedPrice.Name = "txtSuggestedPrice";
+            this.txtSuggestedPrice.ReadOnly = true;
+            this.txtSuggestedPrice.Size = new System.Drawing.Size(357, 26);
+            this.txtSuggestedPrice.TabIndex = 5;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(18, 333);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(111, 16);
+            this.label11.TabIndex = 44;
+            this.label11.Text = "Suggested Price:";
             // 
             // cboCategories
             // 
@@ -356,6 +377,7 @@
             // 
             // txtProductId
             // 
+            this.txtProductId.Enabled = false;
             this.txtProductId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtProductId.Location = new System.Drawing.Point(109, 24);
             this.txtProductId.MaxLength = 5;
@@ -367,6 +389,7 @@
             // 
             // txtProductName
             // 
+            this.txtProductName.Enabled = false;
             this.txtProductName.Location = new System.Drawing.Point(109, 56);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.ReadOnly = true;
@@ -406,27 +429,6 @@
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // txtSuggestedPrice
-            // 
-            this.txtSuggestedPrice.Enabled = false;
-            this.txtSuggestedPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSuggestedPrice.Location = new System.Drawing.Point(129, 327);
-            this.txtSuggestedPrice.MaxLength = 10;
-            this.txtSuggestedPrice.Name = "txtSuggestedPrice";
-            this.txtSuggestedPrice.ReadOnly = true;
-            this.txtSuggestedPrice.Size = new System.Drawing.Size(357, 26);
-            this.txtSuggestedPrice.TabIndex = 5;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(18, 333);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(111, 16);
-            this.label11.TabIndex = 44;
-            this.label11.Text = "Suggested Price:";
             // 
             // FrmEditStockData
             // 

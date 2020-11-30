@@ -5,12 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 
 namespace IS.Database.Repositories
 {
     public class CashiersRepository : Helper
     {
+        ISFactory factory = new ISFactory();
         public IList<Cashiers> GetList()
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
@@ -186,31 +188,42 @@ namespace IS.Database.Repositories
 
         public string GetNextId()
         {
-            using (SqlConnection connection = new SqlConnection(ConStr))
+            var obj = factory.CashiersRepository.GetList().OrderByDescending(x => x.Id).FirstOrDefault();
+            if (obj != null)
             {
-                connection.Open();
-                var select = "SELECT Id + 1 as Id From Cashiers ORDER BY id DESC";
-
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                int Id = reader.GetInt32(0);
-                                return "M" + Id.ToString("0000");
-                            }
-                        }
-                        else
-                        {
-                            return "M0001";
-                        }
-                        return null;
-                    }
-                }
+                var catId = Convert.ToInt32(obj.CashierId.Substring(1, obj.CashierId.Length - 1)) + 1;
+                var newId = "M" + catId.ToString("0000");
+                return newId;
             }
+            else
+            {
+                return "M0001";
+            }
+            //using (SqlConnection connection = new SqlConnection(ConStr))
+            //{
+            //    connection.Open();
+            //    var select = "SELECT Id + 1 as Id From Cashiers ORDER BY id DESC";
+
+            //    using (SqlCommand cmd = new SqlCommand(select, connection))
+            //    {
+            //        using (SqlDataReader reader = cmd.ExecuteReader())
+            //        {
+            //            if (reader.HasRows)
+            //            {
+            //                while (reader.Read())
+            //                {
+            //                    int Id = reader.GetInt32(0);
+            //                    return "M" + Id.ToString("0000");
+            //                }
+            //            }
+            //            else
+            //            {
+            //                return "M0001";
+            //            }
+            //            return null;
+            //        }
+            //    }
+            //}
         }
 
         public CashiersStrategy CashiersStrategy => new CashiersStrategy();

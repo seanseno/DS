@@ -58,11 +58,6 @@ namespace IS.Admin.Model
             return factory.ProductsRepository.ProductsStrategy.ItemAlreadyInUse(itemId);
         }
 
-        public bool CheckProductIfExist(string productId)
-        {
-            var factory = new ISFactory();
-            return factory.ProductsRepository.ProductsStrategy.CheckIfProductExist(productId);
-        }
 
         public void InsertItem(Products model)
         {

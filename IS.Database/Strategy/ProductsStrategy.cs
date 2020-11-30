@@ -64,23 +64,9 @@ namespace IS.Database.Strategy
 
         public bool CheckIfProductExist(string ProductId)
         {
-            using (SqlConnection connection = new SqlConnection(ConStr))
-            {
-                connection.Open();
-                var select = "SELECT ProductId FROM Products WHERE ProductId = '" + ProductId + "'";
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            return true;
-                        }
-                        return false;
-                    }
-                }
-            }
+            return factory.ProductsRepository.GetList().Where(x=>x.ProductId == ProductId).Count() > 0 ;
         }
+
         public ProductDiscounted GetDiscountInfo(string ProductId, int Qty,bool isPWD)
         {
             var PD = new ProductDiscounted();

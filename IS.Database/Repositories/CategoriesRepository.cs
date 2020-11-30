@@ -7,12 +7,14 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 
 namespace IS.Database.Repositories
 {
     public class CategoriesRepository : Helper
     {
+        ISFactory factory = new ISFactory();
         public IList<Categories> GetList()
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
@@ -175,31 +177,16 @@ namespace IS.Database.Repositories
 
         public string GetNextId()
         {
-            using (SqlConnection connection = new SqlConnection(ConStr))
+            var obj = factory.CategoriesRepository.GetList().OrderByDescending(x => x.Id).FirstOrDefault();
+            if (obj != null)
             {
-                connection.Open();
-                var select = "SELECT Id + 1 as Id From Categories ORDER BY id DESC";
-
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                int Id = reader.GetInt32(0);
-                                return "C" + Id.ToString("0000");
-                            }
-                        }
-                        else
-                        {
-                            return "C0001";
-                        }
-                        return null;
-
-                    }
-                }
+                var catId =Convert.ToInt32(obj.CategoryId.Substring(1, obj.CategoryId.Length-1)) + 1 ;
+                var newId = "C" + catId.ToString("0000");
+                return newId;
+            }
+            else
+            {
+                return "C0001";
             }
         }
 

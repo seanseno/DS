@@ -256,6 +256,8 @@ namespace IS.KIOSK
                     }
                     else
                     {
+                        this._CustomerName = txtCustomerName.Text;
+                        this._AdditionalInfo = txtAdditionalInfo.Text;
                         FrmCheckOut frm = new FrmCheckOut(this);
                         if (frm.ShowDialog() == DialogResult.OK)
                         {
@@ -387,15 +389,6 @@ namespace IS.KIOSK
             frm.ShowDialog();
         }
 
-        private void txtAdditionalInfo_KeyUp(object sender, KeyEventArgs e)
-        {
-            _AdditionalInfo = txtAdditionalInfo.Text;
-        }
-
-        private void txtCustomerName_KeyUp(object sender, KeyEventArgs e)
-        {
-            _CustomerName = txtCustomerName.Text;
-        }
 
         private void btnReprint_Click(object sender, EventArgs e)
         {

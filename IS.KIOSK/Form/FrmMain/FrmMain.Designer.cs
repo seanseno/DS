@@ -106,7 +106,6 @@
             this.txtCustomerName.Name = "txtCustomerName";
             this.txtCustomerName.Size = new System.Drawing.Size(471, 22);
             this.txtCustomerName.TabIndex = 0;
-            this.txtCustomerName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtCustomerName_KeyUp);
             // 
             // txtAdditionalInfo
             // 
@@ -116,7 +115,6 @@
             this.txtAdditionalInfo.Size = new System.Drawing.Size(475, 71);
             this.txtAdditionalInfo.TabIndex = 1;
             this.txtAdditionalInfo.Text = "";
-            this.txtAdditionalInfo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtAdditionalInfo_KeyUp);
             // 
             // label4
             // 

@@ -5,6 +5,7 @@ using IS.Common.Reader;
 using IS.Common.Utilities;
 using IS.Database;
 using IS.Database.Entities;
+using IS.Database.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -119,7 +120,7 @@ namespace IS.Admin.Transactions
                                 dgvExcel.Rows[rowIndex - 1].Selected = true;
                                 return;
                             }
-                            else if (!pModel.CheckProductIfExist(row[2].ToString().ToUpper()))
+                            else if (factory.ProductsRepository.GetList().Where(x=>x.ProductId == row[2].ToString() || x.Active == (int)EnumActive.Active).Count() > 0)
                             {
                                 MessageBox.Show(string.Format("Product ID:{0} does not exist!", row[2].ToString().ToUpper()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 dgvExcel.Rows[rowIndex - 1].Selected = true;

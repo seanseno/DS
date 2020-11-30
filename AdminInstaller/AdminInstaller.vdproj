@@ -928,12 +928,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B5785D24F9BE5886B7D1DF1E338708FC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_8F590FB57BD649169BA5E016FD0FB9D8"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1681,6 +1675,12 @@
         "OwnerKey" = "8:_736E5AF60A26784A51F64ACB8A431413"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B5785D24F9BE5886B7D1DF1E338708FC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -1699,6 +1699,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -1715,6 +1731,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -5820,22 +5844,22 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Admin Installer"
         "ProductCode" = "8:{87FC0145-F191-46DE-93DE-E320D93BA5AB}"
-        "PackageCode" = "8:{B2990747-AB83-40DC-86C9-EA10A2B8A8CF}"
+        "PackageCode" = "8:{9B2F7554-E8CB-42DC-B1D1-586A6BE04E48}"
         "UpgradeCode" = "8:{436E91F6-76D7-4F23-9FC7-08DE6291CB12}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
-        "InstallAllUsers" = "11:FALSE"
+        "InstallAllUsers" = "11:TRUE"
         "ProductVersion" = "8:1.0.0"
         "Manufacturer" = "8:SP"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:Admin Installer"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Sean"
+        "ARPCONTACT" = "8:SeanPogz"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:"
+        "ARPCOMMENTS" = "8:Admin Pharmachic Drugstore "
         "ARPURLINFOABOUT" = "8:"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"

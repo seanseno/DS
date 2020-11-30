@@ -50,16 +50,6 @@ namespace IIS.Admin.Transactions
             grpLoading.Refresh();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            FrmAddStockData frm = new FrmAddStockData();
-            if (frm.ShowDialog() == DialogResult.OK)
-            {
-                this.LoadStockData();
-                DisplayTotal();
-
-            }
-        }
         private void DisplayTotal()
         {
             string TotalStr = "Total Record 0";

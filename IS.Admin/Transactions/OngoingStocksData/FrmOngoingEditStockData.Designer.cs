@@ -253,6 +253,7 @@
             // 
             // txtProductId
             // 
+            this.txtProductId.Enabled = false;
             this.txtProductId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtProductId.Location = new System.Drawing.Point(109, 24);
             this.txtProductId.MaxLength = 5;
@@ -264,6 +265,7 @@
             // 
             // txtProductName
             // 
+            this.txtProductName.Enabled = false;
             this.txtProductName.Location = new System.Drawing.Point(109, 56);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.ReadOnly = true;

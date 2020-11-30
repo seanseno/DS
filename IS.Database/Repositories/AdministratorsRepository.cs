@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 
 namespace IS.Database.Repositories
@@ -12,6 +13,7 @@ namespace IS.Database.Repositories
     public class AdministratorsRepository : Helper
     {
 
+        ISFactory factory = new ISFactory();
         public IList<Administrators> GetList()
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
@@ -103,31 +105,42 @@ namespace IS.Database.Repositories
 
         public string GetNextId()
         {
-            using (SqlConnection connection = new SqlConnection(ConStr))
+            var obj = factory.AdministratorsRepository.GetList().OrderByDescending(x => x.Id).FirstOrDefault();
+            if (obj != null)
             {
-                connection.Open();
-                var select = "SELECT Id + 1 as Id From Administrators ORDER BY id DESC";
-
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                int Id = reader.GetInt32(0);
-                                return "A" + Id.ToString("0000");
-                            }
-                        }
-                        else
-                        {
-                            return "A0001";
-                        }
-                        return null;
-                    }
-                }
+                var catId = Convert.ToInt32(obj.AdminId.Substring(1, obj.AdminId.Length - 1)) + 1;
+                var newId = "A" + catId.ToString("0000");
+                return newId;
             }
+            else
+            {
+                return "A0001";
+            }
+            //using (SqlConnection connection = new SqlConnection(ConStr))
+            //{
+            //    connection.Open();
+            //    var select = "SELECT Id + 1 as Id From Administrators ORDER BY id DESC";
+
+            //    using (SqlCommand cmd = new SqlCommand(select, connection))
+            //    {
+            //        using (SqlDataReader reader = cmd.ExecuteReader())
+            //        {
+            //            if (reader.HasRows)
+            //            {
+            //                while (reader.Read())
+            //                {
+            //                    int Id = reader.GetInt32(0);
+            //                    return "A" + Id.ToString("0000");
+            //                }
+            //            }
+            //            else
+            //            {
+            //                return "A0001";
+            //            }
+            //            return null;
+            //        }
+            //    }
+            //}
         }
 
 

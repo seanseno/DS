@@ -13,7 +13,7 @@ namespace IS.Database.Entities
         public string ProductName { get; set; }
         public decimal Price { get; set; }
         public DateTime InsertTime { get; set; }
-        public DateTime UpdateTime { get; set; }
+        public DateTime? UpdateTime { get; set; }
         public int Active { get; set; }
         public string BarCode { get; set; }
         public string ActiveString { get; set; }

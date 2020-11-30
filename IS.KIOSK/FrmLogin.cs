@@ -32,7 +32,6 @@ namespace IS.KIOSK
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-
             try
             {
                 var response = factory.CashiersRepository.CashiersStrategy.CheckCashierLogin(txtLoginame.Text, txtPassword.Text);

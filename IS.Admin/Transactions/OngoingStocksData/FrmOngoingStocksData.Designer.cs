@@ -90,7 +90,7 @@
             // 
             this.btnSearch.Image = global::IS.Admin.Properties.Resources.search;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.Location = new System.Drawing.Point(1080, 22);
+            this.btnSearch.Location = new System.Drawing.Point(331, 17);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(76, 39);
             this.btnSearch.TabIndex = 1;
@@ -147,7 +147,7 @@
             // 
             this.btnAdd.Image = global::IS.Admin.Properties.Resources.Add;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdd.Location = new System.Drawing.Point(1162, 22);
+            this.btnAdd.Location = new System.Drawing.Point(413, 17);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(66, 39);
             this.btnAdd.TabIndex = 2;
@@ -327,7 +327,7 @@
             this.txtSearch.Location = new System.Drawing.Point(15, 22);
             this.txtSearch.MaxLength = 100;
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(1043, 26);
+            this.txtSearch.Size = new System.Drawing.Size(305, 26);
             this.txtSearch.TabIndex = 0;
             // 
             // label2

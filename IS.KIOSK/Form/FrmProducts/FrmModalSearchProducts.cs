@@ -50,15 +50,18 @@ namespace IS.KIOSK
         {
             dgvProducts.DataSource = null;
             dgvProducts.AutoGenerateColumns = false;
-            dgvProducts.DataSource = this._ProductList
-                                    .Where(x => x.CategoryName.Contains(txtSearch.Text.ToUpper()) ||
-                                        x.ProductId.Contains(txtSearch.Text.ToUpper()) ||
-                                        x.ProductName.Contains(txtSearch.Text.ToUpper()) ||
+            var response = this._ProductList
+                                    .Where(x => x.CategoryName.ToUpper().Contains(txtSearch.Text.ToUpper()) ||
+                                        x.ProductId.ToUpper().Contains(txtSearch.Text.ToUpper()) ||
+                                        x.ProductName.ToUpper().Contains(txtSearch.Text.ToUpper()) ||
                                         x.BarCode.Contains(txtSearch.Text))
                                     .OrderBy(y => y.ProductName).ToList();
-                                    
+
+            dgvProducts.DataSource = response;
             dgvProducts.StandardTab = true;
-            dgvProducts.Refresh(); 
+            dgvProducts.Refresh();
+
+            DisplayTotal(response.Count());
         }
 
   
@@ -96,15 +99,10 @@ namespace IS.KIOSK
 
 
             }
-            DisplayTotal();
-
         }
 
-        private void DisplayTotal()
+        private void DisplayTotal(int TotalCount)
         {
-
-            int TotalCount = factory.ProductsRepository.GetTotalCount();
-
             string TotalStr = "Total Record 0";
             if (TotalCount > 1)
             {

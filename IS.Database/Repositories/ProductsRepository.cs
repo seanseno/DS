@@ -8,12 +8,14 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 
 namespace IS.Database.Repositories
 {
     public class ProductsRepository : Helper
     {
+        ISFactory factory = new ISFactory();
         public List<Products> GetList()
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
@@ -214,32 +216,43 @@ namespace IS.Database.Repositories
 
         public string GetNextId()
         {
-            using (SqlConnection connection = new SqlConnection(ConStr))
+            var obj = factory.ProductsRepository.GetList().OrderByDescending(x => x.Id).FirstOrDefault();
+            if (obj != null)
             {
-                connection.Open();
-                var select = "SELECT Id + 1 as Id From Products ORDER BY id DESC";
-
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                int Id = reader.GetInt32(0);
-                                return "I" + Id.ToString("000000");
-                            }
-                        }
-                        else
-                        {
-                            return "I000001";
-                        }
-                        return null;
-
-                    }
-                }
+                var catId = Convert.ToInt32(obj.ProductId.Substring(1, obj.ProductId.Length - 1)) + 1;
+                var newId = "I" + catId.ToString("000000");
+                return newId;
             }
+            else
+            {
+                return "I000001";
+            }
+            //using (SqlConnection connection = new SqlConnection(ConStr))
+            //{
+            //    connection.Open();
+            //    var select = "SELECT Id + 1 as Id From Products ORDER BY id DESC";
+
+            //    using (SqlCommand cmd = new SqlCommand(select, connection))
+            //    {
+            //        using (SqlDataReader reader = cmd.ExecuteReader())
+            //        {
+            //            if (reader.HasRows)
+            //            {
+            //                while (reader.Read())
+            //                {
+            //                    int Id = reader.GetInt32(0);
+            //                    return "I" + Id.ToString("000000");
+            //                }
+            //            }
+            //            else
+            //            {
+            //                return "I000001";
+            //            }
+            //            return null;
+
+            //        }
+            //    }
+            //}
         }
 
         /// <summary>

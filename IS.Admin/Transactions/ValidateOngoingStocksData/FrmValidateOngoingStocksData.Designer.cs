@@ -35,15 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.dgvSearch = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.lblTotal = new System.Windows.Forms.Label();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.grpLoading = new System.Windows.Forms.GroupBox();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrincipalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +49,13 @@
             this.ExpirationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Validate = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.grpLoading = new System.Windows.Forms.GroupBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.grpLoading.SuspendLayout();
@@ -85,19 +84,6 @@
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::IS.Admin.Properties.Resources.Add;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdd.Location = new System.Drawing.Point(1092, 17);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(66, 39);
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // dgvSearch
             // 
@@ -128,84 +114,6 @@
             this.dgvSearch.Size = new System.Drawing.Size(1143, 445);
             this.dgvSearch.TabIndex = 1;
             this.dgvSearch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSearch_CellClick);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 180);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Loading...................";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::IS.Admin.Properties.Resources.Spinner;
-            this.pictureBox2.Location = new System.Drawing.Point(24, 30);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(123, 133);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(12, 64);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(89, 13);
-            this.lblTotal.TabIndex = 15;
-            this.lblTotal.Text = "Total Record(s) 0";
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Image = global::IS.Admin.Properties.Resources.search;
-            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.Location = new System.Drawing.Point(1016, 17);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(76, 39);
-            this.btnSearch.TabIndex = 1;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // grpLoading
-            // 
-            this.grpLoading.Controls.Add(this.label1);
-            this.grpLoading.Controls.Add(this.pictureBox2);
-            this.grpLoading.Location = new System.Drawing.Point(636, 202);
-            this.grpLoading.Name = "grpLoading";
-            this.grpLoading.Size = new System.Drawing.Size(168, 210);
-            this.grpLoading.TabIndex = 14;
-            this.grpLoading.TabStop = false;
-            this.grpLoading.Text = "Pleaase wait..";
-            this.grpLoading.Visible = false;
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(15, 22);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(966, 26);
-            this.txtSearch.TabIndex = 0;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.Color.White;
-            this.groupBox1.Controls.Add(this.lblTotal);
-            this.groupBox1.Controls.Add(this.btnSearch);
-            this.groupBox1.Controls.Add(this.grpLoading);
-            this.groupBox1.Controls.Add(this.btnClose);
-            this.groupBox1.Controls.Add(this.btnAdd);
-            this.groupBox1.Controls.Add(this.dgvSearch);
-            this.groupBox1.Controls.Add(this.txtSearch);
-            this.groupBox1.Location = new System.Drawing.Point(18, 55);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1178, 598);
-            this.groupBox1.TabIndex = 17;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Stocks Data List";
             // 
             // Id
             // 
@@ -354,6 +262,83 @@
             this.Validate.UseColumnTextForButtonValue = true;
             this.Validate.Width = 125;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(21, 180);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(102, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Loading...................";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::IS.Admin.Properties.Resources.Spinner;
+            this.pictureBox2.Location = new System.Drawing.Point(24, 30);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(123, 133);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(12, 64);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(89, 13);
+            this.lblTotal.TabIndex = 15;
+            this.lblTotal.Text = "Total Record(s) 0";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Image = global::IS.Admin.Properties.Resources.search;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.Location = new System.Drawing.Point(326, 17);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(76, 39);
+            this.btnSearch.TabIndex = 1;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // grpLoading
+            // 
+            this.grpLoading.Controls.Add(this.label1);
+            this.grpLoading.Controls.Add(this.pictureBox2);
+            this.grpLoading.Location = new System.Drawing.Point(636, 202);
+            this.grpLoading.Name = "grpLoading";
+            this.grpLoading.Size = new System.Drawing.Size(168, 210);
+            this.grpLoading.TabIndex = 14;
+            this.grpLoading.TabStop = false;
+            this.grpLoading.Text = "Pleaase wait..";
+            this.grpLoading.Visible = false;
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(15, 22);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(305, 26);
+            this.txtSearch.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.White;
+            this.groupBox1.Controls.Add(this.lblTotal);
+            this.groupBox1.Controls.Add(this.btnSearch);
+            this.groupBox1.Controls.Add(this.grpLoading);
+            this.groupBox1.Controls.Add(this.btnClose);
+            this.groupBox1.Controls.Add(this.dgvSearch);
+            this.groupBox1.Controls.Add(this.txtSearch);
+            this.groupBox1.Location = new System.Drawing.Point(18, 55);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1178, 598);
+            this.groupBox1.TabIndex = 17;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Stocks Data List";
+            // 
             // FrmValidateOngoingStocksData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -384,7 +369,6 @@
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.DataGridView dgvSearch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox2;

@@ -164,7 +164,7 @@ namespace IS.Admin.Setup
 
                         lblpbar.Text = "";
                         lblpbar.Refresh();
-                        MessageBox.Show("Product Uploaded!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Products Uploaded!", "Information.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.DialogResult = DialogResult.OK;
                     }
                 }

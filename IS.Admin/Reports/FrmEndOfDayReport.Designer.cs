@@ -290,7 +290,7 @@
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.Format = "N2";
             this.Price.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Price.HeaderText = "Price";
+            this.Price.HeaderText = "Selling Price";
             this.Price.Name = "Price";
             this.Price.ReadOnly = true;
             // 
@@ -301,7 +301,7 @@
             dataGridViewCellStyle4.Format = "N2";
             dataGridViewCellStyle4.NullValue = null;
             this.TotalPrice.DefaultCellStyle = dataGridViewCellStyle4;
-            this.TotalPrice.HeaderText = "Total Price";
+            this.TotalPrice.HeaderText = "Total Amount";
             this.TotalPrice.Name = "TotalPrice";
             this.TotalPrice.ReadOnly = true;
             // 

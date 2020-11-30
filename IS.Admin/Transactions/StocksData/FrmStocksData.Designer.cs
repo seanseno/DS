@@ -43,8 +43,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.dgvSearch = new System.Windows.Forms.DataGridView();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.History = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,6 +60,8 @@
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ReturnToSupplier = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.grpLoading.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -99,7 +99,7 @@
             // 
             this.btnSearch.Image = global::IS.Admin.Properties.Resources.search;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.Location = new System.Drawing.Point(1112, 17);
+            this.btnSearch.Location = new System.Drawing.Point(332, 17);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(76, 39);
             this.btnSearch.TabIndex = 1;
@@ -169,7 +169,7 @@
             // 
             this.btnAdd.Image = global::IS.Admin.Properties.Resources.Add;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdd.Location = new System.Drawing.Point(1194, 17);
+            this.btnAdd.Location = new System.Drawing.Point(414, 17);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(66, 39);
             this.btnAdd.TabIndex = 2;
@@ -213,25 +213,6 @@
             this.dgvSearch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSearch_CellClick);
             this.dgvSearch.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSearch_CellFormatting);
             this.dgvSearch.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSearch_DataBindingComplete);
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(15, 22);
-            this.txtSearch.MaxLength = 1000;
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(1091, 26);
-            this.txtSearch.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(241, 34);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Stocks Data Menu";
             // 
             // History
             // 
@@ -414,6 +395,25 @@
             this.ReturnToSupplier.ReadOnly = true;
             this.ReturnToSupplier.Text = "Return";
             this.ReturnToSupplier.UseColumnTextForButtonValue = true;
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(15, 22);
+            this.txtSearch.MaxLength = 1000;
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(305, 26);
+            this.txtSearch.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(241, 34);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Stocks Data Menu";
             // 
             // FrmStocksData
             // 

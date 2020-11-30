@@ -155,7 +155,9 @@ namespace IS.Database.Repositories
                 var select = "UPDATE TempSales " +
                     "SET PriceDiscounted = " + tempSales.PriceDiscounted + "," +
                     "Discounted = " + tempSales.Discounted + "," +
-                    "TotalPrice = " + tempSales.TotalPrice + " " +
+                    "TotalPrice = " + tempSales.TotalPrice + ", " +
+                    "IsSenior = " + tempSales.IsSenior + ", " +
+                    "IsPwd = " + tempSales.IsPWD + " " +
                     "WHERE Id = " + tempSales.Id  ;
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
