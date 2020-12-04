@@ -50,6 +50,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.dtpFrom = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReturnItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -60,9 +61,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 9);
+            this.label4.Location = new System.Drawing.Point(8, 11);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(362, 34);
+            this.label4.Size = new System.Drawing.Size(451, 42);
             this.label4.TabIndex = 29;
             this.label4.Text = "Returned Items to Supplier";
             // 
@@ -70,9 +72,10 @@
             // 
             this.btnDownload.Image = global::IS.Admin.Properties.Resources.download;
             this.btnDownload.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnDownload.Location = new System.Drawing.Point(869, 387);
+            this.btnDownload.Location = new System.Drawing.Point(1159, 419);
+            this.btnDownload.Margin = new System.Windows.Forms.Padding(4);
             this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(66, 55);
+            this.btnDownload.Size = new System.Drawing.Size(88, 68);
             this.btnDownload.TabIndex = 27;
             this.btnDownload.Text = "Dowload";
             this.btnDownload.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -83,9 +86,10 @@
             // 
             this.btnClose.Image = global::IS.Admin.Properties.Resources.Cancel;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnClose.Location = new System.Drawing.Point(941, 388);
+            this.btnClose.Location = new System.Drawing.Point(1255, 421);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(66, 55);
+            this.btnClose.Size = new System.Drawing.Size(88, 68);
             this.btnClose.TabIndex = 28;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -108,46 +112,56 @@
             this.ReturnQty,
             this.InsertTime,
             this.Remarks});
-            this.dgvReturnItems.Location = new System.Drawing.Point(6, 19);
+            this.dgvReturnItems.Location = new System.Drawing.Point(8, 23);
+            this.dgvReturnItems.Margin = new System.Windows.Forms.Padding(4);
             this.dgvReturnItems.Name = "dgvReturnItems";
             this.dgvReturnItems.ReadOnly = true;
             this.dgvReturnItems.RowHeadersWidth = 51;
             this.dgvReturnItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvReturnItems.Size = new System.Drawing.Size(1001, 361);
+            this.dgvReturnItems.Size = new System.Drawing.Size(1335, 390);
             this.dgvReturnItems.TabIndex = 25;
             // 
             // Fullname
             // 
             this.Fullname.DataPropertyName = "Fullname";
             this.Fullname.HeaderText = "Transaction By";
+            this.Fullname.MinimumWidth = 6;
             this.Fullname.Name = "Fullname";
             this.Fullname.ReadOnly = true;
+            this.Fullname.Width = 125;
             // 
             // PrincipalName
             // 
             this.PrincipalName.DataPropertyName = "PrincipalName";
             this.PrincipalName.HeaderText = "Principal";
+            this.PrincipalName.MinimumWidth = 6;
             this.PrincipalName.Name = "PrincipalName";
             this.PrincipalName.ReadOnly = true;
+            this.PrincipalName.Width = 125;
             // 
             // CategoryName
             // 
             this.CategoryName.DataPropertyName = "CategoryName";
             this.CategoryName.HeaderText = "Category";
+            this.CategoryName.MinimumWidth = 6;
             this.CategoryName.Name = "CategoryName";
             this.CategoryName.ReadOnly = true;
+            this.CategoryName.Width = 125;
             // 
             // ProductId
             // 
             this.ProductId.DataPropertyName = "ProductId";
             this.ProductId.HeaderText = "Product ID";
+            this.ProductId.MinimumWidth = 6;
             this.ProductId.Name = "ProductId";
             this.ProductId.ReadOnly = true;
+            this.ProductId.Width = 125;
             // 
             // ProductName
             // 
             this.ProductName.DataPropertyName = "ProductName";
             this.ProductName.HeaderText = "Product Name";
+            this.ProductName.MinimumWidth = 6;
             this.ProductName.Name = "ProductName";
             this.ProductName.ReadOnly = true;
             this.ProductName.Width = 400;
@@ -160,13 +174,16 @@
             dataGridViewCellStyle2.NullValue = "0";
             this.ReturnQty.DefaultCellStyle = dataGridViewCellStyle2;
             this.ReturnQty.HeaderText = "Return Quantity";
+            this.ReturnQty.MinimumWidth = 6;
             this.ReturnQty.Name = "ReturnQty";
             this.ReturnQty.ReadOnly = true;
+            this.ReturnQty.Width = 125;
             // 
             // InsertTime
             // 
             this.InsertTime.DataPropertyName = "InsertTime";
             this.InsertTime.HeaderText = "Date and Time";
+            this.InsertTime.MinimumWidth = 6;
             this.InsertTime.Name = "InsertTime";
             this.InsertTime.ReadOnly = true;
             this.InsertTime.Width = 150;
@@ -175,8 +192,10 @@
             // 
             this.Remarks.DataPropertyName = "Remarks";
             this.Remarks.HeaderText = "Remarks";
+            this.Remarks.MinimumWidth = 6;
             this.Remarks.Name = "Remarks";
             this.Remarks.ReadOnly = true;
+            this.Remarks.Width = 125;
             // 
             // groupBox1
             // 
@@ -184,9 +203,11 @@
             this.groupBox1.Controls.Add(this.btnDownload);
             this.groupBox1.Controls.Add(this.btnClose);
             this.groupBox1.Controls.Add(this.dgvReturnItems);
-            this.groupBox1.Location = new System.Drawing.Point(12, 174);
+            this.groupBox1.Location = new System.Drawing.Point(21, 268);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1022, 453);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(1363, 502);
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Details";
@@ -195,9 +216,10 @@
             // 
             this.btnSearch.Image = global::IS.Admin.Properties.Resources.search;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.Location = new System.Drawing.Point(435, 18);
+            this.btnSearch.Location = new System.Drawing.Point(571, 22);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(76, 80);
+            this.btnSearch.Size = new System.Drawing.Size(101, 98);
             this.btnSearch.TabIndex = 24;
             this.btnSearch.Text = "Search";
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -207,37 +229,41 @@
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(161, 15);
+            this.txtSearch.Location = new System.Drawing.Point(215, 22);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
             this.txtSearch.MaxLength = 100;
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(255, 26);
+            this.txtSearch.Size = new System.Drawing.Size(339, 30);
             this.txtSearch.TabIndex = 23;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(26, 21);
+            this.label1.Location = new System.Drawing.Point(35, 26);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 16);
+            this.label1.Size = new System.Drawing.Size(150, 20);
             this.label1.TabIndex = 20;
-            this.label1.Text = "Search:";
+            this.label1.Text = "Search Keywords :";
             // 
             // dtpTo
             // 
             this.dtpTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpTo.Location = new System.Drawing.Point(161, 77);
+            this.dtpTo.Location = new System.Drawing.Point(215, 143);
+            this.dtpTo.Margin = new System.Windows.Forms.Padding(4);
             this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(255, 22);
+            this.dtpTo.Size = new System.Drawing.Size(339, 26);
             this.dtpTo.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(26, 80);
+            this.label3.Location = new System.Drawing.Point(35, 146);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(124, 16);
+            this.label3.Size = new System.Drawing.Size(157, 20);
             this.label3.TabIndex = 22;
             this.label3.Text = "Returned  Date To :";
             // 
@@ -245,15 +271,17 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(26, 51);
+            this.label2.Location = new System.Drawing.Point(35, 111);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(135, 16);
+            this.label2.Size = new System.Drawing.Size(172, 20);
             this.label2.TabIndex = 21;
             this.label2.Text = "Returned Date From :";
             // 
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.White;
+            this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.txtSearch);
             this.groupBox2.Controls.Add(this.label1);
@@ -261,30 +289,44 @@
             this.groupBox2.Controls.Add(this.dtpFrom);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(12, 55);
+            this.groupBox2.Location = new System.Drawing.Point(16, 68);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1023, 113);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Size = new System.Drawing.Size(1368, 183);
             this.groupBox2.TabIndex = 28;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Search Box";
             // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(212, 57);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(342, 46);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "(Search By: Transaction By,Principal, Category, Product Id,Product Name)";
+            // 
             // dtpFrom
             // 
             this.dtpFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFrom.Location = new System.Drawing.Point(161, 48);
+            this.dtpFrom.Location = new System.Drawing.Point(215, 107);
+            this.dtpFrom.Margin = new System.Windows.Forms.Padding(4);
             this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(255, 22);
+            this.dtpFrom.Size = new System.Drawing.Size(339, 26);
             this.dtpFrom.TabIndex = 1;
             // 
             // FrmReturnItemsToSupplier
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
-            this.ClientSize = new System.Drawing.Size(1048, 644);
+            this.ClientSize = new System.Drawing.Size(1397, 792);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmReturnItemsToSupplier";
@@ -323,5 +365,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ReturnQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn InsertTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
+        private System.Windows.Forms.Label label5;
     }
 }

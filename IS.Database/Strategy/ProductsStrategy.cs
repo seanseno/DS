@@ -67,7 +67,7 @@ namespace IS.Database.Strategy
             return factory.ProductsRepository.GetList().Where(x=>x.ProductId == ProductId).Count() > 0 ;
         }
 
-        public ProductDiscounted GetDiscountInfo(string ProductId, int Qty,bool isPWD)
+        public ProductDiscounted GetDiscountInfo(string ProductId, int Qty,bool isSenior)
         {
             var PD = new ProductDiscounted();
 
@@ -78,7 +78,7 @@ namespace IS.Database.Strategy
             PD.Qty = Qty;
             PD.Price = prod.Price;
 
-            if (isPWD)
+            if (!isSenior)
             {
                 PD.Discounted = (Qty * prod.Price) * ((set.PWDDiscount) / 100);
                 PD.TotalPrice = (Qty * prod.Price) - PD.Discounted;
@@ -92,6 +92,7 @@ namespace IS.Database.Strategy
                 PD.PriceDiscounted = (prod.Price) - (prod.Price * ((set.SeniorDiscount) / 100));
                 return PD;
             }
+            return null;
         }
     }
 }

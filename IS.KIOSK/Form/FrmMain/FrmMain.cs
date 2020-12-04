@@ -34,6 +34,7 @@ namespace IS.KIOSK
         public bool _IsDicounted { get; set; }
         public bool _WithPrinter { get; set; }
         bool IsPwd { get; set; }
+        bool IsSenior { get; set; }
         public FrmMain()
         {
             InitializeComponent();
@@ -318,8 +319,12 @@ namespace IS.KIOSK
                     {
                         MainModel mainModel = new MainModel();
                         mainModel.DeleteAllTempOrder(this);
+                        txtAdditionalInfo.Text = "";
+                        txtCustomerName.Text = "";
+                        IsPwd = false;
                         load();
                         MessageBox.Show("Orders deleted", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        lblError.Visible = false;
                     }
                 }
             }
@@ -462,51 +467,154 @@ namespace IS.KIOSK
                 MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void RecomputeDiscount()
+        private void CheckItemListIfDiscounted()
         {
+            IsPwd = false;
+            IsSenior = false;
             foreach (var item in _TempOrderList)
             {
                 var sd = factory.StocksDataRepository.GetList().Where(x => x.ProductId == item.ProductId).FirstOrDefault();
                 var ProdDis = factory.ProductsDiscountedRepository.GetList().Where(x => x.ProductId == sd.ProductId).FirstOrDefault();
                 if (ProdDis != null)
                 {
-                    var PD = factory.ProductsRepository.ProductsStrategy.GetDiscountInfo(item.ProductId, item.Qty, IsPwd);
-                    item.PriceDiscounted = PD.PriceDiscounted;
-                    item.TotalPrice = PD.TotalPrice;
-                    item.Discounted = PD.Discounted;
-                    item.IsPWD = IsPwd == true ? 1 : 0;
-                    item.IsSenior = IsPwd == true ? 0 : 1;
-                    factory.TempSalesRepository.Update(item);
-                    load();
+                    if (!IsPwd)
+                    {
+                        IsPwd = ProdDis.IsPWD == 1;
+                    }
+                    if (!IsSenior)
+                    {
+                        IsSenior = ProdDis.IsSenior == 1;
+                    }
                 }
                 else
                 {
                     if (factory.CategoryDiscountedRepository.GetList().Where(x => x.CategoryId == sd.CategoryId).Count() > 0)
                     {
-                        var PD = factory.ProductsRepository.ProductsStrategy.GetDiscountInfo(item.ProductId, item.Qty, IsPwd);
-                        item.PriceDiscounted = PD.PriceDiscounted;
-                        item.TotalPrice = PD.TotalPrice;
-                        item.Discounted = PD.Discounted;
-                        item.IsPWD = IsPwd == true ? 1 : 0;
-                        item.IsSenior = IsPwd == true ? 0 : 1;
-                        factory.TempSalesRepository.Update(item);
-                        load();
+                        var Cat = factory.CategoryDiscountedRepository.GetList().Where(x => x.CategoryId == sd.CategoryId).FirstOrDefault();
+                        if (!IsPwd)
+                        {
+                            IsPwd = Cat.IsPWD == 1;
+                        }
+                        if (!IsSenior)
+                        {
+                            IsSenior = Cat.IsSenior == 1;
+                        }
                     }
                 }
             }
         }
+        private void RecomputeDiscount(bool IsSelectedSenior)
+        {
+            foreach (var item in _TempOrderList)
+            {
+                var sd = factory.StocksDataRepository.GetList().Where(x => x.ProductId == item.ProductId).FirstOrDefault();
+                if (IsSelectedSenior)
+                {
+                    var ProdDis = factory.ProductsDiscountedRepository.GetList()
+                                .Where(x => x.ProductId == sd.ProductId &&
+                                x.IsSenior == Convert.ToInt32(IsSenior) ).FirstOrDefault();
 
+                    if (ProdDis != null)
+                    {
+                        var PD = factory.ProductsRepository.ProductsStrategy.GetDiscountInfo(item.ProductId, item.Qty, Convert.ToBoolean(EnumSenior.True));
+                        item.PriceDiscounted = PD.PriceDiscounted;
+                        item.TotalPrice = PD.TotalPrice;
+                        item.Discounted = PD.Discounted;
+                        item.IsPWD = 0;
+                        item.IsSenior = 1;
+                        factory.TempSalesRepository.Update(item);
+                    }
+                    else
+                    {
+                        if (factory.CategoryDiscountedRepository.GetList()
+                            .Where(x => x.CategoryId == sd.CategoryId &&
+                            x.IsSenior == Convert.ToInt32(IsSenior)).Count() > 0)
+                        {
+                            var PD = factory.ProductsRepository.ProductsStrategy.GetDiscountInfo(item.ProductId, item.Qty, Convert.ToBoolean(EnumSenior.True));
+                            item.PriceDiscounted = PD.PriceDiscounted;
+                            item.TotalPrice = PD.TotalPrice;
+                            item.Discounted = PD.Discounted;
+                            item.IsPWD = 0;
+                            item.IsSenior = 1;
+                            factory.TempSalesRepository.Update(item);
+                        }
+                        else
+                        {
+                            ResetDiscount(item);
+                        }
+                    }
+                }
+                else
+                {
+                    var ProdDis = factory.ProductsDiscountedRepository.GetList()
+                    .Where(x => x.ProductId == sd.ProductId &&
+                    x.IsPWD == Convert.ToInt32(IsPwd)).FirstOrDefault();
+
+                    if (ProdDis != null)
+                    {
+                        var PD = factory.ProductsRepository.ProductsStrategy.GetDiscountInfo(item.ProductId, item.Qty, Convert.ToBoolean(EnumSenior.False));
+                        item.PriceDiscounted = PD.PriceDiscounted;
+                        item.TotalPrice = PD.TotalPrice;
+                        item.Discounted = PD.Discounted;
+                        item.IsPWD = 1;
+                        item.IsSenior = 0;
+                        factory.TempSalesRepository.Update(item);
+                    }
+                    else
+                    {
+                        if (factory.CategoryDiscountedRepository.GetList()
+                            .Where(x => x.CategoryId == sd.CategoryId &&
+                            x.IsPWD == Convert.ToInt32(IsPwd)).Count() > 0)
+                        {
+                            var PD = factory.ProductsRepository.ProductsStrategy.GetDiscountInfo(item.ProductId, item.Qty, Convert.ToBoolean(EnumSenior.False));
+                            item.PriceDiscounted = PD.PriceDiscounted;
+                            item.TotalPrice = PD.TotalPrice;
+                            item.Discounted = PD.Discounted;
+                            item.IsPWD = 1;
+                            item.IsSenior = 0;
+                            factory.TempSalesRepository.Update(item);
+                        }
+                        else
+                        {
+                            ResetDiscount(item);
+                        }
+                    }
+                }
+            }
+            load();
+        }
+
+        private void ResetDiscount(TempSales item)
+        {
+            var sd = factory.StocksDataRepository.GetList().Where(x => x.ProductId == item.ProductId).FirstOrDefault();
+            var product = factory.ProductsRepository.GetListFromKiosk().Where(x => x.ProductId == item.ProductId).FirstOrDefault();
+            item.PriceDiscounted = product.Price;
+            item.TotalPrice = item.Qty * product.Price;
+            item.Discounted = 0;
+            item.IsPWD = 0;
+            item.IsSenior = 0;
+            factory.TempSalesRepository.Update(item);
+        }
         private void btnSenior_Click(object sender, EventArgs e)
         {
             if (this._TempOrderList.Count() > 0)
             {
-                FrmSeniorCitizen frm = new FrmSeniorCitizen();
-                if (frm.ShowDialog() == DialogResult.OK)
+                CheckItemListIfDiscounted();
+                if (!IsSenior)
                 {
-                    txtCustomerName.Text = frm.CustomerName;
-                    txtAdditionalInfo.Text = frm.AdditionalInfo;
-                    IsPwd = false;
-                    RecomputeDiscount();
+                    lblError.Text = string.Format("Senior discount is not applicable!");
+                    timer1.Start();
+                }
+                else
+                {
+                    FrmSeniorCitizen frm = new FrmSeniorCitizen();
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        txtCustomerName.Text = frm.CustomerName;
+                        txtAdditionalInfo.Text = frm.AdditionalInfo;
+                        IsPwd = false;
+                        RecomputeDiscount(Convert.ToBoolean(EnumSenior.True));
+                    }
                 }
             }
         }
@@ -515,15 +623,26 @@ namespace IS.KIOSK
         {
             if (this._TempOrderList.Count() > 0)
             {
-                FrmPWD frm = new FrmPWD();
-                if (frm.ShowDialog() == DialogResult.OK)
+                CheckItemListIfDiscounted();
+                if (!IsPwd)
                 {
-                    txtCustomerName.Text = frm.CustomerName;
-                    txtAdditionalInfo.Text = frm.AdditionalInfo;
-                    IsPwd = true;
-                    RecomputeDiscount();
+                    lblError.Text = string.Format("PWD discount is not applicable!");
+                    timer1.Start();
+                }
+                else
+                {
+                    FrmPWD frm = new FrmPWD();
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        txtCustomerName.Text = frm.CustomerName;
+                        txtAdditionalInfo.Text = frm.AdditionalInfo;
+                        IsPwd = true;
+                        RecomputeDiscount(Convert.ToBoolean(EnumSenior.False));
+                    }
                 }
             }
         }
+
+
     }
 }

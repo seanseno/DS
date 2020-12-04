@@ -35,10 +35,12 @@ namespace IS.Admin.Reports
 
             _list = _list.Where(x =>
                     DateTimeConvertion.ConvertDateFrom(dtpFrom.Value) <= x.InsertTime && x.InsertTime <= DateTimeConvertion.ConvertDateTo(dtpTo.Value) &&
-                (x.CategoryName.Contains(txtSearch.Text.Trim().ToUpper()) ||
-                x.ProductName.Contains(txtSearch.Text.Trim().ToUpper()) ||
-                x.Fullname.Contains(txtSearch.Text.Trim().ToUpper()) ||
-                x.CustomerName.Contains(txtSearch.Text.Trim().ToUpper()) )).ToList();
+                    (x.Fullname.ToUpper().Contains(txtSearch.Text.Trim().ToUpper()) ||
+                        x.CustomerName.ToUpper().Contains(txtSearch.Text.Trim().ToUpper()) ||
+                        x.Id.ToString().Contains(txtSearch.Text.Trim().ToUpper()) ||
+                        x.CategoryName.ToUpper().Contains(txtSearch.Text.Trim().ToUpper()) ||
+                        x.ProductName.ToUpper().Contains(txtSearch.Text.Trim().ToUpper())  
+                    )).ToList();
 
         AddedFoorter(_list.ToList(), dgvSales);
             

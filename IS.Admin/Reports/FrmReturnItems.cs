@@ -77,8 +77,8 @@ namespace IS.Admin.Reports
             _list = _list.Where(x => DateTimeConvertion.ConvertDateFrom(dtpFrom.Value) <= x.InsertTime && x.InsertTime <= DateTimeConvertion.ConvertDateTo(dtpTo.Value)).ToList();
             if (!string.IsNullOrEmpty(txtSearch.Text))
             {
-                _list = _list.Where(x => x.ProductName.Contains(txtSearch.Text.ToUpper()) ||
-                            x.Fullname.Contains(txtSearch.Text.ToUpper())).ToList();
+                _list = _list.Where(x => x.ProductName.ToUpper().Contains(txtSearch.Text.ToUpper()) ||
+                            x.Fullname.ToUpper().Contains(txtSearch.Text.ToUpper())).ToList();
 
             }
             var response = new List<ReturnIemsView>();

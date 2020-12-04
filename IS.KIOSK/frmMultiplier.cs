@@ -163,13 +163,13 @@ namespace IS.KIOSK
                                 ts.IsPWD = rbPwd.Checked == true ? 1 : 0;
                                 ts.Price = factory.ProductsRepository.GetList().Where(x => x.ProductId == product.ProductId).FirstOrDefault().Price;
                                 ts.TotalPrice = Convert.ToDecimal(lblTotal.Text);
-                                if (rbSenior.Checked == true || rbPwd.Checked == true)
-                                {
-                                    var PD = factory.ProductsRepository.ProductsStrategy.GetDiscountInfo(ts.ProductId, ts.Qty, rbPwd.Checked == true);
-                                    ts.Discounted = PD.Discounted;
-                                    ts.TotalPrice = PD.TotalPrice;
-                                    ts.PriceDiscounted = PD.PriceDiscounted;
-                                }
+                                //if (rbSenior.Checked == true || rbPwd.Checked == true)
+                                //{
+                                //    var PD = factory.ProductsRepository.ProductsStrategy.GetDiscountInfo(ts.ProductId, ts.Qty, rbPwd.Checked == true);
+                                //    ts.Discounted = PD.Discounted;
+                                //    ts.TotalPrice = PD.TotalPrice;
+                                //    ts.PriceDiscounted = PD.PriceDiscounted;
+                                //}
            
                                 factory.TempSalesRepository.Insert(ts);
                                 this.Qty = Qty;

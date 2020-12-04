@@ -36,8 +36,8 @@ namespace IS.Admin.Setup
             }
             if (!string.IsNullOrEmpty(txtSearch.Text))
             {
-                response = response.Where(x => x.CategoryId.Contains(txtSearch.Text.ToUpper()) ||
-                                         x.CategoryName.Contains(txtSearch.Text.ToUpper())).ToList();
+                response = response.Where(x => x.CategoryId.ToUpper().Contains(txtSearch.Text.ToUpper()) ||
+                                         x.CategoryName.ToUpper().Contains(txtSearch.Text.ToUpper())).ToList();
             }
             _list = response;
             dgv.AutoGenerateColumns = false;

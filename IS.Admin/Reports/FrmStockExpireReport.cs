@@ -34,9 +34,9 @@ namespace IS.Admin.Reports
             var days = factory.SettingsRepository.GetList()[0].ExpirationAlert;
             DateTime date = DateTimeConvertion.ConvertDateTo(DateTime.Now.AddDays(days));
             _list = _list.Where(x => x.ExpirationDate <= date).ToList();
-            _list = _list.Where(x => x.CategoryName.Contains(txtSearch.Text.Trim().ToUpper()) ||
-                        x.PrincipalName.Contains(txtSearch.Text.Trim().ToUpper()) ||
-                        x.ProductName.Contains(txtSearch.Text.Trim().ToUpper())).ToList();
+            _list = _list.Where(x => x.CategoryName.ToUpper().Contains(txtSearch.Text.Trim().ToUpper()) ||
+                        x.PrincipalName.ToUpper().Contains(txtSearch.Text.Trim().ToUpper()) ||
+                        x.ProductName.ToUpper().Contains(txtSearch.Text.Trim().ToUpper())).ToList();
             AddedFoorter(_list.ToList(), dgvSales);
         }
         private void btnClose_Click(object sender, EventArgs e)

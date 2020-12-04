@@ -35,9 +35,12 @@ namespace IS.Admin.Reports
 
             _list = _list.Where(x => DateTimeConvertion.ConvertDateFrom(dtpFrom.Value) <= x.DeliveryDate && x.DeliveryDate <= DateTimeConvertion.ConvertDateTo(dtpTo.Value)).ToList();
 
-            _list = _list.Where(x => x.CategoryName.Contains(txtSearch.Text.Trim().ToUpper()) ||
-                x.ProductName.Contains(txtSearch.Text.Trim().ToUpper())).ToList();
+            _list = _list.Where(x => 
+                x.CategoryName.ToUpper().Contains(txtSearch.Text.Trim().ToUpper()) ||
+                x.PrincipalName.ToUpper().Contains(txtSearch.Text.Trim().ToUpper()) ||
+                x.ProductName.ToUpper().Contains(txtSearch.Text.Trim().ToUpper())).ToList();
 
+            _list = _list.Where(x => x.Quantity >= Convert.ToInt32(txtStockFrom.Text) && x.Quantity <= Convert.ToInt32(txtStockTo.Text)).ToList();
             AddedFoorter(_list.ToList(), dgvSales);
         }
         private void btnDownload_Click(object sender, EventArgs e)
@@ -171,5 +174,15 @@ namespace IS.Admin.Reports
             dgv.Rows[dgvSales.Rows.Count - 1].Cells[10].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 
         }
+
+        private void stockFrom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+
     }
 }

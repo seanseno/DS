@@ -29,7 +29,7 @@ namespace IS.Admin.Transactions
             grpLoading.Visible = true;
             grpLoading.Refresh();
 
-            var response = factory.StocksRepository.Find(txtSearch.Text);
+            var response = factory.StocksRepository.GetList().Where(x => x.ProductName.ToUpper().Contains(txtSearch.Text.ToUpper())).ToList();
             dgvSearch.AutoGenerateColumns = false;
             dgvSearch.DataSource = response;
             txtSearch.Focus();
@@ -42,7 +42,8 @@ namespace IS.Admin.Transactions
             }
             else
             {
-                lblTotalStocks.Text = "Total Stock(s): " + response.Sum(x => x.Stock)?.ToString("N0");
+                lblTotalStocks.Text = "Total Stock(s): " + response.Sum(x => x.Stock)?.ToString("N2");
+
             }
             
         }

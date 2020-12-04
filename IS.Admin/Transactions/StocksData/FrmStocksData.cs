@@ -147,6 +147,7 @@ namespace IS.Admin.Transactions
         private void btnSearch_Click(object sender, EventArgs e)
         {
             LoadStockData();
+            DisplayTotal();
         }
 
  

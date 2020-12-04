@@ -302,7 +302,7 @@ namespace IS.KIOSKBARCODE
                 var ProdDis = factory.ProductsDiscountedRepository.GetList().Where(x => x.ProductId == sd.ProductId).FirstOrDefault();
                 if (ProdDis != null)
                 {
-                    var PD = factory.ProductsRepository.ProductsStrategy.GetDiscountInfo(item.ProductId, item.Qty, IsPwd);
+                    var PD = factory.ProductsRepository.ProductsStrategy.GetDiscountInfo(item.ProductId, item.Qty, false, IsPwd);
                     item.PriceDiscounted = PD.PriceDiscounted;
                     item.TotalPrice = PD.TotalPrice;
                     item.Discounted = PD.Discounted;
@@ -315,7 +315,7 @@ namespace IS.KIOSKBARCODE
                 {
                     if (factory.CategoryDiscountedRepository.GetList().Where(x => x.CategoryId == sd.CategoryId).Count() > 0)
                     {
-                        var PD = factory.ProductsRepository.ProductsStrategy.GetDiscountInfo(item.ProductId, item.Qty, IsPwd);
+                        var PD = factory.ProductsRepository.ProductsStrategy.GetDiscountInfo(item.ProductId, item.Qty, false, IsPwd);
                         item.PriceDiscounted = PD.PriceDiscounted;
                         item.TotalPrice = PD.TotalPrice;
                         item.Discounted = PD.Discounted;
