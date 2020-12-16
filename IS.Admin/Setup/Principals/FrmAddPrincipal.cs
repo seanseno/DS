@@ -20,7 +20,7 @@ namespace IS.Admin.Setup
         public FrmAddPrincipal()
         {
             InitializeComponent();
-            this.ActiveControl = txtPrincipalId;
+            this.ActiveControl = txtPrincipalName;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -33,7 +33,7 @@ namespace IS.Admin.Setup
         {
             if(!CheckInput())
             {
-                _Principals.PrincipalId = txtPrincipalId.Text.ToUpper();
+                _Principals.PrincipalId = lblPrincipalId.Text.ToUpper();
                 _Principals.PrincipalName = txtPrincipalName.Text;
 
                 if (factory.PrincipalsRepository.PrincipalsStrategy.CheckDuplicate(_Principals.PrincipalId, _Principals.PrincipalName))
@@ -53,7 +53,7 @@ namespace IS.Admin.Setup
 
         private bool CheckInput()
         {
-            if(string.IsNullOrEmpty(txtPrincipalName.Text) || string.IsNullOrEmpty(txtPrincipalId.Text))
+            if(string.IsNullOrEmpty(txtPrincipalName.Text) || string.IsNullOrEmpty(lblPrincipalId.Text))
             {
                 MessageBox.Show("Incomplete Details", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtPrincipalName.Focus();
@@ -65,7 +65,9 @@ namespace IS.Admin.Setup
         private void FrmAddPrincipal_Load(object sender, EventArgs e)
         {
             PrincipalsModel principalsModel = new PrincipalsModel();
-            txtPrincipalId.Text = principalsModel.GetNextId();
+            lblPrincipalId.Text = principalsModel.GetNextId();
         }
+
+
     }
 }

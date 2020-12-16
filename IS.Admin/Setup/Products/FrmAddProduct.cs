@@ -21,7 +21,7 @@ namespace IS.Admin.Setup
         public FrmAddProduct()
         {
             InitializeComponent();
-            this.ActiveControl = txtProductId;
+            this.ActiveControl = txtProductName;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -37,13 +37,13 @@ namespace IS.Admin.Setup
                 if (CheckAlreadyExist())
                 {
                     MessageBox.Show("Product ID already exist!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtProductId.Focus();
+                    lblProductId.Focus();
                 }
                 else
                 {
                     if (MessageBox.Show("Are you sure do want to add " + txtProductName.Text + "?", "Information!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
-                        _Products.ProductId = txtProductId.Text;
+                        _Products.ProductId = lblProductId.Text;
 
                         _Products.ProductName = txtProductName.Text;
                         _Products.Price = Convert.ToDecimal(txtPrice.Text);
@@ -61,7 +61,7 @@ namespace IS.Admin.Setup
         private void FrmAddProduct_Load(object sender, EventArgs e)
         {
             ProductsModel productsModel = new ProductsModel();
-            txtProductId.Text = productsModel.GetNextId();
+            lblProductId.Text = productsModel.GetNextId();
         }
 
         private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
@@ -74,7 +74,7 @@ namespace IS.Admin.Setup
 
         private bool CheckAlreadyExist()
         {
-            return factory.ProductsRepository.ProductsStrategy.CheckDuplicate(txtProductId.Text);
+            return factory.ProductsRepository.ProductsStrategy.CheckDuplicate(lblProductId.Text);
         }
 
         private bool CheckRequiredInput()

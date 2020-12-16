@@ -39,6 +39,7 @@ namespace IS.Admin.Reports
                         x.CustomerName.ToUpper().Contains(txtSearch.Text.Trim().ToUpper()) ||
                         x.Id.ToString().Contains(txtSearch.Text.Trim().ToUpper()) ||
                         x.CategoryName.ToUpper().Contains(txtSearch.Text.Trim().ToUpper()) ||
+                        x.AdditionalInfo.ToUpper().Contains(txtSearch.Text.Trim().ToUpper()) ||
                         x.ProductName.ToUpper().Contains(txtSearch.Text.Trim().ToUpper())  
                     )).ToList();
 

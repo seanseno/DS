@@ -39,6 +39,7 @@ namespace IS.Admin.Reports
                 x.ProductId.ToUpper().Contains(txtSearch.Text.Trim().ToUpper()) ||
                 x.ProductName.ToUpper().Contains(txtSearch.Text.Trim().ToUpper()) ||
                 x.Fullname.ToUpper().Contains(txtSearch.Text.Trim().ToUpper()) ||
+                x.AdditionalInfo.ToUpper().Contains(txtSearch.Text.Trim().ToUpper()) ||
                 x.CustomerName.ToUpper().Contains(txtSearch.Text.Trim().ToUpper()))).ToList();
 
             AddedFoorter(_list.ToList(), dgvSales);

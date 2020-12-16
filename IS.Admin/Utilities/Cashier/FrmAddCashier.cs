@@ -21,7 +21,7 @@ namespace IS.Admin.Setup
         public FrmAddCashier()
         {
             InitializeComponent();
-            this.ActiveControl = txtCashierId;
+            this.ActiveControl = txtLogiName;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace IS.Admin.Setup
             if (!CheckInput())
             {
                 var CashiersModel = new CashiersModel();
-                _Cashiers.CashierId = txtCashierId.Text;
+                _Cashiers.CashierId = lblCashierId.Text;
                 _Cashiers.Loginname = txtLogiName.Text;
                 _Cashiers.Fullname = txtFullName.Text;
                 _Cashiers.Password = txtPassword.Text;
@@ -93,15 +93,15 @@ namespace IS.Admin.Setup
         {
             PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             CashiersModel cashiersModel = new CashiersModel();
-            txtCashierId.Text = cashiersModel.GetNextId();
+            lblCashierId.Text = cashiersModel.GetNextId();
         }
 
         private bool CheckInput()
         {
-            if (string.IsNullOrEmpty(txtCashierId.Text))
+            if (string.IsNullOrEmpty(lblCashierId.Text))
             {
                 MessageBox.Show("Cashier Id is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtCashierId.Focus();
+                lblCashierId.Focus();
                 return true;
             }
             if (string.IsNullOrEmpty(txtLogiName.Text))

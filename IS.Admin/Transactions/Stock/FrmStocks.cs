@@ -42,7 +42,7 @@ namespace IS.Admin.Transactions
             }
             else
             {
-                lblTotalStocks.Text = "Total Stock(s): " + response.Sum(x => x.Stock)?.ToString("N2");
+                lblTotalStocks.Text = "Total Stock(s): " + response.Sum(x => x.Stock)?.ToString("N0");
 
             }
             

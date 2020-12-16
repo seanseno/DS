@@ -20,7 +20,7 @@ namespace IS.Admin.Setup
         public FrmAddAdministrator()
         {
             InitializeComponent();
-            this.ActiveControl = txtItemId;
+            this.ActiveControl = txtLogiName;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -34,7 +34,7 @@ namespace IS.Admin.Setup
             if (!CheckInput())
             {
                 var AdministratorsModel = new AdministratorsModel();
-                _Administrators.AdminId = txtItemId.Text;
+                _Administrators.AdminId = lblItemId.Text;
                 _Administrators.Loginname = txtLogiName.Text;
                 _Administrators.Fullname = txtFullName.Text;
                 _Administrators.Password = txtPassword.Text;
@@ -56,10 +56,10 @@ namespace IS.Admin.Setup
 
         private bool CheckInput()
         {
-            if (string.IsNullOrEmpty(txtItemId.Text))
+            if (string.IsNullOrEmpty(lblItemId.Text))
             {
                 MessageBox.Show("Item Id is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtItemId.Focus();
+                lblItemId.Focus();
                 return true;
             }
             if (string.IsNullOrEmpty(txtLogiName.Text))
@@ -110,7 +110,7 @@ namespace IS.Admin.Setup
         private void FrmAddAdministrator_Load(object sender, EventArgs e)
         {
             AdministratorsModel administratorsModel = new AdministratorsModel();
-            txtItemId.Text = administratorsModel.GetNextId();
+            lblItemId.Text = administratorsModel.GetNextId();
         }
 
 

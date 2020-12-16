@@ -20,7 +20,7 @@ namespace IS.Admin.Setup
         public FrmAddCategory()
         {
             InitializeComponent();
-            this.ActiveControl = txtCategoryId;
+            this.ActiveControl = txtCategoryName;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -33,7 +33,7 @@ namespace IS.Admin.Setup
         {
             if(!CheckInput())
             {
-                _Categories.CategoryId = txtCategoryId.Text;
+                _Categories.CategoryId = lblCategoryId.Text;
                 _Categories.CategoryName = txtCategoryName.Text;
 
                 if (!string.IsNullOrEmpty(txtPercent.Text))
@@ -41,7 +41,7 @@ namespace IS.Admin.Setup
                     _Categories.PercentSuggestedPrice = Convert.ToDecimal(txtPercent.Text);
                 }
   
-                if (factory.CategoriesRepository.CategoriesStrategy.CheckDuplicate(txtCategoryId.Text.ToUpper(), txtCategoryName.Text.ToUpper()))
+                if (factory.CategoriesRepository.CategoriesStrategy.CheckDuplicate(lblCategoryId.Text.ToUpper(), txtCategoryName.Text.ToUpper()))
                 {
                     MessageBox.Show(_Categories.CategoryName + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtCategoryName.Focus();
@@ -58,7 +58,7 @@ namespace IS.Admin.Setup
 
         private bool CheckInput()
         {
-            if(string.IsNullOrEmpty(txtCategoryName.Text) || string.IsNullOrEmpty(txtCategoryId.Text))
+            if(string.IsNullOrEmpty(txtCategoryName.Text) || string.IsNullOrEmpty(lblCategoryId.Text))
             {
                 MessageBox.Show("Incomplete Details", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCategoryName.Focus();
@@ -70,7 +70,7 @@ namespace IS.Admin.Setup
         private void FrmAddCategory_Load(object sender, EventArgs e)
         {
             CategoriesModel categoriesModel = new CategoriesModel();
-            txtCategoryId.Text = categoriesModel.GetNextId();
+            lblCategoryId.Text = categoriesModel.GetNextId();
         }
 
         private void txtPercent_KeyPress(object sender, KeyPressEventArgs e)

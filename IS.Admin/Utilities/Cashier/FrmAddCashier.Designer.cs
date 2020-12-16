@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtCashierId = new System.Windows.Forms.TextBox();
+            this.lblCashierId = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -54,7 +54,7 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.White;
-            this.groupBox2.Controls.Add(this.txtCashierId);
+            this.groupBox2.Controls.Add(this.lblCashierId);
             this.groupBox2.Controls.Add(this.lblId);
             this.groupBox2.Controls.Add(this.txtConfirmPassword);
             this.groupBox2.Controls.Add(this.label4);
@@ -64,108 +64,120 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.txtLogiName);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(151, 13);
+            this.groupBox2.Location = new System.Drawing.Point(201, 16);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(536, 207);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Size = new System.Drawing.Size(715, 255);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Input Details";
             // 
-            // txtCashierId
+            // lblCashierId
             // 
-            this.txtCashierId.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtCashierId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCashierId.Location = new System.Drawing.Point(141, 31);
-            this.txtCashierId.MaxLength = 5;
-            this.txtCashierId.Name = "txtCashierId";
-            this.txtCashierId.Size = new System.Drawing.Size(160, 26);
-            this.txtCashierId.TabIndex = 0;
+            this.lblCashierId.AutoSize = true;
+            this.lblCashierId.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblCashierId.Location = new System.Drawing.Point(188, 37);
+            this.lblCashierId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCashierId.Name = "lblCashierId";
+            this.lblCashierId.Size = new System.Drawing.Size(135, 29);
+            this.lblCashierId.TabIndex = 10;
+            this.lblCashierId.Text = "Cashier ID";
             // 
             // lblId
             // 
             this.lblId.AutoSize = true;
             this.lblId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblId.Location = new System.Drawing.Point(19, 36);
+            this.lblId.Location = new System.Drawing.Point(25, 44);
+            this.lblId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(70, 16);
+            this.lblId.Size = new System.Drawing.Size(89, 20);
             this.lblId.TabIndex = 9;
             this.lblId.Text = "Cashier ID";
             // 
             // txtConfirmPassword
             // 
             this.txtConfirmPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConfirmPassword.Location = new System.Drawing.Point(141, 159);
+            this.txtConfirmPassword.Location = new System.Drawing.Point(188, 196);
+            this.txtConfirmPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtConfirmPassword.MaxLength = 50;
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.PasswordChar = '*';
-            this.txtConfirmPassword.Size = new System.Drawing.Size(375, 26);
+            this.txtConfirmPassword.Size = new System.Drawing.Size(499, 30);
             this.txtConfirmPassword.TabIndex = 4;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(19, 161);
+            this.label4.Location = new System.Drawing.Point(25, 198);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(121, 16);
+            this.label4.Size = new System.Drawing.Size(155, 20);
             this.label4.TabIndex = 7;
             this.label4.Text = "Confirm password :";
             // 
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(141, 127);
+            this.txtPassword.Location = new System.Drawing.Point(188, 156);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.MaxLength = 50;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(375, 26);
+            this.txtPassword.Size = new System.Drawing.Size(499, 30);
             this.txtPassword.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(19, 129);
+            this.label3.Location = new System.Drawing.Point(25, 159);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 16);
+            this.label3.Size = new System.Drawing.Size(93, 20);
             this.label3.TabIndex = 5;
             this.label3.Text = "Password :";
             // 
             // txtFullName
             // 
             this.txtFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFullName.Location = new System.Drawing.Point(141, 95);
+            this.txtFullName.Location = new System.Drawing.Point(188, 117);
+            this.txtFullName.Margin = new System.Windows.Forms.Padding(4);
             this.txtFullName.MaxLength = 50;
             this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(375, 26);
+            this.txtFullName.Size = new System.Drawing.Size(499, 30);
             this.txtFullName.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(19, 97);
+            this.label2.Location = new System.Drawing.Point(25, 119);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 16);
+            this.label2.Size = new System.Drawing.Size(95, 20);
             this.label2.TabIndex = 3;
             this.label2.Text = "Full Name :";
             // 
             // txtLogiName
             // 
             this.txtLogiName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLogiName.Location = new System.Drawing.Point(141, 63);
+            this.txtLogiName.Location = new System.Drawing.Point(188, 78);
+            this.txtLogiName.Margin = new System.Windows.Forms.Padding(4);
             this.txtLogiName.MaxLength = 50;
             this.txtLogiName.Name = "txtLogiName";
-            this.txtLogiName.Size = new System.Drawing.Size(160, 26);
+            this.txtLogiName.Size = new System.Drawing.Size(212, 30);
             this.txtLogiName.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(19, 68);
+            this.label1.Location = new System.Drawing.Point(25, 84);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 16);
+            this.label1.Size = new System.Drawing.Size(109, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "Login Name :";
             // 
@@ -177,16 +189,18 @@
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Location = new System.Drawing.Point(12, 46);
+            this.panel1.Location = new System.Drawing.Point(16, 57);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(704, 297);
+            this.panel1.Size = new System.Drawing.Size(939, 366);
             this.panel1.TabIndex = 7;
             // 
             // btnUploadPhoto
             // 
-            this.btnUploadPhoto.Location = new System.Drawing.Point(12, 154);
+            this.btnUploadPhoto.Location = new System.Drawing.Point(16, 190);
+            this.btnUploadPhoto.Margin = new System.Windows.Forms.Padding(4);
             this.btnUploadPhoto.Name = "btnUploadPhoto";
-            this.btnUploadPhoto.Size = new System.Drawing.Size(125, 23);
+            this.btnUploadPhoto.Size = new System.Drawing.Size(167, 28);
             this.btnUploadPhoto.TabIndex = 0;
             this.btnUploadPhoto.Text = "Upload Photo";
             this.btnUploadPhoto.UseVisualStyleBackColor = true;
@@ -195,9 +209,10 @@
             // PictureBox
             // 
             this.PictureBox.Image = global::IS.Admin.Properties.Resources.NoPhoto;
-            this.PictureBox.Location = new System.Drawing.Point(12, 18);
+            this.PictureBox.Location = new System.Drawing.Point(16, 22);
+            this.PictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.PictureBox.Name = "PictureBox";
-            this.PictureBox.Size = new System.Drawing.Size(125, 130);
+            this.PictureBox.Size = new System.Drawing.Size(167, 160);
             this.PictureBox.TabIndex = 6;
             this.PictureBox.TabStop = false;
             // 
@@ -205,9 +220,10 @@
             // 
             this.btnCancel.Image = global::IS.Admin.Properties.Resources.Cancel;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCancel.Location = new System.Drawing.Point(632, 226);
+            this.btnCancel.Location = new System.Drawing.Point(843, 278);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(56, 53);
+            this.btnCancel.Size = new System.Drawing.Size(75, 65);
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -218,9 +234,10 @@
             // 
             this.btnAdd.Image = global::IS.Admin.Properties.Resources.Save;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAdd.Location = new System.Drawing.Point(573, 226);
+            this.btnAdd.Location = new System.Drawing.Point(764, 278);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(53, 53);
+            this.btnAdd.Size = new System.Drawing.Size(71, 65);
             this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "Save";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -235,22 +252,24 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(6, 9);
+            this.label7.Location = new System.Drawing.Point(8, 11);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(236, 34);
+            this.label7.Size = new System.Drawing.Size(291, 42);
             this.label7.TabIndex = 8;
             this.label7.Text = "Add Cashier Info.";
             // 
             // FrmAddCashier
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
-            this.ClientSize = new System.Drawing.Size(727, 368);
+            this.ClientSize = new System.Drawing.Size(969, 453);
             this.ControlBox = false;
             this.Controls.Add(this.label7);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmAddCashier";
@@ -283,7 +302,7 @@
         private System.Windows.Forms.PictureBox PictureBox;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtCashierId;
         private System.Windows.Forms.Label lblId;
+        private System.Windows.Forms.Label lblCashierId;
     }
 }
