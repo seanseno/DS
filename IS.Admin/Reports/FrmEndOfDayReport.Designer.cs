@@ -67,10 +67,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(8, 11);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(6, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(288, 42);
+            this.label4.Size = new System.Drawing.Size(232, 34);
             this.label4.TabIndex = 26;
             this.label4.Text = "End of day report";
             // 
@@ -85,11 +84,9 @@
             this.groupBox2.Controls.Add(this.dtpFrom);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(16, 68);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Location = new System.Drawing.Point(12, 55);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(1364, 180);
+            this.groupBox2.Size = new System.Drawing.Size(1023, 146);
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Search Box";
@@ -97,10 +94,9 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(248, 52);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(186, 42);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(386, 55);
+            this.label5.Size = new System.Drawing.Size(290, 45);
             this.label5.TabIndex = 26;
             this.label5.Text = "(Search by: Tranasction No., Cashier, Customer Name, Additional Info., Category, " +
     "Product Id, Product Name)";
@@ -109,10 +105,9 @@
             // 
             this.btnSearch.Image = global::IS.Admin.Properties.Resources.search;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.Location = new System.Drawing.Point(642, 18);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSearch.Location = new System.Drawing.Point(482, 15);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(101, 98);
+            this.btnSearch.Size = new System.Drawing.Size(76, 80);
             this.btnSearch.TabIndex = 24;
             this.btnSearch.Text = "Search";
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -122,50 +117,45 @@
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(251, 18);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSearch.Location = new System.Drawing.Point(188, 15);
             this.txtSearch.MaxLength = 100;
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(383, 30);
+            this.txtSearch.Size = new System.Drawing.Size(288, 26);
             this.txtSearch.TabIndex = 23;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(35, 26);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(26, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(145, 20);
+            this.label1.Size = new System.Drawing.Size(116, 16);
             this.label1.TabIndex = 20;
             this.label1.Text = "Search Keywords:";
             // 
             // dtpTo
             // 
             this.dtpTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpTo.Location = new System.Drawing.Point(250, 147);
-            this.dtpTo.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpTo.Location = new System.Drawing.Point(188, 119);
             this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(384, 26);
+            this.dtpTo.Size = new System.Drawing.Size(289, 22);
             this.dtpTo.TabIndex = 2;
             // 
             // dtpFrom
             // 
             this.dtpFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFrom.Location = new System.Drawing.Point(250, 111);
-            this.dtpFrom.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpFrom.Location = new System.Drawing.Point(188, 90);
             this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(384, 26);
+            this.dtpFrom.Size = new System.Drawing.Size(289, 22);
             this.dtpFrom.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(34, 150);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(26, 122);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(172, 20);
+            this.label3.Size = new System.Drawing.Size(137, 16);
             this.label3.TabIndex = 22;
             this.label3.Text = "Transaction Date To :";
             // 
@@ -173,10 +163,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(34, 115);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(26, 93);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(192, 20);
+            this.label2.Size = new System.Drawing.Size(151, 16);
             this.label2.TabIndex = 21;
             this.label2.Text = "Transaction Date From :";
             // 
@@ -186,11 +175,9 @@
             this.groupBox1.Controls.Add(this.btnDownload);
             this.groupBox1.Controls.Add(this.btnClose);
             this.groupBox1.Controls.Add(this.dgvSales);
-            this.groupBox1.Location = new System.Drawing.Point(15, 256);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(11, 208);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(1363, 537);
+            this.groupBox1.Size = new System.Drawing.Size(1022, 436);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Details";
@@ -199,10 +186,9 @@
             // 
             this.btnDownload.Image = global::IS.Admin.Properties.Resources.download;
             this.btnDownload.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnDownload.Location = new System.Drawing.Point(1159, 438);
-            this.btnDownload.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDownload.Location = new System.Drawing.Point(869, 356);
             this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(88, 68);
+            this.btnDownload.Size = new System.Drawing.Size(66, 55);
             this.btnDownload.TabIndex = 27;
             this.btnDownload.Text = "Dowload";
             this.btnDownload.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -213,10 +199,9 @@
             // 
             this.btnClose.Image = global::IS.Admin.Properties.Resources.Cancel;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnClose.Location = new System.Drawing.Point(1255, 440);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
+            this.btnClose.Location = new System.Drawing.Point(941, 358);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(88, 68);
+            this.btnClose.Size = new System.Drawing.Size(66, 55);
             this.btnClose.TabIndex = 28;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -242,13 +227,12 @@
             this.Price,
             this.TotalPrice,
             this.InsertTime});
-            this.dgvSales.Location = new System.Drawing.Point(8, 23);
-            this.dgvSales.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvSales.Location = new System.Drawing.Point(6, 19);
             this.dgvSales.Name = "dgvSales";
             this.dgvSales.ReadOnly = true;
             this.dgvSales.RowHeadersWidth = 51;
             this.dgvSales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSales.Size = new System.Drawing.Size(1335, 397);
+            this.dgvSales.Size = new System.Drawing.Size(1001, 323);
             this.dgvSales.TabIndex = 25;
             // 
             // Id
@@ -362,16 +346,15 @@
             // 
             // FrmEndOfDayReport
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
-            this.ClientSize = new System.Drawing.Size(1396, 815);
+            this.ClientSize = new System.Drawing.Size(1047, 662);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmEndOfDayReport";

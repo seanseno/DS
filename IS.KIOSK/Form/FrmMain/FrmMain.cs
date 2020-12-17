@@ -414,7 +414,8 @@ namespace IS.KIOSK
             PrintDocument p = new PrintDocument();
             p.PrintPage += delegate (object sender1, PrintPageEventArgs e1)
             {
-                var Items = factory.SalesRepository.GetSalesDetailListReport().Where(x => x.LedgerId == LedgerId).OrderBy(y => y.Id);
+                var Items = factory.SalesRepository.GetList().Where(x => x.LedgerId == LedgerId).OrderBy(y => y.Id);
+                var LedgerSales = factory.LedgerSalesRepository.GetList().Where(x => x.Id == LedgerId).FirstOrDefault();
 
                 var Date = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "Date").FirstOrDefault();
                 e1.Graphics.DrawString(DateTime.Now.ToString("MMMM dd, yyyy"), new Font("Times New Roman", Date.Size), Brushes.Black, new RectangleF(Date.X, Date.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
@@ -423,7 +424,9 @@ namespace IS.KIOSK
                 e1.Graphics.DrawString(string.Format("{0:000000000000}", LedgerId), new Font("Times New Roman", ReceiptNo.Size), Brushes.Black, new RectangleF(ReceiptNo.X, ReceiptNo.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
 
                 var SoldTo = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "SoldTo").FirstOrDefault();
-                e1.Graphics.DrawString(Items.ToList().FirstOrDefault().CustomerName, new Font("Times New Roman", SoldTo.Size), Brushes.Black, new RectangleF(SoldTo.X, SoldTo.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
+                
+                
+                e1.Graphics.DrawString(LedgerSales.CustomerName, new Font("Times New Roman", SoldTo.Size), Brushes.Black, new RectangleF(SoldTo.X, SoldTo.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
 
 
                 var Products = factory.PrinterCoordinatesRepository.GetList().Where(x => x.PrintingType == (int)PrinterType.Kiosk && x.PrintingLabel == "Products").FirstOrDefault();
@@ -436,8 +439,8 @@ namespace IS.KIOSK
                     string product = string.Empty;
                     decimal TotalPrice = Convert.ToDecimal(Convert.ToDecimal(itm?.Qty) * itm?.Price);
                     TotalAmountPrice += TotalPrice;
-                    var descList = WordWrap.Wrap(itm.ProductName, 50);
-                    e1.Graphics.DrawString(itm.Qty?.ToString("N0"), new Font("Times New Roman", ProductsQty.Size), Brushes.Black, new RectangleF(ProductsQty.X, Products.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
+                    var descList = WordWrap.Wrap(factory.ProductsRepository.GetList().Where(x=>x.ProductId == itm.ProductId).FirstOrDefault().ProductName, 50);
+                    e1.Graphics.DrawString(itm.Qty.ToString("N0"), new Font("Times New Roman", ProductsQty.Size), Brushes.Black, new RectangleF(ProductsQty.X, Products.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
                     e1.Graphics.DrawString(TotalPrice.ToString("N2"), new Font("Times New Roman", ProductsPrice.Size), Brushes.Black, new RectangleF(ProductsPrice.X, Products.Y, p.DefaultPageSettings.PrintableArea.Width, p.DefaultPageSettings.PrintableArea.Height));
                     foreach (string desc in descList)
                     {
