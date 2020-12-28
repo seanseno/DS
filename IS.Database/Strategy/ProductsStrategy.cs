@@ -92,7 +92,6 @@ namespace IS.Database.Strategy
                 PD.PriceDiscounted = (prod.Price) - (prod.Price * ((set.SeniorDiscount) / 100));
                 return PD;
             }
-            return null;
         }
     }
 }

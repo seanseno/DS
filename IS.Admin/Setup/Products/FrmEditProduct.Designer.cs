@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEditProduct));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtRemarks = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.chkActive = new System.Windows.Forms.CheckBox();
             this.lblItemId = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,8 +49,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtRemarks = new System.Windows.Forms.TextBox();
+            this.cboCategories = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -58,6 +60,8 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.White;
+            this.groupBox2.Controls.Add(this.cboCategories);
+            this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.txtRemarks);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.chkActive);
@@ -71,17 +75,36 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Location = new System.Drawing.Point(22, 16);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(509, 378);
+            this.groupBox2.Size = new System.Drawing.Size(509, 391);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Input Details";
+            // 
+            // txtRemarks
+            // 
+            this.txtRemarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRemarks.Location = new System.Drawing.Point(142, 354);
+            this.txtRemarks.MaxLength = 500;
+            this.txtRemarks.Name = "txtRemarks";
+            this.txtRemarks.Size = new System.Drawing.Size(357, 26);
+            this.txtRemarks.TabIndex = 4;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(20, 360);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 16);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Remarks";
             // 
             // chkActive
             // 
             this.chkActive.AutoSize = true;
             this.chkActive.Checked = true;
             this.chkActive.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkActive.Location = new System.Drawing.Point(144, 305);
+            this.chkActive.Location = new System.Drawing.Point(144, 331);
             this.chkActive.Name = "chkActive";
             this.chkActive.Size = new System.Drawing.Size(56, 17);
             this.chkActive.TabIndex = 3;
@@ -219,14 +242,14 @@
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Location = new System.Drawing.Point(12, 46);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(552, 480);
+            this.panel1.Size = new System.Drawing.Size(552, 478);
             this.panel1.TabIndex = 7;
             // 
             // btnSave
             // 
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSave.Location = new System.Drawing.Point(416, 410);
+            this.btnSave.Location = new System.Drawing.Point(416, 413);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(53, 53);
             this.btnSave.TabIndex = 9;
@@ -239,7 +262,7 @@
             // 
             this.btnCancel.Image = global::IS.Admin.Properties.Resources.Cancel;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCancel.Location = new System.Drawing.Point(475, 410);
+            this.btnCancel.Location = new System.Drawing.Point(475, 413);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(56, 53);
             this.btnCancel.TabIndex = 8;
@@ -258,31 +281,31 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "Edit Product";
             // 
-            // label4
+            // cboCategories
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(20, 341);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 16);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Remarks";
+            this.cboCategories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCategories.FormattingEnabled = true;
+            this.cboCategories.Location = new System.Drawing.Point(142, 293);
+            this.cboCategories.Name = "cboCategories";
+            this.cboCategories.Size = new System.Drawing.Size(357, 21);
+            this.cboCategories.TabIndex = 40;
             // 
-            // txtRemarks
+            // label16
             // 
-            this.txtRemarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemarks.Location = new System.Drawing.Point(142, 335);
-            this.txtRemarks.MaxLength = 500;
-            this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Size = new System.Drawing.Size(357, 26);
-            this.txtRemarks.TabIndex = 4;
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(20, 293);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(66, 16);
+            this.label16.TabIndex = 41;
+            this.label16.Text = "Category:";
             // 
             // FrmEditProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
-            this.ClientSize = new System.Drawing.Size(585, 544);
+            this.ClientSize = new System.Drawing.Size(573, 535);
             this.ControlBox = false;
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
@@ -325,5 +348,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtRemarks;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cboCategories;
+        private System.Windows.Forms.Label label16;
     }
 }

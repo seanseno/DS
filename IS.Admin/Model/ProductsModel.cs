@@ -41,11 +41,6 @@ namespace IS.Admin.Model
             return factory.ProductsRepository.ProductsStrategy.CheckEditDuplicate(name, itemId);
         }
 
-        public void DeleteItem(Products item)
-        {
-            var factory = new ISFactory();
-            factory.ProductsRepository.Delete(item);
-        }
         public Products LoadEdit(string itemId)
         {
             var factory = new ISFactory();

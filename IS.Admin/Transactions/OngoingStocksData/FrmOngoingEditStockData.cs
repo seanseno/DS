@@ -36,6 +36,7 @@ namespace IS.Admin.Transactions
             dtpDeliveryDate.Value = _StockData.DeliveryDate;
             dtpExpirationDate.Value = _StockData.ExpirationDate;
             txtRemarks.Text = _StockData.Remarks;
+            lblCategory.Text = _StockData.CategoryName;
 
             CategoriesModel categoriesModel = new CategoriesModel();
             var categoryList = categoriesModel.CategoryListWithSelect();

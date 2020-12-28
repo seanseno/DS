@@ -16,6 +16,8 @@ namespace IS.Database.Entities
         public DateTime? UpdateTime { get; set; }
         public int Active { get; set; }
         public string BarCode { get; set; }
+        public string CategoryId { get; set; }
+        public string CategoryName { get; set; }
         public string ActiveString { get; set; }
     }
     public class ProductsKiosk

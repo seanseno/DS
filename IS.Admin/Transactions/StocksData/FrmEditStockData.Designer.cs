@@ -33,6 +33,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lblCategory = new System.Windows.Forms.Label();
             this.txtSuggestedPrice = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.cboCategories = new System.Windows.Forms.ComboBox();
@@ -57,8 +58,8 @@
             this.txtSupplierPrice = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtProductId = new System.Windows.Forms.TextBox();
-            this.txtProductName = new System.Windows.Forms.RichTextBox();
+            this.txtProductName = new System.Windows.Forms.Label();
+            this.txtProductId = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -104,6 +105,7 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.White;
+            this.groupBox3.Controls.Add(this.lblCategory);
             this.groupBox3.Controls.Add(this.txtSuggestedPrice);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.cboCategories);
@@ -135,6 +137,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Input Details";
             // 
+            // lblCategory
+            // 
+            this.lblCategory.AutoSize = true;
+            this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCategory.Location = new System.Drawing.Point(128, 168);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(12, 16);
+            this.lblCategory.TabIndex = 45;
+            this.lblCategory.Text = "-";
+            // 
             // txtSuggestedPrice
             // 
             this.txtSuggestedPrice.Enabled = false;
@@ -160,17 +172,18 @@
             // 
             this.cboCategories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategories.FormattingEnabled = true;
-            this.cboCategories.Location = new System.Drawing.Point(129, 198);
+            this.cboCategories.Location = new System.Drawing.Point(395, 168);
             this.cboCategories.Name = "cboCategories";
-            this.cboCategories.Size = new System.Drawing.Size(357, 21);
+            this.cboCategories.Size = new System.Drawing.Size(91, 21);
             this.cboCategories.TabIndex = 1;
+            this.cboCategories.Visible = false;
             this.cboCategories.SelectedIndexChanged += new System.EventHandler(this.cboCategories_SelectedIndexChanged);
             // 
             // cboPrincipals
             // 
             this.cboPrincipals.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPrincipals.FormattingEnabled = true;
-            this.cboPrincipals.Location = new System.Drawing.Point(129, 169);
+            this.cboPrincipals.Location = new System.Drawing.Point(129, 198);
             this.cboPrincipals.Name = "cboPrincipals";
             this.cboPrincipals.Size = new System.Drawing.Size(357, 21);
             this.cboPrincipals.TabIndex = 0;
@@ -179,7 +192,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(16, 198);
+            this.label16.Location = new System.Drawing.Point(16, 168);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(63, 16);
             this.label16.TabIndex = 42;
@@ -189,7 +202,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(16, 169);
+            this.label15.Location = new System.Drawing.Point(16, 198);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(60, 16);
             this.label15.TabIndex = 41;
@@ -363,8 +376,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
-            this.groupBox1.Controls.Add(this.txtProductId);
             this.groupBox1.Controls.Add(this.txtProductName);
+            this.groupBox1.Controls.Add(this.txtProductId);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(131, 19);
@@ -375,27 +388,25 @@
             this.groupBox1.Tag = "";
             this.groupBox1.Text = "Product";
             // 
-            // txtProductId
-            // 
-            this.txtProductId.Enabled = false;
-            this.txtProductId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProductId.Location = new System.Drawing.Point(109, 24);
-            this.txtProductId.MaxLength = 5;
-            this.txtProductId.Name = "txtProductId";
-            this.txtProductId.ReadOnly = true;
-            this.txtProductId.Size = new System.Drawing.Size(263, 26);
-            this.txtProductId.TabIndex = 2;
-            this.txtProductId.TextChanged += new System.EventHandler(this.txtProductId_TextChanged);
-            // 
             // txtProductName
             // 
-            this.txtProductName.Enabled = false;
-            this.txtProductName.Location = new System.Drawing.Point(109, 56);
+            this.txtProductName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtProductName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductName.Location = new System.Drawing.Point(121, 57);
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.ReadOnly = true;
-            this.txtProductName.Size = new System.Drawing.Size(344, 71);
-            this.txtProductName.TabIndex = 3;
-            this.txtProductName.Text = "";
+            this.txtProductName.Size = new System.Drawing.Size(332, 71);
+            this.txtProductName.TabIndex = 8;
+            this.txtProductName.Text = "Product ID :";
+            // 
+            // txtProductId
+            // 
+            this.txtProductId.AutoSize = true;
+            this.txtProductId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductId.Location = new System.Drawing.Point(122, 27);
+            this.txtProductId.Name = "txtProductId";
+            this.txtProductId.Size = new System.Drawing.Size(76, 16);
+            this.txtProductId.TabIndex = 7;
+            this.txtProductId.Text = "Product ID :";
             // 
             // label6
             // 
@@ -435,7 +446,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
-            this.ClientSize = new System.Drawing.Size(688, 728);
+            this.ClientSize = new System.Drawing.Size(688, 713);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label3);
@@ -471,8 +482,6 @@
         private System.Windows.Forms.TextBox txtSupplierPrice;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtProductId;
-        private System.Windows.Forms.RichTextBox txtProductName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnCancel;
@@ -487,5 +496,8 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtSuggestedPrice;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblCategory;
+        private System.Windows.Forms.Label txtProductName;
+        private System.Windows.Forms.Label txtProductId;
     }
 }

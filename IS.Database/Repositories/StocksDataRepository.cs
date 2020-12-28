@@ -42,7 +42,7 @@ namespace IS.Database.Repositories
                 using (SqlCommand cmd = new SqlCommand("spStocksDataInsert", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@Loginname", StocksData.Loginname.ToUpper()));
+                    cmd.Parameters.Add(new SqlParameter("@Loginname", StocksData.Loginname));
                     cmd.Parameters.Add(new SqlParameter("@ProductId", StocksData.ProductId.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@PrincipalId", StocksData.PrincipalId.ToUpper()));
                     cmd.Parameters.Add(new SqlParameter("@CategoryId", StocksData.CategoryId.ToUpper()));

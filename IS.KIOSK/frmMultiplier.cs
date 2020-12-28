@@ -66,69 +66,69 @@ namespace IS.KIOSK
             //}
         }
 
-        private void ComputeCategoryDiscount(Settings percentDiscount, CategoryDiscounted CategoryDiscount)
-        {
-            if (percentDiscount == null)
-            {
-                MessageBox.Show("Discount price not yet in setup!, please call administrator!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this._FrmMain._IsDicounted = false;
-                this.DialogResult = DialogResult.Cancel;
-            }
-            else
-            {
-                this.SeniroDiscount = percentDiscount.SeniorDiscount;
-                this.PwdDiscount = percentDiscount.PWDDiscount;
-            }
-            pnlDiscount.Visible = true;
-            if (CategoryDiscount.IsPWD == (int)EnumActive.Active && CategoryDiscount.IsSenior == (int)EnumActive.Active)
-            {
-                rbPwd.Visible = true;
-                rbSenior.Visible = true;
-            }
-            else if (CategoryDiscount.IsPWD != (int)EnumActive.Active && CategoryDiscount.IsSenior == (int)EnumActive.Active)
-            {
-                rbPwd.Visible = false;
-                rbSenior.Visible = true;
-            }
-            else if (CategoryDiscount.IsPWD == (int)EnumActive.Active && CategoryDiscount.IsSenior != (int)EnumActive.Active)
-            {
-                rbPwd.Visible = true;
-                rbSenior.Visible = false;
-                rbPwd.Location = rbSenior.Location;
-            }
-        }
-        private void ComputeProductDiscount(Settings percentDiscount, ProductsDiscounted ProductDiscount)
-        {
-            if (percentDiscount == null)
-            {
-                MessageBox.Show("Discount price not yet in setup!, please call administrator!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this._FrmMain._IsDicounted = false;
-                this.DialogResult = DialogResult.Cancel;
-            }
-            else
-            {
-                this.SeniroDiscount = percentDiscount.SeniorDiscount;
-                this.PwdDiscount = percentDiscount.PWDDiscount;
-            }
-            pnlDiscount.Visible = true;
-            if (ProductDiscount.IsPWD == (int)EnumActive.Active && ProductDiscount.IsSenior == (int)EnumActive.Active)
-            {
-                rbPwd.Visible = true;
-                rbSenior.Visible = true;
-            }
-            else if (ProductDiscount.IsPWD != (int)EnumActive.Active && ProductDiscount.IsSenior == (int)EnumActive.Active)
-            {
-                rbPwd.Visible = false;
-                rbSenior.Visible = true;
-            }
-            else if (ProductDiscount.IsPWD == (int)EnumActive.Active && ProductDiscount.IsSenior != (int)EnumActive.Active)
-            {
-                rbPwd.Visible = true;
-                rbSenior.Visible = false;
-                rbPwd.Location = rbSenior.Location;
-            }
+        //private void ComputeCategoryDiscount(Settings percentDiscount, CategoryDiscounted CategoryDiscount)
+        //{
+        //    if (percentDiscount == null)
+        //    {
+        //        MessageBox.Show("Discount price not yet in setup!, please call administrator!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        this._FrmMain._IsDicounted = false;
+        //        this.DialogResult = DialogResult.Cancel;
+        //    }
+        //    else
+        //    {
+        //        this.SeniroDiscount = percentDiscount.SeniorDiscount;
+        //        this.PwdDiscount = percentDiscount.PWDDiscount;
+        //    }
+        //    pnlDiscount.Visible = true;
+        //    if (CategoryDiscount.IsPWD == (int)EnumActive.Active && CategoryDiscount.IsSenior == (int)EnumActive.Active)
+        //    {
+        //        rbPwd.Visible = true;
+        //        rbSenior.Visible = true;
+        //    }
+        //    else if (CategoryDiscount.IsPWD != (int)EnumActive.Active && CategoryDiscount.IsSenior == (int)EnumActive.Active)
+        //    {
+        //        rbPwd.Visible = false;
+        //        rbSenior.Visible = true;
+        //    }
+        //    else if (CategoryDiscount.IsPWD == (int)EnumActive.Active && CategoryDiscount.IsSenior != (int)EnumActive.Active)
+        //    {
+        //        rbPwd.Visible = true;
+        //        rbSenior.Visible = false;
+        //        rbPwd.Location = rbSenior.Location;
+        //    }
+        //}
+        //private void ComputeProductDiscount(Settings percentDiscount, ProductsDiscounted ProductDiscount)
+        //{
+        //    if (percentDiscount == null)
+        //    {
+        //        MessageBox.Show("Discount price not yet in setup!, please call administrator!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        this._FrmMain._IsDicounted = false;
+        //        this.DialogResult = DialogResult.Cancel;
+        //    }
+        //    else
+        //    {
+        //        this.SeniroDiscount = percentDiscount.SeniorDiscount;
+        //        this.PwdDiscount = percentDiscount.PWDDiscount;
+        //    }
+        //    pnlDiscount.Visible = true;
+        //    if (ProductDiscount.IsPWD == (int)EnumActive.Active && ProductDiscount.IsSenior == (int)EnumActive.Active)
+        //    {
+        //        rbPwd.Visible = true;
+        //        rbSenior.Visible = true;
+        //    }
+        //    else if (ProductDiscount.IsPWD != (int)EnumActive.Active && ProductDiscount.IsSenior == (int)EnumActive.Active)
+        //    {
+        //        rbPwd.Visible = false;
+        //        rbSenior.Visible = true;
+        //    }
+        //    else if (ProductDiscount.IsPWD == (int)EnumActive.Active && ProductDiscount.IsSenior != (int)EnumActive.Active)
+        //    {
+        //        rbPwd.Visible = true;
+        //        rbSenior.Visible = false;
+        //        rbPwd.Location = rbSenior.Location;
+        //    }
 
-        }
+        //}
         private void txtQty_KeyUp(object sender, KeyEventArgs e)
         {
             if(e.KeyValue == 13) // Enter

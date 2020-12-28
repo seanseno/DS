@@ -41,6 +41,14 @@ namespace IS.Admin.Setup
             txtPrice.Text = response.Price.ToString("N2");
             txtBarcode.Text = response.BarCode;
             chkActive.Checked = response.Active == 1 ? true : false;
+
+            CategoriesModel categoriesModel = new CategoriesModel();
+            var categoryList = categoriesModel.CategoryListWithSelect();
+            cboCategories.DataSource = categoryList;
+            cboCategories.DisplayMember = "CategoryName";
+            cboCategories.ValueMember = "CategoryId";
+
+            cboCategories.SelectedIndex = cboCategories.FindStringExact(response.CategoryName);
         }
 
         private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
@@ -112,7 +120,7 @@ namespace IS.Admin.Setup
                     _Products.Price = Convert.ToDecimal(txtPrice.Text);
                     _Products.BarCode = txtBarcode.Text;
                     _Products.Active = chkActive.Checked == true ? 1 : 0;
-                  
+                    _Products.CategoryId = cboCategories.SelectedValue.ToString();
                     var model = new ProductsModel();
 
                     factory.ProductsRepository.Update(_Products, txtRemarks.Text);

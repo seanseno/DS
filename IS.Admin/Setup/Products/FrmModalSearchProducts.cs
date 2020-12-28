@@ -22,6 +22,7 @@ namespace IS.Admin.Setup
         IList<Products> _ProductList = new List<Products>();
         public string _ProductId {get;set;}
         public string _ProductName { get; set; }
+        public string _CategoryName { get; set; }
         public decimal _Price { get; set; }
         public IList<string> _Query { get; set; }
         Criteria criteria = new Criteria();
@@ -140,6 +141,7 @@ namespace IS.Admin.Setup
                 this._ProductId = dgvProducts.CurrentRow.Cells[0].Value?.ToString();
                 this._ProductName = dgvProducts.CurrentRow.Cells[1].Value?.ToString();
                 this._Price =Convert.ToDecimal(dgvProducts.CurrentRow.Cells[2].Value);
+                this._CategoryName =dgvProducts.CurrentRow.Cells[4].Value?.ToString();
                 this.DialogResult = DialogResult.OK;
             }
         }

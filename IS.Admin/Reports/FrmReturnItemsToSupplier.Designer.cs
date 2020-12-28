@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label4 = new System.Windows.Forms.Label();
             this.btnDownload = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
@@ -61,10 +61,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Ink Free", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(8, 11);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(6, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(451, 42);
+            this.label4.Size = new System.Drawing.Size(362, 34);
             this.label4.TabIndex = 29;
             this.label4.Text = "Returned Items to Supplier";
             // 
@@ -72,10 +71,9 @@
             // 
             this.btnDownload.Image = global::IS.Admin.Properties.Resources.download;
             this.btnDownload.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnDownload.Location = new System.Drawing.Point(1159, 419);
-            this.btnDownload.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDownload.Location = new System.Drawing.Point(830, 340);
             this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(88, 68);
+            this.btnDownload.Size = new System.Drawing.Size(66, 55);
             this.btnDownload.TabIndex = 27;
             this.btnDownload.Text = "Dowload";
             this.btnDownload.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -86,10 +84,9 @@
             // 
             this.btnClose.Image = global::IS.Admin.Properties.Resources.Cancel;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnClose.Location = new System.Drawing.Point(1255, 421);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
+            this.btnClose.Location = new System.Drawing.Point(902, 342);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(88, 68);
+            this.btnClose.Size = new System.Drawing.Size(66, 55);
             this.btnClose.TabIndex = 28;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -100,8 +97,8 @@
             // 
             this.dgvReturnItems.AllowUserToAddRows = false;
             this.dgvReturnItems.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
-            this.dgvReturnItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
+            this.dgvReturnItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvReturnItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvReturnItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Fullname,
@@ -112,13 +109,12 @@
             this.ReturnQty,
             this.InsertTime,
             this.Remarks});
-            this.dgvReturnItems.Location = new System.Drawing.Point(8, 23);
-            this.dgvReturnItems.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvReturnItems.Location = new System.Drawing.Point(6, 19);
             this.dgvReturnItems.Name = "dgvReturnItems";
             this.dgvReturnItems.ReadOnly = true;
             this.dgvReturnItems.RowHeadersWidth = 51;
             this.dgvReturnItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvReturnItems.Size = new System.Drawing.Size(1335, 390);
+            this.dgvReturnItems.Size = new System.Drawing.Size(962, 317);
             this.dgvReturnItems.TabIndex = 25;
             // 
             // Fullname
@@ -169,10 +165,10 @@
             // ReturnQty
             // 
             this.ReturnQty.DataPropertyName = "ReturnQty";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.ReturnQty.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = "0";
+            this.ReturnQty.DefaultCellStyle = dataGridViewCellStyle4;
             this.ReturnQty.HeaderText = "Return Quantity";
             this.ReturnQty.MinimumWidth = 6;
             this.ReturnQty.Name = "ReturnQty";
@@ -203,11 +199,9 @@
             this.groupBox1.Controls.Add(this.btnDownload);
             this.groupBox1.Controls.Add(this.btnClose);
             this.groupBox1.Controls.Add(this.dgvReturnItems);
-            this.groupBox1.Location = new System.Drawing.Point(21, 268);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(12, 218);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(1363, 502);
+            this.groupBox1.Size = new System.Drawing.Size(974, 408);
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Details";
@@ -216,10 +210,9 @@
             // 
             this.btnSearch.Image = global::IS.Admin.Properties.Resources.search;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.Location = new System.Drawing.Point(571, 22);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSearch.Location = new System.Drawing.Point(428, 18);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(101, 98);
+            this.btnSearch.Size = new System.Drawing.Size(76, 80);
             this.btnSearch.TabIndex = 24;
             this.btnSearch.Text = "Search";
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -229,41 +222,37 @@
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(215, 22);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSearch.Location = new System.Drawing.Point(161, 18);
             this.txtSearch.MaxLength = 100;
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(339, 30);
+            this.txtSearch.Size = new System.Drawing.Size(255, 26);
             this.txtSearch.TabIndex = 23;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(35, 26);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(26, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(150, 20);
+            this.label1.Size = new System.Drawing.Size(119, 16);
             this.label1.TabIndex = 20;
             this.label1.Text = "Search Keywords :";
             // 
             // dtpTo
             // 
             this.dtpTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpTo.Location = new System.Drawing.Point(215, 143);
-            this.dtpTo.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpTo.Location = new System.Drawing.Point(161, 116);
             this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(339, 26);
+            this.dtpTo.Size = new System.Drawing.Size(255, 22);
             this.dtpTo.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(35, 146);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(26, 119);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(157, 20);
+            this.label3.Size = new System.Drawing.Size(124, 16);
             this.label3.TabIndex = 22;
             this.label3.Text = "Returned  Date To :";
             // 
@@ -271,10 +260,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(35, 111);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(26, 90);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(172, 20);
+            this.label2.Size = new System.Drawing.Size(135, 16);
             this.label2.TabIndex = 21;
             this.label2.Text = "Returned Date From :";
             // 
@@ -289,11 +277,9 @@
             this.groupBox2.Controls.Add(this.dtpFrom);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(16, 68);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Location = new System.Drawing.Point(12, 55);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(1368, 183);
+            this.groupBox2.Size = new System.Drawing.Size(974, 149);
             this.groupBox2.TabIndex = 28;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Search Box";
@@ -301,32 +287,29 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(212, 57);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(159, 46);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(342, 46);
+            this.label5.Size = new System.Drawing.Size(256, 37);
             this.label5.TabIndex = 27;
             this.label5.Text = "(Search By: Transaction By,Principal, Category, Product Id,Product Name)";
             // 
             // dtpFrom
             // 
             this.dtpFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFrom.Location = new System.Drawing.Point(215, 107);
-            this.dtpFrom.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpFrom.Location = new System.Drawing.Point(161, 87);
             this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(339, 26);
+            this.dtpFrom.Size = new System.Drawing.Size(255, 22);
             this.dtpFrom.TabIndex = 1;
             // 
             // FrmReturnItemsToSupplier
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
-            this.ClientSize = new System.Drawing.Size(1397, 792);
+            this.ClientSize = new System.Drawing.Size(996, 639);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmReturnItemsToSupplier";

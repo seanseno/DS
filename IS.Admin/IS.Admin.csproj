@@ -244,6 +244,12 @@
     <Compile Include="Transactions\StocksData\FrmReturnStockData.Designer.cs">
       <DependentUpon>FrmReturnStockData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\ChangePassword\FrmCashierChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\ChangePassword\FrmCashierChangePassword.Designer.cs">
+      <DependentUpon>FrmCashierChangePassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\ChangePassword\FrmChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -579,6 +585,9 @@
     <EmbeddedResource Include="Transactions\StocksData\FrmReturnStockData.resx">
       <DependentUpon>FrmReturnStockData.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\ChangePassword\FrmCashierChangePassword.resx">
+      <DependentUpon>FrmCashierChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Utilities\ChangePassword\FrmChangePassword.resx">
       <DependentUpon>FrmChangePassword.cs</DependentUpon>
     </EmbeddedResource>
@@ -698,6 +707,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Menu\" />
+    <Folder Include="Setup\Promo\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Cancel.png" />

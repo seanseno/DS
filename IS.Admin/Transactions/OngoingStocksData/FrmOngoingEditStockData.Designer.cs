@@ -52,6 +52,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.lblCategory = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -94,6 +95,7 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.White;
+            this.groupBox3.Controls.Add(this.lblCategory);
             this.groupBox3.Controls.Add(this.cboCategories);
             this.groupBox3.Controls.Add(this.cboPrincipals);
             this.groupBox3.Controls.Add(this.label16);
@@ -119,16 +121,17 @@
             // 
             this.cboCategories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategories.FormattingEnabled = true;
-            this.cboCategories.Location = new System.Drawing.Point(131, 205);
+            this.cboCategories.Location = new System.Drawing.Point(368, 169);
             this.cboCategories.Name = "cboCategories";
-            this.cboCategories.Size = new System.Drawing.Size(357, 21);
+            this.cboCategories.Size = new System.Drawing.Size(120, 21);
             this.cboCategories.TabIndex = 1;
+            this.cboCategories.Visible = false;
             // 
             // cboPrincipals
             // 
             this.cboPrincipals.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPrincipals.FormattingEnabled = true;
-            this.cboPrincipals.Location = new System.Drawing.Point(131, 176);
+            this.cboPrincipals.Location = new System.Drawing.Point(131, 200);
             this.cboPrincipals.Name = "cboPrincipals";
             this.cboPrincipals.Size = new System.Drawing.Size(357, 21);
             this.cboPrincipals.TabIndex = 0;
@@ -137,7 +140,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(20, 205);
+            this.label16.Location = new System.Drawing.Point(20, 169);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(63, 16);
             this.label16.TabIndex = 45;
@@ -147,7 +150,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(20, 176);
+            this.label15.Location = new System.Drawing.Point(20, 200);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(60, 16);
             this.label15.TabIndex = 44;
@@ -306,6 +309,16 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // lblCategory
+            // 
+            this.lblCategory.AutoSize = true;
+            this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCategory.Location = new System.Drawing.Point(128, 174);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(12, 16);
+            this.lblCategory.TabIndex = 46;
+            this.lblCategory.Text = "-";
+            // 
             // FrmOingingEditStockData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -353,5 +366,6 @@
         private System.Windows.Forms.ComboBox cboPrincipals;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lblCategory;
     }
 }
