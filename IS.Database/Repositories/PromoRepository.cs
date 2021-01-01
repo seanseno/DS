@@ -73,5 +73,7 @@ namespace IS.Database.Repositories
                 }
             }
         }
+
+        public PromoStrategy PromoStrategy => new PromoStrategy();
     }
 }

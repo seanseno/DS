@@ -52,38 +52,46 @@ namespace IS.Admin.Setup
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtPercent.Text))
+            if (!string.IsNullOrEmpty(txtPercent.Text))
             {
-                MessageBox.Show("Percent for Suggested Price is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtPercent.Focus();
-            }
-            else
-
-            {
-                CategoriesModel Categories = new CategoriesModel();
-
-                if (txtCategoryName.Text != _Category.CategoryName)
+                if (Convert.ToDecimal(txtPercent.Text) <= 0)
                 {
-                    if (Categories.CheckEditDup(txtCategoryName.Text, _Category.Id))
-                    {
-                        MessageBox.Show(txtCategoryName.Text + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtCategoryName.Focus();
-                    }
-                    else
-                    {
-                        _Category.CategoryName = txtCategoryName.Text;
-                        _Category.PercentSuggestedPrice = Convert.ToDecimal(txtPercent.Text);
-                        factory.CategoriesRepository.Update(_Category);
-
-                        this.DialogResult = DialogResult.OK;
-                    }
+                    MessageBox.Show("Cannot accept 0 Percent Suggested Price!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtPercent.Focus();
+                    return;
                 }
-                else if (txtCategoryName.Text == _Category.CategoryName)
+            }
+
+            CategoriesModel Categories = new CategoriesModel();
+
+            if (txtCategoryName.Text != _Category.CategoryName)
+            {
+                if (Categories.CheckEditDup(txtCategoryName.Text, _Category.Id))
                 {
-                    _Category.PercentSuggestedPrice = Convert.ToDecimal(txtPercent.Text);
+                    MessageBox.Show(txtCategoryName.Text + " already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtCategoryName.Focus();
+                }
+                else
+                {
+                    _Category.CategoryName = txtCategoryName.Text;
+                    if (!string.IsNullOrEmpty(txtPercent.Text))
+                    {
+                        _Category.PercentSuggestedPrice = Convert.ToDecimal(txtPercent.Text);
+                    }
                     factory.CategoriesRepository.Update(_Category);
+
                     this.DialogResult = DialogResult.OK;
                 }
+            }
+            else if (txtCategoryName.Text == _Category.CategoryName)
+            {
+                if (!string.IsNullOrEmpty(txtPercent.Text))
+                {
+                    _Category.PercentSuggestedPrice = Convert.ToDecimal(txtPercent.Text);
+                }
+                
+                factory.CategoriesRepository.Update(_Category);
+                this.DialogResult = DialogResult.OK;
             }
         }
 
