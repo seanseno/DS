@@ -10,7 +10,7 @@ namespace IS.Database.Entities
     public class PromoDetails
     {
         public int Id { get; set; }
-        public string PromoId { get; set; }
+        public int PromoId { get; set; }
         public string ProductId{ get; set; }
         public decimal Price { get; set;}
         public DateTime? InsertTime { get; set; }

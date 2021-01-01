@@ -238,6 +238,24 @@
     <Compile Include="Setup\Products\FrmProdutcsHistory.Designer.cs">
       <DependentUpon>FrmProdutcsHistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Setup\Promo\FrmPromoEditProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\Promo\FrmPromoEditProduct.Designer.cs">
+      <DependentUpon>FrmPromoEditProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setup\Promo\FrmPromoAddProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\Promo\FrmPromoAddProduct.Designer.cs">
+      <DependentUpon>FrmPromoAddProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setup\Promo\FrmPromo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\Promo\FrmPromo.Designer.cs">
+      <DependentUpon>FrmPromo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transactions\StocksData\FrmReturnStockData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -582,6 +600,15 @@
     <EmbeddedResource Include="Setup\Products\FrmProdutcsHistory.resx">
       <DependentUpon>FrmProdutcsHistory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Setup\Promo\FrmPromoEditProduct.resx">
+      <DependentUpon>FrmPromoEditProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\Promo\FrmPromoAddProduct.resx">
+      <DependentUpon>FrmPromoAddProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\Promo\FrmPromo.resx">
+      <DependentUpon>FrmPromo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\StocksData\FrmReturnStockData.resx">
       <DependentUpon>FrmReturnStockData.cs</DependentUpon>
     </EmbeddedResource>
@@ -707,7 +734,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Menu\" />
-    <Folder Include="Setup\Promo\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Cancel.png" />

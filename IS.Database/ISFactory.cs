@@ -42,7 +42,8 @@ namespace IS.Database
         public PrinterCoordinatesRepository PrinterCoordinatesRepository => new PrinterCoordinatesRepository();
         public CategoryDiscountedRepository CategoryDiscountedRepository => new CategoryDiscountedRepository();
         public PromoRepository PromoRepository => new PromoRepository();
-
+        public PromoDetailsRepository PromoDetailsRepository => new PromoDetailsRepository();
+        public TempPromoDetailsRepository TempPromoDetailsRepository => new TempPromoDetailsRepository();
         //public PromoRepository PromoRepository = new PromoRepository();
         //public PromoRepository PromoRepository  = new PromoRepository();
         //public PromoDetailsRepository PromoDetailsRepository = new PromoDetailsRepository();

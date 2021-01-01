@@ -10,39 +10,34 @@ using System.Text;
 
 namespace IS.Database.Repositories
 {
-    public class PromoRepository : Helper
+    public class PromoDetailsRepository : Helper
     {
-        public IList<Promo> GetList()
+        public IList<PromoDetails> GetList()
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-                var select = "SELECT * FROM Promo";
+                var select = "SELECT * FROM PromoDetails";
                 using (SqlCommand cmd = new SqlCommand(select, connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        return new ReflectionPopulator<Promo>().CreateList(reader);
+                        return new ReflectionPopulator<PromoDetails>().CreateList(reader);
                     }
                 }
             }
         }
 
-
-        public void Insert(Promo Promo)
+        public void Delete(int Id)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
 
-                using (SqlCommand cmd = new SqlCommand("spPromoInsert", connection))
+                using (SqlCommand cmd = new SqlCommand("spPromoDetailsDelete", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@PromoName", Promo.PromoName));
-                    cmd.Parameters.Add(new SqlParameter("@DateFrom", Promo.DateFrom));
-                    cmd.Parameters.Add(new SqlParameter("@DateTo", Promo.DateTo));
-                    cmd.Parameters.Add(new SqlParameter("@LoginId", Globals.LoginId));
-
+                    cmd.Parameters.Add(new SqlParameter("@Id", Id));
                     int rowAffected = cmd.ExecuteNonQuery();
 
                     if (connection.State == System.Data.ConnectionState.Open)
@@ -51,21 +46,19 @@ namespace IS.Database.Repositories
             }
         }
 
-        public void Update(Promo Promo)
+        public void Insert(PromoDetails promoDetails)
         {
             using (SqlConnection connection = new SqlConnection(ConStr))
             {
                 connection.Open();
-
-                using (SqlCommand cmd = new SqlCommand("spPromoUpdate", connection))
+          
+                using (SqlCommand cmd = new SqlCommand("spPromoDetailsInsert", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@PromoId", Promo.Id));
-                    cmd.Parameters.Add(new SqlParameter("@PromoName", Promo.PromoName));
-                    cmd.Parameters.Add(new SqlParameter("@DateFrom", Promo.DateFrom));
-                    cmd.Parameters.Add(new SqlParameter("@DateTo", Promo.DateTo));
-                    cmd.Parameters.Add(new SqlParameter("@LoginId", Globals.LoginId));
-                    cmd.Parameters.Add(new SqlParameter("@Active", Promo.Active));
+                    cmd.Parameters.Add(new SqlParameter("@PromoId", promoDetails.PromoId));
+                    cmd.Parameters.Add(new SqlParameter("@ProductId", promoDetails.ProductId));
+                    cmd.Parameters.Add(new SqlParameter("@Price", promoDetails.Price));
+
                     int rowAffected = cmd.ExecuteNonQuery();
 
                     if (connection.State == System.Data.ConnectionState.Open)

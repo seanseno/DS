@@ -311,5 +311,14 @@ namespace IS.Admin
                 LogOff();
             }
         }
+
+        private void promoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmPromo frm = new FrmPromo();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+             
+            }
+        }
     }
 }
