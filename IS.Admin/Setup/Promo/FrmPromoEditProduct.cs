@@ -79,20 +79,23 @@ namespace IS.Admin.Setup
         {
             if (!CheckInput())
             {
-                factory.TempPromoDetailsRepository.Delete();
-                foreach (var item in _list)
+                if (MessageBox.Show("Are you sure do want to update this promo?", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    factory.TempPromoDetailsRepository.Insert(item);
-                }
+                    factory.TempPromoDetailsRepository.Delete();
+                    foreach (var item in _list)
+                    {
+                        factory.TempPromoDetailsRepository.Insert(item);
+                    }
 
-                Promo promo = new Promo();
-                promo.PromoName = txtPromoName.Text;
-                promo.DateFrom = dtpFrom.Value.Date;
-                promo.DateTo = dtpTo.Value.Date;
-                promo.Id = _PromoId;
-                promo.Active = chkActive.Checked ? 1 : 0;
-                factory.PromoRepository.Update(promo);
-                this.DialogResult = DialogResult.OK;
+                    Promo promo = new Promo();
+                    promo.PromoName = txtPromoName.Text;
+                    promo.DateFrom = dtpFrom.Value.Date;
+                    promo.DateTo = dtpTo.Value.Date;
+                    promo.Id = _PromoId;
+                    promo.Active = chkActive.Checked ? 1 : 0;
+                    factory.PromoRepository.Update(promo);
+                    this.DialogResult = DialogResult.OK;
+                }
             }
         }
 

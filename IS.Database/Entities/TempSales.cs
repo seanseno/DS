@@ -11,12 +11,15 @@ namespace IS.Database.Entities
         public string ProductId { get; set; }
         public int Qty { get; set; }
         public decimal Price { get; set; }
+        public decimal TotalAmount { get; set; }
         public decimal PriceDiscounted { get; set; }
         public decimal TotalPrice { get; set; }
         public decimal Discounted { get; set; }
         public int TempLedgerId { get; set; }
         public int IsSenior { get; set; }
         public int IsPWD { get; set; }
+        public int IsPromo { get; set; }
+        public int? PromoId { get; set; }
         public DateTime InsertTime { get; set; } 
      
 

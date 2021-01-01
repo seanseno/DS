@@ -93,5 +93,22 @@ namespace IS.Database.Strategy
                 return PD;
             }
         }
+
+        public ProductDiscounted GetPromoProduct(string ProductId, int PromoId, int Qty)
+        {
+            var PD = new ProductDiscounted();
+            var prod = factory.ProductsRepository.GetList().Where(x => x.ProductId == ProductId).FirstOrDefault();
+            var promo = factory.PromoDetailsRepository.GetList().Where(x => x.ProductId == ProductId && x.PromoId == PromoId).FirstOrDefault();
+
+            PD.ProductId = ProductId;
+            PD.Qty = Qty;
+            PD.Price = prod.Price;
+
+            PD.Discounted = (prod.Price - promo.Price) * Qty;
+            PD.TotalPrice = (Qty * promo.Price);
+            PD.PriceDiscounted = promo.Price;
+
+            return PD;
+        }
     }
 }

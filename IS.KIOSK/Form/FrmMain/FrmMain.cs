@@ -88,7 +88,7 @@ namespace IS.KIOSK
             _TempOrderList = mainModel.LoadTempOders().Item1;
             _TotalPrice = mainModel.LoadTempOders().Item2;
 
-            if (_TempOrderList.Where(x => x.Discounted > 0).Count() > 0)
+            if (_TempOrderList.Where(x => x.IsPWD == 1 || x.IsSenior == 1).Count() > 0)
             {
                 _IsDicounted = true;
             }
@@ -101,7 +101,6 @@ namespace IS.KIOSK
             dgvList.StandardTab = true;
 
             lblTotal.Text = String.Format("{0:n}", _TotalPrice);
-
         }
 
 
@@ -111,7 +110,7 @@ namespace IS.KIOSK
             {
                this.btnHelp_Click(sender, e);
             }
-            if (e.KeyValue == 113) //load
+            if (e.KeyValue == 113) //search
             {
                 this.btnSearch_Click(sender, e);
             }
@@ -206,15 +205,15 @@ namespace IS.KIOSK
             if (e.KeyValue == 46)
             {
 
-                var GenericName = dgvList.CurrentRow.Cells[1].Value?.ToString();
+                var ProductId = dgvList.CurrentRow.Cells[1].Value?.ToString();
                 var BranName = dgvList.CurrentRow.Cells[2].Value?.ToString();
                 var Description = dgvList.CurrentRow.Cells[3].Value?.ToString();
                 var Params = new List<string>();
                 if (this._TempOrderList != null)
                 {
-                    if (!string.IsNullOrEmpty(GenericName))
+                    if (!string.IsNullOrEmpty(ProductId))
                     {
-                        Params.Add(GenericName);
+                        Params.Add(ProductId);
                     }
                     if (!string.IsNullOrEmpty(BranName))
                     {
@@ -225,17 +224,55 @@ namespace IS.KIOSK
                         Params.Add(Description);
                     }
 
-                    if (MessageBox.Show("Removing " + string.Join(" ", Params) + ".", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    string message;
+                    if (checkIfPromo(ProductId))
                     {
+                        message = "This product already apply as promo " + Environment.NewLine + "" +
+                            "if you continue to remove this product " + Environment.NewLine + "" +
+                            "the promo pack will return to default price " + Environment.NewLine + "" +
+                            "Are you sure do you want to conitnue?";
+                    }
+                    else
+                    {
+                        message = "Removing " + string.Join(" ", Params) + ".";
+                    }
+                    if (MessageBox.Show(message, "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    {
+                        int Id = (int)dgvList.CurrentRow.Cells[0].Value;
+                        var tmp = _TempOrderList.Where(x => x.Id == Id).FirstOrDefault();
+                        var Promo = _TempOrderList.Where(x => tmp.Id == Id && x.IsPromo == (int)EnumActive.Active && x.PromoId == tmp.PromoId).FirstOrDefault();
+                   
                         MainModel mainModel = new MainModel();
-                        mainModel.DeleteTempOrder(this, (int)dgvList.CurrentRow.Cells[0].Value);
+                        mainModel.DeleteTempOrder(this, Id);
+                        load();
+                        if (Promo != null)
+                        {
+                            var tmpList = _TempOrderList.Where(x => x.PromoId == Promo.PromoId).ToList();
+                            foreach (var itm in tmpList)
+                            {
+                                itm.PriceDiscounted = 0;
+                                itm.Discounted = 0;
+                                itm.TotalPrice = itm.Price * itm.Qty;
+                                itm.IsPromo = (int)EnumActive.NonActive;
+                                factory.TempSalesRepository.RemoveKioskPromoProduct(itm);
+                            }
+                        }
                         load();
                     }
                 }
+
                 //txtSearch.Focus();
             }
         }
 
+        private bool checkIfPromo(string ProductId)
+        {
+            if (_TempOrderList.Where(x => x.ProductId == ProductId && x.IsPromo == (int)EnumActive.Active).Count() > 0)
+            {
+                return true;
+            }
+            return false;
+        }
         private void btnExit_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure do you want to exit.", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
@@ -372,7 +409,32 @@ namespace IS.KIOSK
                     frmMultiplier frmMultiplier = new frmMultiplier(this, frm._ProductId,frm._CategoryId);
                     if (frmMultiplier.ShowDialog() == DialogResult.OK)
                     {
+
                         load();
+                        var promoName = factory.PromoRepository.PromoStrategy.CheckPromo(_TempOrderList.Where(x=>x.IsPromo != (int)EnumActive.Active).Select(x => x.ProductId).ToList());
+                        if (!string.IsNullOrEmpty(promoName))
+                        {
+                            var promo = factory.PromoRepository.GetList().Where(x => x.PromoName == promoName).FirstOrDefault();
+                            var promoDetails = factory.PromoDetailsRepository.GetList().Where(x => x.PromoId == promo.Id).ToList();
+
+
+                            string promoProdc = "";
+
+                            foreach (var itm in promoDetails)
+                            {
+                                
+                                promoProdc += factory.ProductsRepository.GetList().Where(x => x.ProductId == itm.ProductId).FirstOrDefault().ProductName + " Price: " + itm.Price.ToString("N2") + Environment.NewLine;
+                            }
+
+                            if (MessageBox.Show("Promo detected!," + Environment.NewLine + "" +
+                                "Promo Name: " + promoName + "" + Environment.NewLine + "" + Environment.NewLine + "" +
+                                "Product(s) : " + Environment.NewLine + "" +
+                                "" + promoProdc + "" + "" + Environment.NewLine + "" +
+                                "Do you want to apply this promo?", "information!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                            {
+                                this.ApplyPromo(promoDetails);
+                            }
+                        }
                     }
                 }
             }
@@ -679,13 +741,55 @@ namespace IS.KIOSK
                         tmp.Discounted = PD.Discounted;
                         tmp.TotalPrice = PD.TotalPrice;
                     }
-                    else
+                    else if(tmp.PriceDiscounted > 0 )
+                    {
+                        decimal price = tmp.PriceDiscounted <= 0 ? tmp.Price : tmp.PriceDiscounted;
+                        tmp.Discounted =  ((tmp.Price - tmp.PriceDiscounted) * tmp.Qty);
+                        tmp.TotalPrice = tmp.Qty * price;
+                    }
+                    else 
                     {
                         tmp.TotalPrice = tmp.Qty * tmp.Price;
                     }
                     factory.TempSalesRepository.UpdateQty(tmp);
                     load();
                 }
+            }
+        }
+
+        private void ApplyPromo(List<PromoDetails> listDetails)
+        {
+            if (this._TempOrderList.Count() > 0)
+            {
+                foreach (var itm in listDetails)
+                {
+                    var PD = new ProductDiscounted();
+                    var tmp = factory.TempSalesRepository.GetList().Where(x => x.TempLedgerId == _TempLedgerSales.Id && x.ProductId == itm.ProductId).FirstOrDefault();
+                    if (tmp != null)
+                    {
+                        PD = factory.ProductsRepository.ProductsStrategy.GetPromoProduct(tmp.ProductId, itm.PromoId, tmp.Qty);
+
+                        if (!string.IsNullOrEmpty(PD.ProductId))
+                        {
+                            tmp.PriceDiscounted = PD.PriceDiscounted;
+                            tmp.Discounted = PD.Discounted;
+                            tmp.TotalPrice = PD.PriceDiscounted * tmp.Qty;
+                            tmp.IsPromo = (int)EnumActive.Active;
+                            tmp.PromoId = itm.PromoId;
+                            factory.TempSalesRepository.UpdatePromo(tmp);
+                        }
+                    }
+                }
+                load();
+            }
+        }
+
+        private void dgvList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 6)
+            {
+                var val = Convert.ToDecimal(e.Value);
+                e.Value = "-" + val.ToString("N2");
             }
         }
     }
