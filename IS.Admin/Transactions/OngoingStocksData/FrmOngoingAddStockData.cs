@@ -74,7 +74,9 @@ namespace IS.Admin.Transactions
             {
                 txtProductId.Text = frm._ProductId;
                 txtProductName.Text = frm._ProductName;
-                txtQuantity.Focus();
+                lblCategory.Text = frm._CategoryName;
+                cboCategories.SelectedIndex = cboCategories.FindStringExact(frm._CategoryName);
+                cboPrincipals.Focus();
             }
         }
 

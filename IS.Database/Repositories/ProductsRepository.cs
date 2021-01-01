@@ -68,6 +68,7 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@Price", item.Price));
                     cmd.Parameters.Add(new SqlParameter("@BarCode", item.BarCode));
                     cmd.Parameters.Add(new SqlParameter("@LoginName", Globals.LoginName));
+                    cmd.Parameters.Add(new SqlParameter("@CategoryId", item.CategoryId));
                     int rowAffected = cmd.ExecuteNonQuery();
 
                     if (connection.State == System.Data.ConnectionState.Open)
@@ -93,6 +94,7 @@ namespace IS.Database.Repositories
                     cmd.Parameters.Add(new SqlParameter("@BarCode", item.BarCode));
                     cmd.Parameters.Add(new SqlParameter("@LoginName", Globals.LoginName));
                     cmd.Parameters.Add(new SqlParameter("@Remarks", Remarks));
+                    cmd.Parameters.Add(new SqlParameter("@CategoryId", item.CategoryId));
                     int rowAffected = cmd.ExecuteNonQuery();
 
                     if (connection.State == System.Data.ConnectionState.Open)

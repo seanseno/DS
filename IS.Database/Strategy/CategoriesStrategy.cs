@@ -22,22 +22,28 @@ namespace IS.Database.Strategy
 
         public bool CheckEditDuplicate(string Name, int? CategoryId)
         {
-            using (SqlConnection connection = new SqlConnection(ConStr))
-            {
-                connection.Open();
-                var select = "SELECT CategoryName FROM vCategories WHERE CategoryName = '" + Name + "' AND ID != " + CategoryId;
-                using (SqlCommand cmd = new SqlCommand(select, connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            return true;
-                        }
-                        return false;
-                    }
-                }
-            }
+            var count = factory.CategoriesRepository.GetList()
+            .Where(x => x.CategoryName.ToUpper() == Name.ToUpper() &&
+             x.Id != CategoryId).Count();
+                    return count > 0;
+
+
+            //using (SqlConnection connection = new SqlConnection(ConStr))
+            //{
+            //    connection.Open();
+            //    var select = "SELECT CategoryName FROM vCategories WHERE CategoryName = '" + Name + "' AND ID != " + CategoryId;
+            //    using (SqlCommand cmd = new SqlCommand(select, connection))
+            //    {
+            //        using (SqlDataReader reader = cmd.ExecuteReader())
+            //        {
+            //            if (reader.HasRows)
+            //            {
+            //                return true;
+            //            }
+            //            return false;
+            //        }
+            //    }
+            //}
         }
 
         public bool CategoryAlreadyInUse(string CategoryId)

@@ -108,6 +108,8 @@ namespace IS.Admin.Transactions
                 txtProductId.Text = frm._ProductId;
                 txtProductName.Text = frm._ProductName;
                 txtSellingPrice.Text  = frm._Price.ToString("N2");
+                lblCategory.Text = frm._CategoryName;
+                cboCategories.SelectedIndex = cboCategories.FindStringExact(frm._CategoryName);
                 cboPrincipals.Focus();
             }
         }
@@ -245,5 +247,7 @@ namespace IS.Admin.Transactions
                 }
             }
         }
+
+
     }
 }

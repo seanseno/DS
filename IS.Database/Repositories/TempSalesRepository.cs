@@ -165,6 +165,63 @@ namespace IS.Database.Repositories
                 }
             }
         }
+
+        public void UpdateQty(TempSales tempSales)
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "UPDATE TempSales " +
+                    "SET PriceDiscounted = " + tempSales.PriceDiscounted + "," +
+                    "Discounted = " + tempSales.Discounted + "," +
+                    "TotalPrice = " + tempSales.TotalPrice + ", " + 
+                    "Qty = " + tempSales.Qty + "" +
+                    "WHERE Id = " + tempSales.Id;
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void UpdatePromo(TempSales tempSales)
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "UPDATE TempSales " +
+                    "SET PriceDiscounted = " + tempSales.PriceDiscounted + "," +
+                    "Discounted = " + tempSales.Discounted + "," +
+                    "TotalPrice = " + tempSales.TotalPrice + ", " +
+                    "PromoId = " + tempSales.PromoId + ", " +
+                    "IsPromo = " + tempSales.IsPromo + " " +
+                    "WHERE Id = " + tempSales.Id;
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void RemoveKioskPromoProduct(TempSales tempSales)
+        {
+            using (SqlConnection connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+                var select = "UPDATE TempSales " +
+                    "SET PriceDiscounted = " + tempSales.PriceDiscounted + "," +
+                    "Discounted = " + tempSales.Discounted + "," +
+                    "TotalPrice = " + tempSales.TotalPrice + ", " +
+                    "PromoId = NULL, " +
+                    "IsPromo = " + tempSales.IsPromo + " " +
+                    "WHERE Id = " + tempSales.Id;
+                using (SqlCommand cmd = new SqlCommand(select, connection))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
         public TempSalesStrategy TempSalesStrategy => new TempSalesStrategy();
     }
 }

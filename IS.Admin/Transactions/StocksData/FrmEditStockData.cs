@@ -39,6 +39,7 @@ namespace IS.Admin.Transactions
             dtpExpirationDate.Value = _StockData.ExpirationDate;
             txtRemarks.Text = _StockData.Remarks;
             txtSellingPrice.Text = _StockData.SellingPrice.ToString("N2");
+            lblCategory.Text = _StockData.CategoryName;
 
             CategoriesModel categoriesModel = new CategoriesModel();
             var categoryList = categoriesModel.CategoryListWithSelect();

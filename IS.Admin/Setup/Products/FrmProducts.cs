@@ -98,7 +98,7 @@ namespace IS.Admin.Setup
                 frm.ShowDialog();
             }
 
-            if (e.ColumnIndex == 6)
+            if (e.ColumnIndex == 7)
             {
                 FrmEditProduct frm = new FrmEditProduct(Item);
                 if (frm.ShowDialog() == DialogResult.OK)
@@ -107,18 +107,21 @@ namespace IS.Admin.Setup
                     MessageBox.Show("Record updated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 };
             }
-            if (e.ColumnIndex == 7)
+            if (e.ColumnIndex == 8)
             {
-                var model = new ProductsModel();
-                if (model.CheckItemIfAlreadyInUse(Item.ProductId))
+                if (factory.ProductsRepository.ProductsStrategy.ItemAlreadyInUse(Item.ProductId))
                 {
-                    MessageBox.Show("You can not delete " + Item.ProductName + " because this item is already used!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("You can not delete " + Item.ProductName + " because this Product is already used!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (factory.StocksDataRepository.GetList().Where(x=>x.ProductId == Item.ProductId).Count()> 0)
+                {
+                    MessageBox.Show("You can not delete " + Item.ProductName + " because this Product is already used!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
                     if (MessageBox.Show("Are you sure do want to delete " + Item.ProductName + ".", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
-                        model.DeleteItem(Item);
+                        factory.ProductsRepository.Delete(Item);
                         this.DeleteMemoryProducts(Item.ProductId);
                         
                         MessageBox.Show(Item.ProductName + " deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);

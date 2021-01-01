@@ -103,7 +103,8 @@ namespace IS.Admin.Setup
                                 ProductId = row[0].ToString().ToUpper(),
                                 ProductName = row[1].ToString(),
                                 Price = Convert.ToDecimal(row[2].ToString().ToUpper()),
-                                BarCode = row[3].ToString().ToUpper()
+                                BarCode = row[3].ToString().ToUpper(),
+                                CategoryId = row[4].ToString().ToUpper()
                             };
 
                             rowIndex++;
@@ -113,9 +114,17 @@ namespace IS.Admin.Setup
 
                             if (string.IsNullOrEmpty(row[0].ToString().ToUpper()) |
                                 string.IsNullOrEmpty(row[1].ToString().ToUpper()) ||
-                                string.IsNullOrEmpty(row[2].ToString().ToUpper()))
+                                string.IsNullOrEmpty(row[2].ToString().ToUpper()) )
                             {
                                 MessageBox.Show(string.Format("Row {0} has null value or empty, please check the row columns information!", rowIndex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                dgvExcel.Rows[rowIndex - 1].Selected = true;
+                                lblpbar.Text = "";
+                                lblpbar.Refresh();
+                                return;
+                            }
+                            else if (string.IsNullOrEmpty(row[4].ToString().ToUpper()))
+                            {
+                                MessageBox.Show(string.Format("Row {0} CategoryId is Required!", rowIndex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 dgvExcel.Rows[rowIndex - 1].Selected = true;
                                 lblpbar.Text = "";
                                 lblpbar.Refresh();

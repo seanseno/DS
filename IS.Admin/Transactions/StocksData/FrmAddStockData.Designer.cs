@@ -36,9 +36,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lblCategory = new System.Windows.Forms.Label();
+            this.cboCategories = new System.Windows.Forms.ComboBox();
             this.txtSuggestedPrice = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.cboCategories = new System.Windows.Forms.ComboBox();
             this.cboPrincipals = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -149,9 +150,10 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.White;
+            this.groupBox3.Controls.Add(this.lblCategory);
+            this.groupBox3.Controls.Add(this.cboCategories);
             this.groupBox3.Controls.Add(this.txtSuggestedPrice);
             this.groupBox3.Controls.Add(this.label11);
-            this.groupBox3.Controls.Add(this.cboCategories);
             this.groupBox3.Controls.Add(this.cboPrincipals);
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.label15);
@@ -180,6 +182,28 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Input Details";
             // 
+            // lblCategory
+            // 
+            this.lblCategory.AutoSize = true;
+            this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCategory.Location = new System.Drawing.Point(128, 166);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(12, 16);
+            this.lblCategory.TabIndex = 40;
+            this.lblCategory.Text = "-";
+            // 
+            // cboCategories
+            // 
+            this.cboCategories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCategories.Enabled = false;
+            this.cboCategories.FormattingEnabled = true;
+            this.cboCategories.Location = new System.Drawing.Point(391, 172);
+            this.cboCategories.Name = "cboCategories";
+            this.cboCategories.Size = new System.Drawing.Size(97, 21);
+            this.cboCategories.TabIndex = 5;
+            this.cboCategories.Visible = false;
+            this.cboCategories.SelectedIndexChanged += new System.EventHandler(this.cboCategories_SelectedIndexChanged);
+            // 
             // txtSuggestedPrice
             // 
             this.txtSuggestedPrice.Enabled = false;
@@ -201,21 +225,11 @@
             this.label11.TabIndex = 39;
             this.label11.Text = "Suggested Price:";
             // 
-            // cboCategories
-            // 
-            this.cboCategories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCategories.FormattingEnabled = true;
-            this.cboCategories.Location = new System.Drawing.Point(131, 198);
-            this.cboCategories.Name = "cboCategories";
-            this.cboCategories.Size = new System.Drawing.Size(357, 21);
-            this.cboCategories.TabIndex = 5;
-            this.cboCategories.SelectedIndexChanged += new System.EventHandler(this.cboCategories_SelectedIndexChanged);
-            // 
             // cboPrincipals
             // 
             this.cboPrincipals.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPrincipals.FormattingEnabled = true;
-            this.cboPrincipals.Location = new System.Drawing.Point(131, 169);
+            this.cboPrincipals.Location = new System.Drawing.Point(131, 199);
             this.cboPrincipals.Name = "cboPrincipals";
             this.cboPrincipals.Size = new System.Drawing.Size(357, 21);
             this.cboPrincipals.TabIndex = 4;
@@ -224,7 +238,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(20, 198);
+            this.label16.Location = new System.Drawing.Point(20, 165);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(66, 16);
             this.label16.TabIndex = 37;
@@ -234,7 +248,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(20, 169);
+            this.label15.Location = new System.Drawing.Point(20, 199);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(66, 16);
             this.label15.TabIndex = 36;
@@ -447,7 +461,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(123)))));
-            this.ClientSize = new System.Drawing.Size(698, 729);
+            this.ClientSize = new System.Drawing.Size(698, 711);
             this.ControlBox = false;
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
@@ -502,5 +516,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtSuggestedPrice;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblCategory;
     }
 }
