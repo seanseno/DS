@@ -15,6 +15,5 @@ namespace IS.Database.Entities
         public decimal Price { get; set;}
         public DateTime? InsertTime { get; set; }
         public DateTime? UpdateTime { get; set; }
-
     }
 }
