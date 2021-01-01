@@ -2,6 +2,7 @@
 using IS.Database;
 using IS.Database.Entities;
 using IS.Database.Enums;
+using IS.Database.Models;
 using IS.KIOSK.Model;
 using IS.Library.Utility;
 using System;
@@ -54,7 +55,7 @@ namespace IS.KIOSK
         {
             if (!_WithPrinter)
             {
-                btnReprint.Visible = false;
+                pnlReprint.Visible = false;
             }
 
             _IsDicounted = false;
@@ -152,6 +153,10 @@ namespace IS.KIOSK
             if (e.KeyValue == 122) // Re-print
             {
                 this.btnReprint_Click(sender, e);
+            }
+            if (e.KeyValue == 123) // edit qty
+            {
+                this.btnEditQty_Click(sender, e);
             }
         }
 
@@ -397,7 +402,7 @@ namespace IS.KIOSK
 
         private void btnReprint_Click(object sender, EventArgs e)
         {
-            if (btnReprint.Visible)
+            if (pnlReprint.Visible)
             {
                 if (MessageBox.Show("Are you sure do you want to re-print your last transaction?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
@@ -646,6 +651,42 @@ namespace IS.KIOSK
             }
         }
 
+        private void btnEditQty_Click(object sender, EventArgs e)
+        {
+            if (this._TempOrderList.Count() > 0)
+            {
+                var Id = dgvList.CurrentRow.Cells[0].Value?.ToString();
+                var tmp = _TempOrderList.Where(x => x.Id == Convert.ToInt32(Id)).FirstOrDefault();
+                var ProductName = dgvList.CurrentRow.Cells[2].Value?.ToString();
+                var Qty = dgvList.CurrentRow.Cells[3].Value?.ToString();
+                FrmEntryQty frm = new FrmEntryQty(ProductName, Qty);
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    tmp.Qty = Convert.ToInt32(frm._Qty);
+                    var PD = new ProductDiscounted();
+                    if (tmp.IsPWD == (int)EnumSenior.True)
+                    {
+                        PD = factory.ProductsRepository.ProductsStrategy.GetDiscountInfo(tmp.ProductId, tmp.Qty, false);
+                    }
+                    if (tmp.IsSenior == (int)EnumSenior.True)
+                    {
+                        PD = factory.ProductsRepository.ProductsStrategy.GetDiscountInfo(tmp.ProductId, tmp.Qty, true);
+                    }
 
+                    if (!string.IsNullOrEmpty(PD.ProductId))
+                    {
+                        tmp.PriceDiscounted = PD.PriceDiscounted;
+                        tmp.Discounted = PD.Discounted;
+                        tmp.TotalPrice = PD.TotalPrice;
+                    }
+                    else
+                    {
+                        tmp.TotalPrice = tmp.Qty * tmp.Price;
+                    }
+                    factory.TempSalesRepository.UpdateQty(tmp);
+                    load();
+                }
+            }
+        }
     }
 }

@@ -48,6 +48,7 @@ namespace IS.Admin.Setup
                         _Products.ProductName = txtProductName.Text;
                         _Products.Price = Convert.ToDecimal(txtPrice.Text);
                         _Products.BarCode = txtBarcode.Text;
+                        _Products.CategoryId = cboCategories.SelectedValue.ToString();
                         var model = new ProductsModel();
 
                         model.AddItem(this);
@@ -62,6 +63,11 @@ namespace IS.Admin.Setup
         {
             ProductsModel productsModel = new ProductsModel();
             lblProductId.Text = productsModel.GetNextId();
+
+            var categoryList = factory.CategoriesRepository.GetList().OrderBy(x => x.CategoryName).ToList();
+            cboCategories.DataSource = categoryList;
+            cboCategories.DisplayMember = "CategoryName";
+            cboCategories.ValueMember = "CategoryId";
         }
 
         private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
@@ -86,6 +92,8 @@ namespace IS.Admin.Setup
                 return true;
             }
 
+
+
             if (string.IsNullOrEmpty(txtPrice.Text))
             {
                 MessageBox.Show("Price is required", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -105,6 +113,13 @@ namespace IS.Admin.Setup
             {
                 MessageBox.Show("Invalid Price", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtPrice.Focus();
+                return true;
+            }
+
+            if (cboCategories.SelectedValue == null)
+            {
+                MessageBox.Show("Categories is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cboCategories.Focus();
                 return true;
             }
 

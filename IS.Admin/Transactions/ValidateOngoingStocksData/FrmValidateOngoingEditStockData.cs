@@ -42,6 +42,7 @@ namespace IS.Admin.Transactions
             dtpDeliveryDate.Value = response.DeliveryDate;
             dtpExpirationDate.Value = response.ExpirationDate;
             txtRemarks.Text = response.Remarks;
+            lblCategory.Text = response.CategoryName;
 
             CategoriesModel categoriesModel = new CategoriesModel();
             var categoryList = categoriesModel.CategoryListWithSelect();

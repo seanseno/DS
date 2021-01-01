@@ -43,6 +43,7 @@
             this.BarCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Active = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InsertTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
@@ -75,7 +76,8 @@
             this.Price,
             this.BarCode,
             this.Active,
-            this.InsertTime});
+            this.InsertTime,
+            this.CategoryName});
             this.dgvProducts.Location = new System.Drawing.Point(15, 41);
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.ReadOnly = true;
@@ -192,6 +194,13 @@
             this.InsertTime.Name = "InsertTime";
             this.InsertTime.ReadOnly = true;
             // 
+            // CategoryName
+            // 
+            this.CategoryName.DataPropertyName = "CategoryName";
+            this.CategoryName.HeaderText = "Category";
+            this.CategoryName.Name = "CategoryName";
+            this.CategoryName.ReadOnly = true;
+            // 
             // FrmProdutcsHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -228,5 +237,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn BarCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn Active;
         private System.Windows.Forms.DataGridViewTextBoxColumn InsertTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;
     }
 }

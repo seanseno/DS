@@ -18,6 +18,8 @@ namespace IS.Database.Entities
         public string BarCode { get; set; }
 
         public string FullName { get; set; }
-        
+        public string CategoryId { get; set; }
+        public string CategoryName { get; set; }
+
     }
 }

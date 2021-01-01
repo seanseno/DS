@@ -1738,6 +1738,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -5844,7 +5852,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Admin Installer"
         "ProductCode" = "8:{87FC0145-F191-46DE-93DE-E320D93BA5AB}"
-        "PackageCode" = "8:{9B2F7554-E8CB-42DC-B1D1-586A6BE04E48}"
+        "PackageCode" = "8:{2BFB6C39-4B95-4BFC-B429-7CEDADFA8161}"
         "UpgradeCode" = "8:{436E91F6-76D7-4F23-9FC7-08DE6291CB12}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

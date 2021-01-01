@@ -33,8 +33,7 @@ namespace IIS.Admin.Transactions
             grpLoading.Visible = true;
             grpLoading.Refresh();
 
-            var response = factory.StocksDataRepository.GetList()
-                        .Where(x => x.RemainingQuantity > 0).ToList();
+            var response = factory.StocksDataRepository.GetList().ToList();
             response = response
                         .Where(x => x.ProductName.Contains(txtSearch.Text) ||
                             x.ProductId.Contains(txtSearch.Text) ||

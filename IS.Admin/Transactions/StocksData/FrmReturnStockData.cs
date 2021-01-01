@@ -74,6 +74,12 @@ namespace IS.Admin.Transactions
                 txtReturnQty.Focus();
                 return true;
             }
+            else if (Convert.ToInt32(txtReturnQty.Text) <= 0)
+            {
+                MessageBox.Show("Zero Quantity is not allowed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtReturnQty.Focus();
+                return true;
+            }
             else if (Convert.ToInt32(txtReturnQty.Text) > _StockData.RemainingQuantity)
             {
                 MessageBox.Show("Invalid Quantity, Not enough stock!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -10,7 +10,6 @@ namespace IS.Database
 {
     public class Helper
     {
-      
         private bool WindowsAuthentication = Convert.ToBoolean(ConfigurationManager.AppSettings["WindowsAuthentication"]);
         private string ConnectionString =  ConfigurationManager.AppSettings["ConnectionString"];
         private string ServerName = ConfigurationManager.AppSettings["ServerName"];

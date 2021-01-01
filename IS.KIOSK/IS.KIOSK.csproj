@@ -103,6 +103,12 @@
     <Compile Include="CustomDataGridView\CustomDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="EditQuantity\FrmEntryQty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditQuantity\FrmEntryQty.Designer.cs">
+      <DependentUpon>FrmEntryQty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\FrmMain\CustomDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -148,6 +154,12 @@
     <Compile Include="FrmChange.Designer.cs">
       <DependentUpon>FrmChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditQuantity\FrmEditQtyItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditQuantity\FrmEditQtyItem.Designer.cs">
+      <DependentUpon>FrmEditQtyItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmPWD.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +202,9 @@
     <Compile Include="Model\ProductsModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="EditQuantity\FrmEntryQty.resx">
+      <DependentUpon>FrmEntryQty.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmProducts\FrmModalSearchProducts.resx">
       <DependentUpon>FrmModalSearchProducts.cs</DependentUpon>
     </EmbeddedResource>
@@ -210,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmChange.resx">
       <DependentUpon>FrmChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditQuantity\FrmEditQtyItem.resx">
+      <DependentUpon>FrmEditQtyItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPWD.resx">
       <DependentUpon>FrmPWD.cs</DependentUpon>
